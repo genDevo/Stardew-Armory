@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:empty",
+          "weight": 30
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 25,
+          "name": "testomodo:lava_katana"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 25,
+          "name": "testomodo:dark_sword"
+        }
+      ]
+    }
+  ]
+}

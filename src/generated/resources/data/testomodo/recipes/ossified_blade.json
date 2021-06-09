@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    " p ",
+    " b "
+  ],
+  "key": {
+    "#": {
+      "item": "testomodo:bone_sword"
+    },
+    "p": {
+      "item": "testomodo:prehistoric_scapula"
+    },
+    "b": {
+      "item": "minecraft:bone"
+    }
+  },
+  "result": {
+    "item": "testomodo:ossified_blade"
+  }
+}

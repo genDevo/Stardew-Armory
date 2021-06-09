@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "testomodo:prismatic_ore"
+  },
+  "result": "testomodo:prismatic_shard",
+  "experience": 1.5,
+  "cookingtime": 200
+}

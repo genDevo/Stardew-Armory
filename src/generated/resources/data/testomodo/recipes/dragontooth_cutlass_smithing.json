@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "testomodo:cutlass"
+  },
+  "addition": {
+    "item": "testomodo:dragon_tooth"
+  },
+  "result": {
+    "item": "testomodo:dragontooth_cutlass"
+  }
+}

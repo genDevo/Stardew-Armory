@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "testomodo:block/prismatic_block"
+    }
+  }
+}

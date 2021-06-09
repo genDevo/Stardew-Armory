@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    " # ",
+    " s "
+  ],
+  "key": {
+    "#": {
+      "item": "testomodo:prismatic_shard"
+    },
+    "s": {
+      "item": "testomodo:reinforced_handle"
+    }
+  },
+  "result": {
+    "item": "testomodo:galaxy_sword"
+  }
+}

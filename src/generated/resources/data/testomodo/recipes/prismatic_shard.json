@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "testomodo:prismatic_block"
+    }
+  ],
+  "result": {
+    "item": "testomodo:prismatic_shard",
+    "count": 9
+  }
+}
