@@ -1,8 +1,8 @@
 {
   "replace": false,
   "values": [
-    "testomodo:ruby_ring",
-    "testomodo:lucky_ring",
-    "testomodo:crabshell_ring"
+    "stardewarmory:ruby_ring",
+    "stardewarmory:lucky_ring",
+    "stardewarmory:crabshell_ring"
   ]
 }

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "stardewarmory:prismatic_ore"
+  },
+  "result": "stardewarmory:prismatic_shard",
+  "experience": 1.5,
+  "cookingtime": 200
+}

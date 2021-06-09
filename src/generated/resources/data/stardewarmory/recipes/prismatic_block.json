@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "stardewarmory:prismatic_shard"
+    }
+  },
+  "result": {
+    "item": "stardewarmory:prismatic_block"
+  }
+}

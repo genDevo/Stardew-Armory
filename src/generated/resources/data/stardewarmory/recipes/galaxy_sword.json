@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    " # ",
+    " s "
+  ],
+  "key": {
+    "#": {
+      "item": "stardewarmory:prismatic_shard"
+    },
+    "s": {
+      "item": "stardewarmory:reinforced_handle"
+    }
+  },
+  "result": {
+    "item": "stardewarmory:galaxy_sword"
+  }
+}

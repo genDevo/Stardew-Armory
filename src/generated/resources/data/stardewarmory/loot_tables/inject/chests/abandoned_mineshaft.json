@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:empty",
+          "weight": 40
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 25,
+          "name": "stardewarmory:rusty_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 25,
+          "name": "stardewarmory:bone_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 15,
+          "name": "stardewarmory:iron_edge"
+        }
+      ]
+    }
+  ]
+}

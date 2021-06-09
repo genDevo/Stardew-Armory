@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "stardewarmory:prismatic_block"
+    }
+  ],
+  "result": {
+    "item": "stardewarmory:prismatic_shard",
+    "count": 9
+  }
+}

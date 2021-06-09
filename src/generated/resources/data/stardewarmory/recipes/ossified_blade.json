@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    " p ",
+    " b "
+  ],
+  "key": {
+    "#": {
+      "item": "stardewarmory:bone_sword"
+    },
+    "p": {
+      "item": "stardewarmory:prehistoric_scapula"
+    },
+    "b": {
+      "item": "minecraft:bone"
+    }
+  },
+  "result": {
+    "item": "stardewarmory:ossified_blade"
+  }
+}

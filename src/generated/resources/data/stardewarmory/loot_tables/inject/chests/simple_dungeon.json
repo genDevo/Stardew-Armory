@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:empty",
+          "weight": 50
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 15,
+          "name": "stardewarmory:claymore"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "stardewarmory:tempered_broadsword"
+        }
+      ]
+    }
+  ]
+}
