@@ -98,5 +98,35 @@ public class ModItems {
     public static final RegistryObject<SwordItem> INFINITY_BLADE = Registration.ITEMS.register("infinity_blade", () ->
             new CritSword(ModItemTier.INFINITY_BLADE, 12, -2.0f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
 
+    //Daggers
+    public static final RegistryObject<SwordItem> CARVING_KNIFE = Registration.ITEMS.register("carving_knife", () ->
+            new SwordItem(ModItemTier.CARVING_KNIFE, 0, -1.6f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
+    public static final RegistryObject<SwordItem> IRON_DIRK = Registration.ITEMS.register("iron_dirk", () ->
+            new SwordItem(ModItemTier.IRON_DIRK, 1, -1.6f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
+    public static final RegistryObject<SwordItem> WIND_SPIRE = Registration.ITEMS.register("wind_spire", () ->
+            new CritSword(ModItemTier.WIND_SPIRE, 1, -1.6f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
+    public static final RegistryObject<SwordItem> ELF_BLADE = Registration.ITEMS.register("elf_blade", () ->
+            new SwordItem(ModItemTier.ELF_BLADE, 1, -1.2f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
+    public static final RegistryObject<SwordItem> BURGLARS_SHANK = Registration.ITEMS.register("burglars_shank", () ->
+            new SwordItem(ModItemTier.BURGLARS_SHANK, 1, -2.0f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
+    public static final RegistryObject<SwordItem> CRYSTAL_DAGGER = Registration.ITEMS.register("crystal_dagger", () ->
+            new CritSword(ModItemTier.CRYSTAL_DAGGER, 1, -1.6f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
+    public static final RegistryObject<SwordItem> SHADOW_DAGGER = Registration.ITEMS.register("shadow_dagger", () ->
+            new SwordItem(ModItemTier.SHADOW_DAGGER, 2, -1.6f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
+    public static final RegistryObject<SwordItem> BROKEN_TRIDENT = Registration.ITEMS.register("broken_trident", () ->
+            new SwordItem(ModItemTier.BROKEN_TRIDENT, 2, -1.6f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
+    public static final RegistryObject<SwordItem> WICKED_KRIS = Registration.ITEMS.register("wicked_kris", () ->
+            new EnchantSword(ModItemTier.WICKED_KRIS, 2, -1.6f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
+    public static final RegistryObject<SwordItem> GALAXY_DAGGER = Registration.ITEMS.register("galaxy_dagger", () ->
+            new SwordItem(ModItemTier.GALAXY_DAGGER, 4, -1.0f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
+    public static final RegistryObject<SwordItem> DWARF_DAGGER = Registration.ITEMS.register("dwarf_dagger", () ->
+            new SwordItem(ModItemTier.DWARF_DAGGER, 3, -1.2f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
+    public static final RegistryObject<SwordItem> DRAGONTOOTH_SHIV = Registration.ITEMS.register("dragontooth_shiv", () ->
+            new SwordItem(ModItemTier.DRAGONTOOTH_SHIV, 0, -1.6f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
+    public static final RegistryObject<SwordItem> IRIDIUM_NEEDLE = Registration.ITEMS.register("iridium_needle", () ->
+            new CritSword(ModItemTier.IRIDIUM_NEEDLE, 2, -1.2f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
+    public static final RegistryObject<SwordItem> INFINITY_DAGGER = Registration.ITEMS.register("infinity_dagger", () ->
+            new SwordItem(ModItemTier.INFINITY_DAGGER, 7, -0.5f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
+
     static void register(){}
 }

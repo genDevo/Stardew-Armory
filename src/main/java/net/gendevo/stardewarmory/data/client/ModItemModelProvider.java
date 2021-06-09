@@ -21,7 +21,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         ModelFile itemGenerated = getExistingFile(mcLoc("item/generated"));
         ModelFile itemHandheld = getExistingFile(mcLoc("item/handheld"));
 
-
         builder(itemGenerated, "special_item");
         // Materials
         builder(itemGenerated, "prismatic_shard");
@@ -56,6 +55,21 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemHandheld, "lava_katana");
         builder(itemHandheld, "dwarf_sword");
         builder(itemHandheld, "infinity_blade");
+        //Daggers
+        builder(itemHandheld, "carving_knife");
+        builder(itemHandheld, "iron_dirk");
+        builder(itemHandheld, "wind_spire");
+        builder(itemHandheld, "elf_blade");
+        builder(itemHandheld, "burglars_shank");
+        builder(itemHandheld, "crystal_dagger");
+        builder(itemHandheld, "shadow_dagger");
+        builder(itemHandheld, "broken_trident");
+        builder(itemHandheld, "wicked_kris");
+        builder(itemHandheld, "galaxy_dagger");
+        builder(itemHandheld, "dwarf_dagger");
+        builder(itemHandheld, "dragontooth_shiv");
+        builder(itemHandheld, "iridium_needle");
+        builder(itemHandheld, "infinity_dagger");
     }
 
     private ItemModelBuilder builder(ModelFile itemGenerated, String name) {

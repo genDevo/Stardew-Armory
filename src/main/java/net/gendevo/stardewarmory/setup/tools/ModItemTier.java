@@ -9,7 +9,81 @@ import net.minecraftforge.common.Tags;
 import java.util.function.Supplier;
 
 public enum ModItemTier implements IItemTier {
-
+    //Daggers
+    CARVING_KNIFE(3, 3000, 9.0F, 1.0F, 12, () -> {
+        return null;
+    }),
+    IRON_DIRK(3, 3000, 9.0F, 1.0F, 12, () -> {
+        return null;
+    }),
+    WIND_SPIRE(3, 3000, 9.0F, 1.0F, 12, () -> {
+        return null;
+    }),
+    ELF_BLADE(3, 3000, 9.0F, 1.0F, 12, () -> {
+        return null;
+    }),
+    BURGLARS_SHANK(3, 3000, 9.0F, 1.5F, 12, () -> {
+        return null;
+    }),
+    CRYSTAL_DAGGER(3, 3000, 9.0F, 1.5F, 12, () -> {
+        return null;
+    }),
+    SHADOW_DAGGER(3, 3000, 9.0F, 1.0F, 12, () -> {
+        return null;
+    }),
+    BROKEN_TRIDENT(3, 3000, 9.0F, 1.0F, 12, () -> {
+        return null;
+    }),
+    WICKED_KRIS(3, 3000, 9.0F, 1.0F, 13, () -> {
+        return null;
+    }),
+    GALAXY_DAGGER(3, 3000, 9.0F, 1.0F, 12, () -> {
+        return null;
+    }),
+    DWARF_DAGGER(3, 3000, 9.0F, 1.0F, 12, () -> {
+        return null;
+    }),
+    DRAGONTOOTH_SHIV(3, 3000, 9.0F, 1.0F, 12, () -> {
+        return null;
+    }),
+    IRIDIUM_NEEDLE(3, 3000, 9.0F, 1.0F, 12, () -> {
+        return null;
+    }),
+    INFINITY_DAGGER(3, 3000, 9.0F, 1.0F, 12, () -> {
+        return null;
+    }),
+    //Clubs
+    FEMUR(3, 3000, 9.0F, 1.0F, 12, () -> {
+        return null;
+    }),
+    WOOD_CLUB(3, 3000, 9.0F, 1.0F, 12, () -> {
+        return null;
+    }),
+    WOOD_MALLET(3, 3000, 9.0F, 1.0F, 12, () -> {
+        return null;
+    }),
+    LEAD_ROD(3, 3000, 9.0F, 1.0F, 12, () -> {
+        return null;
+    }),
+    KUDGEL(3, 3000, 9.0F, 1.0F, 12, () -> {
+        return null;
+    }),
+    SLAMMER(3, 3000, 9.0F, 1.0F, 12, () -> {
+        return null;
+    }),
+    DWARF_HAMMER(3, 3000, 9.0F, 1.0F, 12, () -> {
+        return null;
+    }),
+    DRAGONTOOTH_CLUB(3, 3000, 9.0F, 1.0F, 12, () -> {
+        return null;
+    }),
+    GALAXY_HAMMER(3, 3000, 9.0F, 1.0F, 12, () -> {
+        return null;
+    }),
+    INFINITY_HAMMER(3, 3000, 9.0F, 1.0F, 12, () -> {
+        return null;
+    }),
+    //Swords
     GALAXY_SWORD(3, 3000, 9.0F, 1.0F, 12, () -> {
         return Ingredient.of(ModItems.PRISMATIC_SHARD.get());
     }),
