@@ -128,5 +128,26 @@ public class ModItems {
     public static final RegistryObject<SwordItem> INFINITY_DAGGER = Registration.ITEMS.register("infinity_dagger", () ->
             new SwordItem(ModItemTier.INFINITY_DAGGER, 7, -0.5f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
 
+    //Clubs
+    public static final RegistryObject<SwordItem> FEMUR = Registration.ITEMS.register("femur", () ->
+            new SwordItem(ModItemTier.FEMUR, 3, -3.0f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
+    public static final RegistryObject<SwordItem> WOOD_CLUB = Registration.ITEMS.register("wood_club", () ->
+            new SwordItem(ModItemTier.WOOD_CLUB, 3, -3.0f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
+    public static final RegistryObject<SwordItem> WOOD_MALLET = Registration.ITEMS.register("wood_mallet", () ->
+            new SwordItem(ModItemTier.WOOD_MALLET, 4, -3.1f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
+    public static final RegistryObject<SwordItem> LEAD_ROD = Registration.ITEMS.register("lead_rod", () ->
+            new SwordItem(ModItemTier.LEAD_ROD, 6, -3.2f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
+    public static final RegistryObject<SwordItem> KUDGEL = Registration.ITEMS.register("kudgel", () ->
+            new SwordItem(ModItemTier.KUDGEL, 5, -3.0f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
+    public static final RegistryObject<SwordItem> SLAMMER = Registration.ITEMS.register("slammer", () ->
+            new EnchantSword(ModItemTier.SLAMMER, 5, -3.0f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
+    public static final RegistryObject<SwordItem> DWARF_HAMMER = Registration.ITEMS.register("dwarf_hammer", () ->
+            new SwordItem(ModItemTier.DWARF_HAMMER, 8, -3.0f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
+    public static final RegistryObject<SwordItem> DRAGONTOOTH_CLUB = Registration.ITEMS.register("dragontooth_club", () ->
+            new EnchantSword(ModItemTier.DRAGONTOOTH_CLUB, 8, -3.0f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
+    public static final RegistryObject<SwordItem> GALAXY_HAMMER = Registration.ITEMS.register("galaxy_hammer", () ->
+            new SwordItem(ModItemTier.GALAXY_HAMMER, 10, -2.4f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
+    public static final RegistryObject<SwordItem> INFINITY_GAVEL = Registration.ITEMS.register("infinity_gavel", () ->
+            new SwordItem(ModItemTier.INFINITY_GAVEL, 13, -2.4f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
     static void register(){}
 }

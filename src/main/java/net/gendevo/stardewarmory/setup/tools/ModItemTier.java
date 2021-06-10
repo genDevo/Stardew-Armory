@@ -68,19 +68,19 @@ public enum ModItemTier implements IItemTier {
     KUDGEL(3, 3000, 9.0F, 1.0F, 12, () -> {
         return null;
     }),
-    SLAMMER(3, 3000, 9.0F, 1.0F, 12, () -> {
+    SLAMMER(3, 3000, 9.0F, 1.0F, 11, () -> {
         return null;
     }),
     DWARF_HAMMER(3, 3000, 9.0F, 1.0F, 12, () -> {
         return null;
     }),
-    DRAGONTOOTH_CLUB(3, 3000, 9.0F, 1.0F, 12, () -> {
+    DRAGONTOOTH_CLUB(3, 3000, 9.0F, 1.0F, 13, () -> {
         return null;
     }),
     GALAXY_HAMMER(3, 3000, 9.0F, 1.0F, 12, () -> {
         return null;
     }),
-    INFINITY_HAMMER(3, 3000, 9.0F, 1.0F, 12, () -> {
+    INFINITY_GAVEL(3, 3000, 9.0F, 1.0F, 12, () -> {
         return null;
     }),
     //Swords

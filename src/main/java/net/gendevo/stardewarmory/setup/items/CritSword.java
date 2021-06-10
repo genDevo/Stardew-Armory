@@ -37,7 +37,7 @@ public class CritSword extends SwordItem {
     @Override
     public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
         Random rand = new Random();
-        int critChance = 4;
+        int critChance = 6;
         if (player.hasEffect(Effects.LUCK)) {
             critChance = critChance - 2;
         }

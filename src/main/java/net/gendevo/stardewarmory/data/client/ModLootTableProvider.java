@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import net.gendevo.stardewarmory.data.loot.ModChestLootTables;
 import net.gendevo.stardewarmory.data.loot.ModEntityLootTables;
+import net.gendevo.stardewarmory.data.loot.ModFishingLootTables;
 import net.gendevo.stardewarmory.setup.ModBlocks;
 import net.gendevo.stardewarmory.setup.ModItems;
 import net.gendevo.stardewarmory.setup.Registration;
@@ -32,7 +33,8 @@ public class ModLootTableProvider extends LootTableProvider {
         return ImmutableList.of(
                 Pair.of(ModBlockLootTables::new, LootParameterSets.BLOCK),
                 Pair.of(ModEntityLootTables::new, LootParameterSets.ENTITY),
-                Pair.of(ModChestLootTables::new, LootParameterSets.CHEST)
+                Pair.of(ModChestLootTables::new, LootParameterSets.CHEST),
+                Pair.of(ModFishingLootTables::new, LootParameterSets.FISHING)
         );
     }
 

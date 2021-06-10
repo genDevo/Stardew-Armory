@@ -41,10 +41,10 @@ public class ModRecipeProvider extends RecipeProvider {
         ShapedRecipeBuilder.shaped(ModItems.OSSIFIED_BLADE.get())
                 .define('#', ModItems.BONE_SWORD.get())
                 .define('p', ModItems.PREHISTORIC_SCAPULA.get())
-                .define('b', Items.BONE)
+                .define('f', ModItems.FEMUR.get())
                 .pattern(" # ")
                 .pattern(" p ")
-                .pattern(" b ")
+                .pattern(" f ")
                 .unlockedBy("has_item", has(ModItems.PREHISTORIC_SCAPULA.get()))
                 .save(consumer);
         ShapedRecipeBuilder.shaped(ModItems.IRON_EDGE.get())

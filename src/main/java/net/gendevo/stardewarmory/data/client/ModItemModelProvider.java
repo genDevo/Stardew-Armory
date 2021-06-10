@@ -70,6 +70,17 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemHandheld, "dragontooth_shiv");
         builder(itemHandheld, "iridium_needle");
         builder(itemHandheld, "infinity_dagger");
+        //Clubs
+        builder(itemHandheld, "femur");
+        builder(itemHandheld, "wood_club");
+        builder(itemHandheld, "wood_mallet");
+        builder(itemHandheld, "lead_rod");
+        builder(itemHandheld, "kudgel");
+        builder(itemHandheld, "slammer");
+        builder(itemHandheld, "dwarf_hammer");
+        builder(itemHandheld, "dragontooth_club");
+        builder(itemHandheld, "galaxy_hammer");
+        builder(itemHandheld, "infinity_gavel");
     }
 
     private ItemModelBuilder builder(ModelFile itemGenerated, String name) {

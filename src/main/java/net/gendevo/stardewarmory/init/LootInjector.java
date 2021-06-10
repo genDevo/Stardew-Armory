@@ -23,13 +23,21 @@ public final class LootInjector {
         public static final ResourceLocation CHESTS_SPAWN = inject(LootTables.SPAWN_BONUS_CHEST);
         public static final ResourceLocation CHESTS_VILLAGE_TEMPLE = inject(LootTables.VILLAGE_TEMPLE);
         public static final ResourceLocation CHESTS_VILLAGE_WEAPONSMITH = inject(LootTables.VILLAGE_WEAPONSMITH);
+        public static final ResourceLocation CHESTS_VILLAGE_BUTCHER = inject(LootTables.VILLAGE_BUTCHER);
+        public static final ResourceLocation CHESTS_VILLAGE_TOOLSMITH = inject(LootTables.VILLAGE_TOOLSMITH);
         public static final ResourceLocation CHESTS_NETHER_BRIDGE = inject(LootTables.NETHER_BRIDGE);
+        public static final ResourceLocation CHESTS_BASTION_BRIDGE = inject(LootTables.BASTION_BRIDGE);
         public static final ResourceLocation CHESTS_SHIP = inject(LootTables.SHIPWRECK_SUPPLY);
         public static final ResourceLocation CHESTS_PILLAGER = inject(LootTables.PILLAGER_OUTPOST);
         public static final ResourceLocation CHESTS_RUINED_PORTAL = inject(LootTables.RUINED_PORTAL);
         public static final ResourceLocation CHESTS_UNDERWATER_RUINS = inject(LootTables.UNDERWATER_RUIN_BIG);
-        public static final ResourceLocation CHESTS_STRONGHOLD = inject(LootTables.SIMPLE_DUNGEON);
+        public static final ResourceLocation CHESTS_STRONGHOLD = inject(LootTables.STRONGHOLD_CORRIDOR);
         public static final ResourceLocation CHESTS_MINESHAFT = inject(LootTables.ABANDONED_MINESHAFT);
+        public static final ResourceLocation CHESTS_SIMPLE_DUNGEON = inject(LootTables.SIMPLE_DUNGEON);
+        public static final ResourceLocation PIGLIN_BARTER = inject(LootTables.PIGLIN_BARTERING);
+
+
+        public static final ResourceLocation FISHING_TREASURE = inject(LootTables.FISHING_TREASURE);
 
         public static final ResourceLocation ENTITIES_CAVE_SPIDER = inject(new ResourceLocation("entities/cave_spider"));
         public static final ResourceLocation ENTITIES_SPIDER = inject(new ResourceLocation("entities/spider"));
@@ -58,16 +66,16 @@ public final class LootInjector {
 
     private LootInjector() {}
 
-    @SubscribeEvent
-    public static void onLootTableLoad(LootTableLoadEvent event) {
-        Tables.get(event.getName()).ifPresent(injectorName -> {
-            StardewArmory.LOGGER.info("Injecting loot table '{}' into '{}'", injectorName, event.getName());
-            event.getTable().addPool(
-                    new LootPool.Builder()
-                            .name("testomodo_injected")
-                            .add(TableLootEntry.lootTableReference(injectorName))
-                            .build()
-            );
-        });
-    }
+//    @SubscribeEvent
+//    public static void onLootTableLoad(LootTableLoadEvent event) {
+//        Tables.get(event.getName()).ifPresent(injectorName -> {
+//            StardewArmory.LOGGER.info("Injecting loot table '{}' into '{}'", injectorName, event.getName());
+//            event.getTable().addPool(
+//                    new LootPool.Builder()
+//                            .name("stardewarmory_injected")
+//                            .add(TableLootEntry.lootTableReference(injectorName))
+//                            .build()
+//            );
+//        });
+//    }
 }

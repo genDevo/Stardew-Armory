@@ -3,6 +3,7 @@ package net.gendevo.stardewarmory.data.loot;
 import net.gendevo.stardewarmory.init.LootInjector;
 import net.gendevo.stardewarmory.setup.ModItems;
 import net.minecraft.data.loot.ChestLootTables;
+import net.minecraft.item.Items;
 import net.minecraft.loot.*;
 import net.minecraft.util.ResourceLocation;
 
@@ -15,13 +16,30 @@ public class ModChestLootTables extends ChestLootTables {
         consumer.accept(LootInjector.Tables.CHESTS_NETHER_BRIDGE, addNetherWeapons(new LootTable.Builder()));
         consumer.accept(LootInjector.Tables.CHESTS_VILLAGE_TEMPLE, addTemplarsBlade(new LootTable.Builder()));
         consumer.accept(LootInjector.Tables.CHESTS_VILLAGE_WEAPONSMITH, addSteelWeapons(new LootTable.Builder()));
+        consumer.accept(LootInjector.Tables.CHESTS_VILLAGE_TOOLSMITH, addSlammer(new LootTable.Builder()));
         consumer.accept(LootInjector.Tables.CHESTS_SPAWN, addForestSword(new LootTable.Builder()));
         consumer.accept(LootInjector.Tables.CHESTS_SHIP, addPirateSword(new LootTable.Builder()));
-        consumer.accept(LootInjector.Tables.CHESTS_PILLAGER, addCutlass(new LootTable.Builder()));
-        consumer.accept(LootInjector.Tables.CHESTS_STRONGHOLD, addClaymoreAndTemperedBroadsword(new LootTable.Builder()));
+        consumer.accept(LootInjector.Tables.CHESTS_PILLAGER, addPillagerWeapons(new LootTable.Builder()));
+        consumer.accept(LootInjector.Tables.CHESTS_SIMPLE_DUNGEON, addSimpleWeapons(new LootTable.Builder()));
         consumer.accept(LootInjector.Tables.CHESTS_MINESHAFT, addMineshaftWeapons(new LootTable.Builder()));
         consumer.accept(LootInjector.Tables.CHESTS_RUINED_PORTAL, addObsidianEdge(new LootTable.Builder()));
         consumer.accept(LootInjector.Tables.CHESTS_UNDERWATER_RUINS, addNeptuneChest(new LootTable.Builder()));
+        consumer.accept(LootInjector.Tables.CHESTS_VILLAGE_BUTCHER, addCarvingKnife(new LootTable.Builder()));
+
+        consumer.accept(LootTables.PIGLIN_BARTERING, addKudgel(new LootTable.Builder()));
+    }
+
+    private static LootTable.Builder addKudgel(LootTable.Builder builder ) {
+        builder.withPool(new LootPool.Builder()
+                .setRolls(ConstantRange.exactly(1))
+                .add(EmptyLootEntry.emptyItem()
+                        .setWeight(30)
+                )
+                .add(ItemLootEntry.lootTableItem(ModItems.KUDGEL.get())
+                        .setWeight(10)
+                )
+        );
+        return builder;
     }
 
     private static LootTable.Builder addYetiTooth(LootTable.Builder builder ) {
@@ -52,6 +70,9 @@ public class ModChestLootTables extends ChestLootTables {
                 .add(ItemLootEntry.lootTableItem(ModItems.DARK_SWORD.get())
                         .setWeight(25)
                 )
+                .add(ItemLootEntry.lootTableItem(ModItems.WICKED_KRIS.get())
+                        .setWeight(25)
+                )
         );
         return builder;
     }
@@ -64,6 +85,32 @@ public class ModChestLootTables extends ChestLootTables {
                 )
                 .add(ItemLootEntry.lootTableItem(ModItems.TEMPLARS_BLADE.get())
                         .setWeight(35)
+                )
+        );
+        return builder;
+    }
+
+    private static LootTable.Builder addSlammer(LootTable.Builder builder) {
+        builder.withPool(new LootPool.Builder()
+                .setRolls(ConstantRange.exactly(1))
+                .add(EmptyLootEntry.emptyItem()
+                        .setWeight(40)
+                )
+                .add(ItemLootEntry.lootTableItem(ModItems.SLAMMER.get())
+                        .setWeight(35)
+                )
+        );
+        return builder;
+    }
+
+    private static LootTable.Builder addCarvingKnife(LootTable.Builder builder) {
+        builder.withPool(new LootPool.Builder()
+                .setRolls(ConstantRange.exactly(1))
+                .add(EmptyLootEntry.emptyItem()
+                        .setWeight(50)
+                )
+                .add(ItemLootEntry.lootTableItem(ModItems.CARVING_KNIFE.get())
+                        .setWeight(50)
                 )
         );
         return builder;
@@ -98,7 +145,7 @@ public class ModChestLootTables extends ChestLootTables {
         return builder;
     }
 
-    private static LootTable.Builder addCutlass(LootTable.Builder builder) {
+    private static LootTable.Builder addPillagerWeapons(LootTable.Builder builder) {
         builder.withPool(new LootPool.Builder()
                 .setRolls(ConstantRange.exactly(1))
                 .add(EmptyLootEntry.emptyItem()
@@ -107,21 +154,27 @@ public class ModChestLootTables extends ChestLootTables {
                 .add(ItemLootEntry.lootTableItem(ModItems.CUTLASS.get())
                         .setWeight(35)
                 )
+                .add(ItemLootEntry.lootTableItem(ModItems.BURGLARS_SHANK.get())
+                        .setWeight(35)
+                )
         );
         return builder;
     }
 
-    private static LootTable.Builder addClaymoreAndTemperedBroadsword(LootTable.Builder builder) {
+    private static LootTable.Builder addSimpleWeapons(LootTable.Builder builder) {
         builder.withPool(new LootPool.Builder()
                 .setRolls(ConstantRange.exactly(1))
                 .add(EmptyLootEntry.emptyItem()
                         .setWeight(50)
                 )
                 .add(ItemLootEntry.lootTableItem(ModItems.CLAYMORE.get())
-                        .setWeight(15)
+                        .setWeight(25)
                 )
                 .add(ItemLootEntry.lootTableItem(ModItems.TEMPERED_BROADSWORD.get())
-                        .setWeight(10)
+                        .setWeight(20)
+                )
+                .add(ItemLootEntry.lootTableItem(ModItems.SHADOW_DAGGER.get())
+                        .setWeight(20)
                 )
         );
         return builder;
@@ -153,7 +206,13 @@ public class ModChestLootTables extends ChestLootTables {
                         .setWeight(25)
                 )
                 .add(ItemLootEntry.lootTableItem(ModItems.IRON_EDGE.get())
-                        .setWeight(15)
+                        .setWeight(20)
+                )
+                .add(ItemLootEntry.lootTableItem(ModItems.WIND_SPIRE.get())
+                        .setWeight(20)
+                )
+                .add(ItemLootEntry.lootTableItem(ModItems.ELF_BLADE.get())
+                        .setWeight(20)
                 )
         );
         return builder;
