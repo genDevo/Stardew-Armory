@@ -11,12 +11,7 @@
         {
           "type": "minecraft:item",
           "weight": 35,
-          "name": "stardewarmory:cutlass"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 35,
-          "name": "stardewarmory:burglars_shank"
+          "name": "stardewarmory:slammer"
         }
       ]
     }

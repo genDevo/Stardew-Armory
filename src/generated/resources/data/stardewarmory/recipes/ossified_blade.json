@@ -3,7 +3,7 @@
   "pattern": [
     " # ",
     " p ",
-    " b "
+    " f "
   ],
   "key": {
     "#": {
@@ -12,8 +12,8 @@
     "p": {
       "item": "stardewarmory:prehistoric_scapula"
     },
-    "b": {
-      "item": "minecraft:bone"
+    "f": {
+      "item": "stardewarmory:femur"
     }
   },
   "result": {

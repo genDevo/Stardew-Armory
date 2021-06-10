@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:fishing",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "stardewarmory:pirates_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "stardewarmory:neptunes_glaive"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "stardewarmory:broken_trident"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "stardewarmory:crabshell_ring"
+        }
+      ]
+    }
+  ]
+}

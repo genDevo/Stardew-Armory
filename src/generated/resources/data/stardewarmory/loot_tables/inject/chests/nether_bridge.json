@@ -17,6 +17,11 @@
           "type": "minecraft:item",
           "weight": 25,
           "name": "stardewarmory:dark_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 25,
+          "name": "stardewarmory:wicked_kris"
         }
       ]
     }
