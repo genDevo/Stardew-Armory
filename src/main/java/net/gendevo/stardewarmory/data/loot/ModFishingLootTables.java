@@ -15,6 +15,7 @@ public class ModFishingLootTables extends FishingLootTables {
     @Override
     public void accept(BiConsumer<ResourceLocation, LootTable.Builder> consumer) {
         consumer.accept(LootInjector.Tables.FISHING_TREASURE, addTreasureDrops(new LootTable.Builder()));
+        consumer.accept(LootInjector.Tables.FISHING_JUNK, addJunkDrops(new LootTable.Builder()));
     }
 
     private static LootTable.Builder addTreasureDrops(LootTable.Builder builders) {
@@ -25,9 +26,16 @@ public class ModFishingLootTables extends FishingLootTables {
                         )
                         .add(ItemLootEntry.lootTableItem(ModItems.NEPTUNES_GLAIVE.get())
                         )
-                        .add(ItemLootEntry.lootTableItem(ModItems.BROKEN_TRIDENT.get())
-                        )
                         .add(ItemLootEntry.lootTableItem(ModItems.CRABSHELL_RING.get())
+                        )
+                );
+    }
+
+    private static LootTable.Builder addJunkDrops(LootTable.Builder builders) {
+        return new LootTable.Builder()
+                .withPool(new LootPool.Builder()
+                        .setRolls(ConstantRange.exactly(1))
+                        .add(ItemLootEntry.lootTableItem(ModItems.BROKEN_TRIDENT.get())
                         )
                 );
     }

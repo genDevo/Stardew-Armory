@@ -6,6 +6,7 @@ import net.gendevo.stardewarmory.setup.ModTags;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.ItemTagsProvider;
+import net.minecraft.item.Items;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
@@ -28,5 +29,6 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         tag(Tags.Items.RODS).addTag(ModTags.Items.RODS_NETHERITE);
         tag(ModTags.Items.BONES_PREHISTORIC_SCAPULA).add(ModItems.PREHISTORIC_SCAPULA.get());
         tag(Tags.Items.BONES).addTag(ModTags.Items.BONES_PREHISTORIC_SCAPULA);
+
     }
 }

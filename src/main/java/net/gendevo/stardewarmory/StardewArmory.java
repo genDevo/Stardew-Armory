@@ -3,10 +3,15 @@ package net.gendevo.stardewarmory;
 import net.gendevo.stardewarmory.setup.ModItems;
 import net.gendevo.stardewarmory.setup.Registration;
 import net.gendevo.stardewarmory.util.ModResourceLocation;
+import net.gendevo.stardewarmory.world.OreGeneration;
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Hand;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
@@ -47,6 +52,7 @@ public class StardewArmory
         MinecraftForge.EVENT_BUS.register(this);
 
         Registration.register();
+        MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, OreGeneration::generateOres);
     }
 
     private void setup(final FMLCommonSetupEvent event)
@@ -89,6 +95,16 @@ public class StardewArmory
     public void onServerStarting(FMLServerStartingEvent event) {
         // do something when the server starts
         LOGGER.info("HELLO from server starting");
+    }
+
+    @SubscribeEvent
+    public void giveClub(EntityJoinWorldEvent event) {
+        if (!(event.getEntity() instanceof ZombieEntity)) {return;}
+
+        ZombieEntity zombie = (ZombieEntity) event.getEntity();
+        if (Math.random() > 0.9) {
+            zombie.setItemInHand(Hand.MAIN_HAND, new ItemStack(ModItems.WOOD_CLUB.get()));
+        }
     }
 
 

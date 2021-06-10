@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " ws",
+    " sw",
+    "s  "
+  ],
+  "key": {
+    "w": {
+      "item": "minecraft:oak_planks"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "stardewarmory:wood_mallet"
+  }
+}

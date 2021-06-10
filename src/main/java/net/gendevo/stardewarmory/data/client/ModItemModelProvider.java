@@ -27,6 +27,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemGenerated, "reinforced_handle");
         builder(itemGenerated, "dragon_tooth");
         builder(itemGenerated, "prehistoric_scapula");
+        builder(itemGenerated, "galaxy_soul");
         //Rings
         builder(itemGenerated, "ruby_ring");
         builder(itemGenerated, "lucky_ring");

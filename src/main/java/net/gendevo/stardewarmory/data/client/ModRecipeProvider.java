@@ -3,10 +3,13 @@ package net.gendevo.stardewarmory.data.client;
 import net.gendevo.stardewarmory.StardewArmory;
 import net.gendevo.stardewarmory.setup.ModBlocks;
 import net.gendevo.stardewarmory.setup.ModItems;
+import net.gendevo.stardewarmory.setup.ModTags;
 import net.minecraft.data.*;
+import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.Tags;
 
 
 import java.util.function.Consumer;
@@ -64,6 +67,30 @@ public class ModRecipeProvider extends RecipeProvider {
                 .pattern(" s ")
                 .unlockedBy("has_item", has(Items.OBSIDIAN))
                 .save(consumer);
+        ShapedRecipeBuilder.shaped(ModItems.CRYSTAL_DAGGER.get())
+                .define('q', Items.QUARTZ)
+                .define('s', Items.STICK)
+                .pattern("   ")
+                .pattern(" q ")
+                .pattern("s  ")
+                .unlockedBy("has_item", has(Items.QUARTZ))
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(ModItems.IRON_DIRK.get())
+                .define('i', Items.IRON_INGOT)
+                .define('s', Items.STICK)
+                .pattern("   ")
+                .pattern(" i ")
+                .pattern("s  ")
+                .unlockedBy("has_item", has(Items.QUARTZ))
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(ModItems.WOOD_MALLET.get())
+                .define('w', Items.OAK_PLANKS)
+                .define('s', Items.STICK)
+                .pattern(" ws")
+                .pattern(" sw")
+                .pattern("s  ")
+                .unlockedBy("has_item", has(Items.QUARTZ))
+                .save(consumer);
         //Cooking recipes
         CookingRecipeBuilder.smelting(Ingredient.of(ModBlocks.PRISMATIC_ORE.get()), ModItems.PRISMATIC_SHARD.get(), 1.5f, 200)
                 .unlockedBy("has_item", has(ModBlocks.PRISMATIC_ORE.get()))
@@ -81,6 +108,12 @@ public class ModRecipeProvider extends RecipeProvider {
         SmithingRecipeBuilder.smithing(Ingredient.of(ModItems.PIRATES_SWORD.get()), Ingredient.of(ModItems.DRAGON_TOOTH.get()), ModItems.DRAGONTOOTH_CUTLASS.get())
                 .unlocks("has_item", has(ModItems.DRAGON_TOOTH.get()))
                 .save(consumer, modId("dragontooth_pirate_smithing"));
+        SmithingRecipeBuilder.smithing(Ingredient.of(ModItems.BURGLARS_SHANK.get()), Ingredient.of(ModItems.DRAGON_TOOTH.get()), ModItems.DRAGONTOOTH_SHIV.get())
+                .unlocks("has_item", has(ModItems.DRAGON_TOOTH.get()))
+                .save(consumer, modId("dragontooth_shiv_smithing"));
+        SmithingRecipeBuilder.smithing(Ingredient.of(ModItems.WOOD_CLUB.get()), Ingredient.of(ModItems.DRAGON_TOOTH.get()), ModItems.DRAGONTOOTH_CLUB.get())
+                .unlocks("has_item", has(ModItems.DRAGON_TOOTH.get()))
+                .save(consumer, modId("dragontooth_club_smithing"));
     }
 
     private static ResourceLocation modId(String path) {

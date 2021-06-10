@@ -34,7 +34,7 @@ public enum ModItemTier implements IItemTier {
     BROKEN_TRIDENT(3, 3000, 9.0F, 1.0F, 12, () -> {
         return null;
     }),
-    WICKED_KRIS(3, 3000, 9.0F, 1.0F, 13, () -> {
+    WICKED_KRIS(3, 3000, 9.0F, 1.0F, 9, () -> {
         return null;
     }),
     GALAXY_DAGGER(3, 3000, 9.0F, 1.0F, 12, () -> {
@@ -43,7 +43,7 @@ public enum ModItemTier implements IItemTier {
     DWARF_DAGGER(3, 3000, 9.0F, 1.0F, 12, () -> {
         return null;
     }),
-    DRAGONTOOTH_SHIV(3, 3000, 9.0F, 1.0F, 12, () -> {
+    DRAGONTOOTH_SHIV(3, 3000, 9.0F, 1.0F, 13, () -> {
         return null;
     }),
     IRIDIUM_NEEDLE(3, 3000, 9.0F, 1.0F, 12, () -> {

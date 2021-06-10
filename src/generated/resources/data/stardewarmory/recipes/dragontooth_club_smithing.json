@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "stardewarmory:wood_club"
+  },
+  "addition": {
+    "item": "stardewarmory:dragon_tooth"
+  },
+  "result": {
+    "item": "stardewarmory:dragontooth_club"
+  }
+}

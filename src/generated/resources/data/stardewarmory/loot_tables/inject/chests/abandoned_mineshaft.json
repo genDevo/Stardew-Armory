@@ -10,16 +10,6 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 25,
-          "name": "stardewarmory:rusty_sword"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 25,
-          "name": "stardewarmory:bone_sword"
-        },
-        {
-          "type": "minecraft:item",
           "weight": 20,
           "name": "stardewarmory:iron_edge"
         },
@@ -32,6 +22,11 @@
           "type": "minecraft:item",
           "weight": 20,
           "name": "stardewarmory:elf_blade"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 20,
+          "name": "stardewarmory:lead_rod"
         }
       ]
     }

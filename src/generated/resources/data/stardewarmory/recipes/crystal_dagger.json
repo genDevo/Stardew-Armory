@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    " q ",
+    "s  "
+  ],
+  "key": {
+    "q": {
+      "item": "minecraft:quartz"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "stardewarmory:crystal_dagger"
+  }
+}

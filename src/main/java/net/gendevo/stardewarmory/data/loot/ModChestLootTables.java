@@ -23,7 +23,7 @@ public class ModChestLootTables extends ChestLootTables {
         consumer.accept(LootInjector.Tables.CHESTS_SIMPLE_DUNGEON, addSimpleWeapons(new LootTable.Builder()));
         consumer.accept(LootInjector.Tables.CHESTS_MINESHAFT, addMineshaftWeapons(new LootTable.Builder()));
         consumer.accept(LootInjector.Tables.CHESTS_RUINED_PORTAL, addObsidianEdge(new LootTable.Builder()));
-        consumer.accept(LootInjector.Tables.CHESTS_UNDERWATER_RUINS, addNeptuneChest(new LootTable.Builder()));
+        //consumer.accept(LootInjector.Tables.CHESTS_UNDERWATER_RUINS, addNeptuneChest(new LootTable.Builder()));
         consumer.accept(LootInjector.Tables.CHESTS_VILLAGE_BUTCHER, addCarvingKnife(new LootTable.Builder()));
 
         consumer.accept(LootTables.PIGLIN_BARTERING, addKudgel(new LootTable.Builder()));
@@ -36,7 +36,7 @@ public class ModChestLootTables extends ChestLootTables {
                         .setWeight(30)
                 )
                 .add(ItemLootEntry.lootTableItem(ModItems.KUDGEL.get())
-                        .setWeight(10)
+                        .setWeight(20)
                 )
         );
         return builder;
@@ -199,12 +199,6 @@ public class ModChestLootTables extends ChestLootTables {
                 .add(EmptyLootEntry.emptyItem()
                         .setWeight(40)
                 )
-                .add(ItemLootEntry.lootTableItem(ModItems.RUSTY_SWORD.get())
-                        .setWeight(25)
-                )
-                .add(ItemLootEntry.lootTableItem(ModItems.BONE_SWORD.get())
-                        .setWeight(25)
-                )
                 .add(ItemLootEntry.lootTableItem(ModItems.IRON_EDGE.get())
                         .setWeight(20)
                 )
@@ -212,6 +206,9 @@ public class ModChestLootTables extends ChestLootTables {
                         .setWeight(20)
                 )
                 .add(ItemLootEntry.lootTableItem(ModItems.ELF_BLADE.get())
+                        .setWeight(20)
+                )
+                .add(ItemLootEntry.lootTableItem(ModItems.LEAD_ROD.get())
                         .setWeight(20)
                 )
         );

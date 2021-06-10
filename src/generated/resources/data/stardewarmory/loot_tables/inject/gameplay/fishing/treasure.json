@@ -14,10 +14,6 @@
         },
         {
           "type": "minecraft:item",
-          "name": "stardewarmory:broken_trident"
-        },
-        {
-          "type": "minecraft:item",
           "name": "stardewarmory:crabshell_ring"
         }
       ]

@@ -34,10 +34,11 @@ public final class LootInjector {
         public static final ResourceLocation CHESTS_STRONGHOLD = inject(LootTables.STRONGHOLD_CORRIDOR);
         public static final ResourceLocation CHESTS_MINESHAFT = inject(LootTables.ABANDONED_MINESHAFT);
         public static final ResourceLocation CHESTS_SIMPLE_DUNGEON = inject(LootTables.SIMPLE_DUNGEON);
+
         public static final ResourceLocation PIGLIN_BARTER = inject(LootTables.PIGLIN_BARTERING);
 
-
         public static final ResourceLocation FISHING_TREASURE = inject(LootTables.FISHING_TREASURE);
+        public static final ResourceLocation FISHING_JUNK = inject(LootTables.FISHING_JUNK);
 
         public static final ResourceLocation ENTITIES_CAVE_SPIDER = inject(new ResourceLocation("entities/cave_spider"));
         public static final ResourceLocation ENTITIES_SPIDER = inject(new ResourceLocation("entities/spider"));
