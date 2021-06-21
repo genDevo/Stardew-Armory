@@ -1,4 +1,4 @@
-package net.gendevo.stardewarmory.setup.items;
+package net.gendevo.stardewarmory.items;
 
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.IItemTier;

@@ -1,4 +1,4 @@
-package net.gendevo.stardewarmory.setup.tools;
+package net.gendevo.stardewarmory.items.tools;
 
 import net.gendevo.stardewarmory.setup.ModItems;
 import net.minecraft.item.IItemTier;

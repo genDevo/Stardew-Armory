@@ -1,4 +1,4 @@
-package net.gendevo.stardewarmory.setup.items;
+package net.gendevo.stardewarmory.items;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;

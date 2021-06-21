@@ -1,4 +1,4 @@
-package net.gendevo.stardewarmory.setup.items;
+package net.gendevo.stardewarmory.items;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
@@ -32,10 +32,10 @@ public class RubyRing extends Item implements ICurioItem {
 //    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
 //        Multimap<Attribute, AttributeModifier> atts = LinkedHashMultimap.create();
 //        atts.put(Attributes.MOVEMENT_SPEED,
-//                new AttributeModifier(uuid, TestoModo.MOD_ID + ":speed_bonus", 0.1,
+//                new AttributeModifier(uuid, StardewArmory.MOD_ID + ":speed_bonus", 0.1,
 //                        AttributeModifier.Operation.MULTIPLY_TOTAL));
 //        atts.put(Attributes.ARMOR,
-//                new AttributeModifier(uuid, TestoModo.MOD_ID + ":armor_bonus", 2,
+//                new AttributeModifier(uuid, StardewArmory.MOD_ID + ":armor_bonus", 2,
 //                        AttributeModifier.Operation.ADDITION));
 //        return atts;
 //    }

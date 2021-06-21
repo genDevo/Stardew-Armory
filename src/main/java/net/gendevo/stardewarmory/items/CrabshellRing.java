@@ -1,4 +1,4 @@
-package net.gendevo.stardewarmory.setup.items;
+package net.gendevo.stardewarmory.items;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;

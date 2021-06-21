@@ -1,11 +1,18 @@
-package net.gendevo.stardewarmory.setup.items;
+package net.gendevo.stardewarmory.items;
 
+import com.google.common.collect.LinkedHashMultimap;
+import com.google.common.collect.Multimap;
+import net.gendevo.stardewarmory.StardewArmory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.client.util.InputMappings;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.ai.attributes.Attribute;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -64,6 +71,22 @@ public class SpecialItem extends Item {
             istack.enchant(Enchantments.FIRE_ASPECT, 1);
             list.add(istack);
         }
+    }
+
+    @Override
+    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlotType slot, ItemStack stack) {
+        Multimap<Attribute, AttributeModifier> atts = LinkedHashMultimap.create();
+        if(slot == EquipmentSlotType.MAINHAND || slot == EquipmentSlotType.OFFHAND) {
+            atts.put(Attributes.ARMOR,
+                    new AttributeModifier(StardewArmory.MOD_ID + ":armor_bonus", 2,
+                            AttributeModifier.Operation.ADDITION));
+        }
+        else {
+            atts.put(Attributes.ARMOR,
+                    new AttributeModifier(StardewArmory.MOD_ID + ":armor_bonus", -2,
+                            AttributeModifier.Operation.ADDITION));
+        }
+        return atts;
     }
 }
 
