@@ -46,6 +46,7 @@ public final class LootInjector {
         public static final ResourceLocation ENTITIES_SKELETON = inject(new ResourceLocation("entities/skeleton"));
         public static final ResourceLocation ENTITIES_SKELETON_HORSE = inject(new ResourceLocation("entities/skeleton_horse"));
         public static final ResourceLocation ENTITIES_ENDER_DRAGON = inject(new ResourceLocation("entities/ender_dragon"));
+        public static final ResourceLocation ENTITIES_ELDER_GUARDIAN = inject(new ResourceLocation("entities/elder_guardian"));
        
 
         private Tables() {}

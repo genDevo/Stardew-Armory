@@ -5,6 +5,7 @@ import net.gendevo.stardewarmory.setup.Registration;
 import net.gendevo.stardewarmory.util.ModResourceLocation;
 import net.gendevo.stardewarmory.world.OreGeneration;
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -116,13 +117,16 @@ public class StardewArmory
             zombie.setItemInHand(Hand.MAIN_HAND, new ItemStack(ModItems.WOOD_CLUB.get()));
         }
     }
-//    public void onKillRing(LivingDeathEvent event, PlayerEntity player) {
-//        if (event.getSource() == DamageSource.playerAttack(player)) {
+
+    @SubscribeEvent
+    public void onKillRing(LivingDeathEvent event) {
+        if (event.getEntity() instanceof MobEntity) {
 //            if (player.getItemBySlot(EquipmentSlotType.HEAD) == new ItemStack(Items.GOLDEN_HELMET)) {
 //                player.addEffect(new EffectInstance(Effects.REGENERATION, 80, 0, true, true));
 //            }
-//        }
-//    }
+            System.out.println("Player killed" + event.getEntity().toString());
+        }
+    }
 
 
     @Mod.EventBusSubscriber
