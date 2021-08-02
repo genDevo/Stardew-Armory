@@ -10,147 +10,147 @@ import java.util.function.Supplier;
 
 public enum ModItemTier implements IItemTier {
     //Daggers
-    CARVING_KNIFE(3, 3000, 9.0F, 1.0F, 12, () -> {
+    CARVING_KNIFE(3, 200, 9.0F, 1.0F, 15, () -> {
         return null;
     }),
-    IRON_DIRK(3, 3000, 9.0F, 1.0F, 12, () -> {
+    IRON_DIRK(3, 200, 9.0F, 1.0F, 15, () -> {
         return null;
     }),
-    WIND_SPIRE(3, 3000, 9.0F, 1.0F, 12, () -> {
+    WIND_SPIRE(3, 200, 9.0F, 1.0F, 15, () -> {
         return null;
     }),
-    ELF_BLADE(3, 3000, 9.0F, 1.0F, 12, () -> {
+    ELF_BLADE(3, 250, 9.0F, 1.0F, 15, () -> {
         return null;
     }),
-    BURGLARS_SHANK(3, 3000, 9.0F, 1.5F, 12, () -> {
+    BURGLARS_SHANK(3, 220, 9.0F, 1.5F, 18, () -> {
         return null;
     }),
-    CRYSTAL_DAGGER(3, 3000, 9.0F, 1.5F, 12, () -> {
+    CRYSTAL_DAGGER(3, 200, 9.0F, 1.5F, 20, () -> {
         return null;
     }),
-    SHADOW_DAGGER(3, 3000, 9.0F, 1.0F, 12, () -> {
+    SHADOW_DAGGER(3, 300, 9.0F, 1.0F, 14, () -> {
         return null;
     }),
-    BROKEN_TRIDENT(3, 3000, 9.0F, 1.0F, 12, () -> {
+    BROKEN_TRIDENT(3, 50, 9.0F, 1.0F, 12, () -> {
         return null;
     }),
-    WICKED_KRIS(3, 3000, 9.0F, 1.0F, 9, () -> {
+    WICKED_KRIS(3, 300, 9.0F, 1.0F, 9, () -> {
         return null;
     }),
-    GALAXY_DAGGER(3, 3000, 9.0F, 1.0F, 12, () -> {
+    GALAXY_DAGGER(3, 2000, 9.0F, 1.0F, 10, () -> {
         return null;
     }),
-    DWARF_DAGGER(3, 3000, 9.0F, 1.0F, 12, () -> {
+    DWARF_DAGGER(3, 2000, 9.0F, 1.0F, 12, () -> {
         return null;
     }),
-    DRAGONTOOTH_SHIV(3, 3000, 9.0F, 1.0F, 13, () -> {
+    DRAGONTOOTH_SHIV(3, 2500, 9.0F, 1.0F, 11, () -> {
         return null;
     }),
-    IRIDIUM_NEEDLE(3, 3000, 9.0F, 1.0F, 12, () -> {
+    IRIDIUM_NEEDLE(3, 2500, 9.0F, 1.0F, 12, () -> {
         return null;
     }),
-    INFINITY_DAGGER(3, 3000, 9.0F, 1.0F, 12, () -> {
+    INFINITY_DAGGER(3, 4000, 9.0F, 1.0F, 20, () -> {
         return null;
     }),
     //Clubs
-    FEMUR(3, 3000, 9.0F, 1.0F, 12, () -> {
+    FEMUR(3, 70, 9.0F, 1.0F, 18, () -> {
         return null;
     }),
-    WOOD_CLUB(3, 3000, 9.0F, 1.0F, 12, () -> {
+    WOOD_CLUB(3, 70, 9.0F, 1.0F, 18, () -> {
         return null;
     }),
-    WOOD_MALLET(3, 3000, 9.0F, 1.0F, 12, () -> {
+    WOOD_MALLET(3, 100, 9.0F, 1.0F, 18, () -> {
         return null;
     }),
-    LEAD_ROD(3, 3000, 9.0F, 1.0F, 12, () -> {
+    LEAD_ROD(3, 300, 9.0F, 1.0F, 16, () -> {
         return null;
     }),
-    KUDGEL(3, 3000, 9.0F, 1.0F, 12, () -> {
+    KUDGEL(3, 350, 9.0F, 1.0F, 12, () -> {
         return null;
     }),
-    SLAMMER(3, 3000, 9.0F, 1.0F, 11, () -> {
+    SLAMMER(3, 325, 9.0F, 1.0F, 11, () -> {
         return null;
     }),
-    DWARF_HAMMER(3, 3000, 9.0F, 1.0F, 12, () -> {
+    DWARF_HAMMER(3, 2000, 9.0F, 1.0F, 12, () -> {
         return null;
     }),
-    DRAGONTOOTH_CLUB(3, 3000, 9.0F, 1.0F, 13, () -> {
+    DRAGONTOOTH_CLUB(3, 2000, 9.0F, 1.0F, 13, () -> {
         return null;
     }),
-    GALAXY_HAMMER(3, 3000, 9.0F, 1.0F, 12, () -> {
+    GALAXY_HAMMER(3, 2500, 9.0F, 1.0F, 10, () -> {
         return null;
     }),
-    INFINITY_GAVEL(3, 3000, 9.0F, 1.0F, 12, () -> {
+    INFINITY_GAVEL(3, 3000, 9.0F, 1.0F, 20, () -> {
         return null;
     }),
     //Swords
     GALAXY_SWORD(3, 3000, 9.0F, 1.0F, 12, () -> {
         return Ingredient.of(ModItems.PRISMATIC_SHARD.get());
     }),
-    RUSTY_SWORD(3, 3000, 9.0F, 1.0F, 12, () -> {
+    RUSTY_SWORD(3, 34, 9.0F, 1.0F, 30, () -> {
         return null;
     }),
-    STEEL_SMALLSWORD(3, 3000, 9.0F, 1.0F, 12, () -> {
+    STEEL_SMALLSWORD(3, 160, 9.0F, 1.0F, 12, () -> {
         return null;
     }),
-    PIRATES_SWORD(3, 3000, 9.0F, 1.5F, 12, () -> {
+    PIRATES_SWORD(3, 150, 9.0F, 1.5F, 12, () -> {
         return null;
     }),
-    SILVER_SABER(3, 3000, 9.0F, 1.0F, 10, () -> {
+    SILVER_SABER(3, 8000, 9.0F, 1.0F, 30, () -> {
         return null;
     }),
-    CUTLASS(3, 3000, 9.0F, 1.0F, 12, () -> {
+    CUTLASS(3, 150, 9.0F, 1.0F, 12, () -> {
         return null;
     }),
-    FOREST_SWORD(3, 3000, 9.0F, 1.0F, 12, () -> {
+    FOREST_SWORD(3, 55, 9.0F, 1.0F, 12, () -> {
         return Ingredient.of(Tags.Items.RODS_WOODEN);
     }),
-    IRON_EDGE(3, 3000, 9.0F, 1.0F, 12, () -> {
+    IRON_EDGE(3, 260, 9.0F, 1.0F, 12, () -> {
         return Ingredient.of(Tags.Items.INGOTS_IRON);
     }),
-    INSECT_HEAD(3, 3000, 9.0F, 1.0F, 12, () -> {
+    INSECT_HEAD(3, 180, 9.0F, 1.0F, 12, () -> {
         return Ingredient.of(Items.SPIDER_EYE);
     }),
-    BONE_SWORD(3, 3000, 9.0F, 1.0F, 12, () -> {
+    BONE_SWORD(3, 110, 9.0F, 1.0F, 12, () -> {
         return Ingredient.of(Tags.Items.BONES);
     }),
-    CLAYMORE(3, 3000, 9.0F, 1.0F, 12, () -> {
+    CLAYMORE(3, 275, 9.0F, 1.0F, 12, () -> {
         return null;
     }),
-    NEPTUNES_GLAIVE(3, 3000, 9.0F, 1.0F, 12, () -> {
+    NEPTUNES_GLAIVE(3, 400, 9.0F, 1.0F, 12, () -> {
         return null;
     }),
-    TEMPLARS_BLADE(3, 3000, 9.0F, 1.0F, 10, () -> {
+    TEMPLARS_BLADE(3, 300, 9.0F, 1.0F, 10, () -> {
         return null;
     }),
-    OBSIDIAN_EDGE(3, 3000, 9.0F, 1.5F, 12, () -> {
+    OBSIDIAN_EDGE(3, 300, 9.0F, 1.5F, 12, () -> {
         return Ingredient.of(Items.OBSIDIAN);
     }),
-    OSSIFIED_BLADE(3, 3000, 9.0F, 1.5F, 11, () -> {
+    OSSIFIED_BLADE(3, 300, 9.0F, 1.5F, 11, () -> {
         return Ingredient.of(ModItems.PREHISTORIC_SCAPULA.get());
     }),
-    TEMPERED_BROADSWORD(3, 3000, 9.0F, 1.0F, 11, () -> {
+    TEMPERED_BROADSWORD(3, 300, 9.0F, 1.0F, 11, () -> {
         return null;
     }),
-    YETI_TOOTH(3, 3000, 9.0F, 1.5F, 12, () -> {
+    YETI_TOOTH(3, 210, 9.0F, 1.5F, 12, () -> {
         return null;
     }),
-    STEEL_FALCHION(3, 3000, 9.0F, 1.5F, 12, () -> {
+    STEEL_FALCHION(3, 160, 9.0F, 1.5F, 12, () -> {
         return null;
     }),
-    DARK_SWORD(3, 3000, 9.0F, 1.0F, 12, () -> {
+    DARK_SWORD(3, 170, 9.0F, 1.0F, 12, () -> {
         return null;
     }),
-    LAVA_KATANA(3, 3000, 9.0F, 1.5F, 9, () -> {
+    LAVA_KATANA(3, 170, 9.0F, 1.5F, 9, () -> {
         return Ingredient.of(Items.MAGMA_BLOCK);
     }),
-    DWARF_SWORD(3, 3000, 9.0F, 1.0F, 12, () -> {
+    DWARF_SWORD(3, 2000, 9.0F, 1.0F, 12, () -> {
         return null;
     }),
-    DRAGONTOOTH_CUTLASS(3, 3000, 9.0F, 1.0F, 13, () -> {
+    DRAGONTOOTH_CUTLASS(3, 2000, 9.0F, 1.0F, 13, () -> {
         return Ingredient.of(ModItems.DRAGON_TOOTH.get());
     }),
-    INFINITY_BLADE(3, 3000, 9.0F, 1.0F, 12, () -> {
+    INFINITY_BLADE(3, 3000, 9.0F, 1.0F, 20, () -> {
         return null;
     });
 

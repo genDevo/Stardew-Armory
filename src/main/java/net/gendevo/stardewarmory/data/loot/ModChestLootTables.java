@@ -26,7 +26,7 @@ public class ModChestLootTables extends ChestLootTables {
         //consumer.accept(LootInjector.Tables.CHESTS_UNDERWATER_RUINS, addNeptuneChest(new LootTable.Builder()));
         consumer.accept(LootInjector.Tables.CHESTS_VILLAGE_BUTCHER, addCarvingKnife(new LootTable.Builder()));
 
-        consumer.accept(LootTables.PIGLIN_BARTERING, addKudgel(new LootTable.Builder()));
+        consumer.accept(LootInjector.Tables.PIGLIN_BARTER, addKudgel(new LootTable.Builder()));
     }
 
     private static LootTable.Builder addKudgel(LootTable.Builder builder ) {

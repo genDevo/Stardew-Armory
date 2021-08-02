@@ -27,9 +27,9 @@ public class EnchantSword extends SwordItem {
                 case 11:
                     istack.enchant(Enchantments.KNOCKBACK, 1);
                     break;
-                case 13:
-                    istack.enchant(Enchantments.SHARPNESS, 1);
-                    break;
+//                case 13:
+//                    istack.enchant(Enchantments.SHARPNESS, 1);
+//                    break;
             }
             list.add(istack);
         }

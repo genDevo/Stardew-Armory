@@ -61,6 +61,8 @@ public class ModEntityLootTables extends EntityLootTables {
                 .withPool(new LootPool.Builder()
                         .setRolls(ConstantRange.exactly(1))
                         .add(ItemLootEntry.lootTableItem(ModItems.NEPTUNES_GLAIVE.get())
+                                .when(KilledByPlayer.killedByPlayer())
+                                .when(RandomChanceWithLooting.randomChanceAndLootingBoost(baseChance, lootingBonus))
                         )
                 );
     }
