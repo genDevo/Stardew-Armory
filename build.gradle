@@ -34,7 +34,7 @@ minecraft {
     mappings channel: 'official', version: '1.16.5'
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
     
-    // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
     // Default run configurations.
     // These can be tweaked, removed, or duplicated as needed.
@@ -168,13 +168,35 @@ jar {
     manifest {
         attributes([
             "Specification-Title": "stardewarmory",
-            "Specification-Vendor": "examplemodsareus",
+            "Specification-Vendor": "genDevo",
             "Specification-Version": "1", // We are version 1 of ourselves
             "Implementation-Title": project.name,
             "Implementation-Version": "${version}",
-            "Implementation-Vendor" :"examplemodsareus",
+            "Implementation-Vendor" :"genDevo",
             "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
+    }
+}
+
+import groovy.json.JsonParserType
+import groovy.json.JsonSlurper
+import groovy.json.JsonOutput
+processResources {
+    // Will minify the JSON files of your mod when you build the jar.
+    // Helps reduce files size! Minify means it will strip whitespace
+    // and turn the JSON files into 1 liners.
+    doLast {
+        def jsonMinifyStart = System.currentTimeMillis()
+        def jsonMinified = 0
+        def jsonBytesSaved = 0
+        fileTree(dir: outputs.files.asPath, include: '**/*.json').each {
+            File file = it
+            jsonMinified++
+            def oldLength = file.length()
+            file.text = JsonOutput.toJson(new JsonSlurper(type: JsonParserType.LAX).parse(file))
+            jsonBytesSaved += oldLength - file.length()
+        }
+        println('Minified ' + jsonMinified + ' json files. Saved ' + jsonBytesSaved + ' bytes. Took ' + (System.currentTimeMillis() - jsonMinifyStart) + 'ms.')
     }
 }
 

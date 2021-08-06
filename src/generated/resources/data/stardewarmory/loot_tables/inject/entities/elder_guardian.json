@@ -1,12 +1,12 @@
 {
-  "type": "minecraft:fishing",
+  "type": "minecraft:entity",
   "pools": [
     {
       "rolls": 1,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "stardewarmory:crabshell_ring"
+          "name": "stardewarmory:neptunes_glaive"
         }
       ]
     }

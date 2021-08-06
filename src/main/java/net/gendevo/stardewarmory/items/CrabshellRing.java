@@ -42,4 +42,7 @@ public class CrabshellRing extends Item implements ICurioItem {
         return true;
     }
 
+
+
+
 }

@@ -1,5 +1,11 @@
 package net.gendevo.stardewarmory;
 
+import com.google.common.collect.ImmutableList;
+import com.mojang.datafixers.util.Either;
+import com.mojang.datafixers.util.Pair;
+import com.mojang.serialization.Codec;
+import net.gendevo.stardewarmory.init.ConfiguredStructureInit;
+import net.gendevo.stardewarmory.init.StructureInit;
 import net.gendevo.stardewarmory.setup.ModItems;
 import net.gendevo.stardewarmory.setup.Registration;
 import net.gendevo.stardewarmory.util.ModResourceLocation;
@@ -17,13 +23,28 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.world.World;
+import net.minecraft.world.gen.ChunkGenerator;
+import net.minecraft.world.gen.FlatChunkGenerator;
+import net.minecraft.world.gen.feature.jigsaw.*;
+import net.minecraft.world.gen.feature.structure.Structure;
+import net.minecraft.world.gen.feature.template.ProcessorLists;
+import net.minecraft.world.gen.settings.DimensionStructuresSettings;
+import net.minecraft.world.gen.settings.StructureSeparationSettings;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.world.BiomeLoadingEvent;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
@@ -32,10 +53,15 @@ import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.CuriosCapability;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.SlotTypePreset;
 
 import java.beans.EventHandler;
+import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -43,12 +69,18 @@ import java.util.stream.Collectors;
 public class StardewArmory
 {
     public static final String MOD_ID = "stardewarmory";
-    // Directly reference a log4j logger.
+    public static ResourceLocation rl(String path)
+    {
+        return new ResourceLocation(MOD_ID, path);
+    }
     public static final Logger LOGGER = LogManager.getLogger();
     public static final boolean ENABLE = true;
     public static final ItemGroup TAB_STARDEW = new StardewGroup("stardewtab");
 
     public StardewArmory() {
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        StructureInit.DEFERRED_REGISTRY_STRUCTURE.register(modEventBus);
+
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         // Register the enqueueIMC method for modloading
@@ -59,7 +91,11 @@ public class StardewArmory
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
         // Register ourselves for server and other game events we are interested in
-        MinecraftForge.EVENT_BUS.register(this);
+        IEventBus forgeBus = MinecraftForge.EVENT_BUS;
+        forgeBus.register(this);
+
+        forgeBus.addListener(EventPriority.NORMAL, this::addDimensionalSpacing);
+        forgeBus.addListener(EventPriority.HIGH, this::biomeModification);
 
         Registration.register();
         MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, OreGeneration::generateOres);
@@ -70,6 +106,14 @@ public class StardewArmory
         // some preinit code
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
+
+        event.enqueueWork(() -> {
+            StructureInit.setupStructures();
+            ConfiguredStructureInit.registerConfiguredStructures();
+        });
+
+        RingKillEffect rke = new RingKillEffect();
+        MinecraftForge.EVENT_BUS.register(rke);
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
@@ -90,6 +134,41 @@ public class StardewArmory
         LOGGER.info("Got IMC {}", event.getIMCStream().
                 map(m->m.getMessageSupplier().get()).
                 collect(Collectors.toList()));
+    }
+
+    public void biomeModification(final BiomeLoadingEvent event) {
+        event.getGeneration().getStructures().add(() -> ConfiguredStructureInit.CONFIGURED_GUILD_BUILDING);
+    }
+
+    private static Method GETCODEC_METHOD;
+    public void addDimensionalSpacing(final WorldEvent.Load event) {
+        if (event.getWorld() instanceof ServerWorld){
+            ServerWorld serverWorld = (ServerWorld)event.getWorld();
+
+            try {
+                if(GETCODEC_METHOD == null) GETCODEC_METHOD = ObfuscationReflectionHelper.findMethod(ChunkGenerator.class, "func_230347_a_");
+                ResourceLocation cgRL = Registry.CHUNK_GENERATOR.getKey((Codec<? extends ChunkGenerator>) GETCODEC_METHOD.invoke(serverWorld.getChunkSource().generator));
+                if(cgRL != null && cgRL.getNamespace().equals("terraforged")) return;
+            }
+            catch(Exception e){
+                StardewArmory.LOGGER.error("Was unable to check if " + serverWorld.dimension().location() + " is using Terraforged's ChunkGenerator.");
+            }
+
+            if(serverWorld.getChunkSource().getGenerator() instanceof FlatChunkGenerator &&
+                    serverWorld.dimension().equals(World.OVERWORLD)) {
+                return;
+            }
+
+            if(serverWorld.dimension().equals(World.NETHER) || serverWorld.dimension().equals(World.END)) {
+                return;
+            }
+
+            Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(serverWorld.getChunkSource().generator.getSettings().structureConfig());
+            tempMap.putIfAbsent(StructureInit.GUILD_BUILDING.get(), DimensionStructuresSettings.DEFAULTS.get(StructureInit.GUILD_BUILDING.get()));
+            serverWorld.getChunkSource().generator.getSettings().structureConfig = tempMap;
+
+        }
+
     }
 
 
@@ -118,19 +197,9 @@ public class StardewArmory
         }
     }
 
-    @SubscribeEvent
-    public void onKillRing(LivingDeathEvent event) {
-        if (event.getEntity() instanceof MobEntity) {
-//            if (player.getItemBySlot(EquipmentSlotType.HEAD) == new ItemStack(Items.GOLDEN_HELMET)) {
-//                player.addEffect(new EffectInstance(Effects.REGENERATION, 80, 0, true, true));
-//            }
-            System.out.println("Player killed" + event.getEntity().toString());
-        }
-    }
 
-
-    @Mod.EventBusSubscriber
     //Adds creative tab
+    @Mod.EventBusSubscriber
     public static class StardewGroup extends ItemGroup {
         public StardewGroup(String label) {
             super("stardewtab");

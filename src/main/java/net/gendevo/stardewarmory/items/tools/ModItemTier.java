@@ -84,7 +84,7 @@ public enum ModItemTier implements IItemTier {
         return null;
     }),
     //Swords
-    GALAXY_SWORD(3, 3000, 9.0F, 1.0F, 12, () -> {
+    GALAXY_SWORD(3, 2000, 9.0F, 1.0F, 12, () -> {
         return Ingredient.of(ModItems.PRISMATIC_SHARD.get());
     }),
     RUSTY_SWORD(3, 34, 9.0F, 1.0F, 30, () -> {
@@ -147,7 +147,7 @@ public enum ModItemTier implements IItemTier {
     DWARF_SWORD(3, 2000, 9.0F, 1.0F, 12, () -> {
         return null;
     }),
-    DRAGONTOOTH_CUTLASS(3, 2000, 9.0F, 1.0F, 13, () -> {
+    DRAGONTOOTH_CUTLASS(3, 1200, 9.0F, 1.0F, 13, () -> {
         return Ingredient.of(ModItems.DRAGON_TOOTH.get());
     }),
     INFINITY_BLADE(3, 3000, 9.0F, 1.0F, 20, () -> {

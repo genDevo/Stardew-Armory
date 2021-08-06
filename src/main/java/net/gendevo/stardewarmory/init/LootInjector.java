@@ -68,16 +68,16 @@ public final class LootInjector {
 
     private LootInjector() {}
 
-//    @SubscribeEvent
-//    public static void onLootTableLoad(LootTableLoadEvent event) {
-//        Tables.get(event.getName()).ifPresent(injectorName -> {
-//            StardewArmory.LOGGER.info("Injecting loot table '{}' into '{}'", injectorName, event.getName());
-//            event.getTable().addPool(
-//                    new LootPool.Builder()
-//                            .name("stardewarmory_injected")
-//                            .add(TableLootEntry.lootTableReference(injectorName))
-//                            .build()
-//            );
-//        });
-//    }
+    @SubscribeEvent
+    public static void onLootTableLoad(LootTableLoadEvent event) {
+        Tables.get(event.getName()).ifPresent(injectorName -> {
+            StardewArmory.LOGGER.info("Injecting loot table '{}' into '{}'", injectorName, event.getName());
+            event.getTable().addPool(
+                    new LootPool.Builder()
+                            .name("stardewarmory_injected")
+                            .add(TableLootEntry.lootTableReference(injectorName))
+                            .build()
+            );
+        });
+    }
 }

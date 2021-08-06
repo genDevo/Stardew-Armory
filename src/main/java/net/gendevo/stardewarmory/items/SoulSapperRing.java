@@ -2,12 +2,18 @@ package net.gendevo.stardewarmory.items;
 
 import com.google.common.collect.LinkedHashMultimap;
 import com.google.common.collect.Multimap;
+import net.gendevo.stardewarmory.RingKillEffect;
 import net.gendevo.stardewarmory.StardewArmory;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
@@ -43,6 +49,8 @@ public class SoulSapperRing extends Item implements ICurioItem {
                         AttributeModifier.Operation.ADDITION));
         return atts;
     }
+
+
 
 
 

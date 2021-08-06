@@ -21,8 +21,8 @@ public class ModEntityLootTables extends EntityLootTables {
         consumer.accept(LootInjector.Tables.ENTITIES_ZOMBIE, addRustySword(0.02f, 0.01f));
         consumer.accept(LootInjector.Tables.ENTITIES_SKELETON, addSkeletonDrops(0.02f, 0.01f));
         consumer.accept(LootInjector.Tables.ENTITIES_SKELETON_HORSE, addSkeletonDrops(0.1f, 0.05f));
-        consumer.accept(LootInjector.Tables.ENTITIES_ENDER_DRAGON, addDragonTooth(1f, 0f));
-        consumer.accept(LootInjector.Tables.ENTITIES_ELDER_GUARDIAN, addNeptunesGlaive(1f, 0f));
+        consumer.accept(LootInjector.Tables.ENTITIES_ENDER_DRAGON, addDragonTooth(0.99f, 0f));
+        consumer.accept(LootInjector.Tables.ENTITIES_ELDER_GUARDIAN, addNeptunesGlaive(0.99f, 0f));
     }
 
     private static LootTable.Builder addInsectHead(float baseChance, float lootingBonus) {
@@ -61,8 +61,8 @@ public class ModEntityLootTables extends EntityLootTables {
                 .withPool(new LootPool.Builder()
                         .setRolls(ConstantRange.exactly(1))
                         .add(ItemLootEntry.lootTableItem(ModItems.NEPTUNES_GLAIVE.get())
-                                .when(KilledByPlayer.killedByPlayer())
-                                .when(RandomChanceWithLooting.randomChanceAndLootingBoost(baseChance, lootingBonus))
+//                                .when(KilledByPlayer.killedByPlayer())
+//                                .when(RandomChanceWithLooting.randomChanceAndLootingBoost(baseChance, lootingBonus))
                         )
                 );
     }
