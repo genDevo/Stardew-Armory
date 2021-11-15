@@ -22,12 +22,9 @@ public class ModFishingLootTables extends FishingLootTables {
         return new LootTable.Builder()
                 .withPool(new LootPool.Builder()
                         .setRolls(ConstantRange.exactly(1))
-//                        .add(ItemLootEntry.lootTableItem(ModItems.PIRATES_SWORD.get())
-//                        )
-//                        .add(ItemLootEntry.lootTableItem(ModItems.NEPTUNES_GLAIVE.get())
-//                        )
-                        .add(ItemLootEntry.lootTableItem(ModItems.CRABSHELL_RING.get())
-                        )
+//                        .add(ItemLootEntry.lootTableItem(ModItems.PIRATES_SWORD.get()))
+//                        .add(ItemLootEntry.lootTableItem(ModItems.NEPTUNES_GLAIVE.get()))
+                        .add(ItemLootEntry.lootTableItem(ModItems.CRABSHELL_RING.get()))
                 );
     }
 

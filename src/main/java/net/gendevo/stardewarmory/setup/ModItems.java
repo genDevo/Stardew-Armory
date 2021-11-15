@@ -11,6 +11,8 @@ public class ModItems {
     // Materials
     public static final RegistryObject<Item> PRISMATIC_SHARD = Registration.ITEMS.register("prismatic_shard", () ->
             new Item(new Item.Properties().tab(StardewArmory.TAB_STARDEW)));
+    public static final RegistryObject<Item> IRIDIUM_INGOT = Registration.ITEMS.register("iridium_ingot", () ->
+            new Item(new Item.Properties().tab(StardewArmory.TAB_STARDEW)));
     public static final RegistryObject<Item> GALAXY_SOUL = Registration.ITEMS.register("galaxy_soul", () ->
             new Item(new Item.Properties().tab(StardewArmory.TAB_STARDEW)));
     public static final RegistryObject<Item> REINFORCED_HANDLE = Registration.ITEMS.register("reinforced_handle", () ->
@@ -19,14 +21,14 @@ public class ModItems {
             new Item(new Item.Properties().tab(StardewArmory.TAB_STARDEW)));
     public static final RegistryObject<Item> PREHISTORIC_SCAPULA = Registration.ITEMS.register("prehistoric_scapula", () ->
             new Item(new Item.Properties().tab(StardewArmory.TAB_STARDEW)));
-    public static final RegistryObject<Item> SPECIAL_ITEM = Registration.ITEMS.register("special_item", () ->
-            new SpecialItem(new Item.Properties().tab(StardewArmory.TAB_STARDEW)));
+//    public static final RegistryObject<Item> SPECIAL_ITEM = Registration.ITEMS.register("special_item", () ->
+//            new SpecialItem(new Item.Properties().tab(StardewArmory.TAB_STARDEW)));
 
     //Rings
-    public static final RegistryObject<Item> RUBY_RING = Registration.ITEMS.register("ruby_ring", () ->
-            new RubyRing(new Item.Properties().tab(StardewArmory.TAB_STARDEW).stacksTo(1)));
-    public static final RegistryObject<Item> LUCKY_RING = Registration.ITEMS.register("lucky_ring", () ->
-            new LuckyRing(new Item.Properties().tab(StardewArmory.TAB_STARDEW).stacksTo(1)));
+//    public static final RegistryObject<Item> RUBY_RING = Registration.ITEMS.register("ruby_ring", () ->
+//            new RubyRing(new Item.Properties().tab(StardewArmory.TAB_STARDEW).stacksTo(1)));
+//    public static final RegistryObject<Item> LUCKY_RING = Registration.ITEMS.register("lucky_ring", () ->
+//            new LuckyRing(new Item.Properties().tab(StardewArmory.TAB_STARDEW).stacksTo(1)));
     public static final RegistryObject<Item> CRABSHELL_RING = Registration.ITEMS.register("crabshell_ring", () ->
             new CrabshellRing(new Item.Properties().tab(StardewArmory.TAB_STARDEW).stacksTo(1)));
 

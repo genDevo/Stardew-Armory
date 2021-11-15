@@ -15,8 +15,8 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        withExistingParent("prismatic_block", modLoc("block/prismatic_block"));
-        withExistingParent("prismatic_ore", modLoc("block/prismatic_ore"));
+        withExistingParent("iridium_block", modLoc("block/iridium_block"));
+        withExistingParent("iridium_ore", modLoc("block/iridium_ore"));
 
         ModelFile itemGenerated = getExistingFile(mcLoc("item/generated"));
         ModelFile itemHandheld = getExistingFile(mcLoc("item/handheld"));
@@ -24,6 +24,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemGenerated, "special_item");
         // Materials
         builder(itemGenerated, "prismatic_shard");
+        builder(itemGenerated, "iridium_ingot");
         builder(itemGenerated, "reinforced_handle");
         builder(itemGenerated, "dragon_tooth");
         builder(itemGenerated, "prehistoric_scapula");

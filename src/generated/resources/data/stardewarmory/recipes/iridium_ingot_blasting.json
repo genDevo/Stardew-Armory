@@ -1,9 +1,9 @@
 {
   "type": "minecraft:blasting",
   "ingredient": {
-    "item": "stardewarmory:prismatic_ore"
+    "item": "stardewarmory:iridium_ore"
   },
-  "result": "stardewarmory:prismatic_shard",
+  "result": "stardewarmory:iridium_ingot",
   "experience": 1.5,
   "cookingtime": 100
 }

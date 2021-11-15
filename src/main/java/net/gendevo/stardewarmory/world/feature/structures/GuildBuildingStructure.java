@@ -3,6 +3,7 @@ package net.gendevo.stardewarmory.world.feature.structures;
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import net.gendevo.stardewarmory.StardewArmory;
+import net.gendevo.stardewarmory.setup.ModEntityTypes;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
@@ -43,13 +44,11 @@ public class GuildBuildingStructure extends Structure<NoFeatureConfig> {
         return GenerationStage.Decoration.SURFACE_STRUCTURES;
     }
 
-    private static final List<MobSpawnInfo.Spawners> STRUCTURE_MONSTERS = ImmutableList.of(
-            new MobSpawnInfo.Spawners(EntityType.ZOMBIE_VILLAGER, 100, 4, 9)
+    private static final List<MobSpawnInfo.Spawners> STRUCTURE_CREATURES = ImmutableList.of(
+            new MobSpawnInfo.Spawners(ModEntityTypes.GUILD_MASTER.get(), 100, 1, 1)
     );
     @Override
-    public List<MobSpawnInfo.Spawners> getDefaultSpawnList() {
-        return STRUCTURE_MONSTERS;
-    }
+    public List<MobSpawnInfo.Spawners> getDefaultCreatureSpawnList() { return STRUCTURE_CREATURES; }
 
     @Override
     protected boolean isFeatureChunk(ChunkGenerator chunkGenerator, BiomeProvider biomeSource, long seed, SharedSeedRandom chunkRandom, int chunkX, int chunkZ, Biome biome, ChunkPos chunkPos, NoFeatureConfig featureConfig) {
@@ -95,7 +94,7 @@ public class GuildBuildingStructure extends Structure<NoFeatureConfig> {
             // By lifting the house up by 1 and lowering the bounding box, the land at bottom of house will now be
             // flush with the surrounding terrain without blocking off the doorstep.
             this.pieces.forEach(piece -> piece.move(0, 1, 0));
-            this.pieces.forEach(piece -> piece.getBoundingBox().y0 -= 1);
+
 
             Vector3i structureCenter = this.pieces.get(0).getBoundingBox().getCenter();
             int xOffset = centerPos.getX() - structureCenter.getX();
@@ -106,11 +105,6 @@ public class GuildBuildingStructure extends Structure<NoFeatureConfig> {
 
             // Sets the bounds of the structure once you are finished.
             this.calculateBoundingBox();
-            // debug and quickly find out if the structure is spawning or not and where it is.
-            StardewArmory.LOGGER.log(Level.DEBUG, "Guild Building at " +
-                    this.pieces.get(0).getBoundingBox().x0 + " " +
-                    this.pieces.get(0).getBoundingBox().y0 + " " +
-                    this.pieces.get(0).getBoundingBox().z0);
         }
     }
 

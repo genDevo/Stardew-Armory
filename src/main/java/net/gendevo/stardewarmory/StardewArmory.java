@@ -4,14 +4,17 @@ import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Either;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
+import net.gendevo.stardewarmory.entities.GuildMasterEntity;
 import net.gendevo.stardewarmory.init.ConfiguredStructureInit;
 import net.gendevo.stardewarmory.init.StructureInit;
+import net.gendevo.stardewarmory.setup.ModEntityTypes;
 import net.gendevo.stardewarmory.setup.ModItems;
 import net.gendevo.stardewarmory.setup.Registration;
 import net.gendevo.stardewarmory.util.ModResourceLocation;
 import net.gendevo.stardewarmory.world.OreGeneration;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -110,10 +113,11 @@ public class StardewArmory
         event.enqueueWork(() -> {
             StructureInit.setupStructures();
             ConfiguredStructureInit.registerConfiguredStructures();
+            GlobalEntityTypeAttributes.put(ModEntityTypes.GUILD_MASTER.get(), GuildMasterEntity.setCustomAttributes().build());
         });
-
-        RingKillEffect rke = new RingKillEffect();
-        MinecraftForge.EVENT_BUS.register(rke);
+//
+//        RingKillEffect rke = new RingKillEffect();
+//        MinecraftForge.EVENT_BUS.register(rke);
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {

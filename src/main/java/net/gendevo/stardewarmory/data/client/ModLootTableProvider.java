@@ -46,10 +46,8 @@ public class ModLootTableProvider extends LootTableProvider {
     public static class ModBlockLootTables extends BlockLootTables {
         @Override
         protected void addTables() {
-            dropSelf(ModBlocks.PRISMATIC_BLOCK.get());
-            add(ModBlocks.PRISMATIC_ORE.get(), (p_218464_0_) -> {
-                return createOreDrop(p_218464_0_, ModItems.PRISMATIC_SHARD.get());
-            });
+            dropSelf(ModBlocks.IRIDIUM_BLOCK.get());
+            add(ModBlocks.IRIDIUM_ORE.get(), (p_218464_0_) -> createOreDrop(p_218464_0_, ModItems.PRISMATIC_SHARD.get()));
 
         }
 

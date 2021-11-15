@@ -2,11 +2,11 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "stardewarmory:prismatic_block"
+      "item": "stardewarmory:iridium_block"
     }
   ],
   "result": {
-    "item": "stardewarmory:prismatic_shard",
+    "item": "stardewarmory:iridium_ingot",
     "count": 9
   }
 }

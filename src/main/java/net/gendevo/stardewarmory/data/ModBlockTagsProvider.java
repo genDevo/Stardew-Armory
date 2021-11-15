@@ -15,9 +15,9 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
 
     @Override
     protected void addTags() {
-        tag(ModTags.Blocks.ORES_PRISMATIC).add(ModBlocks.PRISMATIC_ORE.get());
-        tag(Tags.Blocks.ORES).addTag(ModTags.Blocks.ORES_PRISMATIC);
-        tag(ModTags.Blocks.STORAGE_BLOCKS_PRISMATIC).add(ModBlocks.PRISMATIC_BLOCK.get());
-        tag(Tags.Blocks.STORAGE_BLOCKS).addTag(ModTags.Blocks.STORAGE_BLOCKS_PRISMATIC);
+        tag(ModTags.Blocks.ORES_IRIDIUM).add(ModBlocks.IRIDIUM_ORE.get());
+        tag(Tags.Blocks.ORES).addTag(ModTags.Blocks.ORES_IRIDIUM);
+        tag(ModTags.Blocks.STORAGE_BLOCKS_IRIDIUM).add(ModBlocks.IRIDIUM_BLOCK.get());
+        tag(Tags.Blocks.STORAGE_BLOCKS).addTag(ModTags.Blocks.STORAGE_BLOCKS_IRIDIUM);
     }
 }

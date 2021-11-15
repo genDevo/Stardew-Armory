@@ -13,8 +13,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        simpleBlock(ModBlocks.PRISMATIC_BLOCK.get());
-        simpleBlock(ModBlocks.PRISMATIC_ORE.get());
+        simpleBlock(ModBlocks.IRIDIUM_BLOCK.get());
+        simpleBlock(ModBlocks.IRIDIUM_ORE.get());
     }
 
 }

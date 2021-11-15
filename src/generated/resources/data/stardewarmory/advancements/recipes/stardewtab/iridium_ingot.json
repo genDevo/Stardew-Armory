@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "stardewarmory:prismatic_shard_blasting"
+      "stardewarmory:iridium_ingot"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "stardewarmory:prismatic_ore"
+            "item": "stardewarmory:iridium_ingot"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "stardewarmory:prismatic_shard_blasting"
+        "recipe": "stardewarmory:iridium_ingot"
       }
     }
   },

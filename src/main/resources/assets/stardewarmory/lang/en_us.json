@@ -4,8 +4,9 @@
   "item.stardewarmory.galaxy_soul": "Galaxy Soul",
   "item.stardewarmory.prehistoric_scapula": "Prehistoric Scapula",
   "item.stardewarmory.galaxy_sword": "\u00A75Galaxy Sword",
-  "block.stardewarmory.prismatic_block": "Prismatic Block",
-  "block.stardewarmory.prismatic_ore": "Prismatic Ore",
+  "block.stardewarmory.iridium_block": "Iridium Block",
+  "block.stardewarmory.iridium_ore": "Iridium Ore",
+  "item.stardewarmory.iridium_ingot": "Iridium Ingot",
   "item.stardewarmory.reinforced_handle": "Reinforced Handle",
   "item.stardewarmory.dragontooth_cutlass": "\u00A76Dragontooth Cutlass",
   "item.stardewarmory.bone_sword": "Bone Sword",
@@ -57,5 +58,6 @@
   "item.stardewarmory.dwarf_hammer": "\u00A74Dwarf Hammer",
   "item.stardewarmory.dragontooth_club": "\u00A76Dragontooth Club",
   "item.stardewarmory.galaxy_hammer": "\u00A75Galaxy Hammer",
-  "item.stardewarmory.infinity_gavel": "\u00A7dInfinity Gavel"
+  "item.stardewarmory.infinity_gavel": "\u00A7dInfinity Gavel",
+  "entity.stardewarmory.guild_master": "Guild Master"
 }

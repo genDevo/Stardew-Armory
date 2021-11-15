@@ -15,8 +15,11 @@ import net.minecraftforge.event.world.BiomeLoadingEvent;
 public class OreGeneration {
 
     public static void generateOres(final BiomeLoadingEvent event) {
-        if (!event.getCategory().equals(Biome.Category.THEEND) || !event.getCategory().equals(Biome.Category.NETHER)) {
-            generateOre(event.getGeneration(), OreFeatureConfig.FillerBlockType.NATURAL_STONE, ModBlocks.PRISMATIC_ORE.get().defaultBlockState(), 3, 1, 14, 6);
+        if (event.getCategory().equals(Biome.Category.THEEND) || event.getCategory().equals(Biome.Category.NETHER)) {
+            return;
+        }
+        else {
+            generateOre(event.getGeneration(), OreFeatureConfig.FillerBlockType.NATURAL_STONE, ModBlocks.IRIDIUM_ORE.get().defaultBlockState(), 3, 1, 14, 6);
         }
     }
 

@@ -6,7 +6,6 @@ import net.gendevo.stardewarmory.setup.ModTags;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.ItemTagsProvider;
-import net.minecraft.item.Items;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
@@ -18,9 +17,9 @@ public class ModItemTagsProvider extends ItemTagsProvider {
 
 
     protected void addTags() {
-        copy(ModTags.Blocks.ORES_PRISMATIC, ModTags.Items.ORES_PRISMATIC);
+        copy(ModTags.Blocks.ORES_IRIDIUM, ModTags.Items.ORES_IRIDIUM);
         copy(Tags.Blocks.ORES, Tags.Items.ORES);
-        copy(ModTags.Blocks.STORAGE_BLOCKS_PRISMATIC, ModTags.Items.STORAGE_BLOCKS_PRISMATIC);
+        copy(ModTags.Blocks.STORAGE_BLOCKS_IRIDIUM, ModTags.Items.STORAGE_BLOCKS_PRISMATIC);
         copy(Tags.Blocks.STORAGE_BLOCKS, Tags.Items.STORAGE_BLOCKS);
 
         tag(ModTags.Items.INGOTS_PRISMATIC).add(ModItems.PRISMATIC_SHARD.get());

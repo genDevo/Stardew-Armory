@@ -20,13 +20,12 @@ public class StructureInit {
 
     public static final DeferredRegister<Structure<?>> DEFERRED_REGISTRY_STRUCTURE = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, StardewArmory.MOD_ID);
 
-    //NOT FINISHED LINE v
     public static final RegistryObject<Structure<NoFeatureConfig>> GUILD_BUILDING = DEFERRED_REGISTRY_STRUCTURE.register("guild_building", () -> (new GuildBuildingStructure(NoFeatureConfig.CODEC)));
 
     public static void setupStructures() {
         setupMapSpacingAndLand(
                 GUILD_BUILDING.get(),
-                new StructureSeparationSettings(20, 10, 1202356441), true
+                new StructureSeparationSettings(50, 30, 1202356441), true
         );
 
     }

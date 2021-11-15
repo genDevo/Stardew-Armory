@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "stardewarmory:prismatic_block"
+          "name": "stardewarmory:iridium_block"
         }
       ],
       "conditions": [

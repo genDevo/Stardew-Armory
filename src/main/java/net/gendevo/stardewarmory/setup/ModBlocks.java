@@ -12,15 +12,18 @@ import net.minecraftforge.fml.RegistryObject;
 import java.util.function.Supplier;
 
 public class ModBlocks {
-    public static final RegistryObject<Block> PRISMATIC_ORE = register("prismatic_ore", () ->
+    public static final RegistryObject<Block> IRIDIUM_ORE = register("iridium_ore", () ->
             new Block(AbstractBlock.Properties.of(Material.STONE)
                     .strength(3, 10)
                     .harvestLevel(3)
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.STONE)));
-    public static final RegistryObject<Block> PRISMATIC_BLOCK = register("prismatic_block", () ->
-            new Block(AbstractBlock.Properties.of(Material.HEAVY_METAL).strength(2, 10).sound(SoundType.METAL)));
-
+    public static final RegistryObject<Block> IRIDIUM_BLOCK = register("iridium_block", () ->
+            new Block(AbstractBlock.Properties.of(Material.HEAVY_METAL)
+                    .strength(2, 10)
+                    .harvestLevel(2)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.METAL)));
 
 
     private static <T extends Block> RegistryObject<T> registerNoItem(String name, Supplier<T> block) {

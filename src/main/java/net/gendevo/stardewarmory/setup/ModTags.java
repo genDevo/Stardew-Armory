@@ -10,8 +10,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class ModTags {
     public static final class Blocks {
-        public static final ITag.INamedTag<Block> ORES_PRISMATIC = forge("ores/prismatic");
-        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_PRISMATIC = forge("storage_blocks/silver");
+        public static final ITag.INamedTag<Block> ORES_IRIDIUM = forge("ores/iridium");
+        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_IRIDIUM = forge("storage_blocks/prismatic");
 
         private static ITag.INamedTag<Block> forge(String path) {
             return BlockTags.bind(new ResourceLocation("forge", path).toString());
@@ -23,8 +23,8 @@ public class ModTags {
     }
 
     public static final class Items{
-        public static final ITag.INamedTag<Item> ORES_PRISMATIC = forge("ores/prismatic");
-        public static final ITag.INamedTag<Item> STORAGE_BLOCKS_PRISMATIC = forge("storage_blocks/silver");
+        public static final ITag.INamedTag<Item> ORES_IRIDIUM = forge("ores/iridium");
+        public static final ITag.INamedTag<Item> STORAGE_BLOCKS_PRISMATIC = forge("storage_blocks/prismatic");
 
         public static final ITag.INamedTag<Item> INGOTS_PRISMATIC = forge("ingots/prismatic");
         public static final ITag.INamedTag<Item> RODS_NETHERITE = forge("rods/netherite");

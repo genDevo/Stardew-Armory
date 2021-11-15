@@ -3,13 +3,10 @@ package net.gendevo.stardewarmory.data.client;
 import net.gendevo.stardewarmory.StardewArmory;
 import net.gendevo.stardewarmory.setup.ModBlocks;
 import net.gendevo.stardewarmory.setup.ModItems;
-import net.gendevo.stardewarmory.setup.ModTags;
 import net.minecraft.data.*;
-import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.Tags;
 
 
 import java.util.function.Consumer;
@@ -22,16 +19,16 @@ public class ModRecipeProvider extends RecipeProvider {
     @Override
     protected void buildShapelessRecipes(Consumer<IFinishedRecipe> consumer) {
         // Crafting Recipes
-        ShapelessRecipeBuilder.shapeless(ModItems.PRISMATIC_SHARD.get(), 9)
-                .requires(ModBlocks.PRISMATIC_BLOCK.get())
-                .unlockedBy("has_item", has(ModItems.PRISMATIC_SHARD.get()))
+        ShapelessRecipeBuilder.shapeless(ModItems.IRIDIUM_INGOT.get(), 9)
+                .requires(ModBlocks.IRIDIUM_BLOCK.get())
+                .unlockedBy("has_item", has(ModItems.IRIDIUM_INGOT.get()))
                 .save(consumer);
-        ShapedRecipeBuilder.shaped(ModBlocks.PRISMATIC_BLOCK.get())
-                .define('#', ModItems.PRISMATIC_SHARD.get())
+        ShapedRecipeBuilder.shaped(ModBlocks.IRIDIUM_BLOCK.get())
+                .define('#', ModItems.IRIDIUM_INGOT.get())
                 .pattern("###")
                 .pattern("###")
                 .pattern("###")
-                .unlockedBy("has_item", has(ModItems.PRISMATIC_SHARD.get()))
+                .unlockedBy("has_item", has(ModItems.IRIDIUM_INGOT.get()))
                 .save(consumer);
         ShapedRecipeBuilder.shaped(ModItems.GALAXY_SWORD.get())
                 .define('#', ModItems.PRISMATIC_SHARD.get())
@@ -81,7 +78,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .pattern("   ")
                 .pattern(" i ")
                 .pattern("s  ")
-                .unlockedBy("has_item", has(Items.QUARTZ))
+                .unlockedBy("has_item", has(Items.IRON_INGOT))
                 .save(consumer);
         ShapedRecipeBuilder.shaped(ModItems.WOOD_MALLET.get())
                 .define('w', Items.OAK_PLANKS)
@@ -89,15 +86,15 @@ public class ModRecipeProvider extends RecipeProvider {
                 .pattern(" ws")
                 .pattern(" sw")
                 .pattern("s  ")
-                .unlockedBy("has_item", has(Items.QUARTZ))
+                .unlockedBy("has_item", has(Items.STICK))
                 .save(consumer);
         //Cooking recipes
-        CookingRecipeBuilder.smelting(Ingredient.of(ModBlocks.PRISMATIC_ORE.get()), ModItems.PRISMATIC_SHARD.get(), 1.5f, 200)
-                .unlockedBy("has_item", has(ModBlocks.PRISMATIC_ORE.get()))
-                .save(consumer, modId("prismatic_shard_smelting"));
-        CookingRecipeBuilder.blasting(Ingredient.of(ModBlocks.PRISMATIC_ORE.get()), ModItems.PRISMATIC_SHARD.get(), 1.5f, 100)
-                .unlockedBy("has_item", has(ModBlocks.PRISMATIC_ORE.get()))
-                .save(consumer, modId("prismatic_shard_blasting"));
+        CookingRecipeBuilder.smelting(Ingredient.of(ModBlocks.IRIDIUM_ORE.get()), ModItems.IRIDIUM_INGOT.get(), 1.5f, 200)
+                .unlockedBy("has_item", has(ModBlocks.IRIDIUM_ORE.get()))
+                .save(consumer, modId("iridium_ingot_smelting"));
+        CookingRecipeBuilder.blasting(Ingredient.of(ModBlocks.IRIDIUM_ORE.get()), ModItems.IRIDIUM_INGOT.get(), 1.5f, 100)
+                .unlockedBy("has_item", has(ModBlocks.IRIDIUM_ORE.get()))
+                .save(consumer, modId("iridium_ingot_blasting"));
         // Smithing recipes
         SmithingRecipeBuilder.smithing(Ingredient.of(Items.STICK), Ingredient.of(Items.NETHERITE_INGOT), ModItems.REINFORCED_HANDLE.get())
                 .unlocks("has_item", has(Items.NETHERITE_INGOT))
