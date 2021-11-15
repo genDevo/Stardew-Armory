@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Either;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
+import net.gendevo.stardewarmory.config.StardewArmoryConfig;
 import net.gendevo.stardewarmory.entities.GuildMasterEntity;
 import net.gendevo.stardewarmory.init.ConfiguredStructureInit;
 import net.gendevo.stardewarmory.init.StructureInit;
@@ -46,8 +47,10 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
@@ -72,10 +75,7 @@ import java.util.stream.Collectors;
 public class StardewArmory
 {
     public static final String MOD_ID = "stardewarmory";
-    public static ResourceLocation rl(String path)
-    {
-        return new ResourceLocation(MOD_ID, path);
-    }
+    public static ResourceLocation rl(String path) { return new ResourceLocation(MOD_ID, path); }
     public static final Logger LOGGER = LogManager.getLogger();
     public static final boolean ENABLE = true;
     public static final ItemGroup TAB_STARDEW = new StardewGroup("stardewtab");
@@ -102,6 +102,8 @@ public class StardewArmory
 
         Registration.register();
         MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, OreGeneration::generateOres);
+
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, StardewArmoryConfig.SPEC, "stardewarmory-common.toml");
     }
 
     private void setup(final FMLCommonSetupEvent event)
