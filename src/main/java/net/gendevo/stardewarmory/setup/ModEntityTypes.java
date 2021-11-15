@@ -14,6 +14,6 @@ public class ModEntityTypes {
 
     public static final RegistryObject<EntityType<GuildMasterEntity>> GUILD_MASTER = ENTITY_TYPES.register("guild_master",
             () -> EntityType.Builder.of(GuildMasterEntity::new, EntityClassification.CREATURE)
-                    .sized(0.8f, 1.2f)
+                    .sized(0.6f, 1.6f)
                     .build(new ResourceLocation(StardewArmory.MOD_ID, "guild_master").toString()));
 }
