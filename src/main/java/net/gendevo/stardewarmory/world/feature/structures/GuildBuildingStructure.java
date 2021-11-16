@@ -47,8 +47,11 @@ public class GuildBuildingStructure extends Structure<NoFeatureConfig> {
     private static final List<MobSpawnInfo.Spawners> STRUCTURE_CREATURES = ImmutableList.of(
             new MobSpawnInfo.Spawners(ModEntityTypes.GUILD_MASTER.get(), 100, 1, 1)
     );
+
     @Override
-    public List<MobSpawnInfo.Spawners> getDefaultCreatureSpawnList() { return STRUCTURE_CREATURES; }
+    public List<MobSpawnInfo.Spawners> getDefaultCreatureSpawnList() {
+        return STRUCTURE_CREATURES;
+    }
 
     @Override
     protected boolean isFeatureChunk(ChunkGenerator chunkGenerator, BiomeProvider biomeSource, long seed, SharedSeedRandom chunkRandom, int chunkX, int chunkZ, Biome biome, ChunkPos chunkPos, NoFeatureConfig featureConfig) {
@@ -71,7 +74,6 @@ public class GuildBuildingStructure extends Structure<NoFeatureConfig> {
         @Override
         public void generatePieces(DynamicRegistries dynamicRegistryManager, ChunkGenerator chunkGenerator, TemplateManager templateManagerIn, int chunkX, int chunkZ, Biome biomeIn, NoFeatureConfig config) {
 
-            // Turns the chunk coordinates into actual coordinates we can use
             int x = chunkX * 16;
             int z = chunkZ * 16;
 
@@ -80,7 +82,7 @@ public class GuildBuildingStructure extends Structure<NoFeatureConfig> {
             JigsawManager.addPieces(
                     dynamicRegistryManager,
                     new VillageConfig(() -> dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY)
-                            .get(new ResourceLocation(StardewArmory.MOD_ID, "guild_building/start_pool")),10),
+                            .get(new ResourceLocation(StardewArmory.MOD_ID, "guild_building/start_pool")), 10),
                     AbstractVillagePiece::new,
                     chunkGenerator,
                     templateManagerIn,
@@ -90,20 +92,14 @@ public class GuildBuildingStructure extends Structure<NoFeatureConfig> {
                     false,
                     true);
 
-
-            // By lifting the house up by 1 and lowering the bounding box, the land at bottom of house will now be
-            // flush with the surrounding terrain without blocking off the doorstep.
-            this.pieces.forEach(piece -> piece.move(0, 1, 0));
-
-
             Vector3i structureCenter = this.pieces.get(0).getBoundingBox().getCenter();
             int xOffset = centerPos.getX() - structureCenter.getX();
             int zOffset = centerPos.getZ() - structureCenter.getZ();
             for (StructurePiece structurePiece : this.pieces) {
-                structurePiece.move(xOffset, 0, zOffset);
+                structurePiece.move(xOffset, 1, zOffset);
             }
+            this.pieces.forEach(piece -> piece.getBoundingBox().y0 -= 1);
 
-            // Sets the bounds of the structure once you are finished.
             this.calculateBoundingBox();
         }
     }
