@@ -1,0 +1,9 @@
+{
+  "lucky_hit_sound": {
+    "category": "player",
+    "subtitle": "subtitle.stardewarmory.lucky_hit_sound",
+    "sounds": [
+      "stardewarmory:lucky_hit_sound"
+    ]
+  }
+}

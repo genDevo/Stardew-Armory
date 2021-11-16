@@ -59,5 +59,7 @@
   "item.stardewarmory.dragontooth_club": "\u00A76Dragontooth Club",
   "item.stardewarmory.galaxy_hammer": "\u00A75Galaxy Hammer",
   "item.stardewarmory.infinity_gavel": "\u00A7dInfinity Gavel",
-  "entity.stardewarmory.guild_master": "Guild Master"
+  "entity.stardewarmory.guild_master": "Guild Master",
+  "enchantment.stardewarmory.lucky_hit": "Lucky Hit",
+  "subtitle.stardewarmory.lucky_hit_sound": "Lucky Hit!"
 }

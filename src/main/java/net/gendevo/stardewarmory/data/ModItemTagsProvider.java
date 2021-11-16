@@ -22,8 +22,8 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         copy(ModTags.Blocks.STORAGE_BLOCKS_IRIDIUM, ModTags.Items.STORAGE_BLOCKS_PRISMATIC);
         copy(Tags.Blocks.STORAGE_BLOCKS, Tags.Items.STORAGE_BLOCKS);
 
-        tag(ModTags.Items.INGOTS_PRISMATIC).add(ModItems.PRISMATIC_SHARD.get());
-        tag(Tags.Items.INGOTS).addTag(ModTags.Items.INGOTS_PRISMATIC);
+        tag(ModTags.Items.INGOTS_IRIDIUM).add(ModItems.IRIDIUM_INGOT.get());
+        tag(Tags.Items.INGOTS).addTag(ModTags.Items.INGOTS_IRIDIUM);
         tag(ModTags.Items.RODS_NETHERITE).add(ModItems.REINFORCED_HANDLE.get());
         tag(Tags.Items.RODS).addTag(ModTags.Items.RODS_NETHERITE);
         tag(ModTags.Items.BONES_PREHISTORIC_SCAPULA).add(ModItems.PREHISTORIC_SCAPULA.get());

@@ -12,6 +12,7 @@ import net.gendevo.stardewarmory.setup.ModEntityTypes;
 import net.gendevo.stardewarmory.setup.ModItems;
 import net.gendevo.stardewarmory.setup.Registration;
 import net.gendevo.stardewarmory.util.ModResourceLocation;
+import net.gendevo.stardewarmory.util.ModSoundEvents;
 import net.gendevo.stardewarmory.world.OreGeneration;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.MobEntity;
@@ -101,6 +102,7 @@ public class StardewArmory
         forgeBus.addListener(EventPriority.HIGH, this::biomeModification);
 
         Registration.register();
+        ModSoundEvents.register(modEventBus);
         MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, OreGeneration::generateOres);
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, StardewArmoryConfig.SPEC, "stardewarmory-common.toml");

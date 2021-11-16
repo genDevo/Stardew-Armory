@@ -1,11 +1,14 @@
 package net.gendevo.stardewarmory.items;
 
+import net.gendevo.stardewarmory.setup.ModEnchants;
 import net.minecraft.enchantment.Enchantments;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.util.NonNullList;
+import net.minecraft.world.World;
 
 public class EnchantSword extends SwordItem {
 
@@ -16,22 +19,56 @@ public class EnchantSword extends SwordItem {
     @Override
     public void fillItemCategory(ItemGroup tab, NonNullList<ItemStack> list) {
         if (getItemCategory() == tab) {
-            ItemStack istack = new ItemStack(this);
-            switch (this.getItemEnchantability(istack)) {
+            ItemStack stack = new ItemStack(this);
+            switch (this.getItemEnchantability(stack)) {
                 case 9:
-                    istack.enchant(Enchantments.FIRE_ASPECT, 1);
+                    stack.enchant(Enchantments.FIRE_ASPECT, 1);
                     break;
                 case 10:
-                    istack.enchant(Enchantments.SMITE, 1);
+                    stack.enchant(Enchantments.SMITE, 1);
                     break;
                 case 11:
-                    istack.enchant(Enchantments.KNOCKBACK, 1);
+                    stack.enchant(Enchantments.KNOCKBACK, 1);
                     break;
-//                case 13:
-//                    istack.enchant(Enchantments.SHARPNESS, 1);
-//                    break;
+                case 13:
+                    stack.enchant(Enchantments.SHARPNESS, 1);
+                    break;
+                case 14:
+                    stack.enchant(ModEnchants.LUCKY_HIT.get(), 1);
+                    break;
+                case 20:
+                    stack.enchant(ModEnchants.LUCKY_HIT.get(), 3);
+                    break;
             }
-            list.add(istack);
+            list.add(stack);
+        }
+    }
+
+
+
+    @Override
+    public void onCraftedBy(ItemStack stack, World p_77622_2_, PlayerEntity p_77622_3_) {
+        if (!stack.isEnchanted()) {
+            switch (this.getItemEnchantability(stack)) {
+                case 9:
+                    stack.enchant(Enchantments.FIRE_ASPECT, 1);
+                    break;
+                case 10:
+                    stack.enchant(Enchantments.SMITE, 1);
+                    break;
+                case 11:
+                    stack.enchant(Enchantments.KNOCKBACK, 1);
+                    break;
+                case 13:
+                    stack.enchant(Enchantments.SHARPNESS, 1);
+                    break;
+                case 14:
+                    stack.enchant(ModEnchants.LUCKY_HIT.get(), 1);
+                    break;
+                case 20:
+                    stack.enchant(ModEnchants.LUCKY_HIT.get(), 3);
+                    break;
+            }
         }
     }
 }
