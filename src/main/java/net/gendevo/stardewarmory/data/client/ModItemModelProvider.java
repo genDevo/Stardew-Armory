@@ -17,6 +17,7 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         withExistingParent("iridium_block", modLoc("block/iridium_block"));
         withExistingParent("iridium_ore", modLoc("block/iridium_ore"));
+        withExistingParent("cinder_ore", modLoc("block/cinder_ore"));
 
         ModelFile itemGenerated = getExistingFile(mcLoc("item/generated"));
         ModelFile itemHandheld = getExistingFile(mcLoc("item/handheld"));
@@ -29,6 +30,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemGenerated, "dragon_tooth");
         builder(itemGenerated, "prehistoric_scapula");
         builder(itemGenerated, "galaxy_soul");
+        builder(itemGenerated, "cinder_shard");
         //Rings
         builder(itemGenerated, "ruby_ring");
         builder(itemGenerated, "lucky_ring");

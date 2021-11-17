@@ -12,7 +12,10 @@ import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.LootTableProvider;
 import net.minecraft.data.loot.BlockLootTables;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.loot.*;
+import net.minecraft.loot.functions.ApplyBonus;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
 
@@ -47,7 +50,8 @@ public class ModLootTableProvider extends LootTableProvider {
         @Override
         protected void addTables() {
             dropSelf(ModBlocks.IRIDIUM_BLOCK.get());
-            add(ModBlocks.IRIDIUM_ORE.get(), (p_218464_0_) -> createOreDrop(p_218464_0_, ModItems.PRISMATIC_SHARD.get()));
+            dropSelf(ModBlocks.IRIDIUM_ORE.get());
+            add(ModBlocks.CINDER_ORE.get(), (p_218464_0_) -> createOreDrop(p_218464_0_, ModItems.CINDER_SHARD.get()).apply(ApplyBonus.addOreBonusCount(Enchantments.BLOCK_FORTUNE)));
 
         }
 

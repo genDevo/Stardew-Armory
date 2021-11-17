@@ -1,29 +1,24 @@
 package net.gendevo.stardewarmory.setup;
 
 import net.gendevo.stardewarmory.StardewArmory;
+import net.gendevo.stardewarmory.blocks.CinderOre;
+import net.gendevo.stardewarmory.blocks.IridiumBlock;
+import net.gendevo.stardewarmory.blocks.IridiumOre;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 
 import java.util.function.Supplier;
 
 public class ModBlocks {
-    public static final RegistryObject<Block> IRIDIUM_ORE = register("iridium_ore", () ->
-            new Block(AbstractBlock.Properties.of(Material.STONE)
-                    .strength(3, 10)
-                    .harvestLevel(3)
-                    .requiresCorrectToolForDrops()
-                    .sound(SoundType.STONE)));
-    public static final RegistryObject<Block> IRIDIUM_BLOCK = register("iridium_block", () ->
-            new Block(AbstractBlock.Properties.of(Material.HEAVY_METAL)
-                    .strength(2, 10)
-                    .harvestLevel(2)
-                    .requiresCorrectToolForDrops()
-                    .sound(SoundType.METAL)));
+    public static final RegistryObject<Block> IRIDIUM_ORE = register("iridium_ore", IridiumOre::new);
+    public static final RegistryObject<Block> CINDER_ORE = register("cinder_ore", CinderOre::new);
+    public static final RegistryObject<Block> IRIDIUM_BLOCK = register("iridium_block", IridiumBlock::new);
 
 
     private static <T extends Block> RegistryObject<T> registerNoItem(String name, Supplier<T> block) {

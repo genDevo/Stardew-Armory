@@ -11,7 +11,8 @@ import net.minecraft.util.ResourceLocation;
 public class ModTags {
     public static final class Blocks {
         public static final ITag.INamedTag<Block> ORES_IRIDIUM = forge("ores/iridium");
-        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_IRIDIUM = forge("storage_blocks/prismatic");
+        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_IRIDIUM = forge("storage_blocks/iridium");
+        public static final ITag.INamedTag<Block> ORES_CINDER = forge("ores/cinder");
 
         private static ITag.INamedTag<Block> forge(String path) {
             return BlockTags.bind(new ResourceLocation("forge", path).toString());
@@ -21,15 +22,20 @@ public class ModTags {
 
     public static final class Items{
         public static final ITag.INamedTag<Item> ORES_IRIDIUM = forge("ores/iridium");
-        public static final ITag.INamedTag<Item> STORAGE_BLOCKS_PRISMATIC = forge("storage_blocks/prismatic");
+        public static final ITag.INamedTag<Item> STORAGE_BLOCKS_PRISMATIC = forge("storage_blocks/iridium");
+        public static final ITag.INamedTag<Item> ORES_CINDER = mod("ores/cinder");
 
         public static final ITag.INamedTag<Item> INGOTS_IRIDIUM = forge("ingots/iridium");
         public static final ITag.INamedTag<Item> RODS_NETHERITE = forge("rods/netherite");
-        public static final ITag.INamedTag<Item> BONES_PREHISTORIC_SCAPULA = forge("bones/prehistoric_scapula");
+        public static final ITag.INamedTag<Item> BONES_PREHISTORIC_SCAPULA = mod("bones/prehistoric_scapula");
+        public static final ITag.INamedTag<Item> SHARDS_CINDER = mod("shards/cinder");
 
         private static ITag.INamedTag<Item> forge(String path) {
             return ItemTags.bind(new ResourceLocation("forge", path).toString());
         }
 
+        private static ITag.INamedTag<Item> mod(String path) {
+            return ItemTags.bind(new ResourceLocation(StardewArmory.MOD_ID, path).toString());
+        }
     }
 }
