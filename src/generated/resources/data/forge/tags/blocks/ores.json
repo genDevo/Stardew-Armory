@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "#forge:ores/iridium"
+    "#forge:ores/iridium",
+    "stardewarmory:cinder_ore"
   ]
 }

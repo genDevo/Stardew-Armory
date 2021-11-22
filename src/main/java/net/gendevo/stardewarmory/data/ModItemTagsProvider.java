@@ -21,6 +21,7 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         copy(Tags.Blocks.ORES, Tags.Items.ORES);
         copy(ModTags.Blocks.STORAGE_BLOCKS_IRIDIUM, ModTags.Items.STORAGE_BLOCKS_PRISMATIC);
         copy(Tags.Blocks.STORAGE_BLOCKS, Tags.Items.STORAGE_BLOCKS);
+        copy(Tags.Blocks.ORES, Tags.Items.ORES);
 
         tag(ModTags.Items.INGOTS_IRIDIUM).add(ModItems.IRIDIUM_INGOT.get());
         tag(Tags.Items.INGOTS).addTag(ModTags.Items.INGOTS_IRIDIUM);

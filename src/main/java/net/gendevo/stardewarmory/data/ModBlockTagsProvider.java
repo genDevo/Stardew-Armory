@@ -19,6 +19,6 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         tag(Tags.Blocks.ORES).addTag(ModTags.Blocks.ORES_IRIDIUM);
         tag(ModTags.Blocks.STORAGE_BLOCKS_IRIDIUM).add(ModBlocks.IRIDIUM_BLOCK.get());
         tag(Tags.Blocks.STORAGE_BLOCKS).addTag(ModTags.Blocks.STORAGE_BLOCKS_IRIDIUM);
-        tag(ModTags.Blocks)
+        tag(Tags.Blocks.ORES).add(ModBlocks.CINDER_ORE.get());
     }
 }
