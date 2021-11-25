@@ -1,0 +1,14 @@
+{
+  "type": "stardewarmory:galaxy",
+  "ingredients": [
+    {
+      "item": "stardewarmory:reinforced_handle"
+    },
+    {
+      "item": "stardewarmory:prismatic_shard"
+    }
+  ],
+  "output": {
+    "item": "stardewarmory:galaxy_sword"
+  }
+}

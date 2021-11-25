@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "bbb",
+    "rsr",
+    "ooo"
+  ],
+  "key": {
+    "b": {
+      "item": "minecraft:iron_block"
+    },
+    "r": {
+      "item": "minecraft:iron_bars"
+    },
+    "s": {
+      "item": "stardewarmory:cinder_shard"
+    },
+    "o": {
+      "item": "minecraft:obsidian"
+    }
+  },
+  "result": {
+    "item": "stardewarmory:galaxy_forge"
+  }
+}

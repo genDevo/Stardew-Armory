@@ -1,0 +1,15 @@
+{
+  "type": "stardewarmory:galaxy",
+  "ingredients": [
+    {
+      "item": "stardewarmory:galaxy_dagger"
+    },
+    {
+      "item": "stardewarmory:galaxy_soul"
+    }
+  ],
+  "output": {
+    "item": "stardewarmory:infinity_dagger",
+    "nbt": "{Enchantments:[{id:\"stardewarmory:lucky_hit\",lvl:3}]}"
+  }
+}

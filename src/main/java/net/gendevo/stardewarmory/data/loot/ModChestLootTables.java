@@ -1,9 +1,8 @@
 package net.gendevo.stardewarmory.data.loot;
 
-import net.gendevo.stardewarmory.init.LootInjector;
+import net.gendevo.stardewarmory.util.events.LootInjector;
 import net.gendevo.stardewarmory.setup.ModItems;
 import net.minecraft.data.loot.ChestLootTables;
-import net.minecraft.item.Items;
 import net.minecraft.loot.*;
 import net.minecraft.util.ResourceLocation;
 
@@ -13,7 +12,7 @@ public class ModChestLootTables extends ChestLootTables {
     @Override
     public void accept(BiConsumer<ResourceLocation, LootTable.Builder> consumer) {
         consumer.accept(LootInjector.Tables.CHESTS_IGLOO, addYetiTooth(new LootTable.Builder()));
-        consumer.accept(LootInjector.Tables.CHESTS_NETHER_BRIDGE, addNetherWeapons(new LootTable.Builder()));
+        consumer.accept(LootInjector.Tables.CHESTS_NETHER_BRIDGE, addNetherStuff(new LootTable.Builder()));
         consumer.accept(LootInjector.Tables.CHESTS_VILLAGE_TEMPLE, addTemplarsBlade(new LootTable.Builder()));
         consumer.accept(LootInjector.Tables.CHESTS_VILLAGE_WEAPONSMITH, addSteelWeapons(new LootTable.Builder()));
         consumer.accept(LootInjector.Tables.CHESTS_VILLAGE_TOOLSMITH, addSlammer(new LootTable.Builder()));
@@ -23,10 +22,98 @@ public class ModChestLootTables extends ChestLootTables {
         consumer.accept(LootInjector.Tables.CHESTS_SIMPLE_DUNGEON, addSimpleWeapons(new LootTable.Builder()));
         consumer.accept(LootInjector.Tables.CHESTS_MINESHAFT, addMineshaftWeapons(new LootTable.Builder()));
         consumer.accept(LootInjector.Tables.CHESTS_RUINED_PORTAL, addObsidianEdge(new LootTable.Builder()));
-        //consumer.accept(LootInjector.Tables.CHESTS_UNDERWATER_RUINS, addNeptuneChest(new LootTable.Builder()));
+        consumer.accept(LootInjector.Tables.CHESTS_UNDERWATER_RUINS, addNeptuneChest(new LootTable.Builder()));
         consumer.accept(LootInjector.Tables.CHESTS_VILLAGE_BUTCHER, addCarvingKnife(new LootTable.Builder()));
+        consumer.accept(LootInjector.Tables.CHESTS_BASTION_TREASURE, addSGRing(new LootTable.Builder()));
+        consumer.accept(LootInjector.Tables.CHESTS_BASTION_BRIDGE, addVampAndSGRing(new LootTable.Builder()));
+        consumer.accept(LootInjector.Tables.CHESTS_BASTION_OTHER, addVampRing(new LootTable.Builder()));
+        consumer.accept(LootInjector.Tables.CHESTS_DESERT_PYRAMID, addLuckyRing(new LootTable.Builder()));
+        consumer.accept(LootInjector.Tables.CHESTS_JUNGLE_TEMPLE, addSCRing(new LootTable.Builder()));
+        consumer.accept(LootInjector.Tables.CHESTS_WOODLAND_MANSION, addVampRing(new LootTable.Builder()));
+        consumer.accept(LootInjector.Tables.CHESTS_STRONGHOLD, addEmeraldRing(new LootTable.Builder()));
 
         consumer.accept(LootInjector.Tables.PIGLIN_BARTER, addKudgel(new LootTable.Builder()));
+    }
+
+    private static LootTable.Builder addLuckyRing(LootTable.Builder builder ) {
+        builder.withPool(new LootPool.Builder()
+                .setRolls(ConstantRange.exactly(1))
+                .add(EmptyLootEntry.emptyItem()
+                        .setWeight(40)
+                )
+                .add(ItemLootEntry.lootTableItem(ModItems.LUCKY_RING.get())
+                        .setWeight(10)
+                )
+        );
+        return builder;
+    }
+
+    private static LootTable.Builder addEmeraldRing(LootTable.Builder builder ) {
+        builder.withPool(new LootPool.Builder()
+                .setRolls(ConstantRange.exactly(1))
+                .add(EmptyLootEntry.emptyItem()
+                        .setWeight(40)
+                )
+                .add(ItemLootEntry.lootTableItem(ModItems.EMERALD_RING.get())
+                        .setWeight(10)
+                )
+        );
+        return builder;
+    }
+
+    private static LootTable.Builder addSCRing(LootTable.Builder builder ) {
+        builder.withPool(new LootPool.Builder()
+                .setRolls(ConstantRange.exactly(1))
+                .add(EmptyLootEntry.emptyItem()
+                        .setWeight(40)
+                )
+                .add(ItemLootEntry.lootTableItem(ModItems.SLIME_CHARMER_RING.get())
+                        .setWeight(15)
+                )
+        );
+        return builder;
+    }
+
+    private static LootTable.Builder addVampAndSGRing(LootTable.Builder builder ) {
+        builder.withPool(new LootPool.Builder()
+                .setRolls(ConstantRange.exactly(1))
+                .add(EmptyLootEntry.emptyItem()
+                        .setWeight(40)
+                )
+                .add(ItemLootEntry.lootTableItem(ModItems.VAMPIRE_RING.get())
+                        .setWeight(10)
+                )
+                .add(ItemLootEntry.lootTableItem(ModItems.VAMPIRE_RING.get())
+                        .setWeight(10)
+                )
+        );
+        return builder;
+    }
+
+    private static LootTable.Builder addVampRing(LootTable.Builder builder ) {
+        builder.withPool(new LootPool.Builder()
+                .setRolls(ConstantRange.exactly(1))
+                .add(EmptyLootEntry.emptyItem()
+                        .setWeight(30)
+                )
+                .add(ItemLootEntry.lootTableItem(ModItems.VAMPIRE_RING.get())
+                        .setWeight(10)
+                )
+        );
+        return builder;
+    }
+
+    private static LootTable.Builder addSGRing(LootTable.Builder builder ) {
+        builder.withPool(new LootPool.Builder()
+                .setRolls(ConstantRange.exactly(1))
+                .add(EmptyLootEntry.emptyItem()
+                        .setWeight(30)
+                )
+                .add(ItemLootEntry.lootTableItem(ModItems.SOUL_GLUTTON_RING.get())
+                        .setWeight(10)
+                )
+        );
+        return builder;
     }
 
     private static LootTable.Builder addKudgel(LootTable.Builder builder ) {
@@ -58,7 +145,7 @@ public class ModChestLootTables extends ChestLootTables {
         return builder;
     }
 
-    private static LootTable.Builder addNetherWeapons(LootTable.Builder builder) {
+    private static LootTable.Builder addNetherStuff(LootTable.Builder builder) {
         builder.withPool(new LootPool.Builder()
                 .setRolls(ConstantRange.exactly(1))
                 .add(EmptyLootEntry.emptyItem()
@@ -72,6 +159,12 @@ public class ModChestLootTables extends ChestLootTables {
                 )
                 .add(ItemLootEntry.lootTableItem(ModItems.WICKED_KRIS.get())
                         .setWeight(25)
+                )
+                .add(ItemLootEntry.lootTableItem(ModItems.VAMPIRE_RING.get())
+                        .setWeight(10)
+                )
+                .add(ItemLootEntry.lootTableItem(ModItems.NAPALM_RING.get())
+                        .setWeight(10)
                 )
         );
         return builder;
@@ -176,6 +269,9 @@ public class ModChestLootTables extends ChestLootTables {
                 .add(ItemLootEntry.lootTableItem(ModItems.SHADOW_DAGGER.get())
                         .setWeight(20)
                 )
+                .add(ItemLootEntry.lootTableItem(ModItems.PRISMATIC_SHARD.get())
+                        .setWeight(1)
+                )
         );
         return builder;
     }
@@ -210,6 +306,9 @@ public class ModChestLootTables extends ChestLootTables {
                 )
                 .add(ItemLootEntry.lootTableItem(ModItems.LEAD_ROD.get())
                         .setWeight(20)
+                )
+                .add(ItemLootEntry.lootTableItem(ModItems.PRISMATIC_SHARD.get())
+                        .setWeight(1)
                 )
         );
         return builder;

@@ -1,0 +1,9 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "top": "stardewarmory:block/galaxy_forge_top",
+    "front": "stardewarmory:block/galaxy_forge_front",
+    "side": "stardewarmory:block/galaxy_forge_side",
+    "bottom": "stardewarmory:block/galaxy_forge_bottom"
+  }
+}

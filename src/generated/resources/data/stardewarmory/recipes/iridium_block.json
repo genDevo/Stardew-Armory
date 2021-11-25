@@ -1,15 +1,34 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "###",
-    "###",
-    "###"
-  ],
-  "key": {
-    "#": {
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "stardewarmory:iridium_ingot"
+    },
+    {
+      "item": "stardewarmory:iridium_ingot"
+    },
+    {
+      "item": "stardewarmory:iridium_ingot"
+    },
+    {
+      "item": "stardewarmory:iridium_ingot"
+    },
+    {
+      "item": "stardewarmory:iridium_ingot"
+    },
+    {
+      "item": "stardewarmory:iridium_ingot"
+    },
+    {
+      "item": "stardewarmory:iridium_ingot"
+    },
+    {
+      "item": "stardewarmory:iridium_ingot"
+    },
+    {
       "item": "stardewarmory:iridium_ingot"
     }
-  },
+  ],
   "result": {
     "item": "stardewarmory:iridium_block"
   }

@@ -1,0 +1,74 @@
+{
+  "display": {
+    "icon": {
+      "item": "stardewarmory:forest_sword"
+    },
+    "title": "Stardew Armory",
+    "description": "Discover the power hidden in the Valley",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "background": "stardewarmory:textures/block/iridium_ore_adv.png"
+  },
+  "criteria": {
+    "sword": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "stardewarmory:forest_sword"
+          }
+        ]
+      }
+    },
+    "edge": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "stardewarmory:iron_edge"
+          }
+        ]
+      }
+    },
+    "mallet": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "stardewarmory:wood_mallet"
+          }
+        ]
+      }
+    },
+    "club": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "stardewarmory:wood_club"
+          }
+        ]
+      }
+    },
+    "femur": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "stardewarmory:femur"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "club",
+      "femur",
+      "mallet",
+      "edge",
+      "sword"
+    ]
+  ]
+}

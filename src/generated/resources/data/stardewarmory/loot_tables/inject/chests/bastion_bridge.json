@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:empty",
+          "weight": 40
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "stardewarmory:vampire_ring"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "stardewarmory:vampire_ring"
+        }
+      ]
+    }
+  ]
+}

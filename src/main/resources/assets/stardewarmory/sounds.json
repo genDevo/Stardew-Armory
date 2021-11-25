@@ -5,5 +5,26 @@
     "sounds": [
       "stardewarmory:lucky_hit_sound"
     ]
+  },
+  "yoba_sound": {
+    "category": "player",
+    "subtitle": "subtitle.stardewarmory.yoba_sound",
+    "sounds": [
+      "stardewarmory:yoba_sound"
+    ]
+  },
+  "toggle_on_sound": {
+    "category": "player",
+    "subtitle": "subtitle.stardewarmory.toggle_on_sound",
+    "sounds": [
+      "stardewarmory:toggle_on_sound"
+    ]
+  },
+  "toggle_off_sound": {
+    "category": "player",
+    "subtitle": "subtitle.stardewarmory.toggle_off_sound",
+    "sounds": [
+      "stardewarmory:toggle_off_sound"
+    ]
   }
 }

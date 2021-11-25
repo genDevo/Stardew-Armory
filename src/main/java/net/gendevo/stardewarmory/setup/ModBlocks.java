@@ -1,16 +1,10 @@
 package net.gendevo.stardewarmory.setup;
 
 import net.gendevo.stardewarmory.StardewArmory;
-import net.gendevo.stardewarmory.blocks.CinderOre;
-import net.gendevo.stardewarmory.blocks.IridiumBlock;
-import net.gendevo.stardewarmory.blocks.IridiumOre;
-import net.minecraft.block.AbstractBlock;
+import net.gendevo.stardewarmory.blocks.*;
 import net.minecraft.block.Block;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 
 import java.util.function.Supplier;
@@ -19,6 +13,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> IRIDIUM_ORE = register("iridium_ore", IridiumOre::new);
     public static final RegistryObject<Block> CINDER_ORE = register("cinder_ore", CinderOre::new);
     public static final RegistryObject<Block> IRIDIUM_BLOCK = register("iridium_block", IridiumBlock::new);
+    public static final RegistryObject<Block> GALAXY_FORGE = register("galaxy_forge", GalaxyForgeBlock::new);
+    public static final RegistryObject<Block> PRISMATIC_WOOL = register("prismatic_wool", PrismaticWool::new);
 
 
     private static <T extends Block> RegistryObject<T> registerNoItem(String name, Supplier<T> block) {

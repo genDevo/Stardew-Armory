@@ -22,6 +22,16 @@
           "type": "minecraft:item",
           "weight": 25,
           "name": "stardewarmory:wicked_kris"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "stardewarmory:vampire_ring"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "stardewarmory:napalm_ring"
         }
       ]
     }

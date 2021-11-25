@@ -22,6 +22,10 @@
           "type": "minecraft:item",
           "weight": 20,
           "name": "stardewarmory:shadow_dagger"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "stardewarmory:prismatic_shard"
         }
       ]
     }

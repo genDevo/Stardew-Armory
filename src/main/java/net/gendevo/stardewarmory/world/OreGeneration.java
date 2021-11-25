@@ -1,5 +1,6 @@
 package net.gendevo.stardewarmory.world;
 
+import net.gendevo.stardewarmory.config.StardewArmoryConfig;
 import net.gendevo.stardewarmory.setup.ModBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.world.biome.Biome;
@@ -15,11 +16,14 @@ import net.minecraftforge.event.world.BiomeLoadingEvent;
 public class OreGeneration {
 
     public static void generateOres(final BiomeLoadingEvent event) {
-        if (event.getCategory().equals(Biome.Category.THEEND) || event.getCategory().equals(Biome.Category.NETHER)) {
+        if (event.getCategory().equals(Biome.Category.THEEND)) {
             return;
-        }
-        else {
-            generateOre(event.getGeneration(), OreFeatureConfig.FillerBlockType.NATURAL_STONE, ModBlocks.IRIDIUM_ORE.get().defaultBlockState(), 3, 1, 14, 6);
+        } else if (event.getCategory().equals(Biome.Category.NETHER)) {
+            generateOre(event.getGeneration(), OreFeatureConfig.FillerBlockType.NETHERRACK, ModBlocks.CINDER_ORE.get().defaultBlockState(),
+                    8, 1, 250, StardewArmoryConfig.cinder_rate.get());
+        } else {
+            generateOre(event.getGeneration(), OreFeatureConfig.FillerBlockType.NATURAL_STONE, ModBlocks.IRIDIUM_ORE.get().defaultBlockState(),
+                    4, 1, 13, StardewArmoryConfig.iridium_rate.get());
         }
     }
 

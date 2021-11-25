@@ -1,0 +1,38 @@
+{
+  "display": {
+    "icon": {
+      "item": "stardewarmory:infinity_gavel"
+    },
+    "title": {
+      "text": "The Only Thing they Fear is You",
+      "color": "dark_red"
+    },
+    "description": {
+      "text": "Obatin all inf weapons",
+      "obfuscated": true
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "parent": "stardewarmory:infinity_weapon",
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "stardewarmory:infinity_blade"
+          },
+          {
+            "item": "stardewarmory:infinity_gavel"
+          },
+          {
+            "item": "stardewarmory:infinity_dagger"
+          }
+        ]
+      }
+    }
+  }
+}

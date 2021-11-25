@@ -6,14 +6,22 @@ public final class StardewArmoryConfig {
     public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
     public static final ForgeConfigSpec SPEC;
 
-    public static final ForgeConfigSpec.ConfigValue<Integer> ex_int;
-    public static final ForgeConfigSpec.ConfigValue<String> ex_string;
+    public static final ForgeConfigSpec.ConfigValue<Integer> iridium_rate;
+    public static final ForgeConfigSpec.ConfigValue<Integer> cinder_rate;
+    public static final ForgeConfigSpec.ConfigValue<Float> club_rate;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> crit_sound;
 
     static {
         BUILDER.push("Config for the Stardew Armory mod");
 
-        ex_int= BUILDER.comment("This is an int. Default value is 3.").define("Example int", 3);
-        ex_string= BUILDER.comment("This is an string. Default value is NOPE.").define("Example string", "NOPE");
+        iridium_rate= BUILDER.comment("How many veins of iridium ore should spawn per chunk. Default value is 3")
+                .define("Iridium int", 3);
+        cinder_rate= BUILDER.comment("How many veins of cinder ore should spawn per chunk. Default value is 20")
+                .define("Cinder int", 20);
+        club_rate= BUILDER.comment("Chance for a zombie to spawn with a wooden club in hand. Accepts values within a range of [1,0). Default value is 0.05 (5%)")
+                .define("Club float", 0.05f);
+        crit_sound= BUILDER.comment("Should Lucky Hit play the critical sound effect. Default value is true")
+                .define("Crit bool", true);
 
         BUILDER.pop();
         SPEC=BUILDER.build();

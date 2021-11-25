@@ -27,6 +27,10 @@
           "type": "minecraft:item",
           "weight": 20,
           "name": "stardewarmory:lead_rod"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "stardewarmory:prismatic_shard"
         }
       ]
     }

@@ -1,10 +1,9 @@
 package net.gendevo.stardewarmory.setup;
 
 import net.gendevo.stardewarmory.StardewArmory;
-import net.gendevo.stardewarmory.items.*;
-import net.gendevo.stardewarmory.items.tools.ModItemTier;
-import net.minecraft.item.Item;
-import net.minecraft.item.SwordItem;
+import net.gendevo.stardewarmory.items.rings.*;
+import net.gendevo.stardewarmory.items.tools.*;
+import net.minecraft.item.*;
 import net.minecraftforge.fml.RegistryObject;
 
 public class ModItems {
@@ -27,12 +26,24 @@ public class ModItems {
 //            new SpecialItem(new Item.Properties().tab(StardewArmory.TAB_STARDEW)));
 
     //Rings
-//    public static final RegistryObject<Item> RUBY_RING = Registration.ITEMS.register("ruby_ring", () ->
-//            new RubyRing(new Item.Properties().tab(StardewArmory.TAB_STARDEW).stacksTo(1)));
-//    public static final RegistryObject<Item> LUCKY_RING = Registration.ITEMS.register("lucky_ring", () ->
-//            new LuckyRing(new Item.Properties().tab(StardewArmory.TAB_STARDEW).stacksTo(1)));
+    public static final RegistryObject<Item> EMERALD_RING = Registration.ITEMS.register("emerald_ring", () ->
+            new EmeraldRing(new Item.Properties().tab(StardewArmory.TAB_STARDEW).stacksTo(1)));
+    public static final RegistryObject<Item> LUCKY_RING = Registration.ITEMS.register("lucky_ring", () ->
+            new LuckyRing(new Item.Properties().tab(StardewArmory.TAB_STARDEW).stacksTo(1)));
     public static final RegistryObject<Item> CRABSHELL_RING = Registration.ITEMS.register("crabshell_ring", () ->
             new CrabshellRing(new Item.Properties().tab(StardewArmory.TAB_STARDEW).stacksTo(1)));
+    public static final RegistryObject<Item> SOUL_GLUTTON_RING = Registration.ITEMS.register("soul_glutton_ring", () ->
+            new SoulGluttonRing(new Item.Properties().tab(StardewArmory.TAB_STARDEW).stacksTo(1)));
+    public static final RegistryObject<Item> SLIME_CHARMER_RING = Registration.ITEMS.register("slime_charmer_ring", () ->
+            new SlimeCharmerRing(new Item.Properties().tab(StardewArmory.TAB_STARDEW).stacksTo(1)));
+    public static final RegistryObject<Item> NAPALM_RING = Registration.ITEMS.register("napalm_ring", () ->
+            new NapalmRing(new Item.Properties().tab(StardewArmory.TAB_STARDEW).stacksTo(1)));
+    public static final RegistryObject<Item> SAVAGE_RING = Registration.ITEMS.register("savage_ring", () ->
+            new SavageRing(new Item.Properties().tab(StardewArmory.TAB_STARDEW).stacksTo(1)));
+    public static final RegistryObject<Item> VAMPIRE_RING = Registration.ITEMS.register("vampire_ring", () ->
+            new VampireRing(new Item.Properties().tab(StardewArmory.TAB_STARDEW).stacksTo(1)));
+    public static final RegistryObject<Item> YOBA_RING = Registration.ITEMS.register("yoba_ring", () ->
+            new YobaRing(new Item.Properties().tab(StardewArmory.TAB_STARDEW).stacksTo(1)));
 
     // Swords
     public static final RegistryObject<SwordItem> GALAXY_SWORD = Registration.ITEMS.register("galaxy_sword", () ->
@@ -52,7 +63,7 @@ public class ModItems {
     public static final RegistryObject<SwordItem> FOREST_SWORD = Registration.ITEMS.register("forest_sword", () ->
             new SwordItem(ModItemTier.FOREST_SWORD, 2, -2.0f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
     public static final RegistryObject<SwordItem> IRON_EDGE = Registration.ITEMS.register("iron_edge", () ->
-            new SwordItem(ModItemTier.IRON_EDGE, 7, -2.8f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
+            new SwordItem(ModItemTier.IRON_EDGE, 5, -2.8f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
     public static final RegistryObject<SwordItem> INSECT_HEAD = Registration.ITEMS.register("insect_head", () ->
             new EnchantSword(ModItemTier.INSECT_HEAD, 4, -2.2f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
     public static final RegistryObject<SwordItem> BONE_SWORD = Registration.ITEMS.register("bone_sword", () ->
@@ -133,5 +144,15 @@ public class ModItems {
             new SwordItem(ModItemTier.GALAXY_HAMMER, 10, -2.4f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
     public static final RegistryObject<SwordItem> INFINITY_GAVEL = Registration.ITEMS.register("infinity_gavel", () ->
             new EnchantSword(ModItemTier.INFINITY_GAVEL, 13, -2.4f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
+
+    public static final RegistryObject<PickaxeItem> IRIDIUM_PICKAXE = Registration.ITEMS.register("iridium_pickaxe", () ->
+            new IridiumPick(ModItemTier.IRIDIUM_PICKAXE, 4, -2.8f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
+    public static final RegistryObject<AxeItem> IRIDIUM_AXE = Registration.ITEMS.register("iridium_axe", () ->
+            new IridiumAxe(ModItemTier.IRIDIUM_AXE, 7, -3.0f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
+    public static final RegistryObject<HoeItem> IRIDIUM_HOE = Registration.ITEMS.register("iridium_hoe", () ->
+            new IridiumHoe(ModItemTier.IRIDIUM_HOE, 0, -0f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
+    public static final RegistryObject<ShovelItem> IRIDIUM_SHOVEL = Registration.ITEMS.register("iridium_shovel", () ->
+            new IridiumShovel(ModItemTier.IRIDIUM_SHOVEL, 0, -1.0f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
+
     static void register(){}
 }

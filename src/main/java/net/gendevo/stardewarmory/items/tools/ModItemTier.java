@@ -152,6 +152,19 @@ public enum ModItemTier implements IItemTier {
     }),
     INFINITY_BLADE(3, 3000, 9.0F, 1.0F, 20, () -> {
         return Ingredient.of(ModItems.GALAXY_SOUL.get());
+    }),
+    //Tools
+    IRIDIUM_PICKAXE(5, 3000, 15.0F, 3.0F, 19, () -> {
+        return Ingredient.of(ModItems.IRIDIUM_INGOT.get());
+    }),
+    IRIDIUM_AXE(5, 3000, 15.0F, 3.0F, 19, () -> {
+        return Ingredient.of(ModItems.IRIDIUM_INGOT.get());
+    }),
+    IRIDIUM_HOE(5, 3000, 15.0F, 1.0F, 19, () -> {
+        return Ingredient.of(ModItems.IRIDIUM_INGOT.get());
+    }),
+    IRIDIUM_SHOVEL(5, 3000, 15.0F, 3.0F, 19, () -> {
+        return Ingredient.of(ModItems.IRIDIUM_INGOT.get());
     });
 
 

@@ -5,6 +5,7 @@ import net.gendevo.stardewarmory.setup.ModBlocks;
 import net.gendevo.stardewarmory.setup.ModTags;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.tags.BlockTags;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
@@ -20,5 +21,6 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         tag(ModTags.Blocks.STORAGE_BLOCKS_IRIDIUM).add(ModBlocks.IRIDIUM_BLOCK.get());
         tag(Tags.Blocks.STORAGE_BLOCKS).addTag(ModTags.Blocks.STORAGE_BLOCKS_IRIDIUM);
         tag(Tags.Blocks.ORES).add(ModBlocks.CINDER_ORE.get());
+        tag(BlockTags.WOOL).add(ModBlocks.PRISMATIC_WOOL.get());
     }
 }

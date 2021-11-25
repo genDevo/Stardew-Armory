@@ -1,47 +1,26 @@
 package net.gendevo.stardewarmory;
 
-import com.google.common.collect.ImmutableList;
-import com.mojang.datafixers.util.Either;
-import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
 import net.gendevo.stardewarmory.config.StardewArmoryConfig;
-import net.gendevo.stardewarmory.entities.GuildMasterEntity;
-import net.gendevo.stardewarmory.init.ConfiguredStructureInit;
-import net.gendevo.stardewarmory.init.StructureInit;
-import net.gendevo.stardewarmory.setup.ModEntityTypes;
-import net.gendevo.stardewarmory.setup.ModItems;
-import net.gendevo.stardewarmory.setup.Registration;
+import net.gendevo.stardewarmory.screen.GalaxyForgeScreen;
+import net.gendevo.stardewarmory.setup.*;
 import net.gendevo.stardewarmory.util.ModResourceLocation;
-import net.gendevo.stardewarmory.util.ModSoundEvents;
 import net.gendevo.stardewarmory.world.OreGeneration;
+import net.gendevo.stardewarmory.world.structures.ConfiguredStructureInit;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
-import net.minecraft.entity.monster.ZombieEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.Item;
+import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.FlatChunkGenerator;
-import net.minecraft.world.gen.feature.jigsaw.*;
 import net.minecraft.world.gen.feature.structure.Structure;
-import net.minecraft.world.gen.feature.template.ProcessorLists;
 import net.minecraft.world.gen.settings.DimensionStructuresSettings;
 import net.minecraft.world.gen.settings.StructureSeparationSettings;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -60,12 +39,9 @@ import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import top.theillusivec4.curios.api.CuriosApi;
-import top.theillusivec4.curios.api.CuriosCapability;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.SlotTypePreset;
 
-import java.beans.EventHandler;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
@@ -76,14 +52,13 @@ import java.util.stream.Collectors;
 public class StardewArmory
 {
     public static final String MOD_ID = "stardewarmory";
-    public static ResourceLocation rl(String path) { return new ResourceLocation(MOD_ID, path); }
     public static final Logger LOGGER = LogManager.getLogger();
-    public static final boolean ENABLE = true;
     public static final ItemGroup TAB_STARDEW = new StardewGroup("stardewtab");
 
     public StardewArmory() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        StructureInit.DEFERRED_REGISTRY_STRUCTURE.register(modEventBus);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, StardewArmoryConfig.SPEC, "stardewarmory-common.toml");
+        Registration.register(modEventBus);
 
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
@@ -98,14 +73,9 @@ public class StardewArmory
         IEventBus forgeBus = MinecraftForge.EVENT_BUS;
         forgeBus.register(this);
 
-        forgeBus.addListener(EventPriority.NORMAL, this::addDimensionalSpacing);
-        forgeBus.addListener(EventPriority.HIGH, this::biomeModification);
-
-        Registration.register();
-        ModSoundEvents.register(modEventBus);
-        MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, OreGeneration::generateOres);
-
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, StardewArmoryConfig.SPEC, "stardewarmory-common.toml");
+        forgeBus.addListener(EventPriority.HIGH, OreGeneration::generateOres);
+        //forgeBus.addListener(EventPriority.NORMAL, this::addDimensionalSpacing);
+        //forgeBus.addListener(EventPriority.HIGH, this::biomeModification);
     }
 
     private void setup(final FMLCommonSetupEvent event)
@@ -114,19 +84,21 @@ public class StardewArmory
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
 
-        event.enqueueWork(() -> {
-            StructureInit.setupStructures();
-            ConfiguredStructureInit.registerConfiguredStructures();
-            GlobalEntityTypeAttributes.put(ModEntityTypes.GUILD_MASTER.get(), GuildMasterEntity.setCustomAttributes().build());
-        });
-//
-//        RingKillEffect rke = new RingKillEffect();
-//        MinecraftForge.EVENT_BUS.register(rke);
+        //event.enqueueWork(() -> {
+        //    ModStructures.setupStructures();
+        //    ConfiguredStructureInit.registerConfiguredStructures();
+        //    GlobalEntityTypeAttributes.put(ModEntityTypes.GUILD_MASTER.get(), GuildMasterEntity.setCustomAttributes().build());
+        //});
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
         // do something that can only be done on the client
         LOGGER.info("Got game settings {}", event.getMinecraftSupplier().get().options);
+
+        event.enqueueWork(() -> {
+            ScreenManager.register(ModContainers.GALAXY_FORGE_CONTAINER.get(),
+                    GalaxyForgeScreen::new);
+        });
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event)
@@ -172,7 +144,7 @@ public class StardewArmory
             }
 
             Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(serverWorld.getChunkSource().generator.getSettings().structureConfig());
-            tempMap.putIfAbsent(StructureInit.GUILD_BUILDING.get(), DimensionStructuresSettings.DEFAULTS.get(StructureInit.GUILD_BUILDING.get()));
+            tempMap.putIfAbsent(ModStructures.GUILD_BUILDING.get(), DimensionStructuresSettings.DEFAULTS.get(ModStructures.GUILD_BUILDING.get()));
             serverWorld.getChunkSource().generator.getSettings().structureConfig = tempMap;
 
         }
@@ -191,20 +163,8 @@ public class StardewArmory
     @SubscribeEvent
     public void onServerStarting(FMLServerStartingEvent event) {
         // do something when the server starts
-        LOGGER.info("HELLO from server starting");
+        LOGGER.info("Stardew Armory recognized server start");
     }
-
-    // Zombies can now spawn with wood club in hand
-    @SubscribeEvent
-    public void giveClub(EntityJoinWorldEvent event) {
-        if (!(event.getEntity() instanceof ZombieEntity)) {return;}
-
-        ZombieEntity zombie = (ZombieEntity) event.getEntity();
-        if (Math.random() > 0.9) {
-            zombie.setItemInHand(Hand.MAIN_HAND, new ItemStack(ModItems.WOOD_CLUB.get()));
-        }
-    }
-
 
     //Adds creative tab
     @Mod.EventBusSubscriber
