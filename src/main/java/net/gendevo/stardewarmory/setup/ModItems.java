@@ -22,8 +22,6 @@ public class ModItems {
             new Item(new Item.Properties().tab(StardewArmory.TAB_STARDEW)));
     public static final RegistryObject<Item> CINDER_SHARD = Registration.ITEMS.register("cinder_shard", () ->
             new Item(new Item.Properties().tab(StardewArmory.TAB_STARDEW)));
-//    public static final RegistryObject<Item> SPECIAL_ITEM = Registration.ITEMS.register("special_item", () ->
-//            new SpecialItem(new Item.Properties().tab(StardewArmory.TAB_STARDEW)));
 
     //Rings
     public static final RegistryObject<Item> EMERALD_RING = Registration.ITEMS.register("emerald_ring", () ->

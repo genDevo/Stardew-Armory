@@ -15,6 +15,8 @@ import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -38,40 +40,42 @@ public class ForgeEventHandler {
         PlayerEntity player = event.getPlayer();
         Item heldItem = player.getMainHandItem().getItem();
         IWorld eWorld = event.getWorld();
-        if (heldItem instanceof IridiumPick) {
-            if (((IridiumPick) heldItem).tunnelMode) {
-                if (player.getItemInHand(Hand.MAIN_HAND).getEnchantmentTags().toString().contains("silk_touch")) {
-                    Block.popResource(player.level, event.getPos().below(),
-                            eWorld.getBlockState(event.getPos().below()).getBlock().asItem().getDefaultInstance());
-                    eWorld.removeBlock(event.getPos().below(), true);
-                } else {
-                    eWorld.destroyBlock(event.getPos().below(), true);
+        if (!eWorld.isClientSide()) {
+            if (heldItem instanceof IridiumPick) {
+                if (((IridiumPick) heldItem).tunnelMode) {
+                    if (player.getItemInHand(Hand.MAIN_HAND).getEnchantmentTags().toString().contains("silk_touch")) {
+                        Block.popResource(player.level, event.getPos().below(),
+                                eWorld.getBlockState(event.getPos().below()).getBlock().asItem().getDefaultInstance());
+                        eWorld.removeBlock(event.getPos().below(), true);
+                    } else {
+                        eWorld.destroyBlock(event.getPos().below(), true);
+                    }
+                    player.getItemInHand(Hand.MAIN_HAND).hurtAndBreak(1, player, (p_220043_1_) -> {
+                        p_220043_1_.broadcastBreakEvent(Hand.MAIN_HAND);
+                    });
                 }
-                player.getItemInHand(Hand.MAIN_HAND).hurtAndBreak(1, player, (p_220043_1_) -> {
-                            p_220043_1_.broadcastBreakEvent(Hand.MAIN_HAND);
-                        });
-            }
-        } else if (heldItem instanceof IridiumAxe) {
-            if (((IridiumAxe) heldItem).fellMode) {
-                BlockPos oPos = event.getPos();
-                Block originBlock = eWorld.getBlockState(oPos).getBlock();
-                player.getItemInHand(Hand.MAIN_HAND).hurtAndBreak(
-                        feller(eWorld, player, originBlock, oPos, false, 0),
-                        player, (p_220043_1_) -> {
-                            p_220043_1_.broadcastBreakEvent(Hand.MAIN_HAND);
-                        });
-            }
-        } else if (heldItem instanceof IridiumShovel) {
-            if (((IridiumShovel) heldItem).smeltMode) {
-                if (eWorld.getBlockState(event.getPos()).getBlock().is(Blocks.SAND) ||
-                        eWorld.getBlockState(event.getPos()).getBlock().is(Blocks.RED_SAND)) {
-                    Block.popResource(event.getPlayer().level, event.getPos(), Blocks.GLASS.asItem().getDefaultInstance());
-                    eWorld.removeBlock(event.getPos(), true);
-                    event.setCanceled(true);
-                } else if (eWorld.getBlockState(event.getPos()).getBlock().is(Blocks.CLAY)) {
-                    Block.popResource(event.getPlayer().level, event.getPos(), Blocks.TERRACOTTA.asItem().getDefaultInstance());
-                    eWorld.removeBlock(event.getPos(), true);
-                    event.setCanceled(true);
+            } else if (heldItem instanceof IridiumAxe) {
+                if (((IridiumAxe) heldItem).fellMode) {
+                    BlockPos oPos = event.getPos();
+                    Block originBlock = eWorld.getBlockState(oPos).getBlock();
+                    player.getItemInHand(Hand.MAIN_HAND).hurtAndBreak(
+                            feller(eWorld, player, originBlock, oPos, false, 0),
+                            player, (p_220043_1_) -> {
+                                p_220043_1_.broadcastBreakEvent(Hand.MAIN_HAND);
+                            });
+                }
+            } else if (heldItem instanceof IridiumShovel) {
+                if (((IridiumShovel) heldItem).smeltMode) {
+                    if (eWorld.getBlockState(event.getPos()).getBlock().is(Blocks.SAND) ||
+                            eWorld.getBlockState(event.getPos()).getBlock().is(Blocks.RED_SAND)) {
+                        Block.popResource(event.getPlayer().level, event.getPos(), Blocks.GLASS.asItem().getDefaultInstance());
+                        eWorld.removeBlock(event.getPos(), true);
+                        event.setCanceled(true);
+                    } else if (eWorld.getBlockState(event.getPos()).getBlock().is(Blocks.CLAY)) {
+                        Block.popResource(event.getPlayer().level, event.getPos(), Blocks.TERRACOTTA.asItem().getDefaultInstance());
+                        eWorld.removeBlock(event.getPos(), true);
+                        event.setCanceled(true);
+                    }
                 }
             }
         }
@@ -143,7 +147,7 @@ public class ForgeEventHandler {
 
     @SubscribeEvent
     public static void onPlayerAttacked(final LivingAttackEvent event) {
-        if (event.getEntityLiving() instanceof PlayerEntity) {
+        if (event.getEntityLiving() instanceof PlayerEntity && !event.getEntityLiving().level.isClientSide()) {
             PlayerEntity player = (PlayerEntity) event.getEntityLiving();
 
             // Slime charmer effect
@@ -164,8 +168,8 @@ public class ForgeEventHandler {
     }
 
     @SubscribeEvent
-    public static void onPlayerKill(final LivingDeathEvent event) {
-        if (event.getSource() instanceof EntityDamageSource) {
+    public static void onPlayerKillEntity(final LivingDeathEvent event) {
+        if (event.getSource() instanceof EntityDamageSource && !event.getEntityLiving().level.isClientSide()) {
             if (event.getSource().getEntity() instanceof PlayerEntity) {
                 PlayerEntity player = (PlayerEntity) event.getSource().getEntity();
 
@@ -181,12 +185,10 @@ public class ForgeEventHandler {
                 }
 
                 // Savage effect
-//                if (isRingEquipped(player, ModItems.SAVAGE_RING.get())) {
-//                    if (!event.getEntityLiving().level.isClientSide()) {
-//                        player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 3, 3));
-//                        StardewArmory.LOGGER.debug("had savage");
-//                    }
-//                }
+                if (isRingEquipped(player, ModItems.SAVAGE_RING.get())) {
+                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 3, 3));
+                    StardewArmory.LOGGER.debug("had savage");
+                }
 
                 // Napalm effect
                 if (isRingEquipped(player, ModItems.NAPALM_RING.get())) {
@@ -210,11 +212,14 @@ public class ForgeEventHandler {
     // Zombies can now spawn with wood club in hand
     @SubscribeEvent
     public void giveClub(final EntityJoinWorldEvent event) {
-        if (!(event.getEntity() instanceof ZombieEntity)) {return;}
-
-        ZombieEntity zombie = (ZombieEntity) event.getEntity();
-        if (Math.random() > (1 - StardewArmoryConfig.club_rate.get())) {
-            zombie.setItemInHand(Hand.MAIN_HAND, new ItemStack(ModItems.WOOD_CLUB.get()));
+        if (!(event.getEntity() instanceof ZombieEntity)) {
+            return;
+        }
+        if (!event.getEntity().level.isClientSide()) {
+            ZombieEntity zombie = (ZombieEntity) event.getEntity();
+            if (Math.random() > (1 - StardewArmoryConfig.club_rate.get())) {
+                zombie.setItemInHand(Hand.MAIN_HAND, new ItemStack(ModItems.WOOD_CLUB.get()));
+            }
         }
     }
 }
