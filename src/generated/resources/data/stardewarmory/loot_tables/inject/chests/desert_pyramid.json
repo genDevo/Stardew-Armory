@@ -5,12 +5,10 @@
       "rolls": 1,
       "entries": [
         {
-          "type": "minecraft:empty",
-          "weight": 40
+          "type": "minecraft:empty"
         },
         {
           "type": "minecraft:item",
-          "weight": 10,
           "name": "stardewarmory:lucky_ring"
         }
       ]

@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:empty",
-          "weight": 40
+          "weight": 20
         },
         {
           "type": "minecraft:item",
@@ -15,8 +15,8 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 10,
-          "name": "stardewarmory:vampire_ring"
+          "weight": 15,
+          "name": "stardewarmory:soul_glutton_ring"
         }
       ]
     }

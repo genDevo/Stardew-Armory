@@ -20,7 +20,7 @@ public class ModEntityLootTables extends EntityLootTables {
         consumer.accept(LootInjector.Tables.ENTITIES_SKELETON, addSkeletonDrops());
         consumer.accept(LootInjector.Tables.ENTITIES_SKELETON_HORSE, addSkeletonDrops());
         consumer.accept(LootInjector.Tables.ENTITIES_ENDER_DRAGON, addDragonDrops());
-        consumer.accept(LootInjector.Tables.ENTITIES_ELDER_GUARDIAN, addGuardianDrops());
+        consumer.accept(LootInjector.Tables.ENTITIES_ELDER_GUARDIAN, addElderGuardianDrops());
         consumer.accept(LootInjector.Tables.ENTITIES_CREEPER, addPrismaticShard(1));
         consumer.accept(LootInjector.Tables.ENTITIES_ENDERMAN, addPrismaticShard(2));
         consumer.accept(LootInjector.Tables.ENTITIES_GUARDIAN, addPrismaticShard(2));
@@ -107,7 +107,7 @@ public class ModEntityLootTables extends EntityLootTables {
                 );
     }
 
-    private static LootTable.Builder addGuardianDrops() {
+    private static LootTable.Builder addElderGuardianDrops() {
         return new LootTable.Builder()
                 .withPool(new LootPool.Builder()
                         .setRolls(ConstantRange.exactly(1))
@@ -139,7 +139,7 @@ public class ModEntityLootTables extends EntityLootTables {
                                 .setWeight(1)
                         )
                         .add(EmptyLootEntry.emptyItem()
-                                .setWeight(100)
+                                .setWeight(75)
                         )
                 ).withPool(new LootPool.Builder()
                         .setRolls(ConstantRange.exactly(1))

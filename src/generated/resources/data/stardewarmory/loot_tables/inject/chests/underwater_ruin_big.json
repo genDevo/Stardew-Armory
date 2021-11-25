@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:empty",
-          "weight": 60
+          "weight": 30
         },
         {
           "type": "minecraft:item",

@@ -6,11 +6,10 @@
       "entries": [
         {
           "type": "minecraft:empty",
-          "weight": 30
+          "weight": 2
         },
         {
           "type": "minecraft:item",
-          "weight": 10,
           "name": "stardewarmory:soul_glutton_ring"
         }
       ]
