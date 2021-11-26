@@ -13,6 +13,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -49,10 +50,10 @@ public class CrabshellRing extends Item implements ICurioItem {
     public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
         super.appendHoverText(stack, world, tooltip, flag);
         if (InputMappings.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), GLFW.GLFW_KEY_LEFT_SHIFT)) {
-            tooltip.add(new StringTextComponent("Made from an enchanted crab \nshell that can mitigate some damage"));
+            tooltip.add(new TranslationTextComponent("tooltip.stardewarmory.crabshell_ring"));
 
         } else {
-            tooltip.add(new StringTextComponent("Press \u00A76SHIFT\u00A7r for more info"));
+            tooltip.add(new TranslationTextComponent("tooltip.stardewarmory.hold_shift"));
         }
     }
 

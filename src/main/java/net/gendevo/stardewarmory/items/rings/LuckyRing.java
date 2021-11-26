@@ -10,6 +10,7 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -43,10 +44,9 @@ public class LuckyRing extends Item implements ICurioItem {
     public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
         super.appendHoverText(stack, world, tooltip, flag);
         if (InputMappings.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), GLFW.GLFW_KEY_LEFT_SHIFT)) {
-            tooltip.add(new StringTextComponent("Said to bring good luck to the bearer"));
-
+            tooltip.add(new TranslationTextComponent("tooltip.stardewarmory.lucky_ring"));
         } else {
-            tooltip.add(new StringTextComponent("Press \u00A76SHIFT\u00A7r for more info"));
+            tooltip.add(new TranslationTextComponent("tooltip.stardewarmory.hold_shift"));
         }
     }
 }

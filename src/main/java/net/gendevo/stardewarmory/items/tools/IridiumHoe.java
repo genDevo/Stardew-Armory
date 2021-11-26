@@ -15,6 +15,7 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -110,10 +111,13 @@ public class IridiumHoe extends HoeItem {
     public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
         super.appendHoverText(stack, world, tooltip, flag);
         if (InputMappings.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), GLFW.GLFW_KEY_LEFT_SHIFT)) {
-            tooltip.add(new StringTextComponent("Super till mode is curently " + (superTillMode ? "\u00A7aENABLED" : "\u00A7cDISABLED")));
-
+            if (superTillMode) {
+                tooltip.add(new TranslationTextComponent("tooltip.stardewarmory.iridium_hoe_on"));
+            } else {
+                tooltip.add(new TranslationTextComponent("tooltip.stardewarmory.iridium_hoe_off"));
+            }
         } else {
-            tooltip.add(new StringTextComponent("Press \u00A76SHIFT\u00A7r for more info"));
+            tooltip.add(new TranslationTextComponent("tooltip.stardewarmory.hold_shift"));
         }
     }
 

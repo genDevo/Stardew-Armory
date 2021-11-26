@@ -3,6 +3,10 @@ package net.gendevo.stardewarmory.setup;
 import net.gendevo.stardewarmory.StardewArmory;
 import net.gendevo.stardewarmory.items.rings.*;
 import net.gendevo.stardewarmory.items.tools.*;
+import net.gendevo.stardewarmory.items.weapons.DwarfSword;
+import net.gendevo.stardewarmory.items.weapons.EnchantSword;
+import net.gendevo.stardewarmory.items.weapons.ModItemTier;
+import net.gendevo.stardewarmory.items.weapons.NeptuneSword;
 import net.minecraft.item.*;
 import net.minecraftforge.fml.RegistryObject;
 

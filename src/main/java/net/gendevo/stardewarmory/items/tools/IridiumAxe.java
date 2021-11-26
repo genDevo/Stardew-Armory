@@ -14,6 +14,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -35,9 +36,9 @@ public class IridiumAxe extends AxeItem {
             fellMode = !fellMode;
         } else {
             if (fellMode) {
-                ((ClientWorld)world).playLocalSound(player.blockPosition(), ModSoundEvents.TOGGLE_OFF_SOUND.get(), SoundCategory.PLAYERS, 1, 1, false);
+                ((ClientWorld) world).playLocalSound(player.blockPosition(), ModSoundEvents.TOGGLE_OFF_SOUND.get(), SoundCategory.PLAYERS, 1, 1, false);
             } else {
-                ((ClientWorld)world).playLocalSound(player.blockPosition(), ModSoundEvents.TOGGLE_ON_SOUND.get(), SoundCategory.PLAYERS, 1, 1, false);
+                ((ClientWorld) world).playLocalSound(player.blockPosition(), ModSoundEvents.TOGGLE_ON_SOUND.get(), SoundCategory.PLAYERS, 1, 1, false);
             }
         }
         return ActionResult.success(player.getItemInHand(hand));
@@ -48,10 +49,13 @@ public class IridiumAxe extends AxeItem {
     public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
         super.appendHoverText(stack, world, tooltip, flag);
         if (InputMappings.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), GLFW.GLFW_KEY_LEFT_SHIFT)) {
-            tooltip.add(new StringTextComponent("Feller mode is curently " + (fellMode ? "\u00A7aENABLED" : "\u00A7cDISABLED")));
-
+            if (fellMode) {
+                tooltip.add(new TranslationTextComponent("tooltip.stardewarmory.iridium_axe_on"));
+            } else {
+                tooltip.add(new TranslationTextComponent("tooltip.stardewarmory.iridium_axe_off"));
+            }
         } else {
-            tooltip.add(new StringTextComponent("Press \u00A76SHIFT\u00A7r for more info"));
+            tooltip.add(new TranslationTextComponent("tooltip.stardewarmory.hold_shift"));
         }
     }
 }

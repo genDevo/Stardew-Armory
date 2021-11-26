@@ -1,4 +1,4 @@
-package net.gendevo.stardewarmory.items.tools;
+package net.gendevo.stardewarmory.items.weapons;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
