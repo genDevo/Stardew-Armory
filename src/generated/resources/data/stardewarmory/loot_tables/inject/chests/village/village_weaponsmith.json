@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:empty",
-          "weight": 10
+          "weight": 5
         },
         {
           "type": "minecraft:item",
@@ -17,6 +17,20 @@
           "type": "minecraft:item",
           "weight": 35,
           "name": "stardewarmory:steel_smallsword"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:empty",
+          "weight": 15
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 35,
+          "name": "stardewarmory:warrior_ring"
         }
       ]
     }

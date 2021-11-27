@@ -10,8 +10,12 @@ import net.gendevo.stardewarmory.items.tools.IridiumShovel;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.LeavesBlock;
+import net.minecraft.client.world.ClientWorld;
+import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.monster.SlimeEntity;
 import net.minecraft.entity.monster.ZombieEntity;
+import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -19,9 +23,12 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.Timer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IWorld;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -159,8 +166,9 @@ public class ForgeEventHandler {
 
             // Yoba effect
             if (isRingEquipped(player, ModItems.YOBA_RING.get())) {
-                if (new Random().nextInt(20) == 2) {
-                    player.playSound(ModSoundEvents.YOBA_SOUND.get(), 8, 1);
+                if (new Random().nextInt(20) == 1) {
+                    player.level.playSound(null, player.xo, player.yo, player.zo, ModSoundEvents.YOBA_SOUND.get(), SoundCategory.PLAYERS, 1, 1);
+                    player.addEffect(new EffectInstance(Effects.ABSORPTION, 80, 0));
                     event.setCanceled(true);
                 }
             }
@@ -170,7 +178,7 @@ public class ForgeEventHandler {
     @SubscribeEvent
     public static void onPlayerKillEntity(final LivingDeathEvent event) {
         if (event.getSource() instanceof EntityDamageSource && !event.getEntityLiving().level.isClientSide()) {
-            if (event.getSource().getEntity() instanceof PlayerEntity) {
+            if (event.getSource().getEntity() instanceof PlayerEntity && !(event.getEntityLiving() instanceof AnimalEntity)) {
                 PlayerEntity player = (PlayerEntity) event.getSource().getEntity();
 
                 // Glutton effect
@@ -186,8 +194,7 @@ public class ForgeEventHandler {
 
                 // Savage effect
                 if (isRingEquipped(player, ModItems.SAVAGE_RING.get())) {
-                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 3, 3));
-                    StardewArmory.LOGGER.debug("had savage");
+                    player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 50, 0));
                 }
 
                 // Napalm effect
@@ -195,7 +202,14 @@ public class ForgeEventHandler {
                     double x = event.getEntityLiving().xo;
                     double y = event.getEntityLiving().yo;
                     double z = event.getEntityLiving().zo;
-                    event.getEntityLiving().level.explode(event.getEntityLiving(), x, y, z, 2, Explosion.Mode.BREAK);
+                    event.getEntityLiving().level.explode(player, x, y, z, 1, Explosion.Mode.NONE);
+                }
+
+                // Warrior effect
+                if (isRingEquipped(player, ModItems.WARRIOR_RING.get())) {
+                    if (new Random().nextInt(20) == 1) {
+                        player.addEffect(new EffectInstance(Effects.DAMAGE_BOOST, 60, 2));
+                    }
                 }
             }
         }
@@ -211,7 +225,7 @@ public class ForgeEventHandler {
 
     // Zombies can now spawn with wood club in hand
     @SubscribeEvent
-    public void giveClub(final EntityJoinWorldEvent event) {
+    public static void giveClub(final EntityJoinWorldEvent event) {
         if (!(event.getEntity() instanceof ZombieEntity)) {
             return;
         }

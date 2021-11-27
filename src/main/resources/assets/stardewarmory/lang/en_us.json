@@ -72,6 +72,7 @@
   "item.stardewarmory.vampire_ring": "Vampire Ring",
   "item.stardewarmory.yoba_ring": "Ring of Yoba",
   "item.stardewarmory.napalm_ring": "Napalm Ring",
+  "item.stardewarmory.warrior_ring": "Warrior Ring",
   "item.stardewarmory.savage_ring": "Savage Ring",
   "entity.stardewarmory.guild_master": "Guild Master",
   "enchantment.stardewarmory.lucky_hit": "Lucky Hit",
@@ -97,5 +98,6 @@
   "tooltip.stardewarmory.soul_glutton_ring": "Restore hunger by slaying mobs",
   "tooltip.stardewarmory.slime_charmer_ring": "Slimes can no longer hurt you",
   "tooltip.stardewarmory.vampire_ring": "Restore health by slaying mobs",
-  "tooltip.stardewarmory.yoba_ring": "The bearer has a chance to be blessed by Yoba, negating damage and giving saturation"
+  "tooltip.stardewarmory.yoba_ring": "The bearer has a chance to be blessed by Yoba, negating damage and giving absorption",
+  "tooltip.stardewarmory.warrior_ring": "Occasionally infuses the wearer with \"warrior energy\" after slaying a monster."
 }

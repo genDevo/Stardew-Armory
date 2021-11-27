@@ -43,6 +43,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemGenerated, "yoba_ring");
         builder(itemGenerated, "savage_ring");
         builder(itemGenerated, "napalm_ring");
+        builder(itemGenerated, "warrior_ring");
         //Tools
         builder(itemGenerated, "iridium_pickaxe");
         builder(itemGenerated, "iridium_axe");

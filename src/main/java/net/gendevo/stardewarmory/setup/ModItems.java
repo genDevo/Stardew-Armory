@@ -46,6 +46,8 @@ public class ModItems {
             new VampireRing(new Item.Properties().tab(StardewArmory.TAB_STARDEW).stacksTo(1)));
     public static final RegistryObject<Item> YOBA_RING = Registration.ITEMS.register("yoba_ring", () ->
             new YobaRing(new Item.Properties().tab(StardewArmory.TAB_STARDEW).stacksTo(1)));
+    public static final RegistryObject<Item> WARRIOR_RING = Registration.ITEMS.register("warrior_ring", () ->
+            new WarriorRing(new Item.Properties().tab(StardewArmory.TAB_STARDEW).stacksTo(1)));
 
     // Swords
     public static final RegistryObject<SwordItem> GALAXY_SWORD = Registration.ITEMS.register("galaxy_sword", () ->

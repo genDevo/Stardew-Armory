@@ -14,6 +14,20 @@
           "name": "stardewarmory:slime_charmer_ring"
         }
       ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:empty",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 35,
+          "name": "stardewarmory:savage_ring"
+        }
+      ]
     }
   ]
 }

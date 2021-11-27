@@ -5,12 +5,11 @@
       "rolls": 1,
       "entries": [
         {
-          "type": "minecraft:empty",
-          "weight": 3
+          "type": "minecraft:empty"
         },
         {
           "type": "minecraft:item",
-          "weight": 2,
+          "weight": 3,
           "name": "stardewarmory:kudgel"
         }
       ]

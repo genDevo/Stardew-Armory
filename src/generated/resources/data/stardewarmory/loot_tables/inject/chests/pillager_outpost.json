@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:empty",
-          "weight": 15
+          "weight": 10
         },
         {
           "type": "minecraft:item",
@@ -17,6 +17,20 @@
           "type": "minecraft:item",
           "weight": 35,
           "name": "stardewarmory:burglars_shank"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:empty",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 35,
+          "name": "stardewarmory:savage_ring"
         }
       ]
     }

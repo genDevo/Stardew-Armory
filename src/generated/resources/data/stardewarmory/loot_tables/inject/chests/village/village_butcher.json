@@ -5,12 +5,11 @@
       "rolls": 1,
       "entries": [
         {
-          "type": "minecraft:empty",
-          "weight": 10
+          "type": "minecraft:empty"
         },
         {
           "type": "minecraft:item",
-          "weight": 50,
+          "weight": 5,
           "name": "stardewarmory:carving_knife"
         }
       ]

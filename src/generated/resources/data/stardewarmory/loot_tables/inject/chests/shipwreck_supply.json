@@ -6,12 +6,26 @@
       "entries": [
         {
           "type": "minecraft:empty",
-          "weight": 10
+          "weight": 5
         },
         {
           "type": "minecraft:item",
           "weight": 25,
           "name": "stardewarmory:pirates_sword"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:empty",
+          "weight": 15
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 35,
+          "name": "stardewarmory:savage_ring"
         }
       ]
     }

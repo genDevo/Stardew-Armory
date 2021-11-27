@@ -5,11 +5,11 @@
       "rolls": 1,
       "entries": [
         {
-          "type": "minecraft:empty",
-          "weight": 2
+          "type": "minecraft:empty"
         },
         {
           "type": "minecraft:item",
+          "weight": 2,
           "name": "stardewarmory:soul_glutton_ring"
         }
       ]

@@ -6,12 +6,31 @@
       "entries": [
         {
           "type": "minecraft:empty",
-          "weight": 15
+          "weight": 10
         },
         {
           "type": "minecraft:item",
           "weight": 35,
           "name": "stardewarmory:obsidian_edge"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 20,
+          "name": "stardewarmory:wicked_kris"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:empty",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 2,
+          "name": "stardewarmory:napalm_ring"
         }
       ]
     }
