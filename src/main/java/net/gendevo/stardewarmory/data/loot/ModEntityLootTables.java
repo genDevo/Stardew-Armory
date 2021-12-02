@@ -1,5 +1,7 @@
 package net.gendevo.stardewarmory.data.loot;
 
+import net.gendevo.stardewarmory.StardewArmory;
+import net.gendevo.stardewarmory.setup.ModEntityTypes;
 import net.gendevo.stardewarmory.util.events.LootInjector;
 import net.gendevo.stardewarmory.setup.ModItems;
 import net.minecraft.data.loot.EntityLootTables;

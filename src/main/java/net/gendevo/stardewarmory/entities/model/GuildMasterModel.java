@@ -9,7 +9,6 @@ import net.minecraft.util.math.MathHelper;
 
 public class GuildMasterModel<T extends GuildMasterEntity> extends EntityModel<T> {
 
-
     private final ModelRenderer head;
     //private final ModelRenderer nose;
     private final ModelRenderer body;

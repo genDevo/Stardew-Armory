@@ -1,6 +1,7 @@
 package net.gendevo.stardewarmory.util.events;
 
 import net.gendevo.stardewarmory.StardewArmory;
+import net.gendevo.stardewarmory.util.ModResourceLocation;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTables;
 import net.minecraft.loot.TableLootEntry;
@@ -39,6 +40,8 @@ public final class LootInjector {
         public static final ResourceLocation CHESTS_DESERT_PYRAMID = inject(LootTables.DESERT_PYRAMID);
         public static final ResourceLocation CHESTS_JUNGLE_TEMPLE = inject(LootTables.JUNGLE_TEMPLE);
         public static final ResourceLocation CHESTS_WOODLAND_MANSION = inject(LootTables.WOODLAND_MANSION);
+        public static final ResourceLocation CHESTS_BURIED_TREASURE = inject(LootTables.BURIED_TREASURE);
+
 
         public static final ResourceLocation PIGLIN_BARTER = inject(LootTables.PIGLIN_BARTERING);
 
@@ -56,7 +59,6 @@ public final class LootInjector {
         public static final ResourceLocation ENTITIES_GUARDIAN = inject(new ResourceLocation("entities/guardian"));
         public static final ResourceLocation ENTITIES_ELDER_GUARDIAN = inject(new ResourceLocation("entities/elder_guardian"));
         public static final ResourceLocation ENTITIES_WITHER = inject(new ResourceLocation("entities/wither"));
-       
 
         private Tables() {}
 

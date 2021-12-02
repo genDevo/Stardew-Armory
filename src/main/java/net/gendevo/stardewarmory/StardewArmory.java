@@ -2,6 +2,8 @@ package net.gendevo.stardewarmory;
 
 import com.mojang.serialization.Codec;
 import net.gendevo.stardewarmory.config.StardewArmoryConfig;
+import net.gendevo.stardewarmory.entities.GuildMasterEntity;
+import net.gendevo.stardewarmory.entities.render.GuildMasterRenderer;
 import net.gendevo.stardewarmory.screen.GalaxyForgeScreen;
 import net.gendevo.stardewarmory.setup.*;
 import net.gendevo.stardewarmory.util.ModResourceLocation;
@@ -9,6 +11,7 @@ import net.gendevo.stardewarmory.world.OreGeneration;
 import net.gendevo.stardewarmory.world.structures.ConfiguredStructureInit;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -28,6 +31,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.ModLoadingContext;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.config.ModConfig;
@@ -74,27 +78,25 @@ public class StardewArmory
         forgeBus.register(this);
 
         forgeBus.addListener(EventPriority.HIGH, OreGeneration::generateOres);
-        //forgeBus.addListener(EventPriority.NORMAL, this::addDimensionalSpacing);
-        //forgeBus.addListener(EventPriority.HIGH, this::biomeModification);
+        if (StardewArmoryConfig.guild_spawn.get()) {
+            forgeBus.addListener(EventPriority.NORMAL, this::addDimensionalSpacing);
+            forgeBus.addListener(EventPriority.HIGH, this::biomeModification);
+        }
     }
 
     private void setup(final FMLCommonSetupEvent event)
     {
-        // some preinit code
-        LOGGER.info("HELLO FROM PREINIT");
-        LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
-
-        //event.enqueueWork(() -> {
-        //    ModStructures.setupStructures();
-        //    ConfiguredStructureInit.registerConfiguredStructures();
-        //    GlobalEntityTypeAttributes.put(ModEntityTypes.GUILD_MASTER.get(), GuildMasterEntity.setCustomAttributes().build());
-        //});
+        event.enqueueWork(() -> {
+            if (StardewArmoryConfig.guild_spawn.get()) {
+                ModStructures.setupStructures();
+                ConfiguredStructureInit.registerConfiguredStructures();
+            }
+            GlobalEntityTypeAttributes.put(ModEntityTypes.GUILD_MASTER.get(), GuildMasterEntity.setCustomAttributes().build());
+            RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.GUILD_MASTER.get(), GuildMasterRenderer::new);
+        });
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
-        // do something that can only be done on the client
-        LOGGER.info("Got game settings {}", event.getMinecraftSupplier().get().options);
-
         event.enqueueWork(() -> {
             ScreenManager.register(ModContainers.GALAXY_FORGE_CONTAINER.get(),
                     GalaxyForgeScreen::new);
@@ -110,10 +112,7 @@ public class StardewArmory
 
     private void processIMC(final InterModProcessEvent event)
     {
-        // some example code to receive and process InterModComms from other mods
-        LOGGER.info("Got IMC {}", event.getIMCStream().
-                map(m->m.getMessageSupplier().get()).
-                collect(Collectors.toList()));
+
     }
 
     public void biomeModification(final BiomeLoadingEvent event) {

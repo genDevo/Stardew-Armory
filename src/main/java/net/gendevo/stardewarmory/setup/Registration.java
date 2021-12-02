@@ -16,7 +16,6 @@ public class Registration {
     public static void register(IEventBus modEventBus) {
         BLOCKS.register(modEventBus);
         ITEMS.register(modEventBus);
-        //ModEntityTypes.ENTITY_TYPES.register(modEventBus);
         ENCHANTMENTS.register(modEventBus);
 
         ModItems.register();
@@ -26,6 +25,7 @@ public class Registration {
         ModRecipeTypes.register(modEventBus);
         ModContainers.register(modEventBus);
         ModSoundEvents.register(modEventBus);
-        //ModStructures.STRUCTURES.register(modEventBus);
+        ModEntityTypes.ENTITY_TYPES.register(modEventBus);
+        ModStructures.STRUCTURES.register(modEventBus);
     }
 }

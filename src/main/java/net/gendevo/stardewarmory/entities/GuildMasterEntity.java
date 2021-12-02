@@ -36,12 +36,6 @@ public class GuildMasterEntity extends CreatureEntity {
         super.registerGoals();
         this.goalSelector.addGoal(1, new TemptGoal(this, 1.1D, TEMPTATION_ITEM, false));
         this.goalSelector.addGoal(0, new LookAtGoal(this, PlayerEntity.class, 6.0F));
-        this.goalSelector.addGoal(2, new MoveToBlockGoal(this, 1, 20, 3) {
-            @Override
-            protected boolean isValidTarget(IWorldReader world, BlockPos blockPos) {
-                return world.getBlockState(blockPos).getBlock().is(Blocks.SPRUCE_PLANKS) && world.isEmptyBlock(blockPos.above()) && world.getBlockState(blockPos.above().east()).getBlock().is(Blocks.OAK_TRAPDOOR);
-            }
-        });
     }
 
     @Override
@@ -52,19 +46,19 @@ public class GuildMasterEntity extends CreatureEntity {
     @Nullable
     @Override
     protected SoundEvent getAmbientSound() {
-        return SoundEvents.WANDERING_TRADER_AMBIENT;
+        return SoundEvents.VILLAGER_AMBIENT;
     }
 
 
     @Nullable
     @Override
     protected SoundEvent getHurtSound(DamageSource p_184601_1_) {
-        return SoundEvents.DONKEY_HURT;
+        return SoundEvents.GENERIC_HURT;
     }
 
     @Nullable
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundEvents.DONKEY_DEATH;
+        return SoundEvents.GENERIC_DEATH;
     }
 }

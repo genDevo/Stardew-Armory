@@ -15,7 +15,7 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 3,
+          "weight": 20,
           "name": "stardewarmory:neptunes_glaive"
         }
       ]

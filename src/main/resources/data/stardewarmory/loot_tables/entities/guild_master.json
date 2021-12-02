@@ -1,0 +1,50 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "stardewarmory:alex_bat"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "stardewarmory:sam_guitar"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "stardewarmory:harvey_mallet"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "stardewarmory:maru_wrench"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "stardewarmory:penny_fryer"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "stardewarmory:seb_mace"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "stardewarmory:haley_iron"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "stardewarmory:abby_planchette"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "stardewarmory:elliot_pencil"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "stardewarmory:leah_whittler"
+        }
+      ]
+    }
+  ]
+}

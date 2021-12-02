@@ -42,26 +42,20 @@ public class GuildBuildingStructure extends Structure<NoFeatureConfig> {
         return GenerationStage.Decoration.SURFACE_STRUCTURES;
     }
 
-    private static final List<MobSpawnInfo.Spawners> STRUCTURE_CREATURES = ImmutableList.of(
-            new MobSpawnInfo.Spawners(ModEntityTypes.GUILD_MASTER.get(), 100, 1, 1)
-    );
-
     @Override
-    public List<MobSpawnInfo.Spawners> getDefaultCreatureSpawnList() {
-        return STRUCTURE_CREATURES;
-    }
+    protected boolean isFeatureChunk(ChunkGenerator chunkGenerator, BiomeProvider biomeSource, long seed,
+                                     SharedSeedRandom chunkRandom, int chunkX, int chunkZ, Biome biome,
+                                     ChunkPos chunkPos, NoFeatureConfig featureConfig) {
+        BlockPos centerOfChunk = new BlockPos((chunkX << 4) + 7, 0, (chunkZ << 4) + 7);
 
-    @Override
-    protected boolean isFeatureChunk(ChunkGenerator chunkGenerator, BiomeProvider biomeSource, long seed, SharedSeedRandom chunkRandom, int chunkX, int chunkZ, Biome biome, ChunkPos chunkPos, NoFeatureConfig featureConfig) {
-        BlockPos centerOfChunk = new BlockPos(chunkX * 16, 0, chunkZ * 16);
-
-        int landHeight = chunkGenerator.getFirstOccupiedHeight(centerOfChunk.getX(), centerOfChunk.getZ(), Heightmap.Type.WORLD_SURFACE_WG);
+        int landHeight = chunkGenerator.getBaseHeight(centerOfChunk.getX(), centerOfChunk.getZ(),
+                Heightmap.Type.WORLD_SURFACE_WG);
 
         IBlockReader columnOfBlocks = chunkGenerator.getBaseColumn(centerOfChunk.getX(), centerOfChunk.getZ());
 
         BlockState topBlock = columnOfBlocks.getBlockState(centerOfChunk.above(landHeight));
 
-        return topBlock.getFluidState().isEmpty();
+        return topBlock.getFluidState().isEmpty() && biome.getBiomeCategory() == Biome.Category.PLAINS;
     }
 
     public static class Start extends StructureStart<NoFeatureConfig> {
@@ -72,8 +66,8 @@ public class GuildBuildingStructure extends Structure<NoFeatureConfig> {
         @Override
         public void generatePieces(DynamicRegistries dynamicRegistryManager, ChunkGenerator chunkGenerator, TemplateManager templateManagerIn, int chunkX, int chunkZ, Biome biomeIn, NoFeatureConfig config) {
 
-            int x = chunkX * 16;
-            int z = chunkZ * 16;
+            int x = (chunkX << 4) + 7;
+            int z = (chunkZ << 4) + 7;
 
             BlockPos centerPos = new BlockPos(x, 0, z);
 
@@ -81,22 +75,11 @@ public class GuildBuildingStructure extends Structure<NoFeatureConfig> {
                     dynamicRegistryManager,
                     new VillageConfig(() -> dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY)
                             .get(new ResourceLocation(StardewArmory.MOD_ID, "guild_building/start_pool")), 10),
-                    AbstractVillagePiece::new,
-                    chunkGenerator,
-                    templateManagerIn,
-                    centerPos,
-                    this.pieces,
-                    this.random,
-                    false,
-                    true);
+                    AbstractVillagePiece::new, chunkGenerator, templateManagerIn, centerPos,
+                    this.pieces, this.random, false, true);
 
-            Vector3i structureCenter = this.pieces.get(0).getBoundingBox().getCenter();
-            int xOffset = centerPos.getX() - structureCenter.getX();
-            int zOffset = centerPos.getZ() - structureCenter.getZ();
-            for (StructurePiece structurePiece : this.pieces) {
-                structurePiece.move(xOffset, 1, zOffset);
-            }
-            //this.pieces.forEach(piece -> piece.getBoundingBox().y0 -= 1);
+            //this.pieces.forEach(piece -> piece.move(0, 1, 0));
+            this.pieces.forEach(piece -> piece.getBoundingBox().y0 -= 1);
 
             this.calculateBoundingBox();
         }

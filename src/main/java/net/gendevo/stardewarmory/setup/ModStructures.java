@@ -27,9 +27,8 @@ public class ModStructures {
     public static void setupStructures() {
         setupMapSpacingAndLand(
                 GUILD_BUILDING.get(),
-                new StructureSeparationSettings(40, 30, 1202356441), true
-        );
-
+                new StructureSeparationSettings(25, 20, 1202356441),
+                true);
     }
 
     public static <F extends Structure<?>> void setupMapSpacingAndLand(

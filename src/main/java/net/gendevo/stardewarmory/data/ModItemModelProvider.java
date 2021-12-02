@@ -99,6 +99,17 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemHandheld, "dragontooth_club");
         builder(itemHandheld, "galaxy_hammer");
         builder(itemHandheld, "infinity_gavel");
+        // "Unobtainable"
+        builder(itemHandheld, "alex_bat");
+        builder(itemHandheld, "sam_guitar");
+        builder(itemHandheld, "harvey_mallet");
+        builder(itemHandheld, "maru_wrench");
+        builder(itemHandheld, "penny_fryer");
+        builder(itemHandheld, "seb_mace");
+        builder(itemHandheld, "haley_iron");
+        builder(itemHandheld, "abby_planchette");
+        builder(itemHandheld, "elliot_pencil");
+        builder(itemHandheld, "leah_whittler");
     }
 
     private ItemModelBuilder builder(ModelFile itemGenerated, String name) {

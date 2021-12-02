@@ -22,7 +22,7 @@ public class ModChestLootTables extends ChestLootTables {
         consumer.accept(LootInjector.Tables.CHESTS_SIMPLE_DUNGEON, addSimpleWeapons(new LootTable.Builder()));
         consumer.accept(LootInjector.Tables.CHESTS_MINESHAFT, addMineshaftWeapons(new LootTable.Builder()));
         consumer.accept(LootInjector.Tables.CHESTS_RUINED_PORTAL, addObsidianEdge(new LootTable.Builder()));
-        consumer.accept(LootInjector.Tables.CHESTS_UNDERWATER_RUINS, addNeptuneChest(new LootTable.Builder()));
+        consumer.accept(LootInjector.Tables.CHESTS_UNDERWATER_RUINS, addNeptuneChest(new LootTable.Builder(), 3));
         consumer.accept(LootInjector.Tables.CHESTS_VILLAGE_BUTCHER, addCarvingKnife(new LootTable.Builder()));
         consumer.accept(LootInjector.Tables.CHESTS_BASTION_TREASURE, addSGRing(new LootTable.Builder()));
         consumer.accept(LootInjector.Tables.CHESTS_BASTION_BRIDGE, addVampAndSGRing(new LootTable.Builder()));
@@ -31,6 +31,7 @@ public class ModChestLootTables extends ChestLootTables {
         consumer.accept(LootInjector.Tables.CHESTS_JUNGLE_TEMPLE, addSCRing(new LootTable.Builder()));
         consumer.accept(LootInjector.Tables.CHESTS_WOODLAND_MANSION, addVampRing(new LootTable.Builder()));
         consumer.accept(LootInjector.Tables.CHESTS_STRONGHOLD, addEmeraldRing(new LootTable.Builder()));
+        consumer.accept(LootInjector.Tables.CHESTS_BURIED_TREASURE, addNeptuneChest(new LootTable.Builder(), 20));
 
         consumer.accept(LootInjector.Tables.PIGLIN_BARTER, addKudgel(new LootTable.Builder()));
     }
@@ -388,17 +389,17 @@ public class ModChestLootTables extends ChestLootTables {
         return builder;
     }
 
-    private static LootTable.Builder addNeptuneChest(LootTable.Builder builder) {
+    private static LootTable.Builder addNeptuneChest(LootTable.Builder builder, int neptuneChance) {
         builder.withPool(new LootPool.Builder()
                 .setRolls(ConstantRange.exactly(1))
                 .add(EmptyLootEntry.emptyItem()
-                        .setWeight(30)
+                        .setWeight(20)
                 )
                 .add(ItemLootEntry.lootTableItem(ModItems.RUSTY_SWORD.get())
-                        .setWeight(10)
+                        .setWeight(20)
                 )
                 .add(ItemLootEntry.lootTableItem(ModItems.NEPTUNES_GLAIVE.get())
-                        .setWeight(1)
+                        .setWeight(neptuneChance)
                 )
         );
         return builder;

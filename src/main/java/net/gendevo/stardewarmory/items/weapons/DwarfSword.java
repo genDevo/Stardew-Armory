@@ -29,7 +29,6 @@ public class DwarfSword extends SwordItem {
     public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
         tooltip.add(new StringTextComponent("\u00A7oReturns you to your dwarven form, granting brief invulnerability at the cost of speed"));
-
     }
 
     @Override
