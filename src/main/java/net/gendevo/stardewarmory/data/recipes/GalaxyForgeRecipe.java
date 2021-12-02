@@ -10,6 +10,7 @@ import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.item.crafting.ShapedRecipe;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.NonNullList;
@@ -107,10 +108,12 @@ public class GalaxyForgeRecipe implements IGalaxyForgeRecipe{
 
         @Override
         public void toNetwork(PacketBuffer buffer, GalaxyForgeRecipe recipe) {
-            buffer.writeInt(recipe.getIngredients().size());
+            //buffer.writeInt(recipe.getIngredients().size());
+
             for (Ingredient ing : recipe.getIngredients()) {
                 ing.toNetwork(buffer);
             }
+
             buffer.writeItemStack(recipe.getResultItem(), false);
         }
     }
