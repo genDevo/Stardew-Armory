@@ -1,7 +1,6 @@
-package net.gendevo.stardewarmory.network.message;
+package net.gendevo.stardewarmory.network;
 
 import net.gendevo.stardewarmory.data.capabilities.IridiumCapabilityManager;
-import net.gendevo.stardewarmory.network.ModNetwork;
 import net.gendevo.stardewarmory.setup.ModSoundEvents;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
@@ -11,25 +10,22 @@ import net.minecraftforge.fml.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
-public class InputMessage {
+public class PacketToggleIridium {
     public int key;
 
-    public InputMessage() {
-    }
-
-    public InputMessage(int key) {
+    public PacketToggleIridium(int key) {
         this.key = key;
     }
 
-    public static void encode(InputMessage message, PacketBuffer buffer) {
+    public static void encode(PacketToggleIridium message, PacketBuffer buffer) {
         buffer.writeInt(message.key);
     }
 
-    public static InputMessage decode(PacketBuffer buffer) {
-        return new InputMessage(buffer.readInt());
+    public static PacketToggleIridium decode(PacketBuffer buffer) {
+        return new PacketToggleIridium(buffer.readInt());
     }
 
-    public static void handle(InputMessage message, Supplier<NetworkEvent.Context> contextSupplier) {
+    public static void handle(PacketToggleIridium message, Supplier<NetworkEvent.Context> contextSupplier) {
         NetworkEvent.Context context = contextSupplier.get();
         context.enqueueWork(() -> {
             ServerPlayerEntity player = context.getSender();

@@ -3,12 +3,10 @@ package net.gendevo.stardewarmory.util.events;
 import net.gendevo.stardewarmory.StardewArmory;
 import net.gendevo.stardewarmory.data.capabilities.IridiumCapabilityManager;
 import net.gendevo.stardewarmory.network.ModNetwork;
-import net.gendevo.stardewarmory.network.message.InputMessage;
-import net.gendevo.stardewarmory.setup.ModSoundEvents;
+import net.gendevo.stardewarmory.network.PacketToggleIridium;
 import net.gendevo.stardewarmory.util.KeybindSetup;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -33,8 +31,12 @@ public class InputEvents {
     }
 
     private static void onInput(Minecraft mc, int key, int action) {
-        if (mc.screen == null && KeybindSetup.iridiumKey.isDown()) {
-            ModNetwork.CHANNEL.sendToServer(new InputMessage(key));
+        if (mc.screen == null && KeybindSetup.iridiumKey.consumeClick()) {
+            ModNetwork.CHANNEL.sendToServer(new PacketToggleIridium(key));
+            PlayerEntity player = mc.player;
+            player.getMainHandItem().getCapability(IridiumCapabilityManager.IRIDIUM_CAPABILITY).ifPresent(h -> {
+                h.setIridiumMode(!h.isIridiumMode());
+            });
         }
     }
 }

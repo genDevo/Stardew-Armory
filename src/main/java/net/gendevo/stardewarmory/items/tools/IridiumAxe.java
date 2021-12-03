@@ -1,19 +1,17 @@
 package net.gendevo.stardewarmory.items.tools;
 
 import net.gendevo.stardewarmory.data.capabilities.IridiumCapabilityManager;
-import net.gendevo.stardewarmory.setup.ModSoundEvents;
+import net.gendevo.stardewarmory.util.KeybindSetup;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.client.util.InputMappings;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.KeybindTextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -22,6 +20,8 @@ import org.lwjgl.glfw.GLFW;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class IridiumAxe extends AxeItem {
 
@@ -33,19 +33,17 @@ public class IridiumAxe extends AxeItem {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
         super.appendHoverText(stack, world, tooltip, flag);
-        if (InputMappings.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), GLFW.GLFW_KEY_LEFT_SHIFT)) {
-            assert world != null;
-            if (!world.isClientSide()) {
-                stack.getCapability(IridiumCapabilityManager.IRIDIUM_CAPABILITY).ifPresent(h -> {
-                    if (h.isIridiumMode()) {
-                        tooltip.add(new TranslationTextComponent("tooltip.stardewarmory.iridium_axe_on"));
-                    } else {
-                        tooltip.add(new TranslationTextComponent("tooltip.stardewarmory.iridium_axe_off"));
-                    }
-                });
+        stack.getCapability(IridiumCapabilityManager.IRIDIUM_CAPABILITY).ifPresent(h -> {
+            if (h.isIridiumMode()) {
+                tooltip.add(new TranslationTextComponent("tooltip.stardewarmory.iridium_axe_on"));
+            } else {
+                tooltip.add(new TranslationTextComponent("tooltip.stardewarmory.iridium_axe_off"));
             }
-        } else {
-            tooltip.add(new TranslationTextComponent("tooltip.stardewarmory.hold_shift"));
+        });
+        if (!Objects.isNull(world)) {
+            tooltip.add(new StringTextComponent(new TranslationTextComponent("tooltip.stardewarmory.press").getString() +
+                    KeybindSetup.iridiumKey.getKey().getName().replaceAll("key.keyboard.", "").toUpperCase() +
+                    new TranslationTextComponent("tooltip.stardewarmory.toggle").getString()));
         }
     }
 }

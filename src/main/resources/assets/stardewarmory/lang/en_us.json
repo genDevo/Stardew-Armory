@@ -92,8 +92,8 @@
   "subtitle.stardewarmory.toggle_off_sound": "Effect toggled off",
   "screen.stardewarmory.galaxy_forge": "Forge",
   "tooltip.stardewarmory.hold_shift": "Press \u00A76SHIFT\u00A7r for more info",
-  "tooltip.stardewarmory.iridium_axe_on": "Feller mode is curently \u00A7aENABLED",
-  "tooltip.stardewarmory.iridium_axe_off": "Feller mode is curently \u00A7cDISABLED",
+  "tooltip.stardewarmory.iridium_axe_on": "Lumberjack mode is curently \u00A7aENABLED",
+  "tooltip.stardewarmory.iridium_axe_off": "Lumberjack mode is curently \u00A7cDISABLED",
   "tooltip.stardewarmory.iridium_pick_on": "Tunneling mode is curently \u00A7aENABLED",
   "tooltip.stardewarmory.iridium_pick_off": "Tunneling mode is curently \u00A7cDISABLED",
   "tooltip.stardewarmory.iridium_hoe_on": "Super Tilling mode is curently \u00A7aENABLED",
@@ -119,5 +119,7 @@
   "tooltip.stardewarmory.haley": "It's searing hot and smells like Haley's hair.",
   "tooltip.stardewarmory.abby": "It's made from fine marblewood.",
   "tooltip.stardewarmory.elliot": "Elliott used this to write his book. It's sharp!",
-  "tooltip.stardewarmory.leah": "Leah's favorite tool for shaping driftwood."
+  "tooltip.stardewarmory.leah": "Leah's favorite tool for shaping driftwood.",
+  "tooltip.stardewarmory.press": "\u00A78Press \u00A7r",
+  "tooltip.stardewarmory.toggle": " \u00A78to toggle"
 }
