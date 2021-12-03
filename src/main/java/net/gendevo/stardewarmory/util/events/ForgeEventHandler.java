@@ -2,6 +2,10 @@ package net.gendevo.stardewarmory.util.events;
 
 import net.gendevo.stardewarmory.StardewArmory;
 import net.gendevo.stardewarmory.config.StardewArmoryConfig;
+import net.gendevo.stardewarmory.data.capabilities.IIridiumCapability;
+import net.gendevo.stardewarmory.data.capabilities.IridiumCapabilityManager;
+import net.gendevo.stardewarmory.data.capabilities.IridiumProvider;
+import net.gendevo.stardewarmory.data.capabilities.SimpleCapabilityStorage;
 import net.gendevo.stardewarmory.setup.ModItems;
 import net.gendevo.stardewarmory.setup.ModSoundEvents;
 import net.gendevo.stardewarmory.items.tools.IridiumAxe;
@@ -28,6 +32,7 @@ import net.minecraft.util.Timer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IWorld;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
@@ -46,44 +51,51 @@ public class ForgeEventHandler {
     public static void onBlockBreak(final BlockEvent.BreakEvent event) {
         PlayerEntity player = event.getPlayer();
         Item heldItem = player.getMainHandItem().getItem();
+        ItemStack heldItemStack = player.getMainHandItem();
         IWorld eWorld = event.getWorld();
         if (!eWorld.isClientSide()) {
             if (heldItem instanceof IridiumPick) {
-                if (((IridiumPick) heldItem).tunnelMode) {
-                    if (player.getItemInHand(Hand.MAIN_HAND).getEnchantmentTags().toString().contains("silk_touch")) {
-                        Block.popResource(player.level, event.getPos().below(),
-                                eWorld.getBlockState(event.getPos().below()).getBlock().asItem().getDefaultInstance());
-                        eWorld.removeBlock(event.getPos().below(), true);
-                    } else {
-                        eWorld.destroyBlock(event.getPos().below(), true);
+                heldItemStack.getCapability(IridiumCapabilityManager.IRIDIUM_CAPABILITY).ifPresent(h -> {
+                    if (h.isIridiumMode()) {
+                        if (player.getItemInHand(Hand.MAIN_HAND).getEnchantmentTags().toString().contains("silk_touch")) {
+                            Block.popResource(player.level, event.getPos().below(),
+                                    eWorld.getBlockState(event.getPos().below()).getBlock().asItem().getDefaultInstance());
+                            eWorld.removeBlock(event.getPos().below(), true);
+                        } else {
+                            eWorld.destroyBlock(event.getPos().below(), true);
+                        }
+                        player.getItemInHand(Hand.MAIN_HAND).hurtAndBreak(1, player, (p_220043_1_) -> {
+                            p_220043_1_.broadcastBreakEvent(Hand.MAIN_HAND);
+                        });
                     }
-                    player.getItemInHand(Hand.MAIN_HAND).hurtAndBreak(1, player, (p_220043_1_) -> {
-                        p_220043_1_.broadcastBreakEvent(Hand.MAIN_HAND);
-                    });
-                }
+                });
             } else if (heldItem instanceof IridiumAxe) {
-                if (((IridiumAxe) heldItem).fellMode) {
-                    BlockPos oPos = event.getPos();
-                    Block originBlock = eWorld.getBlockState(oPos).getBlock();
-                    player.getItemInHand(Hand.MAIN_HAND).hurtAndBreak(
-                            feller(eWorld, player, originBlock, oPos, false, 0),
-                            player, (p_220043_1_) -> {
-                                p_220043_1_.broadcastBreakEvent(Hand.MAIN_HAND);
-                            });
-                }
-            } else if (heldItem instanceof IridiumShovel) {
-                if (((IridiumShovel) heldItem).smeltMode) {
-                    if (eWorld.getBlockState(event.getPos()).getBlock().is(Blocks.SAND) ||
-                            eWorld.getBlockState(event.getPos()).getBlock().is(Blocks.RED_SAND)) {
-                        Block.popResource(event.getPlayer().level, event.getPos(), Blocks.GLASS.asItem().getDefaultInstance());
-                        eWorld.removeBlock(event.getPos(), true);
-                        event.setCanceled(true);
-                    } else if (eWorld.getBlockState(event.getPos()).getBlock().is(Blocks.CLAY)) {
-                        Block.popResource(event.getPlayer().level, event.getPos(), Blocks.TERRACOTTA.asItem().getDefaultInstance());
-                        eWorld.removeBlock(event.getPos(), true);
-                        event.setCanceled(true);
+                heldItemStack.getCapability(IridiumCapabilityManager.IRIDIUM_CAPABILITY).ifPresent(h -> {
+                    if (h.isIridiumMode()) {
+                        BlockPos oPos = event.getPos();
+                        Block originBlock = eWorld.getBlockState(oPos).getBlock();
+                        player.getItemInHand(Hand.MAIN_HAND).hurtAndBreak(
+                                feller(eWorld, player, originBlock, oPos, false, 0),
+                                player, (p_220043_1_) -> {
+                                    p_220043_1_.broadcastBreakEvent(Hand.MAIN_HAND);
+                                });
                     }
-                }
+                });
+            } else if (heldItem instanceof IridiumShovel) {
+                heldItemStack.getCapability(IridiumCapabilityManager.IRIDIUM_CAPABILITY).ifPresent(h -> {
+                    if (h.isIridiumMode()) {
+                        if (eWorld.getBlockState(event.getPos()).getBlock().is(Blocks.SAND) ||
+                                eWorld.getBlockState(event.getPos()).getBlock().is(Blocks.RED_SAND)) {
+                            Block.popResource(event.getPlayer().level, event.getPos(), Blocks.GLASS.asItem().getDefaultInstance());
+                            eWorld.removeBlock(event.getPos(), true);
+                            event.setCanceled(true);
+                        } else if (eWorld.getBlockState(event.getPos()).getBlock().is(Blocks.CLAY)) {
+                            Block.popResource(event.getPlayer().level, event.getPos(), Blocks.TERRACOTTA.asItem().getDefaultInstance());
+                            eWorld.removeBlock(event.getPos(), true);
+                            event.setCanceled(true);
+                        }
+                    }
+                });
             }
         }
     }

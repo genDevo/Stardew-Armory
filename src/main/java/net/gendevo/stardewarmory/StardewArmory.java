@@ -2,14 +2,16 @@ package net.gendevo.stardewarmory;
 
 import com.mojang.serialization.Codec;
 import net.gendevo.stardewarmory.config.StardewArmoryConfig;
+import net.gendevo.stardewarmory.data.capabilities.IridiumCapabilityManager;
 import net.gendevo.stardewarmory.entities.GuildMasterEntity;
 import net.gendevo.stardewarmory.entities.render.GuildMasterRenderer;
+import net.gendevo.stardewarmory.network.ModNetwork;
 import net.gendevo.stardewarmory.screen.GalaxyForgeScreen;
 import net.gendevo.stardewarmory.setup.*;
+import net.gendevo.stardewarmory.util.KeybindSetup;
 import net.gendevo.stardewarmory.util.ModResourceLocation;
 import net.gendevo.stardewarmory.world.OreGeneration;
 import net.gendevo.stardewarmory.world.structures.ConfiguredStructureInit;
-import net.minecraft.block.Blocks;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.item.ItemGroup;
@@ -49,7 +51,6 @@ import top.theillusivec4.curios.api.SlotTypePreset;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(StardewArmory.MOD_ID)
@@ -78,6 +79,7 @@ public class StardewArmory
         forgeBus.register(this);
 
         forgeBus.addListener(EventPriority.HIGH, OreGeneration::generateOres);
+
         if (StardewArmoryConfig.guild_spawn.get()) {
             forgeBus.addListener(EventPriority.NORMAL, this::addDimensionalSpacing);
             forgeBus.addListener(EventPriority.HIGH, this::biomeModification);
@@ -86,17 +88,20 @@ public class StardewArmory
 
     private void setup(final FMLCommonSetupEvent event)
     {
+        ModNetwork.init();
         event.enqueueWork(() -> {
             if (StardewArmoryConfig.guild_spawn.get()) {
                 ModStructures.setupStructures();
                 ConfiguredStructureInit.registerConfiguredStructures();
             }
+            IridiumCapabilityManager.registerCapabilities();
             GlobalEntityTypeAttributes.put(ModEntityTypes.GUILD_MASTER.get(), GuildMasterEntity.setCustomAttributes().build());
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.GUILD_MASTER.get(), GuildMasterRenderer::new);
         });
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
+        KeybindSetup.register(event);
         event.enqueueWork(() -> {
             ScreenManager.register(ModContainers.GALAXY_FORGE_CONTAINER.get(),
                     GalaxyForgeScreen::new);

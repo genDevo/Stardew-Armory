@@ -45,10 +45,10 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemGenerated, "napalm_ring");
         builder(itemGenerated, "warrior_ring");
         //Tools
-        builder(itemGenerated, "iridium_pickaxe");
-        builder(itemGenerated, "iridium_axe");
-        builder(itemGenerated, "iridium_shovel");
-        builder(itemGenerated, "iridium_hoe");
+        builder(itemHandheld, "iridium_pickaxe");
+        builder(itemHandheld, "iridium_axe");
+        builder(itemHandheld, "iridium_shovel");
+        builder(itemHandheld, "iridium_hoe");
         //Swords
         builder(itemHandheld, "galaxy_sword");
         builder(itemHandheld, "dragontooth_cutlass");

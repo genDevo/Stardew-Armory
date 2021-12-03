@@ -1,5 +1,6 @@
 package net.gendevo.stardewarmory.items.tools;
 
+import net.gendevo.stardewarmory.data.capabilities.IridiumCapabilityManager;
 import net.gendevo.stardewarmory.setup.ModSoundEvents;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
@@ -25,7 +26,6 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class IridiumHoe extends HoeItem {
-    public boolean superTillMode = false;
 
     public IridiumHoe(IItemTier p_i231595_1_, int p_i231595_2_, float p_i231595_3_, Properties p_i231595_4_) {
         super(p_i231595_1_, p_i231595_2_, p_i231595_3_, p_i231595_4_);
@@ -43,44 +43,52 @@ public class IridiumHoe extends HoeItem {
                 PlayerEntity playerentity = context.getPlayer();
                 world.playSound(playerentity, blockpos, SoundEvents.HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
                 if (!world.isClientSide) {
-                    int hurtAmount = 0;
-                    if (superTillMode) {
-                        if (world.getBlockState(blockpos.north()).getBlock().is(world.getBlockState(blockpos).getBlock())) {
-                            world.setBlock(blockpos.north(), blockstate, 11);
-                            hurtAmount++;
+                    context.getItemInHand().getCapability(IridiumCapabilityManager.IRIDIUM_CAPABILITY).ifPresent(h -> {
+                        if (h.isIridiumMode()) {
+                            int hurtAmount = 0;
+                            if (world.getBlockState(blockpos.north()).getBlock().is(world.getBlockState(blockpos).getBlock())) {
+                                world.setBlock(blockpos.north(), blockstate, 11);
+                                hurtAmount++;
+                            }
+                            if (world.getBlockState(blockpos.north().east()).getBlock().is(world.getBlockState(blockpos).getBlock())) {
+                                world.setBlock(blockpos.north().east(), blockstate, 11);
+                                hurtAmount++;
+                            }
+                            if (world.getBlockState(blockpos.north().west()).getBlock().is(world.getBlockState(blockpos).getBlock())) {
+                                world.setBlock(blockpos.north().west(), blockstate, 11);
+                                hurtAmount++;
+                            }
+                            if (world.getBlockState(blockpos.east()).getBlock().is(world.getBlockState(blockpos).getBlock())) {
+                                world.setBlock(blockpos.east(), blockstate, 11);
+                                hurtAmount++;
+                            }
+                            if (world.getBlockState(blockpos.west()).getBlock().is(world.getBlockState(blockpos).getBlock())) {
+                                world.setBlock(blockpos.west(), blockstate, 11);
+                                hurtAmount++;
+                            }
+                            if (world.getBlockState(blockpos.south()).getBlock().is(world.getBlockState(blockpos).getBlock())) {
+                                world.setBlock(blockpos.south(), blockstate, 11);
+                                hurtAmount++;
+                            }
+                            if (world.getBlockState(blockpos.south().east()).getBlock().is(world.getBlockState(blockpos).getBlock())) {
+                                world.setBlock(blockpos.south().east(), blockstate, 11);
+                                hurtAmount++;
+                            }
+                            if (world.getBlockState(blockpos.south().west()).getBlock().is(world.getBlockState(blockpos).getBlock())) {
+                                world.setBlock(blockpos.south().west(), blockstate, 11);
+                                hurtAmount++;
+                            }
+                            // Finally damages the tool
+                            if (playerentity != null) {
+                                context.getItemInHand().hurtAndBreak(hurtAmount, playerentity, (p_220043_1_) -> {
+                                    p_220043_1_.broadcastBreakEvent(context.getHand());
+                                });
+                            }
                         }
-                        if (world.getBlockState(blockpos.north().east()).getBlock().is(world.getBlockState(blockpos).getBlock())) {
-                           world.setBlock(blockpos.north().east(), blockstate, 11);
-                            hurtAmount++;
-                        }
-                        if (world.getBlockState(blockpos.north().west()).getBlock().is(world.getBlockState(blockpos).getBlock())) {
-                           world.setBlock(blockpos.north().west(), blockstate, 11);
-                            hurtAmount++;
-                        }
-                        if (world.getBlockState(blockpos.east()).getBlock().is(world.getBlockState(blockpos).getBlock())) {
-                           world.setBlock(blockpos.east(), blockstate, 11);
-                            hurtAmount++;
-                        }
-                        if (world.getBlockState(blockpos.west()).getBlock().is(world.getBlockState(blockpos).getBlock())) {
-                            world.setBlock(blockpos.west(), blockstate, 11);
-                            hurtAmount++;
-                        }
-                        if (world.getBlockState(blockpos.south()).getBlock().is(world.getBlockState(blockpos).getBlock())) {
-                            world.setBlock(blockpos.south(), blockstate, 11);
-                            hurtAmount++;
-                        }
-                        if (world.getBlockState(blockpos.south().east()).getBlock().is(world.getBlockState(blockpos).getBlock())) {
-                            world.setBlock(blockpos.south().east(), blockstate, 11);
-                            hurtAmount++;
-                        }
-                        if (world.getBlockState(blockpos.south().west()).getBlock().is(world.getBlockState(blockpos).getBlock())) {
-                            world.setBlock(blockpos.south().west(), blockstate, 11);
-                            hurtAmount++;
-                        }
-                    }
+                    });
                     world.setBlock(blockpos, blockstate, 11);
                     if (playerentity != null) {
-                        context.getItemInHand().hurtAndBreak(hurtAmount+1, playerentity, (p_220043_1_) -> {
+                        context.getItemInHand().hurtAndBreak(1, playerentity, (p_220043_1_) -> {
                             p_220043_1_.broadcastBreakEvent(context.getHand());
                         });
                     }
@@ -88,22 +96,7 @@ public class IridiumHoe extends HoeItem {
                 return ActionResultType.sidedSuccess(world.isClientSide);
             }
         }
-
         return ActionResultType.PASS;
-    }
-
-    @Override
-    public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
-        if (!world.isClientSide()) {
-            superTillMode = !superTillMode;
-        } else {
-            if (superTillMode) {
-                ((ClientWorld)world).playLocalSound(player.blockPosition(), ModSoundEvents.TOGGLE_OFF_SOUND.get(), SoundCategory.PLAYERS, 1, 1, false);
-            } else {
-                ((ClientWorld)world).playLocalSound(player.blockPosition(), ModSoundEvents.TOGGLE_ON_SOUND.get(), SoundCategory.PLAYERS, 1, 1, false);
-            }
-        }
-        return ActionResult.success(player.getItemInHand(hand));
     }
 
     @Override
@@ -111,11 +104,13 @@ public class IridiumHoe extends HoeItem {
     public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
         super.appendHoverText(stack, world, tooltip, flag);
         if (InputMappings.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), GLFW.GLFW_KEY_LEFT_SHIFT)) {
-            if (superTillMode) {
-                tooltip.add(new TranslationTextComponent("tooltip.stardewarmory.iridium_hoe_on"));
-            } else {
-                tooltip.add(new TranslationTextComponent("tooltip.stardewarmory.iridium_hoe_off"));
-            }
+            stack.getCapability(IridiumCapabilityManager.IRIDIUM_CAPABILITY).ifPresent(h -> {
+                if (h.isIridiumMode()) {
+                    tooltip.add(new TranslationTextComponent("tooltip.stardewarmory.iridium_axe_on"));
+                } else {
+                    tooltip.add(new TranslationTextComponent("tooltip.stardewarmory.iridium_axe_off"));
+                }
+            });
         } else {
             tooltip.add(new TranslationTextComponent("tooltip.stardewarmory.hold_shift"));
         }
