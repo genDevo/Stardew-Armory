@@ -3,7 +3,7 @@ package net.gendevo.stardewarmory.data.capabilities;
 import net.minecraft.nbt.CompoundNBT;
 
 public class IridiumCapabilityImpl implements IIridiumCapability{
-    private static final String INFO_NBT_KEY="nfo";
+    private static final String INFO_NBT_KEY="SAnfo";
 
     private boolean iridiumMode;
 
@@ -36,6 +36,8 @@ public class IridiumCapabilityImpl implements IIridiumCapability{
     public void deserializeNBT(CompoundNBT nbt) {
         this.setIridiumMode(nbt.getBoolean(INFO_NBT_KEY));
     }
+
+
 
 
 }

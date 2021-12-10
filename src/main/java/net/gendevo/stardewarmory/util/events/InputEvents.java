@@ -1,12 +1,11 @@
 package net.gendevo.stardewarmory.util.events;
 
 import net.gendevo.stardewarmory.StardewArmory;
-import net.gendevo.stardewarmory.data.capabilities.IridiumCapabilityManager;
 import net.gendevo.stardewarmory.network.ModNetwork;
 import net.gendevo.stardewarmory.network.PacketToggleIridium;
 import net.gendevo.stardewarmory.util.KeybindSetup;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -33,10 +32,7 @@ public class InputEvents {
     private static void onInput(Minecraft mc, int key, int action) {
         if (mc.screen == null && KeybindSetup.iridiumKey.consumeClick()) {
             ModNetwork.CHANNEL.sendToServer(new PacketToggleIridium(key));
-            PlayerEntity player = mc.player;
-            player.getMainHandItem().getCapability(IridiumCapabilityManager.IRIDIUM_CAPABILITY).ifPresent(h -> {
-                h.setIridiumMode(!h.isIridiumMode());
-            });
+            assert mc.level != null;
         }
     }
 }

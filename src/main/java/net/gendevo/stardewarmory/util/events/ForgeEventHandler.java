@@ -2,21 +2,15 @@ package net.gendevo.stardewarmory.util.events;
 
 import net.gendevo.stardewarmory.StardewArmory;
 import net.gendevo.stardewarmory.config.StardewArmoryConfig;
-import net.gendevo.stardewarmory.data.capabilities.IIridiumCapability;
 import net.gendevo.stardewarmory.data.capabilities.IridiumCapabilityManager;
-import net.gendevo.stardewarmory.data.capabilities.IridiumProvider;
-import net.gendevo.stardewarmory.data.capabilities.SimpleCapabilityStorage;
-import net.gendevo.stardewarmory.setup.ModItems;
-import net.gendevo.stardewarmory.setup.ModSoundEvents;
 import net.gendevo.stardewarmory.items.tools.IridiumAxe;
 import net.gendevo.stardewarmory.items.tools.IridiumPick;
 import net.gendevo.stardewarmory.items.tools.IridiumShovel;
+import net.gendevo.stardewarmory.setup.ModItems;
+import net.gendevo.stardewarmory.setup.ModSoundEvents;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.LeavesBlock;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.monster.SlimeEntity;
 import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -28,11 +22,9 @@ import net.minecraft.potion.Effects;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.Timer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IWorld;
-import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
@@ -56,7 +48,7 @@ public class ForgeEventHandler {
         if (!eWorld.isClientSide()) {
             if (heldItem instanceof IridiumPick) {
                 heldItemStack.getCapability(IridiumCapabilityManager.IRIDIUM_CAPABILITY).ifPresent(h -> {
-                    if (h.isIridiumMode()) {
+                    if (h.isIridiumMode() && player.hasCorrectToolForDrops(eWorld.getBlockState(event.getPos().below()))) {
                         if (player.getItemInHand(Hand.MAIN_HAND).getEnchantmentTags().toString().contains("silk_touch")) {
                             Block.popResource(player.level, event.getPos().below(),
                                     eWorld.getBlockState(event.getPos().below()).getBlock().asItem().getDefaultInstance());
@@ -233,6 +225,17 @@ public class ForgeEventHandler {
                 return true;
         }
         return false;
+    }
+
+    @SubscribeEvent
+    public static void onPlayerTick(TickEvent.PlayerTickEvent e) {
+        if (e.side.isServer()) {
+            e.player.getMainHandItem().getCapability(IridiumCapabilityManager.IRIDIUM_CAPABILITY).ifPresent(h -> {
+                if (h.isIridiumMode()) {
+                    //ModNetwork.CHANNEL.send(PacketDistributor.TRACKING_ENTITY.with(() -> e.player), new PacketClientboundIridium(true));
+                }
+            });
+        }
     }
 
     // Zombies can now spawn with wood club in hand

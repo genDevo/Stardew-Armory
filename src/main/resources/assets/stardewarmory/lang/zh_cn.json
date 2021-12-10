@@ -121,5 +121,7 @@
   "tooltip.stardewarmory.elliot": "艾利欧特用它来写书。非常尖锐！",
   "tooltip.stardewarmory.leah": "莉亚用来削木的最爱工具。",
   "tooltip.stardewarmory.press": "\u00A78按 \u00A7r",
-  "tooltip.stardewarmory.toggle": " \u00A78切换"
+  "tooltip.stardewarmory.toggle": " \u00A78切换",
+  "key.category.stardewarmory": "星露谷武器",
+  "key.stardewarmory.iridium_tool_mode_key": "切换铱星模式"
 }

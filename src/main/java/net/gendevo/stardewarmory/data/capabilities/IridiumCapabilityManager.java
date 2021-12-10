@@ -17,17 +17,15 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import javax.annotation.Nonnull;
-import java.util.concurrent.ThreadLocalRandom;
 
 @Mod.EventBusSubscriber(modid = StardewArmory.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public final class IridiumCapabilityManager {
+    public static final ResourceLocation IRIDIUM_CAPABILITY_NAME = new ResourceLocation(StardewArmory.MOD_ID, "iridium_capability");
     @CapabilityInject(IIridiumCapability.class)
     @Nonnull
     @SuppressWarnings("ConstantConditions")
     public static Capability<IIridiumCapability> IRIDIUM_CAPABILITY = null;
-    public static final ResourceLocation IRIDIUM_CAPABILITY_NAME = new ResourceLocation(StardewArmory.MOD_ID, "iridium_capability");
 
-    private IridiumCapabilityManager() {}
 
     public static void registerCapabilities() {
         CapabilityManager.INSTANCE.register(
@@ -35,16 +33,18 @@ public final class IridiumCapabilityManager {
                 SimpleCapabilityStorage.create(() -> IRIDIUM_CAPABILITY, Constants.NBT.TAG_COMPOUND),
                 IridiumCapabilityImpl::new
         );
+
     }
+
     @SubscribeEvent
     public static void onStackAttachCapabilites(@Nonnull final AttachCapabilitiesEvent<ItemStack> e) {
         final Item obj = e.getObject().getItem();
-        final IIridiumCapability capability = new IridiumCapabilityImpl(ThreadLocalRandom.current().nextBoolean());
+        final IIridiumCapability capability = new IridiumCapabilityImpl();
         if (obj instanceof IridiumAxe || obj instanceof IridiumPick || obj instanceof IridiumShovel || obj instanceof IridiumHoe) {
             e.addCapability(
                     IRIDIUM_CAPABILITY_NAME,
                     IridiumProvider.from(IRIDIUM_CAPABILITY, () -> capability)
-                    );
+            );
         }
     }
 }

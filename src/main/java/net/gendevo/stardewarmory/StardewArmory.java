@@ -8,10 +8,12 @@ import net.gendevo.stardewarmory.entities.render.GuildMasterRenderer;
 import net.gendevo.stardewarmory.network.ModNetwork;
 import net.gendevo.stardewarmory.screen.GalaxyForgeScreen;
 import net.gendevo.stardewarmory.setup.*;
+import net.gendevo.stardewarmory.util.IridiumModeGui;
 import net.gendevo.stardewarmory.util.KeybindSetup;
 import net.gendevo.stardewarmory.util.ModResourceLocation;
 import net.gendevo.stardewarmory.world.OreGeneration;
 import net.gendevo.stardewarmory.world.structures.ConfiguredStructureInit;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.item.ItemGroup;
@@ -79,6 +81,7 @@ public class StardewArmory
         forgeBus.register(this);
 
         forgeBus.addListener(EventPriority.HIGH, OreGeneration::generateOres);
+        //forgeBus.register(new IridiumModeGui(Minecraft.getInstance()));
 
         if (StardewArmoryConfig.guild_spawn.get()) {
             forgeBus.addListener(EventPriority.NORMAL, this::addDimensionalSpacing);
@@ -102,6 +105,7 @@ public class StardewArmory
 
     private void doClientStuff(final FMLClientSetupEvent event) {
         KeybindSetup.register(event);
+        MinecraftForge.EVENT_BUS.register(IridiumModeGui.class);
         event.enqueueWork(() -> {
             ScreenManager.register(ModContainers.GALAXY_FORGE_CONTAINER.get(),
                     GalaxyForgeScreen::new);

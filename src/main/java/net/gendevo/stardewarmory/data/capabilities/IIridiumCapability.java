@@ -8,4 +8,6 @@ public interface IIridiumCapability extends INBTSerializable<CompoundNBT> {
     void setIridiumMode(boolean iridium);
 
     boolean isIridiumMode();
+
+
 }

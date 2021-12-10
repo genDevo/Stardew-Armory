@@ -33,13 +33,13 @@ public class IridiumAxe extends AxeItem {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
         super.appendHoverText(stack, world, tooltip, flag);
-        stack.getCapability(IridiumCapabilityManager.IRIDIUM_CAPABILITY).ifPresent(h -> {
-            if (h.isIridiumMode()) {
-                tooltip.add(new TranslationTextComponent("tooltip.stardewarmory.iridium_axe_on"));
-            } else {
-                tooltip.add(new TranslationTextComponent("tooltip.stardewarmory.iridium_axe_off"));
-            }
-        });
+        //stack.getCapability(IridiumCapabilityManager.IRIDIUM_CAPABILITY).ifPresent(h -> {
+        //    if (h.isIridiumMode()) {
+        //        tooltip.add(new TranslationTextComponent("tooltip.stardewarmory.iridium_axe_on"));
+        //    } else {
+        //        tooltip.add(new TranslationTextComponent("tooltip.stardewarmory.iridium_axe_off"));
+        //    }
+        //});
         if (!Objects.isNull(world)) {
             tooltip.add(new StringTextComponent(new TranslationTextComponent("tooltip.stardewarmory.press").getString() +
                     KeybindSetup.iridiumKey.getKey().getName().replaceAll("key.keyboard.", "").toUpperCase() +
