@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "stardewarmory:prismatic_shard"
+            "items": [
+              "stardewarmory:prismatic_shard"
+            ]
           }
         ]
       }

@@ -8,8 +8,8 @@ import net.gendevo.stardewarmory.StardewArmory;
 import net.gendevo.stardewarmory.data.recipes.GalaxyForgeRecipe;
 import net.gendevo.stardewarmory.setup.ModRecipeTypes;
 import net.minecraft.client.Minecraft;
-import net.minecraft.item.crafting.RecipeManager;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.crafting.RecipeManager;
 
 import java.util.Objects;
 import java.util.stream.Collectors;

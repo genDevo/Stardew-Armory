@@ -4,8 +4,8 @@ import net.gendevo.stardewarmory.StardewArmory;
 import net.gendevo.stardewarmory.items.rings.*;
 import net.gendevo.stardewarmory.items.tools.*;
 import net.gendevo.stardewarmory.items.weapons.*;
-import net.minecraft.item.*;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraft.world.item.*;
+import net.minecraftforge.fmllegacy.RegistryObject;
 
 public class ModItems {
     // Materials
@@ -148,25 +148,25 @@ public class ModItems {
 
     // "Unobtainable" Weapons
     public static final RegistryObject<SwordItem> ALEX_BAT = Registration.ITEMS.register("alex_bat", () ->
-            new UnobtainableSword(ItemTier.WOOD, 1, -1f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW), "alex"));
+            new UnobtainableSword(Tiers.WOOD, 1, -1f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW), "alex"));
     public static final RegistryObject<SwordItem> SAM_GUITAR = Registration.ITEMS.register("sam_guitar", () ->
-            new UnobtainableSword(ItemTier.WOOD, 1, -1f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW), "sam"));
+            new UnobtainableSword(Tiers.WOOD, 1, -1f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW), "sam"));
     public static final RegistryObject<SwordItem> HARVEY_MALLET = Registration.ITEMS.register("harvey_mallet", () ->
-            new UnobtainableSword(ItemTier.WOOD, 1, -1f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW), "harvey"));
+            new UnobtainableSword(Tiers.WOOD, 1, -1f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW), "harvey"));
     public static final RegistryObject<SwordItem> MARU_WRENCH = Registration.ITEMS.register("maru_wrench", () ->
-            new UnobtainableSword(ItemTier.WOOD, 1, -1f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW), "maru"));
+            new UnobtainableSword(Tiers.WOOD, 1, -1f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW), "maru"));
     public static final RegistryObject<SwordItem> PENNY_FRYER = Registration.ITEMS.register("penny_fryer", () ->
-            new UnobtainableSword(ItemTier.WOOD, 1, -1f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW), "penny"));
+            new UnobtainableSword(Tiers.WOOD, 1, -1f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW), "penny"));
     public static final RegistryObject<SwordItem> SEB_MACE = Registration.ITEMS.register("seb_mace", () ->
-            new UnobtainableSword(ItemTier.WOOD, 1, -1f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW), "seb"));
+            new UnobtainableSword(Tiers.WOOD, 1, -1f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW), "seb"));
     public static final RegistryObject<SwordItem> HALEY_IRON = Registration.ITEMS.register("haley_iron", () ->
-            new UnobtainableSword(ItemTier.WOOD, 1, -1f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW), "haley"));
+            new UnobtainableSword(Tiers.WOOD, 1, -1f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW), "haley"));
     public static final RegistryObject<SwordItem> ABBY_PLANCHETTE = Registration.ITEMS.register("abby_planchette", () ->
-            new UnobtainableSword(ItemTier.WOOD, 1, -1f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW), "abby"));
+            new UnobtainableSword(Tiers.WOOD, 1, -1f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW), "abby"));
     public static final RegistryObject<SwordItem> ELLIOT_PENCIL = Registration.ITEMS.register("elliot_pencil", () ->
-            new UnobtainableSword(ItemTier.WOOD, 1, -1f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW), "elliot"));
+            new UnobtainableSword(Tiers.WOOD, 1, -1f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW), "elliot"));
     public static final RegistryObject<SwordItem> LEAH_WHITTLER = Registration.ITEMS.register("leah_whittler", () ->
-            new UnobtainableSword(ItemTier.WOOD, 1, -1f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW), "leah"));
+            new UnobtainableSword(Tiers.WOOD, 1, -1f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW), "leah"));
 
     // Tools
     public static final RegistryObject<PickaxeItem> IRIDIUM_PICKAXE = Registration.ITEMS.register("iridium_pickaxe", () ->

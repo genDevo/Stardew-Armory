@@ -1,26 +1,23 @@
 package net.gendevo.stardewarmory.blocks;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorldReader;
-import net.minecraftforge.common.ToolType;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Material;
 
 public class IridiumOre extends Block {
     public IridiumOre() {
         super(Block.Properties.of(Material.STONE)
                 .lightLevel((p_235470_0_) -> 6)
-                .harvestTool(ToolType.PICKAXE)
                 .strength(3.5F, 4)
-                .harvestLevel(3)
                 .requiresCorrectToolForDrops()
                 .sound(SoundType.STONE));
     }
 
     @Override
-    public int getExpDrop(BlockState state, IWorldReader world, BlockPos pos, int fortune, int silktouch) {
-        return 10 + (fortune*3);
+    public int getExpDrop(BlockState state, LevelReader world, BlockPos pos, int fortune, int silktouch) {
+        return 10 + (fortune * 3);
     }
 }

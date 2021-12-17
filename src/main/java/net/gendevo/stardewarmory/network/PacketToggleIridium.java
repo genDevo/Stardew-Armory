@@ -1,15 +1,13 @@
 package net.gendevo.stardewarmory.network;
 
-import net.gendevo.stardewarmory.data.capabilities.IridiumCapabilityManager;
+import net.gendevo.stardewarmory.data.capabilities.CapabilityIridiumMode;
 import net.gendevo.stardewarmory.setup.ModSoundEvents;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.particles.BasicParticleType;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.network.NetworkEvent;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.fmllegacy.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
@@ -20,30 +18,30 @@ public class PacketToggleIridium {
         this.key = key;
     }
 
-    public static void encode(PacketToggleIridium message, PacketBuffer buffer) {
+    public static void encode(PacketToggleIridium message, FriendlyByteBuf buffer) {
         buffer.writeInt(message.key);
     }
 
-    public static PacketToggleIridium decode(PacketBuffer buffer) {
+    public static PacketToggleIridium decode(FriendlyByteBuf buffer) {
         return new PacketToggleIridium(buffer.readInt());
     }
 
     public static void handle(PacketToggleIridium message, Supplier<NetworkEvent.Context> contextSupplier) {
         NetworkEvent.Context context = contextSupplier.get();
         context.enqueueWork(() -> {
-            ServerPlayerEntity player = context.getSender();
+            ServerPlayer player = context.getSender();
             // Sets tool to on
-            player.getMainHandItem().getCapability(IridiumCapabilityManager.IRIDIUM_CAPABILITY).ifPresent(h -> h.setIridiumMode(!h.isIridiumMode()));
+            player.getMainHandItem().getCapability(CapabilityIridiumMode.IRIDIUM_CAPABILITY).ifPresent(h -> h.setIridiumMode(!h.isIridiumMode()));
 
-            World world = player.getLevel();
+            Level world = player.getLevel();
             // Plays sound for mode on/off
-            player.getMainHandItem().getCapability(IridiumCapabilityManager.IRIDIUM_CAPABILITY).ifPresent(h -> {
+            player.getMainHandItem().getCapability(CapabilityIridiumMode.IRIDIUM_CAPABILITY).ifPresent(h -> {
                 if (h.isIridiumMode()) {
-                    world.playSound(null, player.xo, player.yo + 0.8, player.zo, ModSoundEvents.TOGGLE_ON_SOUND.get(), SoundCategory.PLAYERS, 0.8f, 1f);
-                    player.swing(Hand.MAIN_HAND, true);
+                    world.playSound(null, player.xo, player.yo + 0.8, player.zo, ModSoundEvents.TOGGLE_ON_SOUND.get(), SoundSource.PLAYERS, 0.8f, 1f);
+                    player.swing(InteractionHand.MAIN_HAND, true);
                 } else {
-                    world.playSound(null, player.xo, player.yo + 0.8, player.zo, ModSoundEvents.TOGGLE_OFF_SOUND.get(), SoundCategory.PLAYERS, 0.8f, 1f);
-                    player.swing(Hand.MAIN_HAND, true);
+                    world.playSound(null, player.xo, player.yo + 0.8, player.zo, ModSoundEvents.TOGGLE_OFF_SOUND.get(), SoundSource.PLAYERS, 0.8f, 1f);
+                    player.swing(InteractionHand.MAIN_HAND, true);
                 }
             });
         });

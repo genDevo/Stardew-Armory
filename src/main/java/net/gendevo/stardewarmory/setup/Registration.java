@@ -1,9 +1,9 @@
 package net.gendevo.stardewarmory.setup;
 
 import net.gendevo.stardewarmory.StardewArmory;
-import net.minecraft.block.Block;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.item.Item;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -21,11 +21,10 @@ public class Registration {
         ModItems.register();
         ModBlocks.register();
         ModEnchants.register();
-        ModTileEntities.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
         ModRecipeTypes.register(modEventBus);
         ModContainers.register(modEventBus);
         ModSoundEvents.register(modEventBus);
         ModEntityTypes.ENTITY_TYPES.register(modEventBus);
-        ModStructures.STRUCTURES.register(modEventBus);
     }
 }

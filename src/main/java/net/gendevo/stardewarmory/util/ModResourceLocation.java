@@ -1,7 +1,7 @@
 package net.gendevo.stardewarmory.util;
 
 import net.gendevo.stardewarmory.StardewArmory;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 
 public class ModResourceLocation extends ResourceLocation {
     public ModResourceLocation(String resourceName) {

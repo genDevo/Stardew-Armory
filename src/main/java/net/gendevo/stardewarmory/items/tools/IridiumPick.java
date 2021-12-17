@@ -1,17 +1,16 @@
 package net.gendevo.stardewarmory.items.tools;
 
-import net.gendevo.stardewarmory.data.capabilities.IIridiumCapability;
-import net.gendevo.stardewarmory.data.capabilities.IridiumCapabilityManager;
+import net.gendevo.stardewarmory.data.capabilities.CapabilityIridiumMode;
+import net.gendevo.stardewarmory.data.capabilities.IIridiumMode;
 import net.gendevo.stardewarmory.util.KeybindSetup;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.PickaxeItem;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -21,46 +20,47 @@ import java.util.Objects;
 
 public class IridiumPick extends PickaxeItem {
 
-    public IridiumPick(IItemTier p_i48478_1_, int p_i48478_2_, float p_i48478_3_, Properties p_i48478_4_) {
+    public IridiumPick(Tier p_i48478_1_, int p_i48478_2_, float p_i48478_3_, Properties p_i48478_4_) {
         super(p_i48478_1_, p_i48478_2_, p_i48478_3_, p_i48478_4_);
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
+    public void appendHoverText(ItemStack stack, @Nullable net.minecraft.world.level.Level world, List<Component> tooltip, TooltipFlag flag) {
         super.appendHoverText(stack, world, tooltip, flag);
         //stack.getCapability(IridiumCapabilityManager.IRIDIUM_CAPABILITY).ifPresent(h -> {
         //    if (h.isIridiumMode() ) {
-        //        tooltip.add(new TranslationTextComponent("tooltip.stardewarmory.iridium_pick_on"));
+        //        tooltip.add(new TranslatableComponent("tooltip.stardewarmory.iridium_pick_on"));
         //    } else {
-        //        tooltip.add(new TranslationTextComponent("tooltip.stardewarmory.iridium_pick_off"));
+        //        tooltip.add(new TranslatableComponent("tooltip.stardewarmory.iridium_pick_off"));
         //    }
         //});
         if (!Objects.isNull(world)) {
-            tooltip.add(new StringTextComponent(new TranslationTextComponent("tooltip.stardewarmory.press").getString() +
+            tooltip.add(new TextComponent(new TranslatableComponent("tooltip.stardewarmory.press").getString() +
                     KeybindSetup.iridiumKey.getKey().getName().replaceAll("key.keyboard.", "").toUpperCase() +
-                    new TranslationTextComponent("tooltip.stardewarmory.toggle").getString()));
+                    new TranslatableComponent("tooltip.stardewarmory.toggle").getString()));
         }
     }
 
     @Nullable
     @Override
-    public CompoundNBT getShareTag(ItemStack stack) {
-        CompoundNBT nbt = stack.getOrCreateTag();
-        IIridiumCapability cap = stack.getCapability(IridiumCapabilityManager.IRIDIUM_CAPABILITY).orElseThrow(() -> new IllegalArgumentException("Thing was empty, oh no!"));
+    public CompoundTag getShareTag(ItemStack stack) {
+        CompoundTag tag = stack.getOrCreateTag();
+        IIridiumMode cap = stack.getCapability(CapabilityIridiumMode.IRIDIUM_CAPABILITY).orElseThrow(() -> new IllegalArgumentException("Thing was empty, oh no!"));
 
-        nbt.putBoolean("SAnfo", cap.isIridiumMode());
+        tag.putBoolean("SAnfo", cap.isIridiumMode());
         System.out.println(cap.isIridiumMode());
-        return nbt;
+        return tag;
     }
 
     @Override
-    public void readShareTag(ItemStack stack, @Nullable CompoundNBT nbt) {
-        super.readShareTag(stack, nbt);
+    public void readShareTag(ItemStack stack, @Nullable CompoundTag tag) {
+        super.readShareTag(stack, tag);
 
-        if (nbt != null) {
-            IIridiumCapability cap = stack.getCapability(IridiumCapabilityManager.IRIDIUM_CAPABILITY, null).orElseThrow(() -> new IllegalArgumentException("Thing was empty, oh no!"));
-            cap.setIridiumMode(nbt.getBoolean("SAnfo"));
+        if (tag != null) {
+            IIridiumMode cap = stack.getCapability(CapabilityIridiumMode.IRIDIUM_CAPABILITY, null).orElseThrow(() ->
+                    new IllegalArgumentException("Thing was empty, oh no!"));
+            cap.setIridiumMode(tag.getBoolean("SAnfo"));
             System.out.println(cap.isIridiumMode());
         }
     }

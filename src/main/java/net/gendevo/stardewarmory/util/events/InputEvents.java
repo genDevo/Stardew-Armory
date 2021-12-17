@@ -5,7 +5,6 @@ import net.gendevo.stardewarmory.network.ModNetwork;
 import net.gendevo.stardewarmory.network.PacketToggleIridium;
 import net.gendevo.stardewarmory.util.KeybindSetup;
 import net.minecraft.client.Minecraft;
-import net.minecraft.particles.ParticleTypes;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

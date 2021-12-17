@@ -9,8 +9,9 @@ import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.gendevo.stardewarmory.StardewArmory;
 import net.gendevo.stardewarmory.data.recipes.GalaxyForgeRecipe;
 import net.gendevo.stardewarmory.setup.ModBlocks;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
 
 public class GalaxyForgeRecipeCategory implements IRecipeCategory<GalaxyForgeRecipe> {
     public static final ResourceLocation UID = new ResourceLocation(StardewArmory.MOD_ID, "galaxy_forge");
@@ -35,8 +36,8 @@ public class GalaxyForgeRecipeCategory implements IRecipeCategory<GalaxyForgeRec
     }
 
     @Override
-    public String getTitle() {
-        return ModBlocks.GALAXY_FORGE.get().getName().getString();
+    public Component getTitle() {
+        return ModBlocks.GALAXY_FORGE.get().getName();
     }
 
     @Override

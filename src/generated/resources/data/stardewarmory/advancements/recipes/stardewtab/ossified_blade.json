@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "stardewarmory:prehistoric_scapula"
+            "items": [
+              "stardewarmory:prehistoric_scapula"
+            ]
           }
         ]
       }

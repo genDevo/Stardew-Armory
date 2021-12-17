@@ -1,14 +1,18 @@
 package net.gendevo.stardewarmory.data.loot;
 
-import net.gendevo.stardewarmory.util.events.LootInjector;
 import net.gendevo.stardewarmory.setup.ModItems;
-import net.minecraft.data.loot.FishingLootTables;
-import net.minecraft.loot.*;
-import net.minecraft.util.ResourceLocation;
+import net.gendevo.stardewarmory.util.events.LootInjector;
+import net.minecraft.data.loot.FishingLoot;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.EmptyLootItem;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 
 import java.util.function.BiConsumer;
 
-public class ModFishingLootTables extends FishingLootTables {
+public class ModFishingLootTables extends FishingLoot {
     @Override
     public void accept(BiConsumer<ResourceLocation, LootTable.Builder> consumer) {
         consumer.accept(LootInjector.Tables.FISHING_TREASURE, addTreasureDrops());
@@ -18,17 +22,17 @@ public class ModFishingLootTables extends FishingLootTables {
     private static LootTable.Builder addTreasureDrops() {
         return new LootTable.Builder()
                 .withPool(new LootPool.Builder()
-                        .setRolls(ConstantRange.exactly(1))
-                        .add(ItemLootEntry.lootTableItem(ModItems.PIRATES_SWORD.get())
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.PIRATES_SWORD.get())
                                 .setWeight(2)
                         )
-                        .add(ItemLootEntry.lootTableItem(ModItems.NEPTUNES_GLAIVE.get())
+                        .add(LootItem.lootTableItem(ModItems.NEPTUNES_GLAIVE.get())
                                 .setWeight(1)
                         )
-                        .add(ItemLootEntry.lootTableItem(ModItems.CRABSHELL_RING.get())
+                        .add(LootItem.lootTableItem(ModItems.CRABSHELL_RING.get())
                                 .setWeight(4)
                         )
-                        .add(EmptyLootEntry.emptyItem()
+                        .add(EmptyLootItem.emptyItem()
                                 .setWeight(10)
                         )
                 );
@@ -37,11 +41,11 @@ public class ModFishingLootTables extends FishingLootTables {
     private static LootTable.Builder addJunkDrops() {
         return new LootTable.Builder()
                 .withPool(new LootPool.Builder()
-                        .setRolls(ConstantRange.exactly(1))
-                        .add(ItemLootEntry.lootTableItem(ModItems.BROKEN_TRIDENT.get())
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.BROKEN_TRIDENT.get())
                                 .setWeight(1)
                         )
-                        .add(EmptyLootEntry.emptyItem()
+                        .add(EmptyLootItem.emptyItem()
                                 .setWeight(10)
                         )
                 );

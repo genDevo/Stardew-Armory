@@ -3,40 +3,40 @@ package net.gendevo.stardewarmory.conatiners;
 import net.gendevo.stardewarmory.setup.ModBlocks;
 import net.gendevo.stardewarmory.setup.ModContainers;
 import net.gendevo.stardewarmory.setup.ModItems;
-import net.gendevo.stardewarmory.tileentity.GalaxyForgeTile;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IWorldPosCallable;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.gendevo.stardewarmory.blockentity.GalaxyForgeBlockEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
-public class GalaxyForgeContainer extends Container {
-    private final GalaxyForgeTile tileEntity;
-    private final PlayerEntity playerEntity;
+public class GalaxyForgeContainer extends AbstractContainerMenu {
+    private final GalaxyForgeBlockEntity blockEntity;
+    private final Player playerEntity;
     private final IItemHandler playerInventory;
 
     public static final int SLOT_INPUT_MAIN = 0;
     public static final int SLOT_INPUT_ONTO = 1;
     public static final int SLOT_CINDER_SHARDS = 2;
 
-    public GalaxyForgeContainer(int windowId, World world, BlockPos pos,
-                                PlayerInventory playerInventory, PlayerEntity player) {
+    public GalaxyForgeContainer(int windowId, Level world, BlockPos pos,
+                                Inventory playerInventory, Player player) {
         super(ModContainers.GALAXY_FORGE_CONTAINER.get(), windowId);
-        this.tileEntity = (GalaxyForgeTile) world.getBlockEntity(pos);
+        this.blockEntity = (GalaxyForgeBlockEntity) world.getBlockEntity(pos);
         playerEntity = player;
         this.playerInventory = new InvWrapper(playerInventory);
 
         layoutPlayerInventorySlots(8, 86);
 
-        if (tileEntity != null) {
-            tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
+        if (blockEntity != null) {
+            blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
                 addSlot(new SlotItemHandler(h, SLOT_INPUT_MAIN, 42, 47));
                 addSlot(new SlotItemHandler(h, SLOT_INPUT_ONTO, 116, 47));
                 addSlot(new SlotItemHandler(h, SLOT_CINDER_SHARDS, 81, 19));
@@ -45,14 +45,14 @@ public class GalaxyForgeContainer extends Container {
     }
 
     public boolean hasCinderShards() {
-        return this.tileEntity.itemHandler.getStackInSlot(2).getCount() == 60
-                && this.tileEntity.itemHandler.getStackInSlot(2).getItem() == ModItems.CINDER_SHARD.get();
+        return this.blockEntity.itemHandler.getStackInSlot(2).getCount() == 60
+                && this.blockEntity.itemHandler.getStackInSlot(2).getItem() == ModItems.CINDER_SHARD.get();
     }
 
 
     @Override
-    public boolean stillValid(PlayerEntity playerIn) {
-        return stillValid(IWorldPosCallable.create(tileEntity.getLevel(), tileEntity.getBlockPos()),
+    public boolean stillValid(Player playerIn) {
+        return stillValid(ContainerLevelAccess.create(blockEntity.getLevel(), blockEntity.getBlockPos()),
                 playerIn, ModBlocks.GALAXY_FORGE.get());
     }
 
@@ -94,8 +94,10 @@ public class GalaxyForgeContainer extends Container {
     // THIS YOU HAVE TO DEFINE!
     private static final int TE_INVENTORY_SLOT_COUNT = 3;  // must match TileEntityInventoryBasic.NUMBER_OF_SLOTS
 
+
+
     @Override
-    public ItemStack quickMoveStack(PlayerEntity playerIn, int index) {
+    public ItemStack quickMoveStack(Player playerIn, int index) {
         Slot sourceSlot = slots.get(index);
         if (sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;  //EMPTY_ITEM
         ItemStack sourceStack = sourceSlot.getItem();

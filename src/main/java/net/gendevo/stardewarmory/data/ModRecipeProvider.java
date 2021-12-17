@@ -3,10 +3,11 @@ package net.gendevo.stardewarmory.data;
 import net.gendevo.stardewarmory.StardewArmory;
 import net.gendevo.stardewarmory.setup.ModBlocks;
 import net.gendevo.stardewarmory.setup.ModItems;
-import net.minecraft.data.*;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.data.DataGenerator;
+import net.minecraft.data.recipes.*;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.function.Consumer;
 
@@ -19,8 +20,10 @@ public class ModRecipeProvider extends RecipeProvider {
         return new ResourceLocation(StardewArmory.MOD_ID, path);
     }
 
+
+
     @Override
-    protected void buildShapelessRecipes(Consumer<IFinishedRecipe> consumer) {
+    protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
         // Crafting Recipes
         ShapelessRecipeBuilder.shapeless(ModItems.IRIDIUM_INGOT.get(), 9)
                 .requires(ModBlocks.IRIDIUM_BLOCK.get())
@@ -139,27 +142,28 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_item", has(ModItems.CINDER_SHARD.get()))
                 .save(consumer);
         //Cooking recipes
-        CookingRecipeBuilder.smelting(Ingredient.of(ModBlocks.IRIDIUM_ORE.get()), ModItems.IRIDIUM_INGOT.get(), 1.5f, 200)
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(ModBlocks.IRIDIUM_ORE.get()), ModItems.IRIDIUM_INGOT.get(), 1.5f, 200)
                 .unlockedBy("has_item", has(ModBlocks.IRIDIUM_ORE.get()))
                 .save(consumer, modId("iridium_ingot_smelting"));
-        CookingRecipeBuilder.blasting(Ingredient.of(ModBlocks.IRIDIUM_ORE.get()), ModItems.IRIDIUM_INGOT.get(), 1.5f, 100)
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(ModBlocks.IRIDIUM_ORE.get()), ModItems.IRIDIUM_INGOT.get(), 1.5f, 100)
                 .unlockedBy("has_item", has(ModBlocks.IRIDIUM_ORE.get()))
                 .save(consumer, modId("iridium_ingot_blasting"));
+        // TODO change these recipes to be galaxy forge recipes
         // Smithing recipes
-        SmithingRecipeBuilder.smithing(Ingredient.of(Items.STICK), Ingredient.of(Items.NETHERITE_INGOT), ModItems.REINFORCED_HANDLE.get())
-                .unlocks("has_item", has(Items.NETHERITE_INGOT))
-                .save(consumer, modId("reinforced_handle_smithing"));
-        SmithingRecipeBuilder.smithing(Ingredient.of(ModItems.CUTLASS.get()), Ingredient.of(ModItems.DRAGON_TOOTH.get()), ModItems.DRAGONTOOTH_CUTLASS.get())
-                .unlocks("has_item", has(ModItems.DRAGON_TOOTH.get()))
-                .save(consumer, modId("dragontooth_cutlass_smithing"));
-        SmithingRecipeBuilder.smithing(Ingredient.of(ModItems.PIRATES_SWORD.get()), Ingredient.of(ModItems.DRAGON_TOOTH.get()), ModItems.DRAGONTOOTH_CUTLASS.get())
-                .unlocks("has_item", has(ModItems.DRAGON_TOOTH.get()))
-                .save(consumer, modId("dragontooth_pirate_smithing"));
-        SmithingRecipeBuilder.smithing(Ingredient.of(ModItems.BURGLARS_SHANK.get()), Ingredient.of(ModItems.DRAGON_TOOTH.get()), ModItems.DRAGONTOOTH_SHIV.get())
-                .unlocks("has_item", has(ModItems.DRAGON_TOOTH.get()))
-                .save(consumer, modId("dragontooth_shiv_smithing"));
-        SmithingRecipeBuilder.smithing(Ingredient.of(ModItems.WOOD_CLUB.get()), Ingredient.of(ModItems.DRAGON_TOOTH.get()), ModItems.DRAGONTOOTH_CLUB.get())
-                .unlocks("has_item", has(ModItems.DRAGON_TOOTH.get()))
-                .save(consumer, modId("dragontooth_club_smithing"));
+//        SmithingRecipeBuilder.smithing(Ingredient.of(Items.STICK), Ingredient.of(Items.NETHERITE_INGOT), ModItems.REINFORCED_HANDLE.get())
+//                .unlocks("has_item", has(Items.NETHERITE_INGOT))
+//                .save(consumer, modId("reinforced_handle_smithing"));
+//        SmithingRecipeBuilder.smithing(Ingredient.of(ModItems.CUTLASS.get()), Ingredient.of(ModItems.DRAGON_TOOTH.get()), ModItems.DRAGONTOOTH_CUTLASS.get())
+//                .unlocks("has_item", has(ModItems.DRAGON_TOOTH.get()))
+//                .save(consumer, modId("dragontooth_cutlass_smithing"));
+//        SmithingRecipeBuilder.smithing(Ingredient.of(ModItems.PIRATES_SWORD.get()), Ingredient.of(ModItems.DRAGON_TOOTH.get()), ModItems.DRAGONTOOTH_CUTLASS.get())
+//                .unlocks("has_item", has(ModItems.DRAGON_TOOTH.get()))
+//                .save(consumer, modId("dragontooth_pirate_smithing"));
+//        SmithingRecipeBuilder.smithing(Ingredient.of(ModItems.BURGLARS_SHANK.get()), Ingredient.of(ModItems.DRAGON_TOOTH.get()), ModItems.DRAGONTOOTH_SHIV.get())
+//                .unlocks("has_item", has(ModItems.DRAGON_TOOTH.get()))
+//                .save(consumer, modId("dragontooth_shiv_smithing"));
+//        SmithingRecipeBuilder.smithing(Ingredient.of(ModItems.WOOD_CLUB.get()), Ingredient.of(ModItems.DRAGON_TOOTH.get()), ModItems.DRAGONTOOTH_CLUB.get())
+//                .unlocks("has_item", has(ModItems.DRAGON_TOOTH.get()))
+//                .save(consumer, modId("dragontooth_club_smithing"));
     }
 }

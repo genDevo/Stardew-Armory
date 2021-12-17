@@ -1,25 +1,21 @@
 package net.gendevo.stardewarmory.util;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.gendevo.stardewarmory.StardewArmory;
-import net.gendevo.stardewarmory.data.capabilities.IridiumCapabilityManager;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.IngameGui;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.gui.Gui;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = StardewArmory.MOD_ID, value = Dist.CLIENT)
-public class IridiumModeGui extends IngameGui {
+public class IridiumModeGui extends Gui {
 
     private final ResourceLocation iridium = new ResourceLocation(StardewArmory.MOD_ID, "textures/gui/iridium_on.png");
     private Minecraft mc;
 
-    public IridiumModeGui(Minecraft p_i46325_1_) {
-        super(p_i46325_1_);
-        mc = p_i46325_1_;
+    public IridiumModeGui(Minecraft mc) {
+        super(mc);
+        mc = mc;
     }
 
 //    @SubscribeEvent

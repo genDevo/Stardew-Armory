@@ -1,16 +1,15 @@
 package net.gendevo.stardewarmory.items.tools;
 
 
-import net.gendevo.stardewarmory.data.capabilities.IridiumCapabilityManager;
 import net.gendevo.stardewarmory.util.KeybindSetup;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ShovelItem;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ShovelItem;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -20,13 +19,13 @@ import java.util.Objects;
 
 public class IridiumShovel extends ShovelItem {
 
-    public IridiumShovel(IItemTier p_i48469_1_, float p_i48469_2_, float p_i48469_3_, Properties p_i48469_4_) {
+    public IridiumShovel(Tier p_i48469_1_, float p_i48469_2_, float p_i48469_3_, Properties p_i48469_4_) {
         super(p_i48469_1_, p_i48469_2_, p_i48469_3_, p_i48469_4_);
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
+    public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
         super.appendHoverText(stack, world, tooltip, flag);
         //stack.getCapability(IridiumCapabilityManager.IRIDIUM_CAPABILITY).ifPresent(h -> {
         //    if (h.isIridiumMode()) {
@@ -36,9 +35,9 @@ public class IridiumShovel extends ShovelItem {
         //    }
         //});
         if (!Objects.isNull(world)) {
-            tooltip.add(new StringTextComponent(new TranslationTextComponent("tooltip.stardewarmory.press").getString() +
+            tooltip.add(new TextComponent(new TranslatableComponent("tooltip.stardewarmory.press").getString() +
                     KeybindSetup.iridiumKey.getKey().getName().replaceAll("key.keyboard.", "").toUpperCase() +
-                    new TranslationTextComponent("tooltip.stardewarmory.toggle").getString()));
+                    new TranslatableComponent("tooltip.stardewarmory.toggle").getString()));
         }
     }
 

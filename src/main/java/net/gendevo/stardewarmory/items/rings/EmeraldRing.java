@@ -1,17 +1,15 @@
 package net.gendevo.stardewarmory.items.rings;
 
+import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.client.util.InputMappings;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.lwjgl.glfw.GLFW;
@@ -23,14 +21,14 @@ import java.util.List;
 
 public class EmeraldRing extends Item implements ICurioItem {
 
-    public EmeraldRing(Properties properties) {
+    public EmeraldRing(Item.Properties properties) {
         super(properties);
     }
 
     @Override
     public void curioTick(String identifier, int index, LivingEntity living, ItemStack stack) {
         if (living.tickCount % 40 == 0) {
-            living.addEffect(new EffectInstance(Effects.DAMAGE_BOOST, 80, 0, true, false));
+            living.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 80, 0, true, false));
         }
     }
 
@@ -41,12 +39,12 @@ public class EmeraldRing extends Item implements ICurioItem {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
-        super.appendHoverText(stack, world, tooltip, flag);
-        if (InputMappings.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), GLFW.GLFW_KEY_LEFT_SHIFT)) {
-            tooltip.add(new TranslationTextComponent("tooltip.stardewarmory.emerald_ring"));
+    public void appendHoverText(ItemStack pStack, @Nullable net.minecraft.world.level.Level pLevel, List<Component> tooltip, TooltipFlag pIsAdvanced) {
+        super.appendHoverText(pStack, pLevel, tooltip, pIsAdvanced);
+        if (InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), GLFW.GLFW_KEY_LEFT_SHIFT)) {
+            tooltip.add(new TranslatableComponent("tooltip.stardewarmory.emerald_ring"));
         } else {
-            tooltip.add(new TranslationTextComponent("tooltip.stardewarmory.hold_shift"));
+            tooltip.add(new TranslatableComponent("tooltip.stardewarmory.hold_shift"));
         }
     }
 

@@ -1,16 +1,15 @@
-package net.gendevo.stardewarmory.tileentity;
+package net.gendevo.stardewarmory.blockentity;
 
 import net.gendevo.stardewarmory.data.recipes.GalaxyForgeRecipe;
 import net.gendevo.stardewarmory.setup.ModItems;
 import net.gendevo.stardewarmory.setup.ModRecipeTypes;
-import net.gendevo.stardewarmory.setup.ModTileEntities;
-import net.minecraft.block.BlockState;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
+import net.gendevo.stardewarmory.setup.ModBlockEntities;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -21,27 +20,24 @@ import net.minecraftforge.items.ItemStackHandler;
 import javax.annotation.Nonnull;
 import java.util.Optional;
 
-public class GalaxyForgeTile extends TileEntity implements ITickableTileEntity {
+public class GalaxyForgeBlockEntity extends BlockEntity {
 
     public ItemStackHandler itemHandler = createHandler();
     private final LazyOptional<IItemHandler> inventory = LazyOptional.of(() -> itemHandler);
 
-    public GalaxyForgeTile(TileEntityType<?> tileEntityTypeIn) {
-        super(tileEntityTypeIn);
-    }
 
-    public GalaxyForgeTile() {
-        super(ModTileEntities.GALAXY_FORGE_TILE.get());
+    public GalaxyForgeBlockEntity(BlockPos pos, BlockState state) {
+        super(ModBlockEntities.GALAXY_FORGE.get(), pos, state);
     }
 
     @Override
-    public void load(BlockState state, CompoundNBT nbt) {
-        itemHandler.deserializeNBT(nbt.getCompound("inv"));
-        super.load(state, nbt);
+    public void load(CompoundTag pTag) {
+        itemHandler.deserializeNBT(pTag.getCompound("inv"));
+        super.load(pTag);
     }
 
     @Override
-    public CompoundNBT save(CompoundNBT compound) {
+    public CompoundTag save(CompoundTag compound) {
         compound.put("inv", itemHandler.serializeNBT());
         return super.save(compound);
     }
@@ -96,7 +92,7 @@ public class GalaxyForgeTile extends TileEntity implements ITickableTileEntity {
     //TODO do the Toole suggestion of different weapons on craft, also make shards part of recipe
 
     public void craft() {
-        Inventory inv = new Inventory(itemHandler.getSlots());
+        SimpleContainer inv = new SimpleContainer(itemHandler.getSlots());
         for (int i = 0; i < itemHandler.getSlots(); i++) {
             inv.setItem(i, itemHandler.getStackInSlot(i));
         }
@@ -119,7 +115,6 @@ public class GalaxyForgeTile extends TileEntity implements ITickableTileEntity {
         });
     }
 
-    @Override
     public void tick() {
         if (level.isClientSide()) return;
 

@@ -1,18 +1,20 @@
 package net.gendevo.stardewarmory.data.loot;
 
-import net.gendevo.stardewarmory.StardewArmory;
-import net.gendevo.stardewarmory.setup.ModEntityTypes;
-import net.gendevo.stardewarmory.util.events.LootInjector;
 import net.gendevo.stardewarmory.setup.ModItems;
-import net.minecraft.data.loot.EntityLootTables;
-import net.minecraft.loot.*;
-import net.minecraft.loot.conditions.KilledByPlayer;
-import net.minecraft.loot.conditions.RandomChanceWithLooting;
-import net.minecraft.util.ResourceLocation;
+import net.gendevo.stardewarmory.util.events.LootInjector;
+import net.minecraft.data.loot.EntityLoot;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.EmptyLootItem;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.predicates.LootItemKilledByPlayerCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceWithLootingCondition;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 
 import java.util.function.BiConsumer;
 
-public class ModEntityLootTables extends EntityLootTables {
+public class ModEntityLootTables extends EntityLoot {
     private static final int PRISMATIC_CHANCE = 800;
     @Override
     public void accept(BiConsumer<ResourceLocation, LootTable.Builder> consumer) {
@@ -32,12 +34,12 @@ public class ModEntityLootTables extends EntityLootTables {
     private static LootTable.Builder addPrismaticShard(int likelihood) {
         return new LootTable.Builder()
                 .withPool(new LootPool.Builder()
-                        .setRolls(ConstantRange.exactly(1))
-                        .add(EmptyLootEntry.emptyItem()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(EmptyLootItem.emptyItem()
                                 .setWeight(PRISMATIC_CHANCE/likelihood)
                         )
-                        .add(ItemLootEntry.lootTableItem(ModItems.PRISMATIC_SHARD.get())
-                                .when(KilledByPlayer.killedByPlayer())
+                        .add(LootItem.lootTableItem(ModItems.PRISMATIC_SHARD.get())
+                                .when(LootItemKilledByPlayerCondition.killedByPlayer())
                                 .setWeight(1)
                         )
                 );
@@ -46,22 +48,22 @@ public class ModEntityLootTables extends EntityLootTables {
     private static LootTable.Builder addSpiderDrops(float baseChance, float lootingBonus) {
         return new LootTable.Builder()
                 .withPool(new LootPool.Builder()
-                        .setRolls(ConstantRange.exactly(1))
-                        .add(EmptyLootEntry.emptyItem()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(EmptyLootItem.emptyItem()
                                 .setWeight(100)
                         )
-                        .add(ItemLootEntry.lootTableItem(ModItems.INSECT_HEAD.get())
+                        .add(LootItem.lootTableItem(ModItems.INSECT_HEAD.get())
                                 .setWeight(1)
-                                .when(KilledByPlayer.killedByPlayer())
-                                .when(RandomChanceWithLooting.randomChanceAndLootingBoost(baseChance, lootingBonus))
+                                .when(LootItemKilledByPlayerCondition.killedByPlayer())
+                                .when(LootItemRandomChanceWithLootingCondition.randomChanceAndLootingBoost(baseChance, lootingBonus))
                         )
                 ).withPool(new LootPool.Builder()
-                        .setRolls(ConstantRange.exactly(1))
-                        .add(EmptyLootEntry.emptyItem()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(EmptyLootItem.emptyItem()
                                 .setWeight(PRISMATIC_CHANCE)
                         )
-                        .add(ItemLootEntry.lootTableItem(ModItems.PRISMATIC_SHARD.get())
-                                .when(KilledByPlayer.killedByPlayer())
+                        .add(LootItem.lootTableItem(ModItems.PRISMATIC_SHARD.get())
+                                .when(LootItemKilledByPlayerCondition.killedByPlayer())
                                 .setWeight(1)
                         )
                 );
@@ -70,22 +72,22 @@ public class ModEntityLootTables extends EntityLootTables {
     private static LootTable.Builder addZombieDrops(float baseChance, float lootingBonus) {
         return new LootTable.Builder()
                 .withPool(new LootPool.Builder()
-                        .setRolls(ConstantRange.exactly(1))
-                        .add(ItemLootEntry.lootTableItem(ModItems.RUSTY_SWORD.get())
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.RUSTY_SWORD.get())
                                 .setWeight(1)
-                                .when(KilledByPlayer.killedByPlayer())
-                                .when(RandomChanceWithLooting.randomChanceAndLootingBoost(baseChance, lootingBonus))
+                                .when(LootItemKilledByPlayerCondition.killedByPlayer())
+                                .when(LootItemRandomChanceWithLootingCondition.randomChanceAndLootingBoost(baseChance, lootingBonus))
                         )
-                        .add(EmptyLootEntry.emptyItem()
+                        .add(EmptyLootItem.emptyItem()
                                 .setWeight(110)
                         )
                 ).withPool(new LootPool.Builder()
-                        .setRolls(ConstantRange.exactly(1))
-                        .add(EmptyLootEntry.emptyItem()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(EmptyLootItem.emptyItem()
                                 .setWeight(PRISMATIC_CHANCE)
                         )
-                        .add(ItemLootEntry.lootTableItem(ModItems.PRISMATIC_SHARD.get())
-                                .when(KilledByPlayer.killedByPlayer())
+                        .add(LootItem.lootTableItem(ModItems.PRISMATIC_SHARD.get())
+                                .when(LootItemKilledByPlayerCondition.killedByPlayer())
                                 .setWeight(1)
                         )
                 );
@@ -94,16 +96,16 @@ public class ModEntityLootTables extends EntityLootTables {
     private static LootTable.Builder addDragonDrops() {
         return new LootTable.Builder()
                 .withPool(new LootPool.Builder()
-                        .setRolls(ConstantRange.exactly(1))
-                        .add(ItemLootEntry.lootTableItem(ModItems.DRAGON_TOOTH.get())
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.DRAGON_TOOTH.get())
                         )
                 ).withPool(new LootPool.Builder()
-                        .setRolls(ConstantRange.exactly(1))
-                        .add(EmptyLootEntry.emptyItem()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(EmptyLootItem.emptyItem()
                                 .setWeight((int)(((float)PRISMATIC_CHANCE)/200))
                         )
-                        .add(ItemLootEntry.lootTableItem(ModItems.PRISMATIC_SHARD.get())
-                                .when(KilledByPlayer.killedByPlayer())
+                        .add(LootItem.lootTableItem(ModItems.PRISMATIC_SHARD.get())
+                                .when(LootItemKilledByPlayerCondition.killedByPlayer())
                                 .setWeight(1)
                         )
                 );
@@ -112,16 +114,16 @@ public class ModEntityLootTables extends EntityLootTables {
     private static LootTable.Builder addElderGuardianDrops() {
         return new LootTable.Builder()
                 .withPool(new LootPool.Builder()
-                        .setRolls(ConstantRange.exactly(1))
-                        .add(ItemLootEntry.lootTableItem(ModItems.NEPTUNES_GLAIVE.get())
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.NEPTUNES_GLAIVE.get())
                         )
                 ).withPool(new LootPool.Builder()
-                        .setRolls(ConstantRange.exactly(1))
-                        .add(EmptyLootEntry.emptyItem()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(EmptyLootItem.emptyItem()
                                 .setWeight((int)(((float)PRISMATIC_CHANCE)/5))
                         )
-                        .add(ItemLootEntry.lootTableItem(ModItems.PRISMATIC_SHARD.get())
-                                .when(KilledByPlayer.killedByPlayer())
+                        .add(LootItem.lootTableItem(ModItems.PRISMATIC_SHARD.get())
+                                .when(LootItemKilledByPlayerCondition.killedByPlayer())
                                 .setWeight(1)
                         )
                 );
@@ -130,26 +132,26 @@ public class ModEntityLootTables extends EntityLootTables {
     private static LootTable.Builder addSkeletonDrops() {
         return new LootTable.Builder()
                 .withPool(new LootPool.Builder()
-                        .setRolls(ConstantRange.exactly(1))
-                        .add(ItemLootEntry.lootTableItem(ModItems.BONE_SWORD.get())
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.BONE_SWORD.get())
                                 .setWeight(3)
                         )
-                        .add(ItemLootEntry.lootTableItem(ModItems.FEMUR.get())
+                        .add(LootItem.lootTableItem(ModItems.FEMUR.get())
                                 .setWeight(3)
                         )
-                        .add(ItemLootEntry.lootTableItem(ModItems.PREHISTORIC_SCAPULA.get())
+                        .add(LootItem.lootTableItem(ModItems.PREHISTORIC_SCAPULA.get())
                                 .setWeight(1)
                         )
-                        .add(EmptyLootEntry.emptyItem()
+                        .add(EmptyLootItem.emptyItem()
                                 .setWeight(75)
                         )
                 ).withPool(new LootPool.Builder()
-                        .setRolls(ConstantRange.exactly(1))
-                        .add(EmptyLootEntry.emptyItem()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(EmptyLootItem.emptyItem()
                                 .setWeight(PRISMATIC_CHANCE)
                         )
-                        .add(ItemLootEntry.lootTableItem(ModItems.PRISMATIC_SHARD.get())
-                                .when(KilledByPlayer.killedByPlayer())
+                        .add(LootItem.lootTableItem(ModItems.PRISMATIC_SHARD.get())
+                                .when(LootItemKilledByPlayerCondition.killedByPlayer())
                                 .setWeight(1)
                         )
                 );

@@ -1,83 +1,66 @@
 package net.gendevo.stardewarmory.entities.model;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.gendevo.stardewarmory.StardewArmory;
 import net.gendevo.stardewarmory.entities.GuildMasterEntity;
-import net.minecraft.client.renderer.entity.model.EntityModel;
-import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.*;
+import net.minecraft.resources.ResourceLocation;
 
-public class GuildMasterModel<T extends GuildMasterEntity> extends EntityModel<T> {
+public class GuildMasterModel extends EntityModel<GuildMasterEntity> {
 
-    private final ModelRenderer head;
-    //private final ModelRenderer nose;
-    private final ModelRenderer body;
-    private final ModelRenderer arms;
-    private final ModelRenderer leg0;
-    private final ModelRenderer leg1;
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(StardewArmory.MOD_ID, "guild_master"), "main");
+    private final ModelPart head;
+    private final ModelPart body;
+    private final ModelPart arms;
+    private final ModelPart leg0;
+    private final ModelPart leg1;
 
-    public GuildMasterModel() {
-        texWidth = 64;
-        texHeight = 64;
+    public GuildMasterModel(ModelPart root) {
+        this.head = root.getChild("head");
+        this.body = root.getChild("body");
+        this.arms = root.getChild("arms");
+        this.leg0 = root.getChild("leg0");
+        this.leg1 = root.getChild("leg1");
+    }
 
-        head = new ModelRenderer(this);
-        head.setPos(0.0F, 0.0F, 0.0F);
-        head.texOffs(0, 0).addBox(-4.0F, -10.0F, -4.0F, 8.0F, 10.0F, 8.0F, 0.0F, false);
+    public static LayerDefinition createBodyLayer() {
+        MeshDefinition meshdefinition = new MeshDefinition();
+        PartDefinition partdefinition = meshdefinition.getRoot();
 
-//        nose = new ModelRenderer(this);
-//        nose.setPos(0.0F, -2.0F, 0.0F);
-//        head.addChild(nose);
-//        nose.texOffs(24, 0).addBox(-1.0F, -1.0F, -6.0F, 2.0F, 4.0F, 2.0F, 0.0F, false);
+        PartDefinition head = partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -10.0F, -4.0F, 8.0F, 10.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-        body = new ModelRenderer(this);
-        body.setPos(0.0F, 24.0F, 0.0F);
-        body.texOffs(16, 20).addBox(-4.0F, -24.0F, -3.0F, 8.0F, 12.0F, 6.0F, 0.0F, false);
-        body.texOffs(0, 38).addBox(-4.0F, -24.0F, -3.0F, 8.0F, 18.0F, 6.0F, 0.5F, false);
+        PartDefinition nose = head.addOrReplaceChild("nose", CubeListBuilder.create().texOffs(24, 0).addBox(-1.0F, -1.0F, -6.0F, 2.0F, 4.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -2.0F, 0.0F));
 
-        arms = new ModelRenderer(this);
-        arms.setPos(0.0F, 2.0F, 0.0F);
-        setRotationAngle(arms, -0.6981F, 0.0F, 0.0F);
-        arms.texOffs(40, 38).addBox(-4.0F, 2.0F, -2.0F, 8.0F, 4.0F, 4.0F, 0.0F, false);
-        arms.texOffs(44, 22).addBox(-8.0F, -2.0F, -2.0F, 4.0F, 8.0F, 4.0F, 0.0F, false);
-        arms.texOffs(44, 22).addBox(4.0F, -2.0F, -2.0F, 4.0F, 8.0F, 4.0F, 0.0F, false);
+        PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(16, 20).addBox(-4.0F, -24.0F, -3.0F, 8.0F, 12.0F, 6.0F, new CubeDeformation(0.0F))
+                .texOffs(0, 38).addBox(-4.0F, -24.0F, -3.0F, 8.0F, 18.0F, 6.0F, new CubeDeformation(0.5F)), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-        leg0 = new ModelRenderer(this);
-        leg0.setPos(-2.0F, 12.0F, 0.0F);
-        leg0.texOffs(0, 22).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, 0.0F, false);
+        PartDefinition arms = partdefinition.addOrReplaceChild("arms", CubeListBuilder.create().texOffs(40, 38).addBox(-4.0F, 2.0F, -2.0F, 8.0F, 4.0F, 4.0F, new CubeDeformation(0.0F))
+                .texOffs(44, 22).addBox(-8.0F, -2.0F, -2.0F, 4.0F, 8.0F, 4.0F, new CubeDeformation(0.0F))
+                .texOffs(44, 22).addBox(4.0F, -2.0F, -2.0F, 4.0F, 8.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 2.0F, 0.0F, -0.6981F, 0.0F, 0.0F));
 
-        leg1 = new ModelRenderer(this);
-        leg1.setPos(2.0F, 12.0F, 0.0F);
-        leg1.texOffs(0, 22).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, 0.0F, false);
+        PartDefinition leg0 = partdefinition.addOrReplaceChild("leg0", CubeListBuilder.create().texOffs(0, 22).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(-2.0F, 12.0F, 0.0F));
+
+        PartDefinition leg1 = partdefinition.addOrReplaceChild("leg1", CubeListBuilder.create().texOffs(0, 22).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(2.0F, 12.0F, 0.0F));
+
+        return LayerDefinition.create(meshdefinition, 64, 64);
     }
 
     @Override
-    public void setupAnim(T p_225597_1_, float p_225597_2_, float p_225597_3_, float p_225597_4_, float p_225597_5_, float p_225597_6_) {
-        this.head.yRot = p_225597_5_ * ((float) Math.PI / 180F);
-        this.head.xRot = p_225597_6_ * ((float) Math.PI / 180F);
-        this.head.zRot = 0.0F;
-
-        this.arms.y = 3.0F;
-        this.arms.z = -1.0F;
-        this.arms.xRot = -0.75F;
-        this.leg0.xRot = MathHelper.cos(p_225597_2_ * 0.6662F) * 1.4F * p_225597_3_ * 0.5F;
-        this.leg1.xRot = MathHelper.cos(p_225597_2_ * 0.6662F + (float) Math.PI) * 1.4F * p_225597_3_ * 0.5F;
-        this.leg0.yRot = 0.0F;
-        this.leg1.yRot = 0.0F;
+    public void renderToBuffer(PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+        head.render(poseStack, buffer, packedLight, packedOverlay);
+        body.render(poseStack, buffer, packedLight, packedOverlay);
+        arms.render(poseStack, buffer, packedLight, packedOverlay);
+        leg0.render(poseStack, buffer, packedLight, packedOverlay);
+        leg1.render(poseStack, buffer, packedLight, packedOverlay);
     }
 
     @Override
-    public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-        head.render(matrixStack, buffer, packedLight, packedOverlay);
-        body.render(matrixStack, buffer, packedLight, packedOverlay);
-        arms.render(matrixStack, buffer, packedLight, packedOverlay);
-        leg0.render(matrixStack, buffer, packedLight, packedOverlay);
-        leg1.render(matrixStack, buffer, packedLight, packedOverlay);
-    }
+    public void setupAnim(GuildMasterEntity pEntity, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
 
-    public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-        modelRenderer.xRot = x;
-        modelRenderer.yRot = y;
-        modelRenderer.zRot = z;
     }
-
 }

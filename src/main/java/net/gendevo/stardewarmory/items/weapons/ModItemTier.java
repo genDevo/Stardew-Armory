@@ -1,14 +1,14 @@
 package net.gendevo.stardewarmory.items.weapons;
 
 import net.gendevo.stardewarmory.setup.ModItems;
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.Tags;
 
 import java.util.function.Supplier;
 
-public enum ModItemTier implements IItemTier {
+public enum ModItemTier implements Tier {
     //Daggers
     CARVING_KNIFE(3, 200, 9.0F, 1.0F, 15, () -> {
         return Ingredient.of(Tags.Items.NUGGETS_IRON);
