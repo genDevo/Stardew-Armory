@@ -8,7 +8,8 @@ import net.minecraftforge.fml.RegistryObject;
 
 public class ModEnchants {
 
-    public static final RegistryObject<Enchantment> LUCKY_HIT = Registration.ENCHANTMENTS.register("lucky_hit", () -> new CritEnchantment(Enchantment.Rarity.VERY_RARE, EnchantmentType.WEAPON, new EquipmentSlotType[] {EquipmentSlotType.MAINHAND}));
+    public static final RegistryObject<Enchantment> LUCKY_HIT = Registration.ENCHANTMENTS.register("lucky_hit", () ->
+            new CritEnchantment(Enchantment.Rarity.VERY_RARE, EnchantmentType.WEAPON, new EquipmentSlotType[] {EquipmentSlotType.MAINHAND}));
 
     static void register() {}
 }
