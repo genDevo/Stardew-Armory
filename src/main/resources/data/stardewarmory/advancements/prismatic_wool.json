@@ -1,0 +1,25 @@
+{
+  "display": {
+    "icon": {
+      "item": "stardewarmory:prismatic_wool"
+    },
+    "title": "jeb_",
+    "description": "Craft prismatic wool",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "parent": "stardewarmory:stardew_armory",
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "stardewarmory:prismatic_wool"
+          }
+        ]
+      }
+    }
+  }
+}

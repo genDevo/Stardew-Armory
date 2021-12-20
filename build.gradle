@@ -12,9 +12,9 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '1.1.1' // Also remember to change the mods.toml
+version = '1.16.5-1.1.2' // Also remember to change the mods.toml
 group = 'net.gendevo.stardewarmory' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'stardewarmory'
+archivesBaseName = 'StardewArmory'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(8) // Mojang ships Java 8 to end users, so your mod should target Java 8.
 
