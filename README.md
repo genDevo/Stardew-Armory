@@ -1,5 +1,5 @@
 
-![Stardew Armory Logo](https://github.com/genDevo/Stardew-Armory/blob/Josh_Markdown/images/safull.png)
+![Stardew Armory Logo](https://github.com/genDevo/Stardew-Armory/blob/1.16-SA/images/safull.png?raw=true)
 <br>
 Stardew Armory is currently a WIP mod that aims to implement many of the weapons and rings from Stardew Valley into minecraft.
 
