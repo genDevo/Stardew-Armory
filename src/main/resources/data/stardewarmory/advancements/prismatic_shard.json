@@ -13,15 +13,22 @@
   },
   "parent": "stardewarmory:galaxy_forge",
   "criteria": {
-    "requirement": {
+    "shard": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "stardewarmory:prismatic_shard"
+            "items": [
+              "stardewarmory:prismatic_shard"
+            ]
           }
         ]
       }
     }
-  }
+  },
+  "requirements": [
+    [
+      "shard"
+    ]
+  ]
 }

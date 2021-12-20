@@ -18,21 +18,32 @@
   },
   "parent": "stardewarmory:infinity_weapon",
   "criteria": {
-    "requirement": {
+    "blade": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "stardewarmory:infinity_blade"
+            "items": [
+              "stardewarmory:infinity_blade"
+            ]
           },
           {
-            "item": "stardewarmory:infinity_gavel"
+            "items": [
+              "stardewarmory:infinity_gavel"
+            ]
           },
           {
-            "item": "stardewarmory:infinity_dagger"
+            "items": [
+              "stardewarmory:infinity_dagger"
+            ]
           }
         ]
       }
     }
-  }
+  },
+  "requirements": [
+    [
+      "blade"
+    ]
+  ]
 }

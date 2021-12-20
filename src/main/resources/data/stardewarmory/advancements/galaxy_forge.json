@@ -13,15 +13,22 @@
   },
   "parent": "stardewarmory:stardew_armory",
   "criteria": {
-    "requirement": {
+    "forge": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "stardewarmory:galaxy_forge"
+            "items": [
+              "stardewarmory:galaxy_forge"
+            ]
           }
         ]
       }
     }
-  }
+  },
+  "requirements": [
+    [
+      "forge"
+    ]
+  ]
 }

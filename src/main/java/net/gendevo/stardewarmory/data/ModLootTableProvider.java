@@ -55,7 +55,8 @@ public class ModLootTableProvider extends LootTableProvider {
         @Override
         protected void addTables() {
             dropSelf(ModBlocks.IRIDIUM_BLOCK.get());
-            dropSelf(ModBlocks.IRIDIUM_ORE.get());
+            add(ModBlocks.IRIDIUM_ORE.get(), (iridium) -> createOreDrop(iridium,
+                    ModItems.RAW_IRIDIUM.get()).apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)));
             dropSelf(ModBlocks.GALAXY_FORGE.get());
             dropSelf(ModBlocks.PRISMATIC_WOOL.get());
             add(ModBlocks.CINDER_ORE.get(), (p_218464_0_) -> createOreDrop(p_218464_0_,

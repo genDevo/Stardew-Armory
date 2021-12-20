@@ -1,6 +1,8 @@
 package net.gendevo.stardewarmory.setup;
 
 import net.gendevo.stardewarmory.StardewArmory;
+import net.gendevo.stardewarmory.items.ModItemTier;
+import net.gendevo.stardewarmory.items.misc.RawIridium;
 import net.gendevo.stardewarmory.items.rings.*;
 import net.gendevo.stardewarmory.items.tools.*;
 import net.gendevo.stardewarmory.items.weapons.*;
@@ -23,6 +25,8 @@ public class ModItems {
             new Item(new Item.Properties().tab(StardewArmory.TAB_STARDEW)));
     public static final RegistryObject<Item> CINDER_SHARD = Registration.ITEMS.register("cinder_shard", () ->
             new Item(new Item.Properties().tab(StardewArmory.TAB_STARDEW)));
+    public static final RegistryObject<Item> RAW_IRIDIUM = Registration.ITEMS.register("raw_iridium", () ->
+            new RawIridium(new Item.Properties().tab(StardewArmory.TAB_STARDEW)));
 
     //Rings
     public static final RegistryObject<Item> EMERALD_RING = Registration.ITEMS.register("emerald_ring", () ->
@@ -170,13 +174,13 @@ public class ModItems {
 
     // Tools
     public static final RegistryObject<PickaxeItem> IRIDIUM_PICKAXE = Registration.ITEMS.register("iridium_pickaxe", () ->
-            new IridiumPick(ModItemTier.IRIDIUM_PICKAXE, 4, -2.8f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
+            new IridiumPick(ModItemTier.IRIDIUM, 1, -2.8f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
     public static final RegistryObject<AxeItem> IRIDIUM_AXE = Registration.ITEMS.register("iridium_axe", () ->
-            new IridiumAxe(ModItemTier.IRIDIUM_AXE, 7, -3.0f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
+            new IridiumAxe(ModItemTier.IRIDIUM, 5, -3.0f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
     public static final RegistryObject<HoeItem> IRIDIUM_HOE = Registration.ITEMS.register("iridium_hoe", () ->
-            new IridiumHoe(ModItemTier.IRIDIUM_HOE, 0, -0f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
+            new IridiumHoe(ModItemTier.IRIDIUM, -5, -0f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
     public static final RegistryObject<ShovelItem> IRIDIUM_SHOVEL = Registration.ITEMS.register("iridium_shovel", () ->
-            new IridiumShovel(ModItemTier.IRIDIUM_SHOVEL, 0, -1.0f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
+            new IridiumShovel(ModItemTier.IRIDIUM, 1.5f, -3.0f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
 
     static void register(){}
 }

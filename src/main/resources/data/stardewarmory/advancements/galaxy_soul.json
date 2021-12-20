@@ -14,15 +14,22 @@
   },
   "parent": "stardewarmory:prismatic_shard",
   "criteria": {
-    "requirement": {
+    "soul": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "stardewarmory:galaxy_soul"
+            "items": [
+              "stardewarmory:galaxy_soul"
+            ]
           }
         ]
       }
     }
-  }
+  },
+  "requirements": [
+    [
+      "soul"
+    ]
+  ]
 }

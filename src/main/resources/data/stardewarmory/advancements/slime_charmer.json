@@ -11,15 +11,22 @@
   },
   "parent": "stardewarmory:stardew_armory",
   "criteria": {
-    "requirement": {
+    "slime": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "stardewarmory:slime_charmer_ring"
+            "items": [
+              "stardewarmory:slime_charmer_ring"
+            ]
           }
         ]
       }
     }
-  }
+  },
+  "requirements": [
+    [
+      "slime"
+    ]
+  ]
 }

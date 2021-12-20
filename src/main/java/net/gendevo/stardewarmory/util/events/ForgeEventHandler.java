@@ -235,7 +235,7 @@ public class ForgeEventHandler {
         Item cItem = event.getObject().getItem();
         if (cItem instanceof IridiumHoe || cItem instanceof IridiumShovel || cItem instanceof IridiumPick || cItem instanceof IridiumAxe) {
             IridiumModeProvider provider = new IridiumModeProvider();
-            event.addCapability(new ResourceLocation(StardewArmory.MOD_ID, "iridiumMode"), provider);
+            event.addCapability(new ResourceLocation(StardewArmory.MOD_ID, "iridium_mode"), provider);
             event.addListener(provider::invalidate);
         }
     }

@@ -22,5 +22,8 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         tag(Tags.Blocks.STORAGE_BLOCKS).addTag(ModTags.Blocks.STORAGE_BLOCKS_IRIDIUM);
         tag(Tags.Blocks.ORES).add(ModBlocks.CINDER_ORE.get());
         tag(BlockTags.WOOL).add(ModBlocks.PRISMATIC_WOOL.get());
+        tag(BlockTags.NEEDS_DIAMOND_TOOL).add(ModBlocks.IRIDIUM_ORE.get()).add(ModBlocks.IRIDIUM_BLOCK.get());
+        tag(Tags.Blocks.NEEDS_GOLD_TOOL).add(ModBlocks.CINDER_ORE.get());
+        tag(BlockTags.MINEABLE_WITH_PICKAXE).add(ModBlocks.IRIDIUM_ORE.get()).add(ModBlocks.IRIDIUM_BLOCK.get()).add(ModBlocks.CINDER_ORE.get());
     }
 }

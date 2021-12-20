@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "stardewarmory:raw_iridium"
+  },
+  "result": "stardewarmory:iridium_ingot",
+  "experience": 1.5,
+  "cookingtime": 200
+}

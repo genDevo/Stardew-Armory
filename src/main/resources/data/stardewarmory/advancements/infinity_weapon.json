@@ -19,7 +19,9 @@
       "conditions": {
         "items": [
           {
-            "item": "stardewarmory:infinity_blade"
+            "items": [
+              "stardewarmory:infinity_blade"
+            ]
           }
         ]
       }
@@ -29,7 +31,9 @@
       "conditions": {
         "items": [
           {
-            "item": "stardewarmory:infinity_gavel"
+            "items": [
+              "stardewarmory:infinity_gavel"
+            ]
           }
         ]
       }
@@ -39,7 +43,9 @@
       "conditions": {
         "items": [
           {
-            "item": "stardewarmory:infinity_dagger"
+            "items": [
+              "stardewarmory:infinity_dagger"
+            ]
           }
         ]
       }

@@ -28,6 +28,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         // Materials
         builder(itemGenerated, "prismatic_shard");
         builder(itemGenerated, "iridium_ingot");
+        builder(itemGenerated, "raw_iridium");
         builder(itemGenerated, "reinforced_handle");
         builder(itemGenerated, "dragon_tooth");
         builder(itemGenerated, "prehistoric_scapula");

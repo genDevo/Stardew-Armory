@@ -29,8 +29,8 @@ public class ModStructures {
     public static void setupStructures() {
         setupMapSpacingAndLand(
                 GUILD_BUILDING.get(),
-                new StructureFeatureConfiguration(10,
-                        5,
+                new StructureFeatureConfiguration(40,
+                        30,
                         1685156512),
                 true);
     }

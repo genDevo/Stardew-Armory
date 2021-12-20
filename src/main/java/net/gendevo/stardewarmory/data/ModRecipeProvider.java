@@ -144,26 +144,31 @@ public class ModRecipeProvider extends RecipeProvider {
         //Cooking recipes
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(ModBlocks.IRIDIUM_ORE.get()), ModItems.IRIDIUM_INGOT.get(), 1.5f, 200)
                 .unlockedBy("has_item", has(ModBlocks.IRIDIUM_ORE.get()))
-                .save(consumer, modId("iridium_ingot_smelting"));
+                .save(consumer, modId("iridium_ore_smelting"));
         SimpleCookingRecipeBuilder.blasting(Ingredient.of(ModBlocks.IRIDIUM_ORE.get()), ModItems.IRIDIUM_INGOT.get(), 1.5f, 100)
                 .unlockedBy("has_item", has(ModBlocks.IRIDIUM_ORE.get()))
-                .save(consumer, modId("iridium_ingot_blasting"));
-        // TODO change these recipes to be galaxy forge recipes
+                .save(consumer, modId("iridium_ore_blasting"));
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(ModItems.RAW_IRIDIUM.get()), ModItems.IRIDIUM_INGOT.get(), 1.5f, 200)
+                .unlockedBy("has_item", has(ModItems.RAW_IRIDIUM.get()))
+                .save(consumer, modId("raw_iridium_smelting"));
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(ModItems.RAW_IRIDIUM.get()), ModItems.IRIDIUM_INGOT.get(), 1.5f, 100)
+                .unlockedBy("has_item", has(ModItems.RAW_IRIDIUM.get()))
+                .save(consumer, modId("raw_iridium_blasting"));
         // Smithing recipes
-//        SmithingRecipeBuilder.smithing(Ingredient.of(Items.STICK), Ingredient.of(Items.NETHERITE_INGOT), ModItems.REINFORCED_HANDLE.get())
-//                .unlocks("has_item", has(Items.NETHERITE_INGOT))
-//                .save(consumer, modId("reinforced_handle_smithing"));
-//        SmithingRecipeBuilder.smithing(Ingredient.of(ModItems.CUTLASS.get()), Ingredient.of(ModItems.DRAGON_TOOTH.get()), ModItems.DRAGONTOOTH_CUTLASS.get())
-//                .unlocks("has_item", has(ModItems.DRAGON_TOOTH.get()))
-//                .save(consumer, modId("dragontooth_cutlass_smithing"));
-//        SmithingRecipeBuilder.smithing(Ingredient.of(ModItems.PIRATES_SWORD.get()), Ingredient.of(ModItems.DRAGON_TOOTH.get()), ModItems.DRAGONTOOTH_CUTLASS.get())
-//                .unlocks("has_item", has(ModItems.DRAGON_TOOTH.get()))
-//                .save(consumer, modId("dragontooth_pirate_smithing"));
-//        SmithingRecipeBuilder.smithing(Ingredient.of(ModItems.BURGLARS_SHANK.get()), Ingredient.of(ModItems.DRAGON_TOOTH.get()), ModItems.DRAGONTOOTH_SHIV.get())
-//                .unlocks("has_item", has(ModItems.DRAGON_TOOTH.get()))
-//                .save(consumer, modId("dragontooth_shiv_smithing"));
-//        SmithingRecipeBuilder.smithing(Ingredient.of(ModItems.WOOD_CLUB.get()), Ingredient.of(ModItems.DRAGON_TOOTH.get()), ModItems.DRAGONTOOTH_CLUB.get())
-//                .unlocks("has_item", has(ModItems.DRAGON_TOOTH.get()))
-//                .save(consumer, modId("dragontooth_club_smithing"));
+        UpgradeRecipeBuilder.smithing(Ingredient.of(Items.STICK), Ingredient.of(Items.NETHERITE_INGOT), ModItems.REINFORCED_HANDLE.get())
+                .unlocks("has_item", has(Items.NETHERITE_INGOT))
+                .save(consumer, modId("reinforced_handle_smithing"));
+        UpgradeRecipeBuilder.smithing(Ingredient.of(ModItems.CUTLASS.get()), Ingredient.of(ModItems.DRAGON_TOOTH.get()), ModItems.DRAGONTOOTH_CUTLASS.get())
+                .unlocks("has_item", has(ModItems.DRAGON_TOOTH.get()))
+                .save(consumer, modId("dragontooth_cutlass_smithing"));
+        UpgradeRecipeBuilder.smithing(Ingredient.of(ModItems.PIRATES_SWORD.get()), Ingredient.of(ModItems.DRAGON_TOOTH.get()), ModItems.DRAGONTOOTH_CUTLASS.get())
+                .unlocks("has_item", has(ModItems.DRAGON_TOOTH.get()))
+                .save(consumer, modId("dragontooth_pirate_smithing"));
+        UpgradeRecipeBuilder.smithing(Ingredient.of(ModItems.BURGLARS_SHANK.get()), Ingredient.of(ModItems.DRAGON_TOOTH.get()), ModItems.DRAGONTOOTH_SHIV.get())
+                .unlocks("has_item", has(ModItems.DRAGON_TOOTH.get()))
+                .save(consumer, modId("dragontooth_shiv_smithing"));
+        UpgradeRecipeBuilder.smithing(Ingredient.of(ModItems.WOOD_CLUB.get()), Ingredient.of(ModItems.DRAGON_TOOTH.get()), ModItems.DRAGONTOOTH_CLUB.get())
+                .unlocks("has_item", has(ModItems.DRAGON_TOOTH.get()))
+                .save(consumer, modId("dragontooth_club_smithing"));
     }
 }

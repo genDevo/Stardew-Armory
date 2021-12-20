@@ -19,7 +19,9 @@
       "conditions": {
         "items": [
           {
-            "item": "stardewarmory:galaxy_soul"
+            "items": [
+              "stardewarmory:galaxy_sword"
+            ]
           }
         ]
       }
@@ -29,7 +31,9 @@
       "conditions": {
         "items": [
           {
-            "item": "stardewarmory:galaxy_hammer"
+            "items": [
+              "stardewarmory:galaxy_hammer"
+            ]
           }
         ]
       }
@@ -39,7 +43,9 @@
       "conditions": {
         "items": [
           {
-            "item": "stardewarmory:galaxy_dagger"
+            "items": [
+              "stardewarmory:galaxy_dagger"
+            ]
           }
         ]
       }

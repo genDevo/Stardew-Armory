@@ -12,15 +12,22 @@
   },
   "parent": "stardewarmory:iridium_ingot",
   "criteria": {
-    "requirement": {
+    "iridium_hoe": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "stardewarmory:iridium_hoe"
+            "items": [
+              "stardewarmory:iridium_hoe"
+            ]
           }
         ]
       }
     }
-  }
+  },
+  "requirements": [
+    [
+      "iridium_hoe"
+    ]
+  ]
 }

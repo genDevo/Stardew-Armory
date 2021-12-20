@@ -1,11 +1,16 @@
-package net.gendevo.stardewarmory.items.weapons;
+package net.gendevo.stardewarmory.items;
 
+import net.gendevo.stardewarmory.StardewArmory;
 import net.gendevo.stardewarmory.setup.ModItems;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.Tiers;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.common.TierSortingRegistry;
 
+import java.util.List;
 import java.util.function.Supplier;
 
 public enum ModItemTier implements Tier {
@@ -153,18 +158,10 @@ public enum ModItemTier implements Tier {
     INFINITY_BLADE(3, 3000, 9.0F, 1.0F, 20, () -> {
         return Ingredient.of(ModItems.GALAXY_SOUL.get());
     }),
-    //Tools
-    IRIDIUM_PICKAXE(5, 3000, 15.0F, 3.0F, 19, () -> {
-        return Ingredient.of(ModItems.IRIDIUM_INGOT.get());
-    }),
-    IRIDIUM_AXE(5, 3000, 15.0F, 3.0F, 19, () -> {
-        return Ingredient.of(ModItems.IRIDIUM_INGOT.get());
-    }),
-    IRIDIUM_HOE(5, 3000, 15.0F, 1.0F, 19, () -> {
-        return Ingredient.of(ModItems.IRIDIUM_INGOT.get());
-    }),
-    IRIDIUM_SHOVEL(5, 3000, 15.0F, 3.0F, 19, () -> {
-        return Ingredient.of(ModItems.IRIDIUM_INGOT.get());
+
+    // Tools
+    IRIDIUM(5, 3000, 12.0F, 5.0F, 24, () -> {
+        return Ingredient.of(ModItems.GALAXY_SOUL.get());
     });
 
 
@@ -212,5 +209,9 @@ public enum ModItemTier implements Tier {
     @Override
     public Ingredient getRepairIngredient() {
         return this.repairMaterial.get();
+    }
+
+    public static void init() {
+        TierSortingRegistry.registerTier(IRIDIUM, new ResourceLocation(StardewArmory.MOD_ID, "iridium"), List.of(Tiers.NETHERITE), List.of());
     }
 }

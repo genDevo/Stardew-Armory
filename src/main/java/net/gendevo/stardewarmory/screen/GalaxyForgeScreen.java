@@ -5,6 +5,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.gendevo.stardewarmory.StardewArmory;
 import net.gendevo.stardewarmory.conatiners.GalaxyForgeContainer;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
@@ -29,10 +30,13 @@ public class GalaxyForgeScreen extends AbstractContainerScreen<GalaxyForgeContai
 
     @Override
     protected void renderBg(PoseStack pPoseStack, float pPartialTick, int pMouseX, int pMouseY) {
-        RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
-        this.minecraft.getTextureManager().bindForSetup(GUI);
+        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.setShaderTexture(0, GUI);
+
         int i = this.getGuiLeft();
         int j = this.getGuiTop();
+
         this.blit(pPoseStack, i, j, 0, 0, this.getXSize(), this.getYSize());
 
         if (this.container.hasCinderShards()) {

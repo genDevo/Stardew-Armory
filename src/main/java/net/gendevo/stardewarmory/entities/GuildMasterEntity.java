@@ -33,8 +33,8 @@ public class GuildMasterEntity extends PathfinderMob {
 
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(1, new TemptGoal(this, 1.1D, TEMPTATION_ITEM, false));
-        this.goalSelector.addGoal(0, new LookAtPlayerGoal(this, Player.class, 6.0F));
+        this.goalSelector.addGoal(0, new TemptGoal(this, 1.1D, TEMPTATION_ITEM, false));
+        this.goalSelector.addGoal(1, new LookAtPlayerGoal(this, Player.class, 6.0F));
     }
 
     @Override
