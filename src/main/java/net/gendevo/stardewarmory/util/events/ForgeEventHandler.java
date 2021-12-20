@@ -214,7 +214,7 @@ public class ForgeEventHandler {
 
                 // Warrior effect
                 if (isRingEquipped(player, ModItems.WARRIOR_RING.get())) {
-                    if (new Random().nextInt(StardewArmoryConfig.savage_rate.get()) == 1) {
+                    if (new Random().nextInt(StardewArmoryConfig.warrior_rate.get()) == 1) {
                         player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 60, 2));
                     }
                 }
