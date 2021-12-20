@@ -3,7 +3,7 @@
 <br>
 Stardew Armory is currently a WIP mod that aims to implement many of the weapons and rings from Stardew Valley into minecraft.
 
-###Spice up your exploration and gain greater power with Stardew Armory
+**Spice up your exploration and gain greater power with Stardew Armory**
 The main goal of this mod is to add many of the weapons and combat items from Stardew Valley into Minecraft. This currently includes all normally obtainable weapons<sub>1</sub>, iridium tools, rings, custom blocks, and more!
 
 **Credit for the items' art goes entirely to ConcernedApe and his game [Stardew Valley](https://www.stardewvalley.net/).** If you haven't played Stardew Valley I would highly recommend it :) Also big thanks to [Hasshbrowns](https://www.curseforge.com/members/hasshbrowns/projects) for having the idea to do this in the first place and basically co-authoring the mod.
@@ -20,7 +20,7 @@ If you have any idea for the mod or would like to help, please leave a comment o
 
 <sub>1</sub> All weapons may not be obtainable at current release.
 
-###Current TODO
+**<ins>Current TODO</ins>:**
 
 Polish galaxy forge stuff
 
