@@ -19,7 +19,7 @@ public class CinderOre extends OreBlock {
 
     @Override
     public int getExpDrop(BlockState state, LevelReader world, BlockPos pos, int fortune, int silktouch) {
-        return 4 + fortune;
+        return silktouch == 0 ? (4 + fortune) : 0;
     }
 
 }

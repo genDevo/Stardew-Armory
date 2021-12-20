@@ -22,7 +22,7 @@ public class ModTags {
 
     public static final class Items{
         public static final Tag.Named<Item> ORES_IRIDIUM = forge("ores/iridium");
-        public static final Tag.Named<Item> STORAGE_BLOCKS_PRISMATIC = forge("storage_blocks/iridium");
+        public static final Tag.Named<Item> STORAGE_BLOCKS_IRIDIUM = forge("storage_blocks/iridium");
         public static final Tag.Named<Item> ORES_CINDER = mod("ores/cinder");
 
         public static final Tag.Named<Item> INGOTS_IRIDIUM = forge("ingots/iridium");

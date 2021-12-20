@@ -201,7 +201,7 @@ public class ForgeEventHandler {
 
                 // Savage effect
                 if (isRingEquipped(player, ModItems.SAVAGE_RING.get())) {
-                    player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 50, 0));
+                    player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60, 0));
                 }
 
                 // Napalm effect
@@ -214,7 +214,7 @@ public class ForgeEventHandler {
 
                 // Warrior effect
                 if (isRingEquipped(player, ModItems.WARRIOR_RING.get())) {
-                    if (new Random().nextInt(20) == 1) {
+                    if (new Random().nextInt(StardewArmoryConfig.savage_rate.get()) == 1) {
                         player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 60, 2));
                     }
                 }

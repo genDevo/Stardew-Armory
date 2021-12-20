@@ -10,6 +10,7 @@
   "block.stardewarmory.galaxy_forge": "鍛造台",
   "item.stardewarmory.cinder_shard": "火山晶石",
   "item.stardewarmory.iridium_ingot": "銥錠",
+  "item.stardewarmory.raw_iridium": "粗銥",
   "item.stardewarmory.reinforced_handle": "強化手柄",
   "item.stardewarmory.iridium_pickaxe": "銥鎬",
   "item.stardewarmory.iridium_shovel": "銥鏟",
@@ -90,6 +91,8 @@
   "subtitle.stardewarmory.yoba_sound": "由巴的祝福",
   "subtitle.stardewarmory.toggle_on_sound": "效果開啟",
   "subtitle.stardewarmory.toggle_off_sound": "效果關閉",
+  "key.category.stardewarmory": "星露谷武器",
+  "key.stardewarmory.iridium_tool_mode_key": "切換銥星模式",
   "screen.stardewarmory.galaxy_forge": "鍛造",
   "tooltip.stardewarmory.hold_shift": "按 \u00A76SHIFT\u00A7r 查閱更多資訊",
   "tooltip.stardewarmory.iridium_axe_on": "伐木工模式 \u00A7a已啟用",
@@ -121,7 +124,5 @@
   "tooltip.stardewarmory.elliot": "艾利歐特用它來寫書。非常尖銳！",
   "tooltip.stardewarmory.leah": "莉亞用來削木的最愛工具",
   "tooltip.stardewarmory.press": "\u00A78按 \u00A7r",
-  "tooltip.stardewarmory.toggle": " \u00A78切換",
-  "key.category.stardewarmory": "星露谷武器",
-  "key.stardewarmory.iridium_tool_mode_key": "切換銥星模式"
+  "tooltip.stardewarmory.toggle": " \u00A78切換"
 }

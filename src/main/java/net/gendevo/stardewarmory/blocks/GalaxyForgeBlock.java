@@ -34,7 +34,7 @@ public class GalaxyForgeBlock extends HorizontalDirectionalBlock implements Enti
 
     public GalaxyForgeBlock() {
         super(Block.Properties.of(Material.STONE)
-                .strength(3, 10)
+                .strength(4, 10)
                 .requiresCorrectToolForDrops()
                 .sound(SoundType.METAL));
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
@@ -66,12 +66,12 @@ public class GalaxyForgeBlock extends HorizontalDirectionalBlock implements Enti
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos,
                                  Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if (!pLevel.isClientSide()) {
-            BlockEntity tileEntity = pLevel.getBlockEntity(pPos);
+            BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
 
-            if (tileEntity instanceof GalaxyForgeBlockEntity) {
+            if (blockEntity instanceof GalaxyForgeBlockEntity) {
                 MenuProvider containerProvider = createContainerProvider(pLevel, pPos);
 
-                NetworkHooks.openGui(((ServerPlayer) pPlayer), containerProvider, tileEntity.getBlockPos());
+                NetworkHooks.openGui(((ServerPlayer) pPlayer), containerProvider, blockEntity.getBlockPos());
             } else {
                 throw new IllegalStateException("Our Container provider is missing!");
             }

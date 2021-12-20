@@ -99,14 +99,16 @@ d8be646789ae718ae20a2717199bf10b1614cdf7 data/forge/tags/blocks/storage_blocks.j
 07f6296242bc40a825c01063bb78ac94e4eeb1f6 data/forge/tags/items/bones.json
 ca08214e083c124a657f6295f747001c58901bc4 data/forge/tags/items/ingots.json
 56886933bf5b40e92281f649276508cc78707465 data/forge/tags/items/ingots/iridium.json
-7dc393af9a37d35b498fd5372a034412df1a032b data/forge/tags/items/ores.json
+d2da9981bf39c9d898830cac81e4d1d5393b2ad3 data/forge/tags/items/ores.json
 f5f8fb57fbccb390b1be7abd355d43fc5218f205 data/forge/tags/items/ores/iridium.json
 c938a2437c7abb6f73084b8e6dc232cc5561fa6c data/forge/tags/items/rods.json
 729aa4cf7880e12bf82899574223d25908b403f6 data/forge/tags/items/rods/netherite.json
 d8be646789ae718ae20a2717199bf10b1614cdf7 data/forge/tags/items/storage_blocks.json
 4387e90b61625a64a0473388442bdf628fbccee8 data/forge/tags/items/storage_blocks/iridium.json
-3e34dbb0b36ce547fa0efd724fb98c682050ab1b data/minecraft/tags/blocks/mineable/pickaxe.json
+3489e5ff923b02fab958ca96de512a5fc29c4a07 data/minecraft/tags/blocks/mineable/pickaxe.json
 df554474332787f7a1c58f913a1f3a4c1b2a827c data/minecraft/tags/blocks/needs_diamond_tool.json
+f066e65d29f1f5076f3886b3249906ef85f0ecac data/minecraft/tags/blocks/needs_iron_tool.json
+4387e90b61625a64a0473388442bdf628fbccee8 data/minecraft/tags/blocks/wither_immune.json
 5c420e19bd55e9994f4b13ed59cdd7c85dafdf32 data/minecraft/tags/blocks/wool.json
 413dd76231df126c0d0344c55531e5483c055b36 data/stardewarmory/advancements/recipes/stardewtab/crystal_dagger.json
 3d9ecf673b9c0d9789ff7687401412f4ee179463 data/stardewarmory/advancements/recipes/stardewtab/dragontooth_club_smithing.json
@@ -197,3 +199,4 @@ a9d9e91c7f3a25faf42119dad9da93dab574ab14 data/stardewarmory/recipes/raw_iridium_
 0eeff6d58a84ac0683ca572101901c7aa929f19e data/stardewarmory/recipes/reinforced_handle_smithing.json
 fba43bdd1f7d4d9b0231d92aefb370debd77e61f data/stardewarmory/recipes/wood_mallet.json
 6abfcfdb694790ce51dc1282847db2ab517de58c data/stardewarmory/tags/items/bones/prehistoric_scapula.json
+74700d556ca80c7a1db5fd4efb09c3ddb26cad66 data/stardewarmory/tags/items/ores/cinder.json

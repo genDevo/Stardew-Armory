@@ -14,21 +14,6 @@ public class RawIridium extends Item {
     }
 
     @Override
-    public int getItemStackLimit(ItemStack stack) {
-        return 64;
-    }
-
-    @Override
-    public boolean isEnchantable(ItemStack pStack) {
-        return false;
-    }
-
-    @Override
-    public boolean isDamageable(ItemStack stack) {
-        return false;
-    }
-
-    @Override
     public void inventoryTick(ItemStack pStack, Level pLevel, Entity pEntity, int pSlotId, boolean pIsSelected) {
         super.inventoryTick(pStack, pLevel, pEntity, pSlotId, pIsSelected);
         if (pEntity.tickCount % 40 == 0) {

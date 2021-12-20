@@ -19,6 +19,6 @@ public class IridiumOre extends OreBlock {
 
     @Override
     public int getExpDrop(BlockState state, LevelReader world, BlockPos pos, int fortune, int silktouch) {
-        return 10 + (fortune * 3);
+        return silktouch == 0 ? (10 + (fortune * 3)) : 0;
     }
 }

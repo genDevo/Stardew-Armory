@@ -14,7 +14,7 @@ public class ModBlockEntities {
             DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, StardewArmory.MOD_ID);
 
     public static RegistryObject<BlockEntityType<?>> GALAXY_FORGE =
-            BLOCK_ENTITIES.register("galaxy_forge_tile", () -> BlockEntityType.Builder.of(
+            BLOCK_ENTITIES.register("galaxy_forge_entity", () -> BlockEntityType.Builder.of(
                     GalaxyForgeBlockEntity::new, ModBlocks.GALAXY_FORGE.get()).build(null));
 
     public static void register(IEventBus eventBus) {

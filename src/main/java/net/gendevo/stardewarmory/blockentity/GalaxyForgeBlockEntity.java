@@ -69,7 +69,6 @@ public class GalaxyForgeBlockEntity extends BlockEntity {
                 if(!isItemValid(slot, stack)) {
                     return stack;
                 }
-
                 return super.insertItem(slot, stack, simulate);
             }
         };
@@ -81,16 +80,10 @@ public class GalaxyForgeBlockEntity extends BlockEntity {
         if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             return inventory.cast();
         }
-
         return super.getCapability(cap);
     }
 
-    public final IItemHandlerModifiable getInventory() {
-        return this.itemHandler;
-    }
-
     //TODO do the Toole suggestion of different weapons on craft, also make shards part of recipe
-
     public void craft() {
         SimpleContainer inv = new SimpleContainer(itemHandler.getSlots());
         for (int i = 0; i < itemHandler.getSlots(); i++) {
@@ -116,7 +109,7 @@ public class GalaxyForgeBlockEntity extends BlockEntity {
     }
 
     public void tick() {
-        if (level.isClientSide()) return;
+        if (level.isClientSide()) { return; }
 
         craft();
     }
