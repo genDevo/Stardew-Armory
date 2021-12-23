@@ -1,4 +1,4 @@
-package net.gendevo.stardewarmory.blockentity;
+package net.gendevo.stardewarmory.blocks.entities;
 
 import net.gendevo.stardewarmory.data.recipes.GalaxyForgeRecipe;
 import net.gendevo.stardewarmory.setup.ModItems;
@@ -35,6 +35,8 @@ public class GalaxyForgeBlockEntity extends BlockEntity {
         itemHandler.deserializeNBT(pTag.getCompound("inv"));
         super.load(pTag);
     }
+
+
 
     @Override
     public void saveAdditional(CompoundTag compound) {

@@ -2,32 +2,30 @@ package net.gendevo.stardewarmory.data;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
+import net.gendevo.stardewarmory.data.loot.ModBlockLootTables;
 import net.gendevo.stardewarmory.data.loot.ModChestLootTables;
 import net.gendevo.stardewarmory.data.loot.ModEntityLootTables;
 import net.gendevo.stardewarmory.data.loot.ModFishingLootTables;
-import net.gendevo.stardewarmory.setup.ModBlocks;
 import net.gendevo.stardewarmory.setup.ModItems;
-import net.gendevo.stardewarmory.setup.Registration;
+import net.gendevo.stardewarmory.util.events.LootInjector;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.loot.BlockLoot;
+import net.minecraft.data.loot.GiftLoot;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.LootTables;
 import net.minecraft.world.level.storage.loot.ValidationContext;
-import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
-import net.minecraftforge.registries.RegistryObject;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 public class ModLootTableProvider extends LootTableProvider {
     public ModLootTableProvider(DataGenerator generator) {
@@ -40,7 +38,8 @@ public class ModLootTableProvider extends LootTableProvider {
                 Pair.of(ModBlockLootTables::new, LootContextParamSets.BLOCK),
                 Pair.of(ModEntityLootTables::new, LootContextParamSets.ENTITY),
                 Pair.of(ModChestLootTables::new, LootContextParamSets.CHEST),
-                Pair.of(ModFishingLootTables::new, LootContextParamSets.FISHING)
+                Pair.of(ModFishingLootTables::new, LootContextParamSets.FISHING),
+                Pair.of(ModHOTVLootTables::new, LootContextParamSets.GIFT)
         );
     }
 
@@ -49,27 +48,26 @@ public class ModLootTableProvider extends LootTableProvider {
         map.forEach((p_218436_2_, p_218436_3_) -> LootTables.validate(validationtracker, p_218436_2_, p_218436_3_));
     }
 
-    public static class ModBlockLootTables extends BlockLoot {
-        public ModBlockLootTables() {}
 
+    public static class ModHOTVLootTables extends GiftLoot {
         @Override
-        protected void addTables() {
-            dropSelf(ModBlocks.IRIDIUM_BLOCK.get());
-            add(ModBlocks.IRIDIUM_ORE.get(), (iridium) -> createOreDrop(iridium,
-                    ModItems.RAW_IRIDIUM.get()).apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)));
-            add(ModBlocks.DEEPSLATE_IRIDIUM_ORE.get(), (iridium) -> createOreDrop(iridium,
-                    ModItems.RAW_IRIDIUM.get()).apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)));
-            dropSelf(ModBlocks.GALAXY_FORGE.get());
-            dropSelf(ModBlocks.PRISMATIC_WOOL.get());
-            add(ModBlocks.CINDER_ORE.get(), (p_218464_0_) -> createOreDrop(p_218464_0_,
-                    ModItems.CINDER_SHARD.get()).apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE)));
+        public void accept(BiConsumer<ResourceLocation, LootTable.Builder> consumer) {
+            consumer.accept(LootInjector.Tables.HOTV_WEAPONSMITH, addSilverSaber());
         }
 
-        @Override
-        protected Iterable<Block> getKnownBlocks() {
-            return Registration.BLOCKS.getEntries().stream()
-                    .map(RegistryObject::get)
-                    .collect(Collectors.toList());
+        private static LootTable.Builder addSilverSaber() {
+            return new LootTable.Builder()
+                    .withPool(new LootPool.Builder()
+                            .setRolls(ConstantValue.exactly(1))
+                            .add(LootItem.lootTableItem(ModItems.SILVER_SABER.get())
+                                    .setWeight(1)
+                            )
+                    ).withPool(new LootPool.Builder()
+                            .setRolls(ConstantValue.exactly(1))
+                            .add(LootItem.lootTableItem(ModItems.CRABSHELL_RING.get())
+                                    .setWeight(1)
+                            )
+                    );
         }
     }
 }

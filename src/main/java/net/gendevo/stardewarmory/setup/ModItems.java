@@ -56,7 +56,7 @@ public class ModItems {
     public static final RegistryObject<SwordItem> DRAGONTOOTH_CUTLASS = Registration.ITEMS.register("dragontooth_cutlass", () ->
             new EnchantSword(ModItemTier.DRAGONTOOTH_CUTLASS, 9, -2.5f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
     public static final RegistryObject<SwordItem> SILVER_SABER = Registration.ITEMS.register("silver_saber", () ->
-            new EnchantSword(ModItemTier.SILVER_SABER, 78, -2.4f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
+            new EnchantSword(ModItemTier.SILVER_SABER, 7, -2.4f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
     public static final RegistryObject<SwordItem> RUSTY_SWORD = Registration.ITEMS.register("rusty_sword", () ->
             new SwordItem(ModItemTier.RUSTY_SWORD, 2, -2.2f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
     public static final RegistryObject<SwordItem> STEEL_SMALLSWORD = Registration.ITEMS.register("steel_smallsword", () ->

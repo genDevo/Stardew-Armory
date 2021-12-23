@@ -1,7 +1,7 @@
 package net.gendevo.stardewarmory.setup;
 
 import net.gendevo.stardewarmory.StardewArmory;
-import net.gendevo.stardewarmory.blockentity.GalaxyForgeBlockEntity;
+import net.gendevo.stardewarmory.blocks.entities.GalaxyForgeBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;

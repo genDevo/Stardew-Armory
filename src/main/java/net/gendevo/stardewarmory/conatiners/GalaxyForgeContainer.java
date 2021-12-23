@@ -3,7 +3,7 @@ package net.gendevo.stardewarmory.conatiners;
 import net.gendevo.stardewarmory.setup.ModBlocks;
 import net.gendevo.stardewarmory.setup.ModContainers;
 import net.gendevo.stardewarmory.setup.ModItems;
-import net.gendevo.stardewarmory.blockentity.GalaxyForgeBlockEntity;
+import net.gendevo.stardewarmory.blocks.entities.GalaxyForgeBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;

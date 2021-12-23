@@ -23,10 +23,9 @@ public class ModStructures {
     public static final DeferredRegister<StructureFeature<?>> DEFERRED_REGISTRY_STRUCTURE =
             DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, StardewArmory.MOD_ID);
 
+    // TODO make structure spawn with villager loot tables for the ones in the corner with hay
     public static final RegistryObject<StructureFeature<JigsawConfiguration>> GUILD_BUILDING =
             DEFERRED_REGISTRY_STRUCTURE.register("guild_building", () -> (new GuildBuildingStructure(JigsawConfiguration.CODEC)));
-
-
 
     public static void setupStructures() {
         setupMapSpacingAndLand(

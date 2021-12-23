@@ -40,7 +40,6 @@ public final class LootInjector {
         public static final ResourceLocation CHESTS_WOODLAND_MANSION = inject(new ResourceLocation("chests/woodland_mansion"));
         public static final ResourceLocation CHESTS_BURIED_TREASURE = inject(new ResourceLocation("chests/buried_treasure"));
 
-
         public static final ResourceLocation PIGLIN_BARTER = inject(new ResourceLocation("gameplay/piglin_bartering"));
 
         public static final ResourceLocation FISHING_TREASURE = inject(new ResourceLocation("gameplay/fishing/treasure"));
@@ -57,6 +56,8 @@ public final class LootInjector {
         public static final ResourceLocation ENTITIES_GUARDIAN = inject(new ResourceLocation("entities/guardian"));
         public static final ResourceLocation ENTITIES_ELDER_GUARDIAN = inject(new ResourceLocation("entities/elder_guardian"));
         public static final ResourceLocation ENTITIES_WITHER = inject(new ResourceLocation("entities/wither"));
+
+        public static final ResourceLocation HOTV_WEAPONSMITH = inject(new ResourceLocation("gameplay/hero_of_the_village/weaponsmith_gift"));
 
         private Tables() {}
 

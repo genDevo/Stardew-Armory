@@ -101,7 +101,7 @@ public enum ModItemTier implements Tier {
     PIRATES_SWORD(3, 150, 9.0F, 1.5F, 12, () -> {
         return Ingredient.of(Tags.Items.INGOTS_IRON);
     }),
-    SILVER_SABER(3, 8000, 9.0F, 1.0F, 30, () -> {
+    SILVER_SABER(3, 300, 9.0F, 1.0F, 14, () -> {
         return Ingredient.of(Tags.Items.INGOTS_IRON);
     }),
     CUTLASS(3, 150, 9.0F, 1.0F, 12, () -> {
@@ -160,7 +160,7 @@ public enum ModItemTier implements Tier {
     }),
 
     // Tools
-    IRIDIUM(5, 3000, 12.0F, 5.0F, 24, () -> {
+    IRIDIUM(5, 3000, 13.0F, 5.0F, 24, () -> {
         return Ingredient.of(ModItems.GALAXY_SOUL.get());
     });
 

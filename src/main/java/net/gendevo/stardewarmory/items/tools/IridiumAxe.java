@@ -1,5 +1,6 @@
 package net.gendevo.stardewarmory.items.tools;
 
+import net.gendevo.stardewarmory.data.capabilities.IridiumModeCapability;
 import net.gendevo.stardewarmory.util.KeybindSetup;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
@@ -26,13 +27,13 @@ public class IridiumAxe extends AxeItem {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
         super.appendHoverText(stack, world, tooltip, flag);
-        //stack.getCapability(IridiumCapabilityManager.IRIDIUM_CAPABILITY).ifPresent(h -> {
-        //    if (h.isIridiumMode()) {
-        //        tooltip.add(new TranslationTextComponent("tooltip.stardewarmory.iridium_axe_on"));
-        //    } else {
-        //        tooltip.add(new TranslationTextComponent("tooltip.stardewarmory.iridium_axe_off"));
-        //    }
-        //});
+        stack.getCapability(IridiumModeCapability.IRIDIUM_CAPABILITY).ifPresent(h -> {
+            if (h.isIridiumMode()) {
+                tooltip.add(new TranslatableComponent("tooltip.stardewarmory.iridium_axe_on"));
+            } else {
+                tooltip.add(new TranslatableComponent("tooltip.stardewarmory.iridium_axe_off"));
+            }
+        });
         if (!Objects.isNull(world)) {
             tooltip.add(new TextComponent(new TranslatableComponent("tooltip.stardewarmory.press").getString() +
                     KeybindSetup.iridiumKey.getKey().getName().replaceAll("key.keyboard.", "").toUpperCase() +

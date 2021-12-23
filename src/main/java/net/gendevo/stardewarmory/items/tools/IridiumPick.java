@@ -28,13 +28,13 @@ public class IridiumPick extends PickaxeItem {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable net.minecraft.world.level.Level world, List<Component> tooltip, TooltipFlag flag) {
         super.appendHoverText(stack, world, tooltip, flag);
-        //stack.getCapability(IridiumCapabilityManager.IRIDIUM_CAPABILITY).ifPresent(h -> {
-        //    if (h.isIridiumMode() ) {
-        //        tooltip.add(new TranslatableComponent("tooltip.stardewarmory.iridium_pick_on"));
-        //    } else {
-        //        tooltip.add(new TranslatableComponent("tooltip.stardewarmory.iridium_pick_off"));
-        //    }
-        //});
+        stack.getCapability(IridiumModeCapability.IRIDIUM_CAPABILITY).ifPresent(h -> {
+            if (h.isIridiumMode() ) {
+                tooltip.add(new TranslatableComponent("tooltip.stardewarmory.iridium_pick_on"));
+            } else {
+                tooltip.add(new TranslatableComponent("tooltip.stardewarmory.iridium_pick_off"));
+            }
+        });
         if (!Objects.isNull(world)) {
             tooltip.add(new TextComponent(new TranslatableComponent("tooltip.stardewarmory.press").getString() +
                     KeybindSetup.iridiumKey.getKey().getName().replaceAll("key.keyboard.", "").toUpperCase() +
@@ -46,7 +46,8 @@ public class IridiumPick extends PickaxeItem {
     @Override
     public CompoundTag getShareTag(ItemStack stack) {
         CompoundTag tag = stack.getOrCreateTag();
-        IIridiumMode cap = stack.getCapability(IridiumModeCapability.IRIDIUM_CAPABILITY).orElseThrow(() -> new IllegalArgumentException("Thing was empty, oh no!"));
+        IIridiumMode cap = stack.getCapability(IridiumModeCapability.IRIDIUM_CAPABILITY).orElseThrow(() ->
+                new IllegalArgumentException("Capability was empty on get, oh no!"));
 
         tag.putBoolean("SAnfo", cap.isIridiumMode());
         System.out.println(cap.isIridiumMode());
@@ -59,7 +60,7 @@ public class IridiumPick extends PickaxeItem {
 
         if (tag != null) {
             IIridiumMode cap = stack.getCapability(IridiumModeCapability.IRIDIUM_CAPABILITY, null).orElseThrow(() ->
-                    new IllegalArgumentException("Thing was empty, oh no!"));
+                    new IllegalArgumentException("Capability was empty on read, oh no!"));
             cap.setIridiumMode(tag.getBoolean("SAnfo"));
             System.out.println(cap.isIridiumMode());
         }

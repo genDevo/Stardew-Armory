@@ -48,7 +48,7 @@ public class IridiumModeAttacher {
         final IridiumModeProvider provider = new IridiumModeProvider();
 
         event.addCapability(IridiumModeProvider.IDENTIFIER, provider);
-        provider.invalidate();
+        //provider.invalidate();
     }
 
     private IridiumModeAttacher() {}

@@ -4,9 +4,7 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMultimap;
 import com.mojang.serialization.Codec;
-import net.gendevo.stardewarmory.config.*;
 import net.gendevo.stardewarmory.config.StardewArmoryConfig;
-import net.gendevo.stardewarmory.data.capabilities.IridiumModeCapability;
 import net.gendevo.stardewarmory.items.ModItemTier;
 import net.gendevo.stardewarmory.network.ModNetwork;
 import net.gendevo.stardewarmory.screen.GalaxyForgeScreen;
@@ -16,7 +14,6 @@ import net.gendevo.stardewarmory.util.KeybindSetup;
 import net.gendevo.stardewarmory.util.ModResourceLocation;
 import net.gendevo.stardewarmory.world.OreGeneration;
 import net.gendevo.stardewarmory.world.structures.ConfiguredStructureInit;
-import net.gendevo.stardewarmory.world.structures.GuildBuildingStructure;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
@@ -34,7 +31,6 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredStructureFeature;
 import net.minecraft.world.level.levelgen.feature.StructureFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.StructureFeatureConfiguration;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -82,9 +78,9 @@ public class StardewArmory
         forgeBus.register(this);
 
         //forgeBus.register(new IridiumModeGui(Minecraft.getInstance()));
+        ModStructures.DEFERRED_REGISTRY_STRUCTURE.register(modEventBus);
 
         if (StardewArmoryConfig.guild_spawn.get()) {
-            ModStructures.DEFERRED_REGISTRY_STRUCTURE.register(modEventBus);
             forgeBus.addListener(EventPriority.NORMAL, this::addDimensionalSpacing);
         }
     }
@@ -104,7 +100,7 @@ public class StardewArmory
 
     private void doClientStuff(final FMLClientSetupEvent event) {
         KeybindSetup.register(event);
-        MinecraftForge.EVENT_BUS.register(IridiumModeGui.class);
+        IridiumModeGui.register();
         event.enqueueWork(() -> MenuScreens.register(ModContainers.GALAXY_FORGE_CONTAINER.get(), GalaxyForgeScreen::new));
     }
 

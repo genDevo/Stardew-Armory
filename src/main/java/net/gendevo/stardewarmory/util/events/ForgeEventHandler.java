@@ -34,6 +34,7 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import org.checkerframework.checker.nullness.qual.NonNull;
 import top.theillusivec4.curios.api.CuriosApi;
 
 import java.util.Random;
@@ -230,23 +231,12 @@ public class ForgeEventHandler {
     }
 
     @SubscribeEvent
-    public static void onAttachCapabilitiesEvent(AttachCapabilitiesEvent<ItemStack> event) {
+    public static void onStackAttachCapabilitiesEvent(@NonNull final AttachCapabilitiesEvent<ItemStack> event) {
         Item cItem = event.getObject().getItem();
         if (cItem instanceof IridiumHoe || cItem instanceof IridiumShovel || cItem instanceof IridiumPick || cItem instanceof IridiumAxe) {
             IridiumModeAttacher.attach(event);
         }
     }
-
-//    @SubscribeEvent
-//    public static void onPlayerTick(TickEvent.PlayerTickEvent e) {
-//        if (e.side.isServer()) {
-//            e.player.getMainHandItem().getCapability(IridiumCapabilityManager.IRIDIUM_CAPABILITY).ifPresent(h -> {
-//                if (h.isIridiumMode()) {
-//                    //ModNetwork.CHANNEL.send(PacketDistributor.TRACKING_ENTITY.with(() -> e.player), new PacketClientboundIridium(true));
-//                }
-//            });
-//        }
-//    }
 
     // Zombies can now spawn with wood club in hand
     @SubscribeEvent
