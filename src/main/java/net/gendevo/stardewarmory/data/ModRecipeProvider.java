@@ -148,6 +148,12 @@ public class ModRecipeProvider extends RecipeProvider {
         SimpleCookingRecipeBuilder.blasting(Ingredient.of(ModBlocks.IRIDIUM_ORE.get()), ModItems.IRIDIUM_INGOT.get(), 1.5f, 100)
                 .unlockedBy("has_item", has(ModBlocks.IRIDIUM_ORE.get()))
                 .save(consumer, modId("iridium_ore_blasting"));
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(ModBlocks.DEEPSLATE_IRIDIUM_ORE.get()), ModItems.IRIDIUM_INGOT.get(), 1.5f, 200)
+                .unlockedBy("has_item", has(ModBlocks.DEEPSLATE_IRIDIUM_ORE.get()))
+                .save(consumer, modId("deepslate_iridium_ore_smelting"));
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(ModBlocks.DEEPSLATE_IRIDIUM_ORE.get()), ModItems.IRIDIUM_INGOT.get(), 1.5f, 100)
+                .unlockedBy("has_item", has(ModBlocks.DEEPSLATE_IRIDIUM_ORE.get()))
+                .save(consumer, modId("deepslate_iridium_ore_blasting"));
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(ModItems.RAW_IRIDIUM.get()), ModItems.IRIDIUM_INGOT.get(), 1.5f, 200)
                 .unlockedBy("has_item", has(ModItems.RAW_IRIDIUM.get()))
                 .save(consumer, modId("raw_iridium_smelting"));

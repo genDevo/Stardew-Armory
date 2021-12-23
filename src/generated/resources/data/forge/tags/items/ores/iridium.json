@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "stardewarmory:iridium_ore"
+    "stardewarmory:iridium_ore",
+    "stardewarmory:deepslate_iridium_ore"
   ]
 }

@@ -4,6 +4,7 @@ import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IGuiHelper;
+import mezz.jei.api.ingredients.IIngredientType;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.gendevo.stardewarmory.StardewArmory;
@@ -22,7 +23,7 @@ public class GalaxyForgeRecipeCategory implements IRecipeCategory<GalaxyForgeRec
 
     public GalaxyForgeRecipeCategory(IGuiHelper helper) {
         this.background = helper.createDrawable(TEXTURE, 0,0,176,85);
-        this.icon = helper.createDrawableIngredient(new ItemStack(ModBlocks.GALAXY_FORGE.get()));
+        this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM, new ItemStack(ModBlocks.GALAXY_FORGE.get()));
     }
 
     @Override

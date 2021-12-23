@@ -5,12 +5,13 @@ import net.gendevo.stardewarmory.blocks.*;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.fmllegacy.RegistryObject;
+import net.minecraftforge.registries.RegistryObject;
 
 import java.util.function.Supplier;
 
 public class ModBlocks {
     public static final RegistryObject<Block> IRIDIUM_ORE = register("iridium_ore", IridiumOre::new);
+    public static final RegistryObject<Block> DEEPSLATE_IRIDIUM_ORE = register("deepslate_iridium_ore", DeepslateIridiumOre::new);
     public static final RegistryObject<Block> CINDER_ORE = register("cinder_ore", CinderOre::new);
     public static final RegistryObject<Block> IRIDIUM_BLOCK = register("iridium_block", IridiumBlock::new);
     public static final RegistryObject<Block> GALAXY_FORGE = register("galaxy_forge", GalaxyForgeBlock::new);

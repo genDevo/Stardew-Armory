@@ -20,7 +20,7 @@ import net.minecraft.world.level.storage.loot.ValidationContext;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
-import net.minecraftforge.fmllegacy.RegistryObject;
+import net.minecraftforge.registries.RegistryObject;
 
 import java.util.List;
 import java.util.Map;
@@ -56,6 +56,8 @@ public class ModLootTableProvider extends LootTableProvider {
         protected void addTables() {
             dropSelf(ModBlocks.IRIDIUM_BLOCK.get());
             add(ModBlocks.IRIDIUM_ORE.get(), (iridium) -> createOreDrop(iridium,
+                    ModItems.RAW_IRIDIUM.get()).apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)));
+            add(ModBlocks.DEEPSLATE_IRIDIUM_ORE.get(), (iridium) -> createOreDrop(iridium,
                     ModItems.RAW_IRIDIUM.get()).apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)));
             dropSelf(ModBlocks.GALAXY_FORGE.get());
             dropSelf(ModBlocks.PRISMATIC_WOOL.get());

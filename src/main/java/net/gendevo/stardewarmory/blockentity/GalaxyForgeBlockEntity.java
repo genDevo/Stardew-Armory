@@ -37,9 +37,8 @@ public class GalaxyForgeBlockEntity extends BlockEntity {
     }
 
     @Override
-    public CompoundTag save(CompoundTag compound) {
+    public void saveAdditional(CompoundTag compound) {
         compound.put("inv", itemHandler.serializeNBT());
-        return super.save(compound);
     }
 
     private ItemStackHandler createHandler() {

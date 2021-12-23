@@ -1,8 +1,12 @@
 package net.gendevo.stardewarmory;
 
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableMultimap;
 import com.mojang.serialization.Codec;
+import net.gendevo.stardewarmory.config.*;
 import net.gendevo.stardewarmory.config.StardewArmoryConfig;
-import net.gendevo.stardewarmory.data.capabilities.CapabilityIridiumMode;
+import net.gendevo.stardewarmory.data.capabilities.IridiumModeCapability;
 import net.gendevo.stardewarmory.items.ModItemTier;
 import net.gendevo.stardewarmory.network.ModNetwork;
 import net.gendevo.stardewarmory.screen.GalaxyForgeScreen;
@@ -12,16 +16,21 @@ import net.gendevo.stardewarmory.util.KeybindSetup;
 import net.gendevo.stardewarmory.util.ModResourceLocation;
 import net.gendevo.stardewarmory.world.OreGeneration;
 import net.gendevo.stardewarmory.world.structures.ConfiguredStructureInit;
+import net.gendevo.stardewarmory.world.structures.GuildBuildingStructure;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.core.Registry;
+import net.minecraft.data.BuiltinRegistries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.FlatLevelSource;
 import net.minecraft.world.level.levelgen.StructureSettings;
+import net.minecraft.world.level.levelgen.feature.ConfiguredStructureFeature;
 import net.minecraft.world.level.levelgen.feature.StructureFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.StructureFeatureConfiguration;
 import net.minecraftforge.common.MinecraftForge;
@@ -35,7 +44,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
@@ -78,7 +86,6 @@ public class StardewArmory
         if (StardewArmoryConfig.guild_spawn.get()) {
             ModStructures.DEFERRED_REGISTRY_STRUCTURE.register(modEventBus);
             forgeBus.addListener(EventPriority.NORMAL, this::addDimensionalSpacing);
-            forgeBus.addListener(EventPriority.HIGH, this::biomeModification);
         }
     }
 
@@ -92,7 +99,6 @@ public class StardewArmory
                 ConfiguredStructureInit.registerConfiguredStructures();
             }
             OreGeneration.registerOres();
-            CapabilityIridiumMode.register();
         });
     }
 
@@ -107,38 +113,71 @@ public class StardewArmory
         InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.RING.getMessageBuilder().size(2).build());
     }
 
-    public void biomeModification(final BiomeLoadingEvent event) {
-        event.getGeneration().getStructures().add(() -> ConfiguredStructureInit.CONFIGURED_GUILD_BUILDING);
-    }
-
     private static Method GETCODEC_METHOD;
     public void addDimensionalSpacing(final WorldEvent.Load event) {
-        if(event.getWorld() instanceof ServerLevel){
-            ServerLevel serverWorld = (ServerLevel)event.getWorld();
-
-            try {
-                if(GETCODEC_METHOD == null) GETCODEC_METHOD = ObfuscationReflectionHelper.findMethod(ChunkGenerator.class, "func_230347_a_");
-                ResourceLocation cgRL = Registry.CHUNK_GENERATOR.getKey((Codec<? extends ChunkGenerator>) GETCODEC_METHOD.invoke(serverWorld.getChunkSource().generator));
-                if(cgRL != null && cgRL.getNamespace().equals("terraforged")) return;
-            }
-            catch(Exception e){
-                StardewArmory.LOGGER.error("Was unable to check if " + serverWorld.dimension().location() + " is using Terraforged's ChunkGenerator.");
-            }
-
-            if(serverWorld.getChunkSource().getGenerator() instanceof FlatLevelSource &&
-                    serverWorld.dimension().equals(Level.OVERWORLD)){
+        if(event.getWorld() instanceof ServerLevel serverLevel){
+            ChunkGenerator chunkGenerator = serverLevel.getChunkSource().getGenerator();
+            if (chunkGenerator instanceof FlatLevelSource && serverLevel.dimension().equals(Level.OVERWORLD)) {
                 return;
             }
 
-            Map<StructureFeature<?>, StructureFeatureConfiguration> tempMap = new HashMap<>(serverWorld.getChunkSource().generator.getSettings().structureConfig());
+            StructureSettings worldStructureConfig = chunkGenerator.getSettings();
+
+            HashMap<StructureFeature<?>, HashMultimap<ConfiguredStructureFeature<?, ?>, ResourceKey<Biome>>> STStructureToMultiMap = new HashMap<>();
+
+            for(Map.Entry<ResourceKey<Biome>, Biome> biomeEntry : serverLevel.registryAccess().ownedRegistryOrThrow(Registry.BIOME_REGISTRY).entrySet()) {
+                Biome.BiomeCategory biomeCategory = biomeEntry.getValue().getBiomeCategory();
+                if(biomeCategory != Biome.BiomeCategory.OCEAN && biomeCategory != Biome.BiomeCategory.THEEND && biomeCategory != Biome.BiomeCategory.NETHER && biomeCategory != Biome.BiomeCategory.NONE) {
+                    associateBiomeToConfiguredStructure(STStructureToMultiMap, ConfiguredStructureInit.CONFIGURED_GUILD_BUILDING, biomeEntry.getKey());
+                }
+            }
+
+            ImmutableMap.Builder<StructureFeature<?>, ImmutableMultimap<ConfiguredStructureFeature<?, ?>, ResourceKey<Biome>>> tempStructureToMultiMap = ImmutableMap.builder();
+            worldStructureConfig.configuredStructures.entrySet().stream().filter(entry -> !STStructureToMultiMap.containsKey(entry.getKey())).forEach(tempStructureToMultiMap::put);
+
+            STStructureToMultiMap.forEach((key, value) -> tempStructureToMultiMap.put(key, ImmutableMultimap.copyOf(value)));
+
+            worldStructureConfig.configuredStructures = tempStructureToMultiMap.build();
+
+            try {
+                if(GETCODEC_METHOD == null) GETCODEC_METHOD = ObfuscationReflectionHelper.findMethod(ChunkGenerator.class, "codec");
+                ResourceLocation cgRL = Registry.CHUNK_GENERATOR.getKey((Codec<? extends ChunkGenerator>) GETCODEC_METHOD.invoke(chunkGenerator));
+                if(cgRL != null && cgRL.getNamespace().equals("terraforged")) return;
+            }
+            catch(Exception e){
+                StardewArmory.LOGGER.error("Was unable to check if " + serverLevel.dimension().location() + " is using Terraforged's ChunkGenerator.");
+            }
+
+            if(chunkGenerator instanceof FlatLevelSource &&
+                    serverLevel.dimension().equals(Level.OVERWORLD)){
+                return;
+            }
+
+            Map<StructureFeature<?>, StructureFeatureConfiguration> tempMap = new HashMap<>(worldStructureConfig.structureConfig());
             tempMap.putIfAbsent(ModStructures.GUILD_BUILDING.get(), StructureSettings.DEFAULTS.get(ModStructures.GUILD_BUILDING.get()));
-            serverWorld.getChunkSource().generator.getSettings().structureConfig = tempMap;
+            worldStructureConfig.structureConfig = tempMap;
         }
     }
 
-    //public void loadComplete(final FMLLoadCompleteEvent event) {
-    //    ToolTiers.init();
-    //}
+    private static void associateBiomeToConfiguredStructure(Map<StructureFeature<?>, HashMultimap<ConfiguredStructureFeature<?, ?>, ResourceKey<Biome>>> STStructureToMultiMap, ConfiguredStructureFeature<?, ?> configuredStructureFeature, ResourceKey<Biome> biomeRegistryKey) {
+        STStructureToMultiMap.putIfAbsent(configuredStructureFeature.feature, HashMultimap.create());
+        HashMultimap<ConfiguredStructureFeature<?, ?>, ResourceKey<Biome>> configuredStructureToBiomeMultiMap = STStructureToMultiMap.get(configuredStructureFeature.feature);
+        if(configuredStructureToBiomeMultiMap.containsValue(biomeRegistryKey)) {
+            StardewArmory.LOGGER.error("""
+                    Detected 2 ConfiguredStructureFeatures that share the same base StructureFeature trying to be added to same biome. One will be prevented from spawning.
+                    This issue happens with vanilla too and is why a Snowy Village and Plains Village cannot spawn in the same biome because they both use the Village base structure.
+                    The two conflicting ConfiguredStructures are: {}, {}
+                    The biome that is attempting to be shared: {}
+                """,
+                    BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE.getId(configuredStructureFeature),
+                    BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE.getId(configuredStructureToBiomeMultiMap.entries().stream().filter(e -> e.getValue() == biomeRegistryKey).findFirst().get().getKey()),
+                    biomeRegistryKey
+            );
+        }
+        else{
+            configuredStructureToBiomeMultiMap.put(configuredStructureFeature, biomeRegistryKey);
+        }
+    }
 
     public static ModResourceLocation getId(String path) {
         if (path.contains(":")) {

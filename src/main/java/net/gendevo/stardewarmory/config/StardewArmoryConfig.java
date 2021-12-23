@@ -12,12 +12,18 @@ public final class StardewArmoryConfig {
     public static final ForgeConfigSpec.ConfigValue<Float> club_rate;
     public static final ForgeConfigSpec.ConfigValue<Boolean> crit_sound;
     public static final ForgeConfigSpec.ConfigValue<Boolean> guild_spawn;
+    public static final ForgeConfigSpec.ConfigValue<Integer> guild_average;
+    public static final ForgeConfigSpec.ConfigValue<Integer> guild_minimum;
 
     static {
         BUILDER.push("Config for the Stardew Armory mod");
 
         guild_spawn= BUILDER.comment("Should Guild structures spawn in the world. Default value is true")
-                .define("Crit bool", true);
+                .define("Guild bool", true);
+        guild_minimum= BUILDER.comment("If the Guild structure is enabled, what is the minimum amount of chunks apart each should be. Default value is 45")
+                .define("Minimum int", 45);
+        guild_average= BUILDER.comment("If the Guild structure is enabled, what is the average amount of chunks apart each should be. Default value is 60")
+                .define("Average int", 60);
         iridium_rate= BUILDER.comment("How many veins of iridium ore should spawn per chunk. Default value is 4")
                 .define("Iridium int", 4);
         cinder_rate= BUILDER.comment("How many veins of cinder ore should spawn per chunk. Default value is 20")

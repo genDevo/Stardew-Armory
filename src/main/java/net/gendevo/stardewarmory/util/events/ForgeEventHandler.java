@@ -2,8 +2,8 @@ package net.gendevo.stardewarmory.util.events;
 
 import net.gendevo.stardewarmory.StardewArmory;
 import net.gendevo.stardewarmory.config.StardewArmoryConfig;
-import net.gendevo.stardewarmory.data.capabilities.CapabilityIridiumMode;
-import net.gendevo.stardewarmory.data.capabilities.IridiumModeProvider;
+import net.gendevo.stardewarmory.data.capabilities.IridiumModeCapability;
+import net.gendevo.stardewarmory.data.capabilities.IridiumModeAttacher;
 import net.gendevo.stardewarmory.items.tools.IridiumAxe;
 import net.gendevo.stardewarmory.items.tools.IridiumHoe;
 import net.gendevo.stardewarmory.items.tools.IridiumPick;
@@ -11,7 +11,6 @@ import net.gendevo.stardewarmory.items.tools.IridiumShovel;
 import net.gendevo.stardewarmory.setup.ModItems;
 import net.gendevo.stardewarmory.setup.ModSoundEvents;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.EntityDamageSource;
@@ -50,7 +49,7 @@ public class ForgeEventHandler {
         LevelAccessor eWorld = event.getWorld();
         if (!eWorld.isClientSide()) {
             if (heldItem instanceof IridiumPick) {
-                heldItemStack.getCapability(CapabilityIridiumMode.IRIDIUM_CAPABILITY).ifPresent(h -> {
+                heldItemStack.getCapability(IridiumModeCapability.IRIDIUM_CAPABILITY).ifPresent(h -> {
                     if (h.isIridiumMode() && player.hasCorrectToolForDrops(eWorld.getBlockState(event.getPos().below()))) {
                         if (player.getItemInHand(InteractionHand.MAIN_HAND).getEnchantmentTags().toString().contains("silk_touch")) {
                             Block.popResource(player.level, event.getPos().below(),
@@ -65,7 +64,7 @@ public class ForgeEventHandler {
                     }
                 });
             } else if (heldItem instanceof IridiumAxe) {
-                heldItemStack.getCapability(CapabilityIridiumMode.IRIDIUM_CAPABILITY).ifPresent(h -> {
+                heldItemStack.getCapability(IridiumModeCapability.IRIDIUM_CAPABILITY).ifPresent(h -> {
                     if (h.isIridiumMode()) {
                         BlockPos oPos = event.getPos();
                         Block originBlock = eWorld.getBlockState(oPos).getBlock();
@@ -77,7 +76,7 @@ public class ForgeEventHandler {
                     }
                 });
             } else if (heldItem instanceof IridiumShovel) {
-                heldItemStack.getCapability(CapabilityIridiumMode.IRIDIUM_CAPABILITY).ifPresent(h -> {
+                heldItemStack.getCapability(IridiumModeCapability.IRIDIUM_CAPABILITY).ifPresent(h -> {
                     if (h.isIridiumMode()) {
                         if (eWorld.getBlockState(event.getPos()).getBlock().equals(Blocks.SAND) ||
                                 eWorld.getBlockState(event.getPos()).getBlock().equals(Blocks.RED_SAND)) {
@@ -234,9 +233,7 @@ public class ForgeEventHandler {
     public static void onAttachCapabilitiesEvent(AttachCapabilitiesEvent<ItemStack> event) {
         Item cItem = event.getObject().getItem();
         if (cItem instanceof IridiumHoe || cItem instanceof IridiumShovel || cItem instanceof IridiumPick || cItem instanceof IridiumAxe) {
-            IridiumModeProvider provider = new IridiumModeProvider();
-            event.addCapability(new ResourceLocation(StardewArmory.MOD_ID, "iridium_mode"), provider);
-            event.addListener(provider::invalidate);
+            IridiumModeAttacher.attach(event);
         }
     }
 

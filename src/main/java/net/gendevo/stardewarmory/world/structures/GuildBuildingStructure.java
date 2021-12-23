@@ -4,36 +4,30 @@ import com.mojang.serialization.Codec;
 import net.gendevo.stardewarmory.StardewArmory;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
-import net.minecraft.core.RegistryAccess;
-import net.minecraft.core.Vec3i;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.ChunkPos;
-import net.minecraft.world.level.LevelHeightAccessor;
 import net.minecraft.world.level.NoiseColumn;
-import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.biome.BiomeSource;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraft.world.level.levelgen.WorldgenRandom;
 import net.minecraft.world.level.levelgen.feature.StructureFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.JigsawConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.structures.JigsawPlacement;
-import net.minecraft.world.level.levelgen.structure.NoiseAffectingStructureStart;
 import net.minecraft.world.level.levelgen.structure.PoolElementStructurePiece;
-import net.minecraft.world.level.levelgen.structure.StructurePiece;
-import net.minecraft.world.level.levelgen.structure.templatesystem.StructureManager;
+import net.minecraft.world.level.levelgen.structure.PostPlacementProcessor;
+import net.minecraft.world.level.levelgen.structure.pieces.PieceGenerator;
+import net.minecraft.world.level.levelgen.structure.pieces.PieceGeneratorSupplier;
 
-public class GuildBuildingStructure extends StructureFeature<NoneFeatureConfiguration> {
-    public GuildBuildingStructure(Codec<NoneFeatureConfiguration> codec) {
-        super(codec);
-    }
+import java.util.Optional;
 
-    @Override
-    public StructureFeature.StructureStartFactory<NoneFeatureConfiguration> getStartFactory() {
-        return GuildBuildingStructure.Start::new;
+public class GuildBuildingStructure extends StructureFeature<JigsawConfiguration> {
+    public GuildBuildingStructure(Codec<JigsawConfiguration> codec) {
+        super(codec, (context) -> {
+            if (!GuildBuildingStructure.isFeatureChunk(context)) {
+                return Optional.empty();
+            } else {
+                return GuildBuildingStructure.createPiecesGenerator(context);
+            }
+        }, PostPlacementProcessor.NONE);
     }
 
     @Override
@@ -41,57 +35,46 @@ public class GuildBuildingStructure extends StructureFeature<NoneFeatureConfigur
         return GenerationStep.Decoration.SURFACE_STRUCTURES;
     }
 
-    @Override
-    protected boolean isFeatureChunk(ChunkGenerator chunkGenerator, BiomeSource biomeSource, long seed,
-                                     WorldgenRandom random, ChunkPos chunkPos1,
-                                     Biome biome, ChunkPos chunkPos2,
-                                     NoneFeatureConfiguration featureConfig, LevelHeightAccessor heightLimitView) {
-        BlockPos blockPos = chunkPos1.getWorldPosition();
+    private static boolean isFeatureChunk(PieceGeneratorSupplier.Context<JigsawConfiguration> context) {
+        BlockPos blockPos = context.chunkPos().getWorldPosition();
+        int landHeight = context.chunkGenerator().getFirstOccupiedHeight(blockPos.getX(), blockPos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, context.heightAccessor());
+        NoiseColumn columnOfBlocks = context.chunkGenerator().getBaseColumn(blockPos.getX(), blockPos.getZ(), context.heightAccessor());
 
-        int landHeight = chunkGenerator.getFirstOccupiedHeight(blockPos.getX(), blockPos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, heightLimitView);
-
-        NoiseColumn columnOfBlocks = chunkGenerator.getBaseColumn(blockPos.getX(), blockPos.getZ(), heightLimitView);
-
-        BlockState topBlock = columnOfBlocks.getBlockState(blockPos.above(landHeight));
-
+        BlockState topBlock = columnOfBlocks.getBlock(landHeight);
         return topBlock.getFluidState().isEmpty();
     }
 
+    public static Optional<PieceGenerator<JigsawConfiguration>> createPiecesGenerator(PieceGeneratorSupplier.Context<JigsawConfiguration> context) {
+        BlockPos blockpos = context.chunkPos().getMiddleBlockPosition(0);
 
-    public static class Start extends NoiseAffectingStructureStart<NoneFeatureConfiguration> {
-        public Start(StructureFeature<NoneFeatureConfiguration> structureIn, ChunkPos chunkPos, int referenceIn, long seedIn) {
-            super(structureIn, chunkPos, referenceIn, seedIn);
-        }
+        JigsawConfiguration newConfig = new JigsawConfiguration(
+                () -> context.registryAccess().ownedRegistryOrThrow(Registry.TEMPLATE_POOL_REGISTRY)
+                        .get(new ResourceLocation(StardewArmory.MOD_ID, "guild_building/start_pool")),10
+        );
 
-        @Override
-        public void generatePieces(RegistryAccess dynamicRegistryAccess, ChunkGenerator chunkGenerator, StructureManager structureManager, ChunkPos chunkPos, Biome biomeIn, NoneFeatureConfiguration config, LevelHeightAccessor heightLimitView) {
-            BlockPos structureBlockPos = new BlockPos(chunkPos.getMinBlockX(), 0, chunkPos.getMinBlockZ());
+        // Create a new context with the new config that has our json pool. We will pass this into JigsawPlacement.addPieces
+        PieceGeneratorSupplier.Context<JigsawConfiguration> newContext = new PieceGeneratorSupplier.Context<>(
+                context.chunkGenerator(),
+                context.biomeSource(),
+                context.seed(),
+                context.chunkPos(),
+                newConfig,
+                context.heightAccessor(),
+                context.validBiome(),
+                context.structureManager(),
+                context.registryAccess()
+        );
 
-            JigsawPlacement.addPieces(
-                    dynamicRegistryAccess,
-                    new JigsawConfiguration(() -> dynamicRegistryAccess.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY)
-                            .get(new ResourceLocation(StardewArmory.MOD_ID, "guild_building/start_pool")),
-                            10),
-                    PoolElementStructurePiece::new,
-                    chunkGenerator,
-                    structureManager,
-                    structureBlockPos,
-                    this,
-                    this.random,
-                    false,
-                    true,
-                    heightLimitView);
+        Optional<PieceGenerator<JigsawConfiguration>> structurePiecesGenerator =
+                JigsawPlacement.addPieces(
+                        newContext,
+                        PoolElementStructurePiece::new,
+                        blockpos,
+                        false,
+                        true
+                );
 
-            this.pieces.forEach(piece -> piece.move(0, 1, 0));
-
-            Vec3i structureCenter = this.pieces.get(0).getBoundingBox().getCenter();
-            int xOffset = structureBlockPos.getX() - structureCenter.getX();
-            int zOffset = structureBlockPos.getZ() - structureCenter.getZ();
-            for (StructurePiece structurePiece : this.pieces) {
-                structurePiece.move(xOffset, 0, zOffset);
-            }
-            this.getBoundingBox();
-        }
+        return structurePiecesGenerator;
     }
 
 }

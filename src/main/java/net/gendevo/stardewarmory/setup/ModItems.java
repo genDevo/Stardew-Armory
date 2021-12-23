@@ -7,7 +7,7 @@ import net.gendevo.stardewarmory.items.rings.*;
 import net.gendevo.stardewarmory.items.tools.*;
 import net.gendevo.stardewarmory.items.weapons.*;
 import net.minecraft.world.item.*;
-import net.minecraftforge.fmllegacy.RegistryObject;
+import net.minecraftforge.registries.RegistryObject;
 
 public class ModItems {
     // Materials
