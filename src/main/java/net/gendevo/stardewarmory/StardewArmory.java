@@ -2,11 +2,13 @@ package net.gendevo.stardewarmory;
 
 import com.mojang.serialization.Codec;
 import net.gendevo.stardewarmory.config.StardewArmoryConfig;
-import net.gendevo.stardewarmory.data.capabilities.CapabilityIridiumMode;
 import net.gendevo.stardewarmory.items.ModItemTier;
 import net.gendevo.stardewarmory.network.ModNetwork;
 import net.gendevo.stardewarmory.screen.GalaxyForgeScreen;
-import net.gendevo.stardewarmory.setup.*;
+import net.gendevo.stardewarmory.setup.ModContainers;
+import net.gendevo.stardewarmory.setup.ModItems;
+import net.gendevo.stardewarmory.setup.ModStructures;
+import net.gendevo.stardewarmory.setup.Registration;
 import net.gendevo.stardewarmory.util.IridiumModeGui;
 import net.gendevo.stardewarmory.util.KeybindSetup;
 import net.gendevo.stardewarmory.util.ModResourceLocation;
@@ -35,7 +37,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
@@ -67,16 +68,13 @@ public class StardewArmory
         // Register the doClientStuff method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
-        //FMLJavaModLoadingContext.get().getModEventBus().addListener(this::loadComplete);
-
         // Register ourselves for server and other game events we are interested in
         IEventBus forgeBus = MinecraftForge.EVENT_BUS;
         forgeBus.register(this);
 
-        //forgeBus.register(new IridiumModeGui(Minecraft.getInstance()));
+        ModStructures.DEFERRED_REGISTRY_STRUCTURE.register(modEventBus);
 
         if (StardewArmoryConfig.guild_spawn.get()) {
-            ModStructures.DEFERRED_REGISTRY_STRUCTURE.register(modEventBus);
             forgeBus.addListener(EventPriority.NORMAL, this::addDimensionalSpacing);
             forgeBus.addListener(EventPriority.HIGH, this::biomeModification);
         }
@@ -92,13 +90,12 @@ public class StardewArmory
                 ConfiguredStructureInit.registerConfiguredStructures();
             }
             OreGeneration.registerOres();
-            CapabilityIridiumMode.register();
         });
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
         KeybindSetup.register(event);
-        MinecraftForge.EVENT_BUS.register(IridiumModeGui.class);
+        IridiumModeGui.register();
         event.enqueueWork(() -> MenuScreens.register(ModContainers.GALAXY_FORGE_CONTAINER.get(), GalaxyForgeScreen::new));
     }
 
@@ -135,10 +132,6 @@ public class StardewArmory
             serverWorld.getChunkSource().generator.getSettings().structureConfig = tempMap;
         }
     }
-
-    //public void loadComplete(final FMLLoadCompleteEvent event) {
-    //    ToolTiers.init();
-    //}
 
     public static ModResourceLocation getId(String path) {
         if (path.contains(":")) {

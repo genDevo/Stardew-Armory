@@ -1,37 +1,43 @@
 package net.gendevo.stardewarmory.util;
 
+import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.gendevo.stardewarmory.StardewArmory;
+import net.gendevo.stardewarmory.config.StardewArmoryConfig;
+import net.gendevo.stardewarmory.data.capabilities.IridiumModeCapability;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Gui;
+import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.client.gui.ForgeIngameGui;
+import net.minecraftforge.client.gui.IIngameOverlay;
+import net.minecraftforge.client.gui.OverlayRegistry;
 
-@Mod.EventBusSubscriber(modid = StardewArmory.MOD_ID, value = Dist.CLIENT)
-public class IridiumModeGui extends Gui {
+public class IridiumModeGui extends GuiComponent implements IIngameOverlay {
 
-    private final ResourceLocation iridium = new ResourceLocation(StardewArmory.MOD_ID, "textures/gui/iridium_on.png");
-    private Minecraft mc;
+    private static final ResourceLocation IRIDIUM = new ResourceLocation(StardewArmory.MOD_ID, "textures/gui/iridium_on.png");
 
-    public IridiumModeGui(Minecraft mc) {
-        super(mc);
-        mc = mc;
+    @Override
+    public void render(ForgeIngameGui gui, PoseStack mStack, float partialTicks, int width, int height) {
+        Minecraft mc = Minecraft.getInstance();
+        if (!mc.options.hideGui && StardewArmoryConfig.iridium_indicator.get()) {
+            mc.player.getMainHandItem().getCapability(IridiumModeCapability.IRIDIUM_CAPABILITY).ifPresent(h -> {
+                if (h.isIridiumMode()) {
+                    RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 0.85f);
+                    RenderSystem.setShaderTexture(0, IRIDIUM);
+                    double posx = Math.ceil((mc.getWindow().getGuiScaledWidth() / 2f) - 7f);
+                    double posy = Math.ceil((mc.getWindow().getGuiScaledHeight() / 2f) - 10f);
+                    blit(mStack, (int) posx, (int) posy, this.getBlitOffset(), 0f, 0f, 13, 5, 16, 16);
+                }
+            });
+        }
     }
 
-//    @SubscribeEvent
-//    public void onCrosshairDraw(RenderGameOverlayEvent.Post event) {
-//        assert mc.player != null;
-//        mc.player.getMainHandItem().getCapability(IridiumCapabilityManager.IRIDIUM_CAPABILITY).ifPresent(h-> {
-//            if (h.isIridiumMode()) {
-//                if (event.getType() == RenderGameOverlayEvent.ElementType.ALL) {
-//                    RenderSystem.color4f(1f, 1f, 1f, 0.85f);
-//                    mc.getTextureManager().bind(iridium);
-//                    double posx = Math.ceil((event.getWindow().getGuiScaledWidth()/2f)-7f);
-//                    double posy = Math.ceil((event.getWindow().getGuiScaledHeight()/2f)-10f);
-//                    blit(event.getMatrixStack(), (int)posx, (int)posy, this.getBlitOffset(), 0f,0f,13,5, 16, 16);
-//                }
-//            }
-//        });
-//    }
+    public static void register() {
+        OverlayRegistry.registerOverlayAbove(
+                ForgeIngameGui.CROSSHAIR_ELEMENT,
+                "stardewarmory.iridium_mode_overlay",
+                new IridiumModeGui()
+        );
+    }
 }
 

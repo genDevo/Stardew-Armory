@@ -17,6 +17,7 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         withExistingParent("iridium_block", modLoc("block/iridium_block"));
         withExistingParent("iridium_ore", modLoc("block/iridium_ore"));
+        withExistingParent("deepslate_iridium_ore", modLoc("block/deepslate_iridium_ore"));
         withExistingParent("cinder_ore", modLoc("block/cinder_ore"));
         withExistingParent("galaxy_forge", modLoc("block/galaxy_forge"));
         withExistingParent("prismatic_wool", modLoc("block/prismatic_wool"));

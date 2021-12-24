@@ -6,6 +6,7 @@ public final class StardewArmoryConfig {
     public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
     public static final ForgeConfigSpec SPEC;
 
+    public static final ForgeConfigSpec.ConfigValue<Boolean> iridium_indicator;
     public static final ForgeConfigSpec.ConfigValue<Integer> iridium_rate;
     public static final ForgeConfigSpec.ConfigValue<Integer> cinder_rate;
     public static final ForgeConfigSpec.ConfigValue<Integer> warrior_rate;
@@ -16,6 +17,8 @@ public final class StardewArmoryConfig {
     static {
         BUILDER.push("Config for the Stardew Armory mod");
 
+        iridium_indicator = BUILDER.comment("Should an indicator appear above the crosshair when the player is holding a tool with iridium mode on. Default value is true")
+                .define("Iridium bool", true);
         guild_spawn= BUILDER.comment("Should Guild structures spawn in the world. Default value is true")
                 .define("Crit bool", true);
         iridium_rate= BUILDER.comment("How many veins of iridium ore should spawn per chunk. Default value is 4")

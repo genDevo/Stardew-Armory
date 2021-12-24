@@ -33,7 +33,7 @@ public class OreGeneration {
                                 OreConfiguration.target(OreConfiguration.Predicates.STONE_ORE_REPLACEABLES,
                                         ModBlocks.IRIDIUM_ORE.get().defaultBlockState()),
                                 OreConfiguration.target(OreConfiguration.Predicates.DEEPSLATE_ORE_REPLACEABLES,
-                                        ModBlocks.IRIDIUM_ORE.get().defaultBlockState())
+                                        ModBlocks.DEEPSLATE_IRIDIUM_ORE.get().defaultBlockState())
                         ),
                                 5))
                 .rangeTriangle(VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(15))

@@ -1,9 +1,11 @@
 package net.gendevo.stardewarmory.items.tools;
 
-import net.gendevo.stardewarmory.data.capabilities.CapabilityIridiumMode;
+import net.gendevo.stardewarmory.data.capabilities.IIridiumMode;
+import net.gendevo.stardewarmory.data.capabilities.IridiumModeCapability;
 import net.gendevo.stardewarmory.util.KeybindSetup;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -45,7 +47,7 @@ public class IridiumHoe extends HoeItem {
                 Player playerentity = context.getPlayer();
                 world.playSound(playerentity, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
                 if (!world.isClientSide) {
-                    context.getItemInHand().getCapability(CapabilityIridiumMode.IRIDIUM_CAPABILITY).ifPresent(h -> {
+                    context.getItemInHand().getCapability(IridiumModeCapability.IRIDIUM_CAPABILITY).ifPresent(h -> {
                         if (h.isIridiumMode()) {
                             int hurtAmount = 0;
                             if (world.getBlockState(blockpos.north()).getBlock().equals(world.getBlockState(blockpos).getBlock())) {
@@ -104,18 +106,42 @@ public class IridiumHoe extends HoeItem {
     @Override
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
-        //super.appendHoverText(stack, world, tooltip, flag);
-        //stack.getCapability(IridiumCapabilityManager.IRIDIUM_CAPABILITY).ifPresent(h -> {
-        //    if (h.isIridiumMode()) {
-        //        tooltip.add(new TranslationTextComponent("tooltip.stardewarmory.iridium_hoe_on"));
-        //    } else {
-        //        tooltip.add(new TranslationTextComponent("tooltip.stardewarmory.iridium_hoe_off"));
-        //    }
-        //});
+        super.appendHoverText(stack, world, tooltip, flag);
+        stack.getCapability(IridiumModeCapability.IRIDIUM_CAPABILITY).ifPresent(h -> {
+            if (h.isIridiumMode()) {
+                tooltip.add(new TranslatableComponent("tooltip.stardewarmory.iridium_hoe_on"));
+            } else {
+                tooltip.add(new TranslatableComponent("tooltip.stardewarmory.iridium_hoe_off"));
+            }
+        });
         if (!Objects.isNull(world)) {
             tooltip.add(new TextComponent(new TranslatableComponent("tooltip.stardewarmory.press").getString() +
                     KeybindSetup.iridiumKey.getKey().getName().replaceAll("key.keyboard.", "").toUpperCase() +
                     new TranslatableComponent("tooltip.stardewarmory.toggle").getString()));
+        }
+    }
+
+    @Nullable
+    @Override
+    public CompoundTag getShareTag(ItemStack stack) {
+        CompoundTag tag = stack.getOrCreateTag();
+        IIridiumMode cap = stack.getCapability(IridiumModeCapability.IRIDIUM_CAPABILITY).orElseThrow(() ->
+                new IllegalArgumentException("Capability was empty on get, oh no!"));
+
+        tag.putBoolean("SAnfo", cap.isIridiumMode());
+        System.out.println(cap.isIridiumMode());
+        return tag;
+    }
+
+    @Override
+    public void readShareTag(ItemStack stack, @Nullable CompoundTag tag) {
+        super.readShareTag(stack, tag);
+
+        if (tag != null) {
+            IIridiumMode cap = stack.getCapability(IridiumModeCapability.IRIDIUM_CAPABILITY, null).orElseThrow(() ->
+                    new IllegalArgumentException("Capability was empty on read, oh no!"));
+            cap.setIridiumMode(tag.getBoolean("SAnfo"));
+            System.out.println(cap.isIridiumMode());
         }
     }
 

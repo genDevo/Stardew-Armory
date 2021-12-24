@@ -15,6 +15,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
         simpleBlock(ModBlocks.IRIDIUM_BLOCK.get());
         simpleBlock(ModBlocks.IRIDIUM_ORE.get());
+        simpleBlock(ModBlocks.DEEPSLATE_IRIDIUM_ORE.get());
         simpleBlock(ModBlocks.CINDER_ORE.get());
         simpleBlock(ModBlocks.PRISMATIC_WOOL.get());
     }

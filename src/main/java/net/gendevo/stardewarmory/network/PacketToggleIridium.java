@@ -1,6 +1,6 @@
 package net.gendevo.stardewarmory.network;
 
-import net.gendevo.stardewarmory.data.capabilities.CapabilityIridiumMode;
+import net.gendevo.stardewarmory.data.capabilities.IridiumModeCapability;
 import net.gendevo.stardewarmory.setup.ModSoundEvents;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
@@ -31,11 +31,11 @@ public class PacketToggleIridium {
         context.enqueueWork(() -> {
             ServerPlayer player = context.getSender();
             // Sets tool to on
-            player.getMainHandItem().getCapability(CapabilityIridiumMode.IRIDIUM_CAPABILITY).ifPresent(h -> h.setIridiumMode(!h.isIridiumMode()));
+            player.getMainHandItem().getCapability(IridiumModeCapability.IRIDIUM_CAPABILITY).ifPresent(h -> h.setIridiumMode(!h.isIridiumMode()));
 
             Level world = player.getLevel();
             // Plays sound for mode on/off
-            player.getMainHandItem().getCapability(CapabilityIridiumMode.IRIDIUM_CAPABILITY).ifPresent(h -> {
+            player.getMainHandItem().getCapability(IridiumModeCapability.IRIDIUM_CAPABILITY).ifPresent(h -> {
                 if (h.isIridiumMode()) {
                     world.playSound(null, player.xo, player.yo + 0.8, player.zo, ModSoundEvents.TOGGLE_ON_SOUND.get(), SoundSource.PLAYERS, 0.8f, 1f);
                     player.swing(InteractionHand.MAIN_HAND, true);
