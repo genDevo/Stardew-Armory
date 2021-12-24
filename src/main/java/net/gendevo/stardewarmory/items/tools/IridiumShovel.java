@@ -1,8 +1,10 @@
 package net.gendevo.stardewarmory.items.tools;
 
 
+import net.gendevo.stardewarmory.data.capabilities.IIridiumMode;
 import net.gendevo.stardewarmory.data.capabilities.IridiumModeCapability;
 import net.gendevo.stardewarmory.util.KeybindSetup;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -42,6 +44,27 @@ public class IridiumShovel extends ShovelItem {
         }
     }
 
+    @Nullable
+    @Override
+    public CompoundTag getShareTag(ItemStack stack) {
+        CompoundTag tag = stack.getOrCreateTag();
+        IIridiumMode cap = stack.getCapability(IridiumModeCapability.IRIDIUM_CAPABILITY).orElseThrow(() ->
+                new IllegalArgumentException("Capability was empty on get, oh no!"));
 
+        tag.putBoolean("SAnfo", cap.isIridiumMode());
+        System.out.println(cap.isIridiumMode());
+        return tag;
+    }
 
+    @Override
+    public void readShareTag(ItemStack stack, @Nullable CompoundTag tag) {
+        super.readShareTag(stack, tag);
+
+        if (tag != null) {
+            IIridiumMode cap = stack.getCapability(IridiumModeCapability.IRIDIUM_CAPABILITY, null).orElseThrow(() ->
+                    new IllegalArgumentException("Capability was empty on read, oh no!"));
+            cap.setIridiumMode(tag.getBoolean("SAnfo"));
+            System.out.println(cap.isIridiumMode());
+        }
+    }
 }

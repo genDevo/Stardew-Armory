@@ -35,6 +35,7 @@ import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.checkerframework.checker.nullness.qual.NonNull;
+import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.CuriosApi;
 
 import java.util.Random;
@@ -231,7 +232,7 @@ public class ForgeEventHandler {
     }
 
     @SubscribeEvent
-    public static void onStackAttachCapabilitiesEvent(@NonNull final AttachCapabilitiesEvent<ItemStack> event) {
+    public static void onStackAttachCapabilitiesEvent(final AttachCapabilitiesEvent<ItemStack> event) {
         Item cItem = event.getObject().getItem();
         if (cItem instanceof IridiumHoe || cItem instanceof IridiumShovel || cItem instanceof IridiumPick || cItem instanceof IridiumAxe) {
             IridiumModeAttacher.attach(event);

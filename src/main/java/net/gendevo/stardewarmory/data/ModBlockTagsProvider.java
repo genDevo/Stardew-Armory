@@ -20,8 +20,7 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
                 .add(ModBlocks.IRIDIUM_ORE.get())
                 .add(ModBlocks.DEEPSLATE_IRIDIUM_ORE.get());
         tag(Tags.Blocks.ORES).addTag(ModTags.Blocks.ORES_IRIDIUM)
-                .add(ModBlocks.CINDER_ORE.get())
-                .add(ModBlocks.DEEPSLATE_IRIDIUM_ORE.get());
+                .add(ModBlocks.CINDER_ORE.get());
         tag(ModTags.Blocks.STORAGE_BLOCKS_IRIDIUM)
                 .add(ModBlocks.IRIDIUM_BLOCK.get());
         tag(Tags.Blocks.STORAGE_BLOCKS).addTag(ModTags.Blocks.STORAGE_BLOCKS_IRIDIUM);
