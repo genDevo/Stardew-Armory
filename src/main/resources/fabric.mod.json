@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "stardewarmory",
+  "version": "${version}",
+
+  "name": "Stardew Armory",
+  "description": "Welcome to Stardew Armory! The main goal of this mod is to add many of the weapons and combat items from Stardew Valley into Minecraft. This currently includes all normally obtainable weapons, iridium tools, rings, custom blocks, and more!\n Credits go to ConcernedApe for the original Stardew Valley, KaupenJoe, & McJty for learning how to code all this, and Hasshbrowns for inspiration in many aspects. Credit to Kuri_Pa for Chinese language support and credit to peachimarii for the adventurer's guild building.",
+  "authors": [
+    "genericZen"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/stardew-armory",
+    "sources": "https://github.com/genDevo/Stardew-Armory"
+  },
+
+  "license": "Attribution-NonCommercial-ShareAlike 3.0 Unported (CC BY-NC-SA 3.0)",
+  "icon": "assets/stardewarmory/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.gendevo.stardewarmory.StardewArmory"
+    ]
+  },
+  "mixins": [
+    "stardewarmory.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.18.x",
+    "java": ">=17"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}

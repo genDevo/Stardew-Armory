@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "stardewarmory:deepslate_iridium_ore"
-  },
-  "result": "stardewarmory:iridium_ingot",
-  "experience": 1.5,
-  "cookingtime": 200
-}

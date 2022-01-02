@@ -1,8 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "#forge:ores/iridium",
-    "stardewarmory:cinder_ore",
-    "stardewarmory:deepslate_iridium_ore"
-  ]
-}
