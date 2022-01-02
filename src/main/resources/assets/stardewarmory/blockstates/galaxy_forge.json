@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "stardewarmory:block/galaxy_forge",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "stardewarmory:block/galaxy_forge"
+    },
+    "facing=south": {
+      "model": "stardewarmory:block/galaxy_forge",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "stardewarmory:block/galaxy_forge",
+      "y": 270
+    }
+  }
+}
