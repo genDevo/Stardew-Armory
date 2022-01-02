@@ -35,7 +35,7 @@ public class CritEnchantment extends Enchantment {
                 critChance--;
             }
             int randomInt = rand.nextInt(critChance);
-            if (randomInt == 1) {
+            if (randomInt == 1 && user instanceof Player) {
                 target.hurt(DamageSource.playerAttack((Player) user), (8 + (level * 4)));
                 if (StardewArmoryConfig.crit_sound.get()) {
                     user.level.playSound(null, user.xo, user.yo, user.zo, ModSoundEvents.LUCKY_HIT_SOUND.get(), SoundSource.PLAYERS, 0.8f, 1);
