@@ -1,6 +1,14 @@
 
 ![Stardew Armory Logo](https://github.com/genDevo/Stardew-Armory/blob/1.16-Forge/images/safull.png?raw=true)
 <br>
+
+  ![Downloads](https://cf.way2muchnoise.eu/full_547283_downloads.svg?badge_style=for_the_badge)
+  ![Available For](https://cf.way2muchnoise.eu/versions/547283.svg?badge_style=for_the_badge)
+  ![Requirements](https://img.shields.io/badge/Requires-Curios%20API-informational?style=for-the-badge&labelColor=2D2D2D)
+  ![Environment](https://img.shields.io/badge/Environment-Client%20%26%20Server-4caf50?style=for-the-badge&labelColor=2D2D2D)
+  ![Modloader](https://img.shields.io/badge/Modloader-Forge-25364D?style=for-the-badge&labelColor=2D2D2D)
+
+<br>
 Stardew Armory is currently a WIP mod that aims to implement many of the weapons and rings from Stardew Valley into minecraft.
 
 **Spice up your exploration and gain greater power with Stardew Armory**
