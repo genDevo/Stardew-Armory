@@ -5,39 +5,49 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class DataGenerators {
+    public static final Set<String> genItems = new HashSet<>();
+    public static final Set<String> hhItems = new HashSet<>();
+    public static final Set<String> blockItems = new HashSet<>();
 
     public static String createItemModelJson(String id, String type) {
         if ("generated".equals(type) || "handheld".equals(type)) {
-            //The two types of items. "handheld" is used mostly for tools and the like, while "generated" is used for everything else.
+            //The two types of item. "handheld" is used mostly for tools and the like, while "generated" is used for everything else.
             return "{\n" +
                     "  \"parent\": \"item/" + type + "\",\n" +
                     "  \"textures\": {\n" +
                     "    \"layer0\": \"stardewarmory:" + id + "\"\n" +
                     "  }\n" +
                     "}";
-        } else if ("block".equals(type)) {
-            return "";
         } else {
             //If the type is invalid, return an empty json string.
             return "";
         }
     }
 
+    private static void initSets() {
+        // Materials
+        genItems.add("prismatic_shard");
+        genItems.add("cinder_shard");
+
+        // Swords
+        hhItems.add("iridium_needle");
+
+        // Blocks
+        blockItems.add("iridium_ore");
+    }
+
     public static String getItemModelType(String id) {
+        initSets();
         String noItem = id.split("/")[1];
         AtomicReference<String> result = new AtomicReference<>("");
 
-        Set<String> blockItems = new HashSet<>();
-        blockItems.add("iridium_ore");
-        blockItems.iterator().forEachRemaining((item) -> {
+        genItems.iterator().forEachRemaining((item) -> {
             if (item.equals(noItem)) {
-                result.set("block");
+                result.set("generated");
             }
         });
 
         if (result.get().equals("")) {
-            Set<String> hhItems = new HashSet<>();
-            hhItems.add("galaxy_hammer");
             hhItems.iterator().forEachRemaining((item) -> {
                 if (item.equals(noItem)) {
                     result.set("handheld");
@@ -46,14 +56,12 @@ public class DataGenerators {
         }
 
         if (result.get().equals("")) {
-            Set<String> genItems = new HashSet<>();
-            genItems.add("prismatic_shard");
-            genItems.iterator().forEachRemaining((item) -> {
+            blockItems.iterator().forEachRemaining((item) -> {
                 if (item.equals(noItem)) {
-                    result.set("generated");
+                    result.set("block");
                 }
             });
         }
-        return result.get().equals("") ? "generated" : result.get();
+        return result.get();
     }
 }

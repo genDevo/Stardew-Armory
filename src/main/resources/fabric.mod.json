@@ -20,6 +20,9 @@
   "entrypoints": {
     "main": [
       "net.gendevo.stardewarmory.StardewArmory"
+    ],
+    "client": [
+      "net.gendevo.stardewarmory.StardewArmoryClient"
     ]
   },
   "mixins": [

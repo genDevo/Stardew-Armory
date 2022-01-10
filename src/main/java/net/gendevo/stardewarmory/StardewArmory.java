@@ -2,9 +2,8 @@ package net.gendevo.stardewarmory;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
-import net.gendevo.stardewarmory.items.ModItems;
+import net.gendevo.stardewarmory.item.ModItems;
 import net.gendevo.stardewarmory.setup.Registration;
-import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
@@ -29,6 +28,6 @@ public class StardewArmory implements ModInitializer {
         // Register everything
         Registration.register();
 
-        LOGGER.info("Hello Fabric world!");
+        LOGGER.info("Initializing Stardew Armory (Fabric)");
     }
 }

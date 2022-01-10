@@ -1,7 +1,7 @@
 package net.gendevo.stardewarmory.setup;
 
-import net.gendevo.stardewarmory.blocks.ModBlocks;
-import net.gendevo.stardewarmory.items.ModItems;
+import net.gendevo.stardewarmory.block.ModBlocks;
+import net.gendevo.stardewarmory.item.ModItems;
 
 public class Registration {
 
