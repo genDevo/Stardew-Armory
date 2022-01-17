@@ -1,6 +1,8 @@
 package net.gendevo.stardewarmory.util.events;
 
+
 import net.gendevo.stardewarmory.StardewArmory;
+import com.google.common.base.Objects;
 import net.gendevo.stardewarmory.config.StardewArmoryConfig;
 import net.gendevo.stardewarmory.data.capabilities.IridiumCapabilityManager;
 import net.gendevo.stardewarmory.items.tools.IridiumAxe;
@@ -48,7 +50,7 @@ public class ForgeEventHandler {
         if (!eWorld.isClientSide()) {
             if (heldItem instanceof IridiumPick) {
                 heldItemStack.getCapability(IridiumCapabilityManager.IRIDIUM_CAPABILITY).ifPresent(h -> {
-                    if (h.isIridiumMode() && player.hasCorrectToolForDrops(eWorld.getBlockState(event.getPos().below()))) {
+                    if (h.isIridiumMode() && player.hasCorrectToolForDrops(eWorld.getBlockState(event.getPos().below())) && !Objects.equal(eWorld.getBlockState(event.getPos().below()).getBlock().getExplosionResistance(), 3600000.0F)) {
                         if (player.getItemInHand(Hand.MAIN_HAND).getEnchantmentTags().toString().contains("silk_touch")) {
                             Block.popResource(player.level, event.getPos().below(),
                                     eWorld.getBlockState(event.getPos().below()).getBlock().asItem().getDefaultInstance());
