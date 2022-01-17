@@ -1,9 +1,10 @@
 package net.gendevo.stardewarmory.util.events;
 
+import com.google.common.base.Objects;
 import net.gendevo.stardewarmory.StardewArmory;
 import net.gendevo.stardewarmory.config.StardewArmoryConfig;
-import net.gendevo.stardewarmory.data.capabilities.IridiumModeCapability;
 import net.gendevo.stardewarmory.data.capabilities.IridiumModeAttacher;
+import net.gendevo.stardewarmory.data.capabilities.IridiumModeCapability;
 import net.gendevo.stardewarmory.items.tools.IridiumAxe;
 import net.gendevo.stardewarmory.items.tools.IridiumHoe;
 import net.gendevo.stardewarmory.items.tools.IridiumPick;
@@ -34,8 +35,6 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.CuriosApi;
 
 import java.util.Random;
@@ -52,7 +51,7 @@ public class ForgeEventHandler {
         if (!eWorld.isClientSide()) {
             if (heldItem instanceof IridiumPick) {
                 heldItemStack.getCapability(IridiumModeCapability.IRIDIUM_CAPABILITY).ifPresent(h -> {
-                    if (h.isIridiumMode() && player.hasCorrectToolForDrops(eWorld.getBlockState(event.getPos().below()))) {
+                    if (h.isIridiumMode() && player.hasCorrectToolForDrops(eWorld.getBlockState(event.getPos().below())) && !Objects.equal(eWorld.getBlockState(event.getPos().below()).getBlock().defaultDestroyTime(), -1.0F)) {
                         if (player.getItemInHand(InteractionHand.MAIN_HAND).getEnchantmentTags().toString().contains("silk_touch")) {
                             Block.popResource(player.level, event.getPos().below(),
                                     eWorld.getBlockState(event.getPos().below()).getBlock().asItem().getDefaultInstance());
