@@ -14,6 +14,8 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 
 import java.util.Random;
 
+import static net.minecraft.util.Mth.abs;
+
 public class CritEnchantment extends Enchantment {
 
 
@@ -29,8 +31,9 @@ public class CritEnchantment extends Enchantment {
     @Override
     public void doPostAttack(LivingEntity user, Entity target, int level) {
         if (!user.level.isClientSide()) {
+            level = Math.min(level, 5);
             Random rand = new Random();
-            int critChance = (int) (9 - Math.ceil(Math.sin((level * Math.PI) / 3) + level));
+            int critChance = abs(9 - level);
             if (user.hasEffect(MobEffects.LUCK)) {
                 critChance--;
             }

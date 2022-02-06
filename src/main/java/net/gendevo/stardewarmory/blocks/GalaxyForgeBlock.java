@@ -76,7 +76,7 @@ public class GalaxyForgeBlock extends HorizontalDirectionalBlock implements Enti
                 throw new IllegalStateException("Our Container provider is missing!");
             }
         }
-        return InteractionResult.PASS;
+        return InteractionResult.CONSUME;
     }
 
     private MenuProvider createContainerProvider(Level worldIn, BlockPos pos) {
