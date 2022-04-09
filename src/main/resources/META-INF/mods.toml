@@ -29,7 +29,7 @@ displayURL="https://github.com/genDevo/Stardew-Armory" #optional
 # A file name (in the root of the mod JAR) containing a logo for display
 logoFile="SAlogo.png" #optional
 # A text field displayed in the mod UI
-credits="ConcernedApe for the original Stardew Valley, TurtyWurty, KaupenJoe, & McJty for learning how to code all this, and Hasshbrowns for inspiration in many aspects. Credit to Kuri_Pa for Chinese language support and credit to peachimarii for the adventurer's guild building." #optional
+credits="ConcernedApe for the original Stardew Valley, TurtyWurty, KaupenJoe, & McJty for learning how to code all this, and Hasshbrowns for inspiration in many aspects. Other credit listed on the curseforge modpage." #optional
 # A text field displayed in the mod UI
 authors="genericZen" #optional
 # The description text for the mod (multi line!) (#mandatory)
@@ -52,7 +52,7 @@ Welcome to Stardew Armory! The main goal of this mod is to add many of the weapo
 modId="curios"
 mandatory=true
 # This version range declares a minimum of the current minecraft version up to but not including the next major version
-versionRange="[1.18.1-5.0.3.1,)"
+versionRange="[1.18.1-5.0.4.0,)"
 ordering="NONE"
 side="BOTH"
 [[dependencies.stardewarmory]]

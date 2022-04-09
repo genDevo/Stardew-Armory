@@ -51,105 +51,130 @@ public class IridiumHoe extends HoeItem {
             } else {
                 Predicate<UseOnContext> predicate = pair.getFirst();
                 Consumer<UseOnContext> consumer = pair.getSecond();
+
                 AtomicBoolean isMode = new AtomicBoolean(false);
                 context.getItemInHand().getCapability(IridiumModeCapability.IRIDIUM_CAPABILITY).ifPresent(h -> {
-                    if (h.isIridiumMode()) isMode.set(true);
+                    if (h.isIridiumMode())
+                        isMode.set(true);
                 });
+
                 if (isMode.get()) {
-                    if (predicate.test(context)) {
-                        Player player = context.getPlayer();
+                    Player player = context.getPlayer();
+                    if (predicate.test(context) && player != null) {
                         world.playSound(player, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
                         if (!world.isClientSide) {
                             consumer.accept(context);
-                            if (player != null) {
-                                context.getItemInHand().hurtAndBreak(1, player, (p_150845_) -> p_150845_.broadcastBreakEvent(context.getHand()));
-                            }
+                            context.getItemInHand().hurtAndBreak(1, player, (p_150845_) -> p_150845_.broadcastBreakEvent(context.getHand()));
                         }
-                        UseOnContext tempContext = new UseOnContext(context.getPlayer(), context.getHand(), new BlockHitResult(context.getClickLocation(), context.getClickedFace(), blockpos.north(), context.isInside()));
-                        if (predicate.test(tempContext)) {
-                            Player playerEntity = context.getPlayer();
-                            world.playSound(playerEntity, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
-                            if (!world.isClientSide) {
-                                consumer.accept(tempContext);
-                                if (playerEntity != null) {
-                                    tempContext.getItemInHand().hurtAndBreak(1, playerEntity, (p_150845_) -> p_150845_.broadcastBreakEvent(context.getHand()));
+                        // North
+                        pair = TILLABLES.get(world.getBlockState(blockpos.north()).getBlock());
+                        if (pair != null) {
+                            predicate = pair.getFirst();
+                            consumer = pair.getSecond();
+                            UseOnContext tempContext = new UseOnContext(player, context.getHand(), new BlockHitResult(context.getClickLocation(), context.getClickedFace(), blockpos.north(), context.isInside()));
+                            if (predicate.test(tempContext)) {
+                                world.playSound(player, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
+                                if (!world.isClientSide) {
+                                    consumer.accept(tempContext);
+                                    tempContext.getItemInHand().hurtAndBreak(1, player, (p_150845_) -> p_150845_.broadcastBreakEvent(context.getHand()));
                                 }
                             }
                         }
-                        tempContext = new UseOnContext(context.getPlayer(), context.getHand(), new BlockHitResult(context.getClickLocation(), context.getClickedFace(), blockpos.south(), context.isInside()));
-                        if (predicate.test(tempContext)) {
-                            Player playerEntity = context.getPlayer();
-                            world.playSound(playerEntity, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
-                            if (!world.isClientSide) {
-                                consumer.accept(tempContext);
-                                if (playerEntity != null) {
-                                    tempContext.getItemInHand().hurtAndBreak(1, playerEntity, (p_150845_) -> p_150845_.broadcastBreakEvent(context.getHand()));
+                        // South
+                        pair = TILLABLES.get(world.getBlockState(blockpos.south()).getBlock());
+                        if (pair != null) {
+                            predicate = pair.getFirst();
+                            consumer = pair.getSecond();
+                            UseOnContext tempContext = new UseOnContext(player, context.getHand(), new BlockHitResult(context.getClickLocation(), context.getClickedFace(), blockpos.south(), context.isInside()));
+                            if (predicate.test(tempContext)) {
+                                world.playSound(player, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
+                                if (!world.isClientSide) {
+                                    consumer.accept(tempContext);
+                                    tempContext.getItemInHand().hurtAndBreak(1, player, (p_150845_) -> p_150845_.broadcastBreakEvent(context.getHand()));
                                 }
                             }
                         }
-                        tempContext = new UseOnContext(context.getPlayer(), context.getHand(), new BlockHitResult(context.getClickLocation(), context.getClickedFace(), blockpos.east(), context.isInside()));
-                        if (predicate.test(tempContext)) {
-                            Player playerentity = context.getPlayer();
-                            world.playSound(playerentity, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
-                            if (!world.isClientSide) {
-                                consumer.accept(tempContext);
-                                if (playerentity != null) {
-                                    tempContext.getItemInHand().hurtAndBreak(1, playerentity, (p_150845_) -> p_150845_.broadcastBreakEvent(context.getHand()));
+                        // East
+                        pair = TILLABLES.get(world.getBlockState(blockpos.east()).getBlock());
+                        if (pair != null) {
+                            predicate = pair.getFirst();
+                            consumer = pair.getSecond();
+                            UseOnContext tempContext = new UseOnContext(player, context.getHand(), new BlockHitResult(context.getClickLocation(), context.getClickedFace(), blockpos.east(), context.isInside()));
+                            if (predicate.test(tempContext)) {
+                                world.playSound(player, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
+                                if (!world.isClientSide) {
+                                    consumer.accept(tempContext);
+                                    tempContext.getItemInHand().hurtAndBreak(1, player, (p_150845_) -> p_150845_.broadcastBreakEvent(context.getHand()));
                                 }
                             }
                         }
-                        tempContext = new UseOnContext(context.getPlayer(), context.getHand(), new BlockHitResult(context.getClickLocation(), context.getClickedFace(), blockpos.west(), context.isInside()));
-                        if (predicate.test(tempContext)) {
-                            Player playerentity = context.getPlayer();
-                            world.playSound(playerentity, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
-                            if (!world.isClientSide) {
-                                consumer.accept(tempContext);
-                                if (playerentity != null) {
-                                    tempContext.getItemInHand().hurtAndBreak(1, playerentity, (p_150845_) -> p_150845_.broadcastBreakEvent(context.getHand()));
+                        // West
+                        pair = TILLABLES.get(world.getBlockState(blockpos.west()).getBlock());
+                        if (pair != null) {
+                            predicate = pair.getFirst();
+                            consumer = pair.getSecond();
+                            UseOnContext tempContext = new UseOnContext(player, context.getHand(), new BlockHitResult(context.getClickLocation(), context.getClickedFace(), blockpos.west(), context.isInside()));
+                            if (predicate.test(tempContext)) {
+                                world.playSound(player, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
+                                if (!world.isClientSide) {
+                                    consumer.accept(tempContext);
+                                    tempContext.getItemInHand().hurtAndBreak(1, player, (p_150845_) -> p_150845_.broadcastBreakEvent(context.getHand()));
                                 }
                             }
                         }
-                        tempContext = new UseOnContext(context.getPlayer(), context.getHand(), new BlockHitResult(context.getClickLocation(), context.getClickedFace(), blockpos.north().east(), context.isInside()));
-                        if (predicate.test(tempContext)) {
-                            Player playerEntity = context.getPlayer();
-                            world.playSound(playerEntity, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
-                            if (!world.isClientSide) {
-                                consumer.accept(tempContext);
-                                if (playerEntity != null) {
-                                    tempContext.getItemInHand().hurtAndBreak(1, playerEntity, (p_150845_) -> p_150845_.broadcastBreakEvent(context.getHand()));
+                        // North East
+                        pair = TILLABLES.get(world.getBlockState(blockpos.north().east()).getBlock());
+                        if (pair != null) {
+                            predicate = pair.getFirst();
+                            consumer = pair.getSecond();
+                            UseOnContext tempContext = new UseOnContext(player, context.getHand(), new BlockHitResult(context.getClickLocation(), context.getClickedFace(), blockpos.north().east(), context.isInside()));
+                            if (predicate.test(tempContext)) {
+                                world.playSound(player, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
+                                if (!world.isClientSide) {
+                                    consumer.accept(tempContext);
+                                    tempContext.getItemInHand().hurtAndBreak(1, player, (p_150845_) -> p_150845_.broadcastBreakEvent(context.getHand()));
                                 }
                             }
                         }
-                        tempContext = new UseOnContext(context.getPlayer(), context.getHand(), new BlockHitResult(context.getClickLocation(), context.getClickedFace(), blockpos.north().west(), context.isInside()));
-                        if (predicate.test(tempContext)) {
-                            Player playerEntity = context.getPlayer();
-                            world.playSound(playerEntity, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
-                            if (!world.isClientSide) {
-                                consumer.accept(tempContext);
-                                if (playerEntity != null) {
-                                    tempContext.getItemInHand().hurtAndBreak(1, playerEntity, (p_150845_) -> p_150845_.broadcastBreakEvent(context.getHand()));
+                        // North West
+                        pair = TILLABLES.get(world.getBlockState(blockpos.north().west()).getBlock());
+                        if (pair != null) {
+                            predicate = pair.getFirst();
+                            consumer = pair.getSecond();
+                            UseOnContext tempContext = new UseOnContext(player, context.getHand(), new BlockHitResult(context.getClickLocation(), context.getClickedFace(), blockpos.north().west(), context.isInside()));
+                            if (predicate.test(tempContext)) {
+                                world.playSound(player, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
+                                if (!world.isClientSide) {
+                                    consumer.accept(tempContext);
+                                    tempContext.getItemInHand().hurtAndBreak(1, player, (p_150845_) -> p_150845_.broadcastBreakEvent(context.getHand()));
                                 }
                             }
                         }
-                        tempContext = new UseOnContext(context.getPlayer(), context.getHand(), new BlockHitResult(context.getClickLocation(), context.getClickedFace(), blockpos.south().east(), context.isInside()));
-                        if (predicate.test(tempContext)) {
-                            Player playerEntity = context.getPlayer();
-                            world.playSound(playerEntity, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
-                            if (!world.isClientSide) {
-                                consumer.accept(tempContext);
-                                if (playerEntity != null) {
-                                    tempContext.getItemInHand().hurtAndBreak(1, playerEntity, (p_150845_) -> p_150845_.broadcastBreakEvent(context.getHand()));
+                        // South East
+                        pair = TILLABLES.get(world.getBlockState(blockpos.south().east()).getBlock());
+                        if (pair != null) {
+                            predicate = pair.getFirst();
+                            consumer = pair.getSecond();
+                            UseOnContext tempContext = new UseOnContext(player, context.getHand(), new BlockHitResult(context.getClickLocation(), context.getClickedFace(), blockpos.south().east(), context.isInside()));
+                            if (predicate.test(tempContext)) {
+                                world.playSound(player, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
+                                if (!world.isClientSide) {
+                                    consumer.accept(tempContext);
+                                    tempContext.getItemInHand().hurtAndBreak(1, player, (p_150845_) -> p_150845_.broadcastBreakEvent(context.getHand()));
                                 }
                             }
                         }
-                        tempContext = new UseOnContext(context.getPlayer(), context.getHand(), new BlockHitResult(context.getClickLocation(), context.getClickedFace(), blockpos.north().west(), context.isInside()));
-                        if (predicate.test(tempContext)) {
-                            Player playerEntity = context.getPlayer();
-                            world.playSound(playerEntity, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
-                            if (!world.isClientSide) {
-                                consumer.accept(tempContext);
-                                if (playerEntity != null) {
-                                    tempContext.getItemInHand().hurtAndBreak(1, playerEntity, (p_150845_) -> p_150845_.broadcastBreakEvent(context.getHand()));
+                        // South West
+                        pair = TILLABLES.get(world.getBlockState(blockpos.south().west()).getBlock());
+                        if (pair != null) {
+                            predicate = pair.getFirst();
+                            consumer = pair.getSecond();
+                            UseOnContext tempContext = new UseOnContext(player, context.getHand(), new BlockHitResult(context.getClickLocation(), context.getClickedFace(), blockpos.north().west(), context.isInside()));
+                            if (predicate.test(tempContext)) {
+                                world.playSound(player, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
+                                if (!world.isClientSide) {
+                                    consumer.accept(tempContext);
+                                    tempContext.getItemInHand().hurtAndBreak(1, player, (p_150845_) -> p_150845_.broadcastBreakEvent(context.getHand()));
                                 }
                             }
                         }
