@@ -8,7 +8,7 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
 
 public interface IGalaxyForgeRecipe extends Recipe<Container> {
-    ResourceLocation TYPE_ID = new ResourceLocation(StardewArmory.MOD_ID, "lightning");
+    ResourceLocation TYPE_ID = new ResourceLocation(StardewArmory.MOD_ID, "galaxy");
 
     @Override
     default RecipeType<?> getType(){

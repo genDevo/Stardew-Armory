@@ -9,17 +9,16 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.Container;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.item.crafting.ShapedRecipe;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
 import javax.annotation.Nullable;
+import java.lang.reflect.Type;
 
-public class GalaxyForgeRecipe implements IGalaxyForgeRecipe{
+public class GalaxyForgeRecipe implements Recipe<SimpleContainer> {
     private final ResourceLocation id;
     private final ItemStack output;
     private final NonNullList<Ingredient> recipeItems;
@@ -31,30 +30,26 @@ public class GalaxyForgeRecipe implements IGalaxyForgeRecipe{
     }
 
     @Override
-    public boolean matches(Container pContainer, Level pLevel) {
-        if(recipeItems.get(0).test(pContainer.getItem(0))) {
+    public boolean matches(SimpleContainer pContainer, Level pLevel) {
+        if (recipeItems.get(0).test(pContainer.getItem(0))) {
             return recipeItems.get(1).test(pContainer.getItem(1));
         }
         return false;
     }
 
     @Override
-    public NonNullList<Ingredient> getIngredients() {
-        return recipeItems;
+    public ItemStack assemble(SimpleContainer pContainer) {
+        return output;
     }
 
     @Override
-    public ItemStack assemble(Container pContainer) {
-        return output;
+    public boolean canCraftInDimensions(int pWidth, int pHeight) {
+        return true;
     }
 
     @Override
     public ItemStack getResultItem() {
         return output.copy();
-    }
-
-    public ItemStack getIcon() {
-        return new ItemStack(ModBlocks.GALAXY_FORGE.get());
     }
 
     @Override
@@ -63,20 +58,32 @@ public class GalaxyForgeRecipe implements IGalaxyForgeRecipe{
     }
 
     @Override
+    public NonNullList<Ingredient> getIngredients() {
+        return recipeItems;
+    }
+
+    public ItemStack getIcon() {
+        return new ItemStack(ModBlocks.GALAXY_FORGE.get());
+    }
+
+    @Override
     public RecipeSerializer<?> getSerializer() {
         return ModRecipeTypes.GALAXY_SERIALIZER.get();
     }
 
-    public static class GalaxyForgeRecipeType implements RecipeType<GalaxyForgeRecipe> {
-        @Override
-        public String toString() {
-            return GalaxyForgeRecipe.TYPE_ID.toString();
-        }
+    @Override
+    public RecipeType<?> getType() {
+        return GalaxyForgeRecipeType.INSTANCE;
     }
 
-    public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>>
-            implements RecipeSerializer<GalaxyForgeRecipe> {
+    public static class GalaxyForgeRecipeType implements RecipeType<GalaxyForgeRecipe> {
+        private GalaxyForgeRecipeType() {
+        }
+        public static final GalaxyForgeRecipeType INSTANCE = new GalaxyForgeRecipeType();
+        public static final String ID = "galaxy";
+    }
 
+    public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<GalaxyForgeRecipe> {
 
         @Override
         public GalaxyForgeRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
@@ -85,11 +92,20 @@ public class GalaxyForgeRecipe implements IGalaxyForgeRecipe{
             JsonArray ingredients = GsonHelper.getAsJsonArray(json, "ingredients");
             NonNullList<Ingredient> inputs = NonNullList.withSize(2, Ingredient.EMPTY);
 
-            for (int i = 0; i< inputs.size(); i++) {
+            for (int i = 0; i < inputs.size(); i++) {
                 inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
             }
 
             return new GalaxyForgeRecipe(recipeId, output, inputs);
+        }
+
+        @Override
+        public void toNetwork(FriendlyByteBuf pBuffer, GalaxyForgeRecipe pRecipe) {
+            for (Ingredient ing : pRecipe.getIngredients()) {
+                ing.toNetwork(pBuffer);
+            }
+
+            pBuffer.writeItemStack(pRecipe.getResultItem(), false);
         }
 
         @Nullable
@@ -103,15 +119,6 @@ public class GalaxyForgeRecipe implements IGalaxyForgeRecipe{
 
             ItemStack output = pBuffer.readItem();
             return new GalaxyForgeRecipe(pRecipeId, output, inputs);
-        }
-
-        @Override
-        public void toNetwork(FriendlyByteBuf pBuffer, GalaxyForgeRecipe pRecipe) {
-            for (Ingredient ing : pRecipe.getIngredients()) {
-                ing.toNetwork(pBuffer);
-            }
-
-            pBuffer.writeItemStack(pRecipe.getResultItem(), false);
         }
     }
 }

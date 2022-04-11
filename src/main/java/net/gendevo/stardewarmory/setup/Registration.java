@@ -23,7 +23,7 @@ public class Registration {
         ModEnchants.register();
         ModBlockEntities.register(modEventBus);
         ModRecipeTypes.register(modEventBus);
-        ModContainers.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
         ModSoundEvents.register(modEventBus);
         ModEntityTypes.ENTITY_TYPES.register(modEventBus);
     }

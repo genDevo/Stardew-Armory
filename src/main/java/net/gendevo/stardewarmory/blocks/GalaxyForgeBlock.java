@@ -1,19 +1,13 @@
 package net.gendevo.stardewarmory.blocks;
 
-import net.gendevo.stardewarmory.conatiners.GalaxyForgeContainer;
 import net.gendevo.stardewarmory.setup.ModBlockEntities;
 import net.gendevo.stardewarmory.blocks.entities.GalaxyForgeBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.MenuProvider;
-import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
@@ -29,7 +23,7 @@ import net.minecraftforge.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 
-public class GalaxyForgeBlock extends HorizontalDirectionalBlock implements EntityBlock {
+public class GalaxyForgeBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
     public GalaxyForgeBlock() {
@@ -44,6 +38,11 @@ public class GalaxyForgeBlock extends HorizontalDirectionalBlock implements Enti
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
         return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite());
+    }
+
+    @Override
+    public RenderShape getRenderShape(BlockState pState) {
+        return RenderShape.MODEL;
     }
 
     @Override
@@ -69,40 +68,33 @@ public class GalaxyForgeBlock extends HorizontalDirectionalBlock implements Enti
             BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
 
             if (blockEntity instanceof GalaxyForgeBlockEntity) {
-                MenuProvider containerProvider = createContainerProvider(pLevel, pPos);
-
-                NetworkHooks.openGui(((ServerPlayer) pPlayer), containerProvider, blockEntity.getBlockPos());
+                NetworkHooks.openGui(((ServerPlayer) pPlayer), (GalaxyForgeBlockEntity)blockEntity, pPos);
             } else {
-                throw new IllegalStateException("Our Container provider is missing!");
+                throw new IllegalStateException("Galaxy forge container provider is missing!");
             }
         }
-        return InteractionResult.CONSUME;
-    }
-
-    private MenuProvider createContainerProvider(Level worldIn, BlockPos pos) {
-        return new MenuProvider() {
-
-            @Override
-            public Component getDisplayName() {
-                return new TranslatableComponent("screen.stardewarmory.galaxy_forge");
-            }
-
-            @Nullable
-            @Override
-            public AbstractContainerMenu createMenu(int pContainerId, Inventory pInventory, Player pPlayer) {
-                return new GalaxyForgeContainer(pContainerId, worldIn, pos, pInventory, pPlayer);
-            }
-        };
+        return InteractionResult.sidedSuccess(pLevel.isClientSide());
     }
 
     @Nullable
     @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
-        return pLevel.isClientSide() ? null : ($0, $1, $2, blockEntity) -> ((GalaxyForgeBlockEntity)blockEntity).tick();
+    public <A extends BlockEntity> BlockEntityTicker<A> getTicker(Level pLevel, BlockState pState, BlockEntityType<A> pBlockEntityType) {
+        return createTickerHelper(pBlockEntityType, ModBlockEntities.GALAXY_FORGE.get(), GalaxyForgeBlockEntity::tick);
     }
 
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return ModBlockEntities.GALAXY_FORGE.get().create(pos, state);
+        return new GalaxyForgeBlockEntity(pos, state);
+    }
+
+    @Override
+    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
+        if (pState.getBlock() != pNewState.getBlock()) {
+            BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
+            if (blockEntity instanceof GalaxyForgeBlockEntity) {
+                ((GalaxyForgeBlockEntity) blockEntity).drops();
+            }
+        }
+        super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
     }
 }

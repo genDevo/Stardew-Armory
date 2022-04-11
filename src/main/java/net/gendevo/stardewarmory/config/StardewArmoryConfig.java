@@ -6,15 +6,15 @@ public final class StardewArmoryConfig {
     public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
     public static final ForgeConfigSpec SPEC;
 
-    public static final ForgeConfigSpec.ConfigValue<Boolean> iridium_indicator;
-    public static final ForgeConfigSpec.ConfigValue<Integer> iridium_rate;
-    public static final ForgeConfigSpec.ConfigValue<Integer> cinder_rate;
-    public static final ForgeConfigSpec.ConfigValue<Integer> warrior_rate;
-    public static final ForgeConfigSpec.ConfigValue<Float> club_rate;
-    public static final ForgeConfigSpec.ConfigValue<Boolean> crit_sound;
-    public static final ForgeConfigSpec.ConfigValue<Boolean> guild_spawn;
-    public static final ForgeConfigSpec.ConfigValue<Integer> guild_average;
-    public static final ForgeConfigSpec.ConfigValue<Integer> guild_minimum;
+    public static final ForgeConfigSpec.ConfigValue<Boolean>    iridium_indicator;
+    public static final ForgeConfigSpec.ConfigValue<Integer>    iridium_rate;
+    public static final ForgeConfigSpec.ConfigValue<Integer>    cinder_rate;
+    public static final ForgeConfigSpec.ConfigValue<Integer>    warrior_rate;
+    public static final ForgeConfigSpec.ConfigValue<Float>      club_rate;
+    public static final ForgeConfigSpec.ConfigValue<Boolean>    crit_sound;
+    public static final ForgeConfigSpec.ConfigValue<Boolean>    guild_spawn;
+    public static final ForgeConfigSpec.ConfigValue<Integer>    guild_average;
+    public static final ForgeConfigSpec.ConfigValue<Integer>    guild_minimum;
 
     static {
         BUILDER.push("Config for the Stardew Armory mod");
@@ -23,10 +23,10 @@ public final class StardewArmoryConfig {
                 .define("Iridium bool", true);
         guild_spawn= BUILDER.comment("Should Guild structures spawn in the world. Default value is true")
                 .define("Guild bool", true);
-        guild_minimum= BUILDER.comment("If the Guild structure is enabled, what is the minimum amount of chunks apart each should be. Default value is 48")
-                .define("Minimum int", 48);
-        guild_average= BUILDER.comment("If the Guild structure is enabled, what is the average amount of chunks apart each should be. Default value is 60")
-                .define("Average int", 60);
+        guild_minimum= BUILDER.comment("If the Guild structure is enabled, what is the minimum amount of chunks apart each should be. Default value is 38")
+                .define("Minimum int", 38);
+        guild_average= BUILDER.comment("If the Guild structure is enabled, what is the average amount of chunks apart each should be. Default value is 50")
+                .define("Average int", 50);
         iridium_rate= BUILDER.comment("How many veins of iridium ore should spawn per chunk. Default value is 4")
                 .define("Iridium int", 4);
         cinder_rate= BUILDER.comment("How many veins of cinder ore should spawn per chunk. Default value is 20")

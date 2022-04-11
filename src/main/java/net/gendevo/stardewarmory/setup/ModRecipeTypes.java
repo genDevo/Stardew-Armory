@@ -17,12 +17,7 @@ public class ModRecipeTypes {
     public static final RegistryObject<GalaxyForgeRecipe.Serializer> GALAXY_SERIALIZER =
             RECIPE_SERIALIZER.register("galaxy", GalaxyForgeRecipe.Serializer::new);
 
-    public static RecipeType<GalaxyForgeRecipe> GALAXY_RECIPE =
-            new GalaxyForgeRecipe.GalaxyForgeRecipeType();
-
     public static void register(IEventBus eventBus) {
         RECIPE_SERIALIZER.register(eventBus);
-
-        Registry.register(Registry.RECIPE_TYPE, GalaxyForgeRecipe.TYPE_ID, GALAXY_RECIPE);
     }
 }

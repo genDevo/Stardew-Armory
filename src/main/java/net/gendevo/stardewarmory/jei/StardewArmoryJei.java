@@ -31,7 +31,7 @@ public class StardewArmoryJei implements IModPlugin {
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
         RecipeManager rm = Objects.requireNonNull(Minecraft.getInstance().level).getRecipeManager();
-        registration.addRecipes(rm.getAllRecipesFor(ModRecipeTypes.GALAXY_RECIPE).stream()
+        registration.addRecipes(rm.getAllRecipesFor(GalaxyForgeRecipe.GalaxyForgeRecipeType.INSTANCE).stream()
                         .filter(r -> r instanceof GalaxyForgeRecipe).collect(Collectors.toList()),
                 GalaxyForgeRecipeCategory.UID);
     }
