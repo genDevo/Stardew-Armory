@@ -18,9 +18,7 @@ The main goal of this mod is to add many of the weapons and combat items from St
 
 Feel free to add this mod to your modpack (and if you do, let me know, I'd love to see it); it is suggested in the world options that structures generate and the spawn chest is enabled.
 
-The Adventurer's Guild was built by [peachimarii](https://www.curseforge.com/members/peachimarii/projects).
-
-Traditional and Simplified Chinese translation done by [Kuri_Pa](https://www.curseforge.com/members/kuri_pa/projects).
+Check the [curseforge page](https://www.curseforge.com/minecraft/mc-mods/stardew-armory) for credits.
 
 **I AM WORKING ON THIS MOD ON MY OWN TIME.**
 
@@ -29,6 +27,8 @@ If you have any idea for the mod or would like to help, please leave a comment o
 <sub>1</sub> All weapons may not be obtainable at current release.
 
 **<ins>Current TODO</ins>:**
+
+Fabric Port
 
 Polish galaxy forge stuff
 
