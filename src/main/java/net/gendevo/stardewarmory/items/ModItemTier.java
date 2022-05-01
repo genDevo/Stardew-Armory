@@ -160,8 +160,8 @@ public enum ModItemTier implements Tier {
     }),
 
     // Tools
-    IRIDIUM(5, 3000, 13.0F, 5.0F, 24, () -> {
-        return Ingredient.of(ModItems.GALAXY_SOUL.get());
+    IRIDIUM(5, 2600, 13.0F, 5.0F, 24, () -> {
+        return Ingredient.of(ModItems.IRIDIUM_INGOT.get());
     });
 
 

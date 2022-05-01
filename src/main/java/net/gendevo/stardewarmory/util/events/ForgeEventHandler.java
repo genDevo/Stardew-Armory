@@ -260,7 +260,8 @@ public class ForgeEventHandler {
         }
         if (!event.getEntity().level.isClientSide()) {
             Zombie zombie = (Zombie) event.getEntity();
-            if (Math.random() > (1 - StardewArmoryConfig.club_rate.get())) {
+            double rand = Math.random();
+            if (rand > (1.0d - StardewArmoryConfig.club_rate.get())) {
                 zombie.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(ModItems.WOOD_CLUB.get()));
             }
         }

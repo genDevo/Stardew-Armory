@@ -31,6 +31,6 @@ public class NeptuneSword extends SwordItem {
         if (player.isInWater()) {
             player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 200, 0));
         }
-        return false;
+        return super.onLeftClickEntity(stack, player, entity);
     }
 }

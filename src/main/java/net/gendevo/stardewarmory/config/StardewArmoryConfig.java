@@ -10,7 +10,7 @@ public final class StardewArmoryConfig {
     public static final ForgeConfigSpec.ConfigValue<Integer>    iridium_rate;
     public static final ForgeConfigSpec.ConfigValue<Integer>    cinder_rate;
     public static final ForgeConfigSpec.ConfigValue<Integer>    warrior_rate;
-    public static final ForgeConfigSpec.ConfigValue<Float>      club_rate;
+    public static final ForgeConfigSpec.ConfigValue<Double>     club_rate;
     public static final ForgeConfigSpec.ConfigValue<Boolean>    crit_sound;
     public static final ForgeConfigSpec.ConfigValue<Boolean>    guild_spawn;
     public static final ForgeConfigSpec.ConfigValue<Integer>    guild_average;
@@ -32,7 +32,7 @@ public final class StardewArmoryConfig {
         cinder_rate= BUILDER.comment("How many veins of cinder ore should spawn per chunk. Default value is 20")
                 .define("Cinder int", 20);
         club_rate= BUILDER.comment("Chance for a zombie to spawn with a wooden club in hand. Accepts values within a range of [1,0). Default value is 0.05 (5%)")
-                .define("Club float", 0.05f);
+                .define("Club double", 0.05d);
         crit_sound= BUILDER.comment("Should Lucky Hit play the critical sound effect. Default value is true")
                 .define("Crit bool", true);
         warrior_rate = BUILDER.comment("How likely the warrior ring is to proc after a kill. Default value is 8")
