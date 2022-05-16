@@ -27,15 +27,15 @@ public final class StardewArmoryConfig {
                 .define("Minimum int", 38);
         guild_average= BUILDER.comment("If the Guild structure is enabled, what is the average amount of chunks apart each should be. Default value is 50")
                 .define("Average int", 50);
-        iridium_rate= BUILDER.comment("How many veins of iridium ore should spawn per chunk. Default value is 4")
-                .define("Iridium int", 4);
+        iridium_rate= BUILDER.comment("How many veins of iridium ore should spawn per chunk. Default value is 6")
+                .define("Iridium int", 6);
         cinder_rate= BUILDER.comment("How many veins of cinder ore should spawn per chunk. Default value is 20")
                 .define("Cinder int", 20);
         club_rate= BUILDER.comment("Chance for a zombie to spawn with a wooden club in hand. Accepts values within a range of [1,0). Default value is 0.05 (5%)")
                 .define("Club double", 0.05d);
         crit_sound= BUILDER.comment("Should Lucky Hit play the critical sound effect. Default value is true")
                 .define("Crit bool", true);
-        warrior_rate = BUILDER.comment("How likely the warrior ring is to proc after a kill. Default value is 8")
+        warrior_rate = BUILDER.comment("How likely the warrior ring is to proc after a kill (1/# chance). Default value is 8")
                 .define("Warrior int", 8);
 
         BUILDER.pop();

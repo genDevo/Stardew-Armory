@@ -27,6 +27,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LeavesBlock;
@@ -47,14 +48,6 @@ import java.util.Random;
 
 @Mod.EventBusSubscriber(modid = StardewArmory.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ForgeEventHandler {
-
-    @SubscribeEvent
-    public static void generateOres(final BiomeLoadingEvent e) {
-        List<Holder<PlacedFeature>> base = e.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES);
-
-        base.add(OrePlacement.IRIDIUM_ORE_PLACED);
-        base.add(OrePlacement.CINDER_ORE_PLACED);
-    }
 
     @SubscribeEvent
     public static void onBlockBreak(final BlockEvent.BreakEvent event) {
