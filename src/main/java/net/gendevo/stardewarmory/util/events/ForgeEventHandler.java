@@ -11,9 +11,7 @@ import net.gendevo.stardewarmory.items.tools.IridiumPick;
 import net.gendevo.stardewarmory.items.tools.IridiumShovel;
 import net.gendevo.stardewarmory.setup.ModItems;
 import net.gendevo.stardewarmory.setup.ModSoundEvents;
-import net.gendevo.stardewarmory.world.OrePlacement;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.EntityDamageSource;
@@ -27,23 +25,18 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LeavesBlock;
-import net.minecraft.world.level.levelgen.GenerationStep;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import top.theillusivec4.curios.api.CuriosApi;
 
-import java.util.List;
 import java.util.Random;
 
 @Mod.EventBusSubscriber(modid = StardewArmory.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
@@ -66,9 +59,8 @@ public class ForgeEventHandler {
                         } else {
                             eWorld.destroyBlock(event.getPos().below(), true);
                         }
-                        player.getItemInHand(InteractionHand.MAIN_HAND).hurtAndBreak(1, player, (p_220043_1_) -> {
-                            p_220043_1_.broadcastBreakEvent(InteractionHand.MAIN_HAND);
-                        });
+                        player.getItemInHand(InteractionHand.MAIN_HAND).hurtAndBreak(1, player, (p_220043_1_) ->
+                                p_220043_1_.broadcastBreakEvent(InteractionHand.MAIN_HAND));
                     }
                 });
             } else if (heldItem instanceof IridiumAxe) {
@@ -78,9 +70,7 @@ public class ForgeEventHandler {
                         Block originBlock = eWorld.getBlockState(oPos).getBlock();
                         player.getItemInHand(InteractionHand.MAIN_HAND).hurtAndBreak(
                                 feller(eWorld, player, originBlock, oPos, false, 0),
-                                player, (p_220043_1_) -> {
-                                    p_220043_1_.broadcastBreakEvent(InteractionHand.MAIN_HAND);
-                                });
+                                player, (tool) -> tool.broadcastBreakEvent(InteractionHand.MAIN_HAND));
                     }
                 });
             } else if (heldItem instanceof IridiumShovel) {
@@ -168,8 +158,7 @@ public class ForgeEventHandler {
 
     @SubscribeEvent
     public static void onPlayerAttacked(final LivingAttackEvent event) {
-        if (event.getEntityLiving() instanceof Player && !event.getEntityLiving().level.isClientSide()) {
-            Player player = (Player) event.getEntityLiving();
+        if (event.getEntityLiving() instanceof Player player && !event.getEntityLiving().level.isClientSide()) {
 
             // Slime charmer effect
             if (event.getSource().getEntity() instanceof Slime) {
@@ -192,8 +181,7 @@ public class ForgeEventHandler {
     @SubscribeEvent
     public static void onPlayerKillEntity(final LivingDeathEvent event) {
         if (event.getSource() instanceof EntityDamageSource && !event.getEntityLiving().level.isClientSide()) {
-            if (event.getSource().getEntity() instanceof Player && !(event.getEntityLiving() instanceof Animal)) {
-                Player player = (Player) event.getSource().getEntity();
+            if (event.getSource().getEntity() instanceof Player player && !(event.getEntityLiving() instanceof Animal)) {
 
                 // Glutton effect
                 if (isRingEquipped(player, ModItems.SOUL_GLUTTON_RING.get())) {
@@ -230,9 +218,11 @@ public class ForgeEventHandler {
     }
 
     private static boolean isRingEquipped(Player player, Item item) {
-        for (int i = 0; i < CuriosApi.getCuriosHelper().getEquippedCurios(player).resolve().get().getSlots(); i++) {
-            if (CuriosApi.getCuriosHelper().getEquippedCurios(player).resolve().get().getStackInSlot(i).getItem() == item)
-                return true;
+        if (CuriosApi.getCuriosHelper().getEquippedCurios(player).resolve().isPresent()) {
+            for (int i = 0; i < CuriosApi.getCuriosHelper().getEquippedCurios(player).resolve().get().getSlots(); i++) {
+                if (CuriosApi.getCuriosHelper().getEquippedCurios(player).resolve().get().getStackInSlot(i).getItem() == item)
+                    return true;
+            }
         }
         return false;
     }
