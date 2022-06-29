@@ -38,7 +38,7 @@ public class GuildMasterEntity extends PathfinderMob {
     }
 
     @Override
-    protected int getExperienceReward(Player pPlayer) {
+    public int getExperienceReward() {
         return 10;
     }
 

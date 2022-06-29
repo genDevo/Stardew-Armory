@@ -1,7 +1,8 @@
 package net.gendevo.stardewarmory.items.weapons;
 
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.contents.LiteralContents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -22,7 +23,7 @@ public class DwarfSword extends SwordItem {
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
-        pTooltipComponents.add(new TextComponent("\u00A7oReturns you to your dwarven form, granting brief invulnerability at the cost of speed"));
+        pTooltipComponents.add(MutableComponent.create(new LiteralContents("\u00A7oReturns you to your dwarven form, granting brief invulnerability at the cost of speed")));
     }
 
     @Override

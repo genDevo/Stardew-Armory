@@ -3,7 +3,8 @@ package net.gendevo.stardewarmory.items.rings;
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
@@ -42,9 +43,9 @@ public class EmeraldRing extends Item implements ICurioItem {
     public void appendHoverText(ItemStack pStack, @Nullable net.minecraft.world.level.Level pLevel, List<Component> tooltip, TooltipFlag pIsAdvanced) {
         super.appendHoverText(pStack, pLevel, tooltip, pIsAdvanced);
         if (InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), GLFW.GLFW_KEY_LEFT_SHIFT)) {
-            tooltip.add(new TranslatableComponent("tooltip.stardewarmory.emerald_ring"));
+            tooltip.add(Component.translatable("tooltip.stardewarmory.emerald_ring"));
         } else {
-            tooltip.add(new TranslatableComponent("tooltip.stardewarmory.hold_shift"));
+            tooltip.add(Component.translatable("tooltip.stardewarmory.hold_shift"));
         }
     }
 

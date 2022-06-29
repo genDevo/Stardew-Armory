@@ -7,7 +7,6 @@ import net.gendevo.stardewarmory.setup.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -17,7 +16,6 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
@@ -142,7 +140,7 @@ public class GalaxyForgeBlockEntity extends BlockEntity implements MenuProvider 
         }
 
         Optional<GalaxyForgeRecipe> match = level.getRecipeManager()
-                .getRecipeFor(GalaxyForgeRecipe.GalaxyForgeRecipeType.INSTANCE, inventory, level);
+                .getRecipeFor(GalaxyForgeRecipe.Type.INSTANCE, inventory, level);
 
         return match.isPresent();
     }
@@ -156,7 +154,7 @@ public class GalaxyForgeBlockEntity extends BlockEntity implements MenuProvider 
         }
 
         Optional<GalaxyForgeRecipe> recipe = level.getRecipeManager()
-                .getRecipeFor(GalaxyForgeRecipe.GalaxyForgeRecipeType.INSTANCE, inv, level);
+                .getRecipeFor(GalaxyForgeRecipe.Type.INSTANCE, inv, level);
 
         if (recipe.isPresent()) {
             ItemStack output = recipe.get().getResultItem();
@@ -186,7 +184,7 @@ public class GalaxyForgeBlockEntity extends BlockEntity implements MenuProvider 
 
     @Override
     public Component getDisplayName() {
-        return new TranslatableComponent("block.stardewarmory.galaxy_forge");
+        return Component.translatable("block.stardewarmory.galaxy_forge");
     }
 
     @Nullable

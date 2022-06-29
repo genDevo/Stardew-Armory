@@ -6,8 +6,9 @@ import net.gendevo.stardewarmory.data.capabilities.IridiumModeCapability;
 import net.gendevo.stardewarmory.util.KeybindSetup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.contents.LiteralContents;
+import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.Tier;
@@ -32,15 +33,17 @@ public class IridiumShovel extends ShovelItem {
         super.appendHoverText(stack, world, tooltip, flag);
         stack.getCapability(IridiumModeCapability.IRIDIUM_CAPABILITY).ifPresent(h -> {
             if (h.isIridiumMode()) {
-                tooltip.add(new TranslatableComponent("tooltip.stardewarmory.iridium_shovel_on"));
+                tooltip.add(Component.translatable("tooltip.stardewarmory.iridium_shovel_on"));
             } else {
-                tooltip.add(new TranslatableComponent("tooltip.stardewarmory.iridium_shovel_off"));
+                tooltip.add(Component.translatable("tooltip.stardewarmory.iridium_shovel_off"));
             }
         });
         if (!Objects.isNull(world)) {
-            tooltip.add(new TextComponent(new TranslatableComponent("tooltip.stardewarmory.press").getString() +
-                    KeybindSetup.iridiumKey.getKey().getName().replaceAll("key.keyboard.", "").toUpperCase() +
-                    new TranslatableComponent("tooltip.stardewarmory.toggle").getString()));
+            tooltip.add(Component.literal(
+                    Component.translatable("tooltip.stardewarmory.press").getString() +
+                            KeybindSetup.iridiumKey.getKey().getName().replaceAll("key.keyboard.", "").toUpperCase() +
+                            Component.translatable("tooltip.stardewarmory.toggle").getString()
+            ));
         }
     }
 
@@ -49,7 +52,7 @@ public class IridiumShovel extends ShovelItem {
     public CompoundTag getShareTag(ItemStack stack) {
         CompoundTag tag = stack.getOrCreateTag();
         IIridiumMode cap = stack.getCapability(IridiumModeCapability.IRIDIUM_CAPABILITY).orElseThrow(() ->
-                new IllegalArgumentException("Capability was empty on get, oh no!"));
+                new IllegalArgumentException("Could not get Iridium Shovel capability!"));
 
         tag.putBoolean("SAnfo", cap.isIridiumMode());
         System.out.println(cap.isIridiumMode());

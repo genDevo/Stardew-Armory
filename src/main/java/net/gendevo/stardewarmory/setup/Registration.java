@@ -26,5 +26,7 @@ public class Registration {
         ModMenuTypes.register(modEventBus);
         ModSoundEvents.register(modEventBus);
         ModEntityTypes.ENTITY_TYPES.register(modEventBus);
+        ModPlacedFeatures.PLACED_FEATURES.register(modEventBus);
+        ModBiomeModifiers.register(modEventBus);
     }
 }

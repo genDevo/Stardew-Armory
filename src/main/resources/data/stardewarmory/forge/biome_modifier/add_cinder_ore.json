@@ -1,0 +1,5 @@
+{
+  "type": "ores",
+  "biomes": "#minecraft:is_overworld",
+  "feature": "stardewarmory:cinder_ore_placed"
+}

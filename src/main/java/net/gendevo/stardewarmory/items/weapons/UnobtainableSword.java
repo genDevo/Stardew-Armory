@@ -1,7 +1,8 @@
 package net.gendevo.stardewarmory.items.weapons;
 
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tier;
@@ -11,7 +12,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class UnobtainableSword extends SwordItem {
-    private String whichToolTip;
+    private final String whichToolTip;
 
     public UnobtainableSword(Tier p_i48460_1_, int p_i48460_2_, float p_i48460_3_, Properties p_i48460_4_, String whichToolTip) {
         super(p_i48460_1_, p_i48460_2_, p_i48460_3_, p_i48460_4_);
@@ -22,45 +23,35 @@ public class UnobtainableSword extends SwordItem {
     public void appendHoverText(ItemStack pStack, @Nullable net.minecraft.world.level.Level pLevel, List<Component> tooltip, TooltipFlag pIsAdvanced) {
         super.appendHoverText(pStack, pLevel, tooltip, pIsAdvanced);
         switch (whichToolTip) {
-            case "alex": {
-                tooltip.add(new TranslatableComponent("tooltip.stardewarmory.alex"));
-                break;
+            case "alex" -> {
+                tooltip.add(MutableComponent.create(new TranslatableContents("tooltip.stardewarmory.alex")));
             }
-            case "sam": {
-                tooltip.add(new TranslatableComponent("tooltip.stardewarmory.sam"));
-                break;
+            case "sam" -> {
+                tooltip.add(MutableComponent.create(new TranslatableContents("tooltip.stardewarmory.sam")));
             }
-            case "harvey": {
-                tooltip.add(new TranslatableComponent("tooltip.stardewarmory.harvey"));
-                break;
+            case "harvey" -> {
+                tooltip.add(MutableComponent.create(new TranslatableContents("tooltip.stardewarmory.harvey")));
             }
-            case "maru": {
-                tooltip.add(new TranslatableComponent("tooltip.stardewarmory.maru"));
-                break;
+            case "maru" -> {
+                tooltip.add(MutableComponent.create(new TranslatableContents("tooltip.stardewarmory.maru")));
             }
-            case "penny": {
-                tooltip.add(new TranslatableComponent("tooltip.stardewarmory.penny"));
-                break;
+            case "penny" -> {
+                tooltip.add(MutableComponent.create(new TranslatableContents("tooltip.stardewarmory.penny")));
             }
-            case "seb": {
-                tooltip.add(new TranslatableComponent("tooltip.stardewarmory.seb"));
-                break;
+            case "seb" -> {
+                tooltip.add(MutableComponent.create(new TranslatableContents("tooltip.stardewarmory.seb")));
             }
-            case "haley": {
-                tooltip.add(new TranslatableComponent("tooltip.stardewarmory.haley"));
-                break;
+            case "haley" -> {
+                tooltip.add(MutableComponent.create(new TranslatableContents("tooltip.stardewarmory.haley")));
             }
-            case "abby": {
-                tooltip.add(new TranslatableComponent("tooltip.stardewarmory.abby"));
-                break;
+            case "abby" -> {
+                tooltip.add(MutableComponent.create(new TranslatableContents("tooltip.stardewarmory.abby")));
             }
-            case "elliot": {
-                tooltip.add(new TranslatableComponent("tooltip.stardewarmory.elliot"));
-                break;
+            case "elliot" -> {
+                tooltip.add(MutableComponent.create(new TranslatableContents("tooltip.stardewarmory.elliot")));
             }
-            case "leah": {
-                tooltip.add(new TranslatableComponent("tooltip.stardewarmory.leah"));
-                break;
+            case "leah" -> {
+                tooltip.add(MutableComponent.create(new TranslatableContents("tooltip.stardewarmory.leah")));
             }
         }
     }    

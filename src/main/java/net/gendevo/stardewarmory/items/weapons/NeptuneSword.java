@@ -1,7 +1,8 @@
 package net.gendevo.stardewarmory.items.weapons;
 
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -23,7 +24,7 @@ public class NeptuneSword extends SwordItem {
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable net.minecraft.world.level.Level pLevel, List<Component> tooltip, TooltipFlag flagIn) {
         super.appendHoverText(pStack, pLevel, tooltip, flagIn);
-        tooltip.add(new TextComponent("\u00A7oSteals target's breath"));
+        tooltip.add(MutableComponent.create(new TranslatableContents("tooltip.stardewarmory.neptune_sword")));
     }
 
     @Override

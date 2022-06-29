@@ -6,7 +6,6 @@ import net.gendevo.stardewarmory.network.ModNetwork;
 import net.gendevo.stardewarmory.screen.GalaxyForgeScreen;
 import net.gendevo.stardewarmory.setup.ModMenuTypes;
 import net.gendevo.stardewarmory.setup.ModItems;
-import net.gendevo.stardewarmory.setup.ModStructures;
 import net.gendevo.stardewarmory.setup.Registration;
 import net.gendevo.stardewarmory.util.IridiumModeGui;
 import net.gendevo.stardewarmory.util.KeybindSetup;
@@ -48,13 +47,9 @@ public class StardewArmory
         // Register the doClientStuff method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
-        //FMLJavaModLoadingContext.get().getModEventBus().addListener(this::loadComplete);
-
         // Register ourselves for server and other game events we are interested in
         IEventBus forgeBus = MinecraftForge.EVENT_BUS;
         forgeBus.register(this);
-
-        ModStructures.DEFERRED_REGISTRY_STRUCTURE.register(modEventBus);
     }
 
     private void setup(final FMLCommonSetupEvent event)

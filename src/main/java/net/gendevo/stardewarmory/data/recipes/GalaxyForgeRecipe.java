@@ -8,15 +8,12 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
-import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.registries.ForgeRegistryEntry;
 
 import javax.annotation.Nullable;
-import java.lang.reflect.Type;
 
 public class GalaxyForgeRecipe implements Recipe<SimpleContainer> {
     private final ResourceLocation id;
@@ -31,6 +28,8 @@ public class GalaxyForgeRecipe implements Recipe<SimpleContainer> {
 
     @Override
     public boolean matches(SimpleContainer pContainer, Level pLevel) {
+        if (pLevel.isClientSide()) return false;
+
         if (recipeItems.get(0).test(pContainer.getItem(0))) {
             return recipeItems.get(1).test(pContainer.getItem(1));
         }
@@ -73,17 +72,16 @@ public class GalaxyForgeRecipe implements Recipe<SimpleContainer> {
 
     @Override
     public RecipeType<?> getType() {
-        return GalaxyForgeRecipeType.INSTANCE;
+        return Type.INSTANCE;
     }
 
-    public static class GalaxyForgeRecipeType implements RecipeType<GalaxyForgeRecipe> {
-        private GalaxyForgeRecipeType() {
-        }
-        public static final GalaxyForgeRecipeType INSTANCE = new GalaxyForgeRecipeType();
+    public static class Type implements RecipeType<GalaxyForgeRecipe>{
+        private Type() {}
+        public static final Type INSTANCE = new Type();
         public static final String ID = "galaxy";
     }
 
-    public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<GalaxyForgeRecipe> {
+    public static class Serializer implements RecipeSerializer<GalaxyForgeRecipe> {
 
         @Override
         public GalaxyForgeRecipe fromJson(ResourceLocation recipeId, JsonObject json) {

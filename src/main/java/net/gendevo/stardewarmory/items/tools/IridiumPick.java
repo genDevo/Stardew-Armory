@@ -1,16 +1,18 @@
 package net.gendevo.stardewarmory.items.tools;
 
-import net.gendevo.stardewarmory.data.capabilities.IridiumModeCapability;
 import net.gendevo.stardewarmory.data.capabilities.IIridiumMode;
+import net.gendevo.stardewarmory.data.capabilities.IridiumModeCapability;
 import net.gendevo.stardewarmory.util.KeybindSetup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.contents.LiteralContents;
+import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -26,19 +28,21 @@ public class IridiumPick extends PickaxeItem {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, @Nullable net.minecraft.world.level.Level world, List<Component> tooltip, TooltipFlag flag) {
+    public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
         super.appendHoverText(stack, world, tooltip, flag);
         stack.getCapability(IridiumModeCapability.IRIDIUM_CAPABILITY).ifPresent(h -> {
-            if (h.isIridiumMode() ) {
-                tooltip.add(new TranslatableComponent("tooltip.stardewarmory.iridium_pick_on"));
+            if (h.isIridiumMode()) {
+                tooltip.add(Component.translatable("tooltip.stardewarmory.iridium_pick_on"));
             } else {
-                tooltip.add(new TranslatableComponent("tooltip.stardewarmory.iridium_pick_off"));
+                tooltip.add(Component.translatable("tooltip.stardewarmory.iridium_pick_off"));
             }
         });
         if (!Objects.isNull(world)) {
-            tooltip.add(new TextComponent(new TranslatableComponent("tooltip.stardewarmory.press").getString() +
-                    KeybindSetup.iridiumKey.getKey().getName().replaceAll("key.keyboard.", "").toUpperCase() +
-                    new TranslatableComponent("tooltip.stardewarmory.toggle").getString()));
+            tooltip.add(Component.literal(
+                    Component.translatable("tooltip.stardewarmory.press").getString() +
+                            KeybindSetup.iridiumKey.getKey().getName().replaceAll("key.keyboard.", "").toUpperCase() +
+                            Component.translatable("tooltip.stardewarmory.toggle").getString()
+            ));
         }
     }
 
@@ -47,7 +51,7 @@ public class IridiumPick extends PickaxeItem {
     public CompoundTag getShareTag(ItemStack stack) {
         CompoundTag tag = stack.getOrCreateTag();
         IIridiumMode cap = stack.getCapability(IridiumModeCapability.IRIDIUM_CAPABILITY).orElseThrow(() ->
-                new IllegalArgumentException("Capability was empty on get, oh no!"));
+                new IllegalArgumentException("Could not get Iridium Pick capability!"));
 
         tag.putBoolean("SAnfo", cap.isIridiumMode());
         System.out.println(cap.isIridiumMode());

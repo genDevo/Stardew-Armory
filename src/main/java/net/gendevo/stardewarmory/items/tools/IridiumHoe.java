@@ -8,8 +8,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.contents.LiteralContents;
+import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
@@ -20,6 +21,7 @@ import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -40,12 +42,11 @@ public class IridiumHoe extends HoeItem {
 
     @Override
     public InteractionResult useOn(UseOnContext context) {
-        Level world = context.getLevel();
+        Level level = context.getLevel();
         BlockPos blockpos = context.getClickedPos();
-        Pair<Predicate<UseOnContext>, Consumer<UseOnContext>> pair = TILLABLES.get(world.getBlockState(blockpos).getBlock());
-        int hook = net.minecraftforge.event.ForgeEventFactory.onHoeUse(context);
-        if (hook != 0) return hook > 0 ? InteractionResult.SUCCESS : InteractionResult.FAIL;
-        if (context.getClickedFace() != Direction.DOWN && world.isEmptyBlock(blockpos.above())) {
+        BlockState toolModifiedState = level.getBlockState(blockpos).getToolModifiedState(context, net.minecraftforge.common.ToolActions.HOE_TILL, false);
+        Pair<Predicate<UseOnContext>, Consumer<UseOnContext>> pair = toolModifiedState == null ? null : Pair.of(ctx -> true, changeIntoState(toolModifiedState));
+        if (context.getClickedFace() != Direction.DOWN && level.isEmptyBlock(blockpos.above())) {
             if (pair == null) {
                 return InteractionResult.PASS;
             } else {
@@ -61,124 +62,124 @@ public class IridiumHoe extends HoeItem {
                 if (isMode.get()) {
                     Player player = context.getPlayer();
                     if (predicate.test(context) && player != null) {
-                        world.playSound(player, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
-                        if (!world.isClientSide) {
+                        level.playSound(player, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
+                        if (!level.isClientSide) {
                             consumer.accept(context);
                             context.getItemInHand().hurtAndBreak(1, player, (p_150845_) -> p_150845_.broadcastBreakEvent(context.getHand()));
                         }
                         // North
-                        pair = TILLABLES.get(world.getBlockState(blockpos.north()).getBlock());
+                        pair = TILLABLES.get(level.getBlockState(blockpos.north()).getBlock());
                         if (pair != null) {
                             predicate = pair.getFirst();
                             consumer = pair.getSecond();
                             UseOnContext tempContext = new UseOnContext(player, context.getHand(), new BlockHitResult(context.getClickLocation(), context.getClickedFace(), blockpos.north(), context.isInside()));
                             if (predicate.test(tempContext)) {
-                                world.playSound(player, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
-                                if (!world.isClientSide) {
+                                level.playSound(player, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
+                                if (!level.isClientSide) {
                                     consumer.accept(tempContext);
                                     tempContext.getItemInHand().hurtAndBreak(1, player, (p_150845_) -> p_150845_.broadcastBreakEvent(context.getHand()));
                                 }
                             }
                         }
                         // South
-                        pair = TILLABLES.get(world.getBlockState(blockpos.south()).getBlock());
+                        pair = TILLABLES.get(level.getBlockState(blockpos.south()).getBlock());
                         if (pair != null) {
                             predicate = pair.getFirst();
                             consumer = pair.getSecond();
                             UseOnContext tempContext = new UseOnContext(player, context.getHand(), new BlockHitResult(context.getClickLocation(), context.getClickedFace(), blockpos.south(), context.isInside()));
                             if (predicate.test(tempContext)) {
-                                world.playSound(player, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
-                                if (!world.isClientSide) {
+                                level.playSound(player, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
+                                if (!level.isClientSide) {
                                     consumer.accept(tempContext);
                                     tempContext.getItemInHand().hurtAndBreak(1, player, (p_150845_) -> p_150845_.broadcastBreakEvent(context.getHand()));
                                 }
                             }
                         }
                         // East
-                        pair = TILLABLES.get(world.getBlockState(blockpos.east()).getBlock());
+                        pair = TILLABLES.get(level.getBlockState(blockpos.east()).getBlock());
                         if (pair != null) {
                             predicate = pair.getFirst();
                             consumer = pair.getSecond();
                             UseOnContext tempContext = new UseOnContext(player, context.getHand(), new BlockHitResult(context.getClickLocation(), context.getClickedFace(), blockpos.east(), context.isInside()));
                             if (predicate.test(tempContext)) {
-                                world.playSound(player, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
-                                if (!world.isClientSide) {
+                                level.playSound(player, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
+                                if (!level.isClientSide) {
                                     consumer.accept(tempContext);
                                     tempContext.getItemInHand().hurtAndBreak(1, player, (p_150845_) -> p_150845_.broadcastBreakEvent(context.getHand()));
                                 }
                             }
                         }
                         // West
-                        pair = TILLABLES.get(world.getBlockState(blockpos.west()).getBlock());
+                        pair = TILLABLES.get(level.getBlockState(blockpos.west()).getBlock());
                         if (pair != null) {
                             predicate = pair.getFirst();
                             consumer = pair.getSecond();
                             UseOnContext tempContext = new UseOnContext(player, context.getHand(), new BlockHitResult(context.getClickLocation(), context.getClickedFace(), blockpos.west(), context.isInside()));
                             if (predicate.test(tempContext)) {
-                                world.playSound(player, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
-                                if (!world.isClientSide) {
+                                level.playSound(player, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
+                                if (!level.isClientSide) {
                                     consumer.accept(tempContext);
                                     tempContext.getItemInHand().hurtAndBreak(1, player, (p_150845_) -> p_150845_.broadcastBreakEvent(context.getHand()));
                                 }
                             }
                         }
                         // North East
-                        pair = TILLABLES.get(world.getBlockState(blockpos.north().east()).getBlock());
+                        pair = TILLABLES.get(level.getBlockState(blockpos.north().east()).getBlock());
                         if (pair != null) {
                             predicate = pair.getFirst();
                             consumer = pair.getSecond();
                             UseOnContext tempContext = new UseOnContext(player, context.getHand(), new BlockHitResult(context.getClickLocation(), context.getClickedFace(), blockpos.north().east(), context.isInside()));
                             if (predicate.test(tempContext)) {
-                                world.playSound(player, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
-                                if (!world.isClientSide) {
+                                level.playSound(player, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
+                                if (!level.isClientSide) {
                                     consumer.accept(tempContext);
                                     tempContext.getItemInHand().hurtAndBreak(1, player, (p_150845_) -> p_150845_.broadcastBreakEvent(context.getHand()));
                                 }
                             }
                         }
                         // North West
-                        pair = TILLABLES.get(world.getBlockState(blockpos.north().west()).getBlock());
+                        pair = TILLABLES.get(level.getBlockState(blockpos.north().west()).getBlock());
                         if (pair != null) {
                             predicate = pair.getFirst();
                             consumer = pair.getSecond();
                             UseOnContext tempContext = new UseOnContext(player, context.getHand(), new BlockHitResult(context.getClickLocation(), context.getClickedFace(), blockpos.north().west(), context.isInside()));
                             if (predicate.test(tempContext)) {
-                                world.playSound(player, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
-                                if (!world.isClientSide) {
+                                level.playSound(player, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
+                                if (!level.isClientSide) {
                                     consumer.accept(tempContext);
                                     tempContext.getItemInHand().hurtAndBreak(1, player, (p_150845_) -> p_150845_.broadcastBreakEvent(context.getHand()));
                                 }
                             }
                         }
                         // South East
-                        pair = TILLABLES.get(world.getBlockState(blockpos.south().east()).getBlock());
+                        pair = TILLABLES.get(level.getBlockState(blockpos.south().east()).getBlock());
                         if (pair != null) {
                             predicate = pair.getFirst();
                             consumer = pair.getSecond();
                             UseOnContext tempContext = new UseOnContext(player, context.getHand(), new BlockHitResult(context.getClickLocation(), context.getClickedFace(), blockpos.south().east(), context.isInside()));
                             if (predicate.test(tempContext)) {
-                                world.playSound(player, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
-                                if (!world.isClientSide) {
+                                level.playSound(player, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
+                                if (!level.isClientSide) {
                                     consumer.accept(tempContext);
                                     tempContext.getItemInHand().hurtAndBreak(1, player, (p_150845_) -> p_150845_.broadcastBreakEvent(context.getHand()));
                                 }
                             }
                         }
                         // South West
-                        pair = TILLABLES.get(world.getBlockState(blockpos.south().west()).getBlock());
+                        pair = TILLABLES.get(level.getBlockState(blockpos.south().west()).getBlock());
                         if (pair != null) {
                             predicate = pair.getFirst();
                             consumer = pair.getSecond();
                             UseOnContext tempContext = new UseOnContext(player, context.getHand(), new BlockHitResult(context.getClickLocation(), context.getClickedFace(), blockpos.north().west(), context.isInside()));
                             if (predicate.test(tempContext)) {
-                                world.playSound(player, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
-                                if (!world.isClientSide) {
+                                level.playSound(player, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
+                                if (!level.isClientSide) {
                                     consumer.accept(tempContext);
                                     tempContext.getItemInHand().hurtAndBreak(1, player, (p_150845_) -> p_150845_.broadcastBreakEvent(context.getHand()));
                                 }
                             }
                         }
-                        return InteractionResult.sidedSuccess(world.isClientSide);
+                        return InteractionResult.sidedSuccess(level.isClientSide);
                     } else {
                         return InteractionResult.PASS;
                     }
@@ -186,14 +187,14 @@ public class IridiumHoe extends HoeItem {
                 } else {
                     if (predicate.test(context)) {
                         Player player = context.getPlayer();
-                        world.playSound(player, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
-                        if (!world.isClientSide) {
+                        level.playSound(player, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
+                        if (!level.isClientSide) {
                             consumer.accept(context);
                             if (player != null) {
                                 context.getItemInHand().hurtAndBreak(1, player, (p_150845_) -> p_150845_.broadcastBreakEvent(context.getHand()));
                             }
                         }
-                        return InteractionResult.sidedSuccess(world.isClientSide);
+                        return InteractionResult.sidedSuccess(level.isClientSide);
                     } else {
                         return InteractionResult.PASS;
                     }
@@ -205,17 +206,21 @@ public class IridiumHoe extends HoeItem {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
-        super.appendHoverText(stack, world, tooltip, flag);
+    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+        super.appendHoverText(stack, level, tooltip, flag);
         stack.getCapability(IridiumModeCapability.IRIDIUM_CAPABILITY).ifPresent(h -> {
             if (h.isIridiumMode()) {
-                tooltip.add(new TranslatableComponent("tooltip.stardewarmory.iridium_hoe_on"));
+                tooltip.add(Component.translatable("tooltip.stardewarmory.iridium_hoe_on"));
             } else {
-                tooltip.add(new TranslatableComponent("tooltip.stardewarmory.iridium_hoe_off"));
+                tooltip.add(Component.translatable("tooltip.stardewarmory.iridium_hoe_off"));
             }
         });
-        if (!Objects.isNull(world)) {
-            tooltip.add(new TextComponent(new TranslatableComponent("tooltip.stardewarmory.press").getString() + KeybindSetup.iridiumKey.getKey().getName().replaceAll("key.keyboard.", "").toUpperCase() + new TranslatableComponent("tooltip.stardewarmory.toggle").getString()));
+        if (!Objects.isNull(level)) {
+            tooltip.add(Component.literal(
+                    Component.translatable("tooltip.stardewarmory.press").getString() +
+                            KeybindSetup.iridiumKey.getKey().getName().replaceAll("key.keyboard.", "").toUpperCase() +
+                            Component.translatable("tooltip.stardewarmory.toggle").getString()
+            ));
         }
     }
 
@@ -223,8 +228,8 @@ public class IridiumHoe extends HoeItem {
     @Override
     public CompoundTag getShareTag(ItemStack stack) {
         CompoundTag tag = stack.getOrCreateTag();
-        IIridiumMode cap = stack.getCapability(IridiumModeCapability.IRIDIUM_CAPABILITY).orElseThrow(() -> new IllegalArgumentException("Capability was empty on get, oh no!"));
-
+        IIridiumMode cap = stack.getCapability(IridiumModeCapability.IRIDIUM_CAPABILITY).orElseThrow(() ->
+                new IllegalArgumentException("Could not get Iridium Hoe capability!"));
         tag.putBoolean("SAnfo", cap.isIridiumMode());
         System.out.println(cap.isIridiumMode());
         return tag;
