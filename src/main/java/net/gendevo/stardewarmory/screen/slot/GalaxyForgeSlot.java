@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.screen.slot.Slot;
 
 public class GalaxyForgeSlot extends Slot {
-    private boolean cinderSlot;
+    private final boolean cinderSlot;
 
     public GalaxyForgeSlot(Inventory inventory, int index, int x, int y, boolean cinderSlot) {
         super(inventory, index, x, y);
@@ -14,11 +14,29 @@ public class GalaxyForgeSlot extends Slot {
     }
 
     @Override
+    public int getMaxItemCount() {
+        if (isCinderSlot()) {
+            return 64;
+        } else {
+            return 1;
+        }
+    }
+
+    @Override
+    public int getMaxItemCount(ItemStack stack) {
+        return getMaxItemCount();
+    }
+
+    @Override
     public boolean canInsert(ItemStack stack) {
-        if (cinderSlot) {
-            return stack.getItem().equals(ModItems.CINDER_SHARD);
+        if (isCinderSlot()) {
+            return super.canInsert(stack) && stack.getItem().equals(ModItems.CINDER_SHARD);
         } else {
             return super.canInsert(stack) && !stack.getItem().equals(ModItems.CINDER_SHARD);
         }
+    }
+
+    public boolean isCinderSlot() {
+        return cinderSlot;
     }
 }

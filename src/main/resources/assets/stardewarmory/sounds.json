@@ -1,0 +1,26 @@
+{
+  "lucky_hit_sound" : {
+    "subtitle": "subtitle.stardewarmory.lucky_hit_sound",
+    "sounds": [
+      "stardewarmory:lucky_hit_sound"
+    ]
+  },
+  "yoba_sound" : {
+    "subtitle": "subtitle.stardewarmory.yoba_sound",
+    "sounds": [
+      "stardewarmory:yoba_sound"
+    ]
+  },
+  "toggle_on_sound" : {
+    "subtitle": "subtitle.stardewarmory.toggle_on_sound",
+    "sounds": [
+      "stardewarmory:toggle_on_sound"
+    ]
+  },
+  "toggle_off_sound" : {
+    "subtitle": "subtitle.stardewarmory.toggle_off_sound",
+    "sounds": [
+      "stardewarmory:toggle_off_sound"
+    ]
+  }
+}

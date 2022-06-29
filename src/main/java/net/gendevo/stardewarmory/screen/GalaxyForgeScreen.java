@@ -32,6 +32,15 @@ public class GalaxyForgeScreen extends HandledScreen<GalaxyForgeScreenHandler> {
         int x = (width - backgroundWidth) / 2;
         int y = (height - backgroundHeight) / 2;
         drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
+
+        if (handler.hasShards()) {
+            this.drawTexture(matrices, x+46, y+23, 176, 0, 78, 23);
+        }
+
+        if (handler.isCrafting()) {
+            int progress = handler.getScaledProgress();
+            this.drawTexture(matrices, x+57, y+39, 176, 23, progress, 29);
+        }
     }
 
     @Override

@@ -28,9 +28,76 @@ public class DataGenerators {
         // Materials
         genItems.add("prismatic_shard");
         genItems.add("cinder_shard");
+        genItems.add("reinforced_handle");
+        genItems.add("iridium_ingot");
+        genItems.add("galaxy_soul");
+        genItems.add("dragon_tooth");
+        genItems.add("prehistoric_scapula");
+        genItems.add("raw_iridium");
 
-        // Swords
+        // Swords / Tools
+        hhItems.add("galaxy_sword");
+        hhItems.add("yeti_tooth");
+        hhItems.add("dragontooth_cutlass");
+        hhItems.add("silver_saber");
+        hhItems.add("rusty_sword");
+        hhItems.add("steel_smallsword");
+        hhItems.add("pirates_sword");
+        hhItems.add("cutlass");
+        hhItems.add("forest_sword");
+        hhItems.add("iron_edge");
+        hhItems.add("insect_head");
+        hhItems.add("bone_sword");
+        hhItems.add("claymore");
+        hhItems.add("neptunes_glaive");
+        hhItems.add("templars_blade");
+        hhItems.add("obsidian_edge");
+        hhItems.add("ossified_blade");
+        hhItems.add("tempered_broadsword");
+        hhItems.add("steel_falchion");
+        hhItems.add("dark_sword");
+        hhItems.add("lava_katana");
+        hhItems.add("dwarf_sword");
+        hhItems.add("infinity_blade");
+        hhItems.add("carving_knife");
+        hhItems.add("iron_dirk");
+        hhItems.add("wind_spire");
+        hhItems.add("elf_blade");
+        hhItems.add("burglars_shank");
+        hhItems.add("crystal_dagger");
+        hhItems.add("shadow_dagger");
+        hhItems.add("broken_trident");
+        hhItems.add("wicked_kris");
+        hhItems.add("galaxy_dagger");
+        hhItems.add("dwarf_dagger");
+        hhItems.add("dragontooth_shiv");
         hhItems.add("iridium_needle");
+        hhItems.add("infinity_dagger");
+        hhItems.add("femur");
+        hhItems.add("wood_club");
+        hhItems.add("wood_mallet");
+        hhItems.add("lead_rod");
+        hhItems.add("kudgel");
+        hhItems.add("slammer");
+        hhItems.add("dwarf_hammer");
+        hhItems.add("dragontooth_club");
+        hhItems.add("galaxy_hammer");
+        hhItems.add("infinity_gavel");
+        hhItems.add("alex_bat");
+        hhItems.add("sam_guitar");
+        hhItems.add("harvey_mallet");
+        hhItems.add("maru_wrench");
+        hhItems.add("penny_fryer");
+        hhItems.add("seb_mace");
+        hhItems.add("haley_iron");
+        hhItems.add("abby_planchette");
+        hhItems.add("elliot_pencil");
+        hhItems.add("leah_whittler");
+
+        hhItems.add("iridium_pickaxe");
+        hhItems.add("iridium_shovel");
+        hhItems.add("iridium_hoe");
+        hhItems.add("iridium_axe");
 
         // Blocks
         blockItems.add("iridium_ore");
