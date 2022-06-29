@@ -49,7 +49,7 @@ public class IridiumShovel extends ShovelItem {
     public CompoundTag getShareTag(ItemStack stack) {
         CompoundTag tag = stack.getOrCreateTag();
         IIridiumMode cap = stack.getCapability(IridiumModeCapability.IRIDIUM_CAPABILITY).orElseThrow(() ->
-                new IllegalArgumentException("Capability was empty on get, oh no!"));
+                new IllegalArgumentException("Could not get Iridium Shovel capability!"));
 
         tag.putBoolean("SAnfo", cap.isIridiumMode());
         System.out.println(cap.isIridiumMode());

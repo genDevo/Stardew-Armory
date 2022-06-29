@@ -223,8 +223,8 @@ public class IridiumHoe extends HoeItem {
     @Override
     public CompoundTag getShareTag(ItemStack stack) {
         CompoundTag tag = stack.getOrCreateTag();
-        IIridiumMode cap = stack.getCapability(IridiumModeCapability.IRIDIUM_CAPABILITY).orElseThrow(() -> new IllegalArgumentException("Capability was empty on get, oh no!"));
-
+        IIridiumMode cap = stack.getCapability(IridiumModeCapability.IRIDIUM_CAPABILITY).orElseThrow(() ->
+                new IllegalArgumentException("Could not get Iridium Hoe capability!"));
         tag.putBoolean("SAnfo", cap.isIridiumMode());
         System.out.println(cap.isIridiumMode());
         return tag;
