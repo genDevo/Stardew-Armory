@@ -28,8 +28,6 @@ If you have any idea for the mod or would like to help, please leave a comment o
 
 **<ins>Current TODO</ins>:**
 
-Fabric Port
-
 Polish galaxy forge stuff
 
 Dwarf items implementation
