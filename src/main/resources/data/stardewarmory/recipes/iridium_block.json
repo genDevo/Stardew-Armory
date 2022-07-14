@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "iii",
+    "iii",
+    "iii"
+  ],
+  "key": {
+    "i": {
+      "item": "stardewarmory:iridium_ingot"
+    }
+  },
+  "result": {
+    "item": "stardewarmory:iridium_block"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "stardewarmory:galaxyforge",
+  "shards": 64,
+  "ingredients": [
+    {
+      "item": "stardewarmory:galaxy_sword"
+    },
+    {
+      "item": "stardewarmory:galaxy_soul"
+    }
+  ],
+  "output": {
+    "item": "stardewarmory:infinity_blade",
+    "nbt": "{Enchantments:[{id:\"stardewarmory:lucky_hit\",lvl:3}]}"
+  }
+}

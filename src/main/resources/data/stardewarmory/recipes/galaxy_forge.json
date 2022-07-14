@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "b": {
+      "item": "minecraft:iron_block"
+    },
+    "r": {
+      "item": "minecraft:iron_bars"
+    },
+    "s": {
+      "item": "stardewarmory:cinder_shard"
+    },
+    "o": {
+      "item": "minecraft:obsidian"
+    }
+  },
+  "pattern": [
+    "bbb",
+    "rsr",
+    "ooo"
+  ],
+  "result": {
+    "item": "stardewarmory:iridium_hoe"
+  }
+}

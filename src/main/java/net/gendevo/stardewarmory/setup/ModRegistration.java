@@ -1,6 +1,7 @@
 package net.gendevo.stardewarmory.setup;
 
 import net.gendevo.stardewarmory.block.ModBlocks;
+import net.gendevo.stardewarmory.block.entity.ModBlockEntities;
 import net.gendevo.stardewarmory.enchantments.ModEnchants;
 import net.gendevo.stardewarmory.item.ModItems;
 import net.gendevo.stardewarmory.recipe.ModRecipe;
@@ -16,6 +17,6 @@ public class ModRegistration {
         ModRegistries.registerMisc();
         ModSounds.register();
         ModEnchants.registerModEnchantments();
-
+        ModBlockEntities.registerModBlockEntities();
     }
 }

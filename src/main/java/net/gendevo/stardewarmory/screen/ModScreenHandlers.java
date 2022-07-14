@@ -9,4 +9,5 @@ public class ModScreenHandlers {
     public static ScreenHandlerType<GalaxyForgeScreenHandler> GALAXY_FORGE_SCREEN_HANDLER =
             ScreenHandlerRegistry.registerSimple(new Identifier(StardewArmory.MODID, "galaxy_forge"),
                     GalaxyForgeScreenHandler::new);
+
 }

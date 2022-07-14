@@ -6,6 +6,7 @@ import net.gendevo.stardewarmory.config.ModConfigs;
 import net.gendevo.stardewarmory.item.ModItems;
 import net.gendevo.stardewarmory.setup.ModRegistration;
 import net.gendevo.stardewarmory.util.ModLootTableModifiers;
+import net.gendevo.stardewarmory.world.gen.ModOreGeneration;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
@@ -29,7 +30,12 @@ public class StardewArmory implements ModInitializer {
         ModConfigs.registerConfigs();
         ModRegistration.register();
         ModLootTableModifiers.modifyLootTables();
+        ModOreGeneration.generateOres();
 
         LOGGER.info("Finished SA init");
     }
 }
+
+/* TODO
+        - Add capabilities to iridium tools
+ */

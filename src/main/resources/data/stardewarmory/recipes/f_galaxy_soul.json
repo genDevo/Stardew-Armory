@@ -1,0 +1,15 @@
+{
+  "type": "stardewarmory:galaxyforge",
+  "shards": 32,
+  "ingredients": [
+    {
+      "item": "minecraft:dragon_egg"
+    },
+    {
+      "item": "minecraft:nether_star"
+    }
+  ],
+  "output": {
+    "item": "stardewarmory:galaxy_soul"
+  }
+}

@@ -13,9 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class ModelLoaderMixin {
 
     @Inject(method = "loadModelFromJson",
-            at = @At(value = "INVOKE",
-                    target = "Lnet/minecraft/resource/ResourceManager;getResource(Lnet/minecraft/util/Identifier;)Lnet/minecraft/resource/Resource;"),
-            cancellable = true)
+            at = @At("HEAD"), cancellable = true)
     public void loadModelFromJson(Identifier id, CallbackInfoReturnable<JsonUnbakedModel> cir) {
         //First, we check if the current item model that is being registered is from our mod. If it isn't, we continue.
         if (!"stardewarmory".equals(id.getNamespace())) return;

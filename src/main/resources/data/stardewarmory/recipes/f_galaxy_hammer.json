@@ -1,0 +1,15 @@
+{
+  "type": "stardewarmory:galaxyforge",
+  "shards": 10,
+  "ingredients": [
+    {
+      "item": "stardewarmory:galaxy_sword"
+    },
+    {
+      "item": "minecraft:diamond"
+    }
+  ],
+  "output": {
+    "item": "stardewarmory:galaxy_hammer"
+  }
+}

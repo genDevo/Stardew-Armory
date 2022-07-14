@@ -1,12 +1,12 @@
 {
   "type": "stardewarmory:galaxyforge",
-  "shards": 60,
+  "shards": 10,
   "ingredients": [
     {
-      "item": "stardewarmory:reinforced_handle"
+      "item": "stardewarmory:galaxy_dagger"
     },
     {
-      "item": "stardewarmory:prismatic_shard"
+      "item": "minecraft:diamond"
     }
   ],
   "output": {

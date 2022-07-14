@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "tag": "minecraft:planks"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " #s",
+    " s#",
+    "s  "
+  ],
+  "result": {
+    "item": "stardewarmory:wood_mallet"
+  }
+}

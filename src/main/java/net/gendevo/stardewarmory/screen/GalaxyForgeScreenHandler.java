@@ -52,7 +52,7 @@ public class GalaxyForgeScreenHandler extends ScreenHandler {
     public int getScaledProgress() {
         int progress = this.propertyDelegate.get(0);
         int maxProgress = this.propertyDelegate.get(1); // Max Progress
-        int progressArrowSize = 54; // This is the width in pixels of your arrow
+        int progressArrowSize = 54; // Pixel width of progress bar
 
         return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
     }

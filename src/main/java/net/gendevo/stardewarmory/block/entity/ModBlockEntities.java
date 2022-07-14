@@ -12,4 +12,8 @@ public class ModBlockEntities {
             Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(StardewArmory.MODID, "galaxy_forge"),
                     FabricBlockEntityTypeBuilder.create(GalaxyForgeBlockEntity::new,
                             ModBlocks.GALAXY_FORGE).build(null));
+
+    public static void registerModBlockEntities() {
+        StardewArmory.LOGGER.debug("Registering BlockEntities for " + StardewArmory.MODID);
+    }
 }

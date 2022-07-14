@@ -1,0 +1,33 @@
+{
+  "display": {
+    "icon": {
+      "item": "stardewarmory:iridium_hoe"
+    },
+    "title": "A True Farmer",
+    "description": "Obtain the Iridium Hoe",
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "parent": "stardewarmory:iridium_ingot",
+  "criteria": {
+    "iridium_hoe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "stardewarmory:iridium_hoe"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "iridium_hoe"
+    ]
+  ]
+}

@@ -1,5 +1,6 @@
 package net.gendevo.stardewarmory.block.entity;
 
+import net.gendevo.stardewarmory.item.ModItems;
 import net.gendevo.stardewarmory.item.inventory.ImplementedInventory;
 import net.gendevo.stardewarmory.recipe.GalaxyForgeRecipe;
 import net.gendevo.stardewarmory.screen.GalaxyForgeScreenHandler;
@@ -122,6 +123,15 @@ public class GalaxyForgeBlockEntity extends BlockEntity implements NamedScreenHa
     public void writeNbt(NbtCompound nbt) {
         Inventories.writeNbt(nbt, inventory);
         super.writeNbt(nbt);
+    }
+
+    @Override
+    public boolean isValid(int slot, ItemStack stack) {
+        if (slot == 2 && stack.getItem().equals(ModItems.CINDER_SHARD)) {
+            return ImplementedInventory.super.isValid(slot, stack);
+        } else {
+            return false;
+        }
     }
 
     private void resetProgress() {

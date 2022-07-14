@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "item": "stardewarmory:galaxy_soul"
+    },
+    "title": {
+      "text": "Infinitesimal energy...",
+      "color": "light_purple"
+    },
+    "description": "Manage to forge a Galaxy Soul",
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "parent": "stardewarmory:prismatic_shard",
+  "criteria": {
+    "soul": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "stardewarmory:galaxy_soul"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "soul"
+    ]
+  ]
+}

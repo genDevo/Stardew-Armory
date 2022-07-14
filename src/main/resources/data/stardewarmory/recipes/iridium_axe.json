@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "stardewarmory:iridium_ingot"
+    },
+    "b": {
+      "item": "stardewarmory:iridium_block"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " b#",
+    " s#",
+    " s "
+  ],
+  "result": {
+    "item": "stardewarmory:iridium_axe"
+  }
+}

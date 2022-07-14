@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "addition": {
+    "item": "stardewarmory:dragon_tooth"
+  },
+  "base": {
+    "item": "stardewarmory:burglars_shank"
+  },
+  "result": {
+    "item": "stardewarmory:dragontooth_shiv"
+  }
+}

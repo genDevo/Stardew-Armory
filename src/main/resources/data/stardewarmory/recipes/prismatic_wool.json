@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "wool",
+  "ingredients": [
+    {
+      "item": "stardewarmory:prismatic_shard"
+    },
+    {
+      "count": 8,
+      "item": "minecraft:white_wool"
+    }
+  ],
+  "result": {
+    "count": 8,
+    "item": "stardewarmory:prismatic_wool"
+  }
+}

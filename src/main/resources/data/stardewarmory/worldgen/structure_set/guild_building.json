@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "stardewarmory:guild_building",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 6026892682,
+    "spacing": 50,
+    "separation": 38
+  }
+}

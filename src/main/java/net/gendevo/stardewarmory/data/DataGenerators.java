@@ -98,9 +98,6 @@ public class DataGenerators {
         hhItems.add("iridium_shovel");
         hhItems.add("iridium_hoe");
         hhItems.add("iridium_axe");
-
-        // Blocks
-        blockItems.add("iridium_ore");
     }
 
     public static String getItemModelType(String id) {

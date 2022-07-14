@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "minecraft:iron_ingot"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "   ",
+    " # ",
+    "s  "
+  ],
+  "result": {
+    "item": "stardewarmory:iron_dirk"
+  }
+}

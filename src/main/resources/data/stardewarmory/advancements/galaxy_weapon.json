@@ -1,0 +1,61 @@
+{
+  "display": {
+    "icon": {
+      "item": "stardewarmory:galaxy_sword"
+    },
+    "title": {
+      "text": "A Weapon of Galactic Proportions",
+      "color": "dark_purple"
+    },
+    "description": "Obtain a Galaxy Weapon",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "parent": "stardewarmory:prismatic_shard",
+  "criteria": {
+    "sword": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "stardewarmory:galaxy_sword"
+            ]
+          }
+        ]
+      }
+    },
+    "hammer": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "stardewarmory:galaxy_hammer"
+            ]
+          }
+        ]
+      }
+    },
+    "dagger": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "stardewarmory:galaxy_dagger"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "sword",
+      "hammer",
+      "dagger"
+    ]
+  ]
+}

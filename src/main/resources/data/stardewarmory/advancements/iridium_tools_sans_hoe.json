@@ -1,0 +1,42 @@
+{
+  "display": {
+    "icon": {
+      "item": "stardewarmory:iridium_pickaxe"
+    },
+    "title": "The Full Suite",
+    "description": "Obtain (almost) all the Iridium tools",
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "parent": "stardewarmory:iridium_ingot",
+  "criteria": {
+    "iridium_tools": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "stardewarmory:iridium_pickaxe"
+            ]
+          },
+          {
+            "items": [
+              "stardewarmory:iridium_axe"
+            ]
+          },
+          {
+            "items": [
+              "stardewarmory:iridium_shovel"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "iridium_tools"
+    ]
+  ]
+}

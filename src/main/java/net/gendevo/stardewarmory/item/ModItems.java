@@ -173,6 +173,6 @@ public class ModItems {
     }
 
     public static void registerModItems() {
-        StardewArmory.LOGGER.debug("Registering mod item for " + StardewArmory.MODID);
+        StardewArmory.LOGGER.debug("Registering Items for " + StardewArmory.MODID);
     }
 }

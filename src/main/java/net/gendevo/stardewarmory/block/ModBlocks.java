@@ -70,6 +70,6 @@ public class ModBlocks {
     }
 
     public static void registerModBlocks() {
-        StardewArmory.LOGGER.debug("Registering ModBlocks for " + StardewArmory.MODID);
+        StardewArmory.LOGGER.debug("Registering Blocks for " + StardewArmory.MODID);
     }
 }
