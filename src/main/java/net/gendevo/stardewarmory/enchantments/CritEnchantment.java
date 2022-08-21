@@ -11,6 +11,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.MathHelper;
 
 import java.util.Random;
 
@@ -29,8 +30,9 @@ public class CritEnchantment extends Enchantment {
     @Override
     public void doPostAttack(LivingEntity user, Entity target, int level) {
         if (!user.level.isClientSide()) {
+            level = Math.min(level, 5);
             Random rand = new Random();
-            int critChance = (int) (9 - Math.ceil(Math.sin((level * Math.PI) / 3) + level));
+            int critChance = (int) MathHelper.clamp((9 - level), 0, 9);
             if (user.hasEffect(Effects.LUCK)) {
                 critChance--;
             }

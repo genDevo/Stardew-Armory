@@ -18,9 +18,4 @@ public class IridiumOre extends Block {
                 .requiresCorrectToolForDrops()
                 .sound(SoundType.STONE));
     }
-
-    @Override
-    public int getExpDrop(BlockState state, IWorldReader world, BlockPos pos, int fortune, int silktouch) {
-        return 10 + (fortune*3);
-    }
 }
