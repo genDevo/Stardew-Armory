@@ -3,6 +3,7 @@ package net.gendevo.stardewarmory.data;
 import net.gendevo.stardewarmory.StardewArmory;
 import net.gendevo.stardewarmory.setup.ModBlocks;
 import net.gendevo.stardewarmory.setup.ModItems;
+import net.gendevo.stardewarmory.setup.ModTags;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
@@ -140,6 +141,14 @@ public class ModRecipeProvider extends RecipeProvider {
                 .pattern("rsr")
                 .pattern("ooo")
                 .unlockedBy("has_item", has(ModItems.CINDER_SHARD.get()))
+                .save(consumer);
+        ShapelessRecipeBuilder.shapeless(Items.BONE)
+                .requires(ModTags.Items.BONES_THING)
+                .unlockedBy("has_item", has(ModTags.Items.BONES_THING))
+                .save(consumer);
+        ShapelessRecipeBuilder.shapeless(Items.SPIDER_EYE)
+                .requires(ModItems.INSECT_HEAD.get(), 1)
+                .unlockedBy("has_item", has(ModItems.PREHISTORIC_SCAPULA.get()))
                 .save(consumer);
         //Cooking recipes
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(ModBlocks.IRIDIUM_ORE.get()), ModItems.IRIDIUM_INGOT.get(), 1.5f, 200)

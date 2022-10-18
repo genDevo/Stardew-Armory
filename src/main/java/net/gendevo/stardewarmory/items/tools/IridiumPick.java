@@ -1,7 +1,7 @@
 package net.gendevo.stardewarmory.items.tools;
 
-import net.gendevo.stardewarmory.data.capabilities.IridiumModeCapability;
 import net.gendevo.stardewarmory.data.capabilities.IIridiumMode;
+import net.gendevo.stardewarmory.data.capabilities.IridiumModeCapability;
 import net.gendevo.stardewarmory.util.KeybindSetup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;

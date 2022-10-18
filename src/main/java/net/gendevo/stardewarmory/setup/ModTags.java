@@ -27,8 +27,8 @@ public class ModTags {
 
         public static final TagKey<Item> INGOTS_IRIDIUM = forge("ingots/iridium");
         public static final TagKey<Item> RODS_NETHERITE = forge("rods/netherite");
-        public static final TagKey<Item> BONES_PREHISTORIC_SCAPULA = mod("bones/prehistoric_scapula");
         public static final TagKey<Item> SHARDS_CINDER = mod("shards/cinder");
+        public static final TagKey<Item> BONES_THING = mod("bones/sa");
 
         private static TagKey<Item> forge(String path) {
             return ItemTags.create(new ResourceLocation("forge", path));

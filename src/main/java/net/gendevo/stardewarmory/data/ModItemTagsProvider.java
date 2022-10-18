@@ -27,7 +27,11 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         tag(Tags.Items.INGOTS).addTag(ModTags.Items.INGOTS_IRIDIUM);
         tag(ModTags.Items.RODS_NETHERITE).add(ModItems.REINFORCED_HANDLE.get());
         tag(Tags.Items.RODS).addTag(ModTags.Items.RODS_NETHERITE);
-        tag(ModTags.Items.BONES_PREHISTORIC_SCAPULA).add(ModItems.PREHISTORIC_SCAPULA.get());
-        tag(Tags.Items.BONES).addTag(ModTags.Items.BONES_PREHISTORIC_SCAPULA);
+        tag(ModTags.Items.BONES_THING).add(ModItems.PREHISTORIC_SCAPULA.get());
+        tag(ModTags.Items.BONES_THING).add(ModItems.YETI_TOOTH.get());
+        tag(ModTags.Items.BONES_THING).add(ModItems.FEMUR.get());
+        tag(ModTags.Items.BONES_THING).add(ModItems.BONE_SWORD.get());
+        tag(Tags.Items.BONES).addTag(ModTags.Items.BONES_THING);
+        tag(ModTags.Items.SHARDS_CINDER).add(ModItems.CINDER_SHARD.get());
     }
 }

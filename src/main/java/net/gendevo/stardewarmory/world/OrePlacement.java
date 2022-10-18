@@ -4,9 +4,8 @@ import net.gendevo.stardewarmory.config.StardewArmoryConfig;
 import net.minecraft.core.Holder;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
-import net.minecraft.world.level.levelgen.placement.*;
-
-import java.util.List;
+import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 public class OrePlacement {
     public static final Holder<PlacedFeature> IRIDIUM_ORE_PLACED = PlacementUtils.register("iridum_ore_placed",

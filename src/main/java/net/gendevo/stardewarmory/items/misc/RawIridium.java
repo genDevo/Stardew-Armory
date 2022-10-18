@@ -16,7 +16,7 @@ public class RawIridium extends Item {
     @Override
     public void inventoryTick(ItemStack pStack, Level pLevel, Entity pEntity, int pSlotId, boolean pIsSelected) {
         super.inventoryTick(pStack, pLevel, pEntity, pSlotId, pIsSelected);
-        if (pEntity.tickCount % 40 == 0) {
+        if (pEntity.tickCount % 40 == 0 && pIsSelected) {
             ((LivingEntity)pEntity).addEffect(new MobEffectInstance(MobEffects.GLOWING, 60, 0, true, false));
         }
     }

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "stardewarmory:insect_head"
+    }
+  ],
+  "result": {
+    "item": "minecraft:spider_eye"
+  }
+}

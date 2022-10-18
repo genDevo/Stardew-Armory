@@ -99,7 +99,7 @@ d2da9981bf39c9d898830cac81e4d1d5393b2ad3 data/forge/tags/blocks/ores.json
 90ab1766a7f2c7e994e686c542c755021307c95f data/forge/tags/blocks/ores/iridium.json
 d8be646789ae718ae20a2717199bf10b1614cdf7 data/forge/tags/blocks/storage_blocks.json
 4387e90b61625a64a0473388442bdf628fbccee8 data/forge/tags/blocks/storage_blocks/iridium.json
-07f6296242bc40a825c01063bb78ac94e4eeb1f6 data/forge/tags/items/bones.json
+5a55ffb8082b5b3e5ccfbb1294c21ac977ea7585 data/forge/tags/items/bones.json
 ca08214e083c124a657f6295f747001c58901bc4 data/forge/tags/items/ingots.json
 56886933bf5b40e92281f649276508cc78707465 data/forge/tags/items/ingots/iridium.json
 d2da9981bf39c9d898830cac81e4d1d5393b2ad3 data/forge/tags/items/ores.json
@@ -108,6 +108,10 @@ c938a2437c7abb6f73084b8e6dc232cc5561fa6c data/forge/tags/items/rods.json
 729aa4cf7880e12bf82899574223d25908b403f6 data/forge/tags/items/rods/netherite.json
 d8be646789ae718ae20a2717199bf10b1614cdf7 data/forge/tags/items/storage_blocks.json
 4387e90b61625a64a0473388442bdf628fbccee8 data/forge/tags/items/storage_blocks/iridium.json
+4f4a532f45d5ef7726e84f803189c58ebad4123e data/minecraft/advancements/recipes/food/spider_eye.json
+107ea8e9921bcbf5ce74706696c0f736090fa71b data/minecraft/advancements/recipes/misc/bone.json
+2ae2599f5cb7d39859300f1e872019ebd76607d5 data/minecraft/recipes/bone.json
+5da9558191a52ad44243f69d7f8bfe6acde48cab data/minecraft/recipes/spider_eye.json
 8ec97e1f8d7f0910cb7d27c783353451a1dba9e8 data/minecraft/tags/blocks/mineable/pickaxe.json
 572e10d812b1a09b6572b34ade4e99a4bf7c5067 data/minecraft/tags/blocks/needs_diamond_tool.json
 f066e65d29f1f5076f3886b3249906ef85f0ecac data/minecraft/tags/blocks/needs_iron_tool.json
@@ -207,5 +211,6 @@ a9d9e91c7f3a25faf42119dad9da93dab574ab14 data/stardewarmory/recipes/raw_iridium_
 9cca723b770ae0b45f9dbba39860a8a7dcea6a2e data/stardewarmory/recipes/raw_iridium_smelting.json
 0eeff6d58a84ac0683ca572101901c7aa929f19e data/stardewarmory/recipes/reinforced_handle_smithing.json
 fba43bdd1f7d4d9b0231d92aefb370debd77e61f data/stardewarmory/recipes/wood_mallet.json
-6abfcfdb694790ce51dc1282847db2ab517de58c data/stardewarmory/tags/items/bones/prehistoric_scapula.json
+dcec78f4d1f662a951a54efee4212ba002bb320c data/stardewarmory/tags/items/bones/sa.json
 74700d556ca80c7a1db5fd4efb09c3ddb26cad66 data/stardewarmory/tags/items/ores/cinder.json
+1c25425f2cb0d20a1354ab6cff303ac17f802896 data/stardewarmory/tags/items/shards/cinder.json

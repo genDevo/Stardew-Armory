@@ -4,10 +4,18 @@ import net.gendevo.stardewarmory.StardewArmory;
 import net.gendevo.stardewarmory.items.ModItemTier;
 import net.gendevo.stardewarmory.items.misc.RawIridium;
 import net.gendevo.stardewarmory.items.rings.*;
-import net.gendevo.stardewarmory.items.tools.*;
-import net.gendevo.stardewarmory.items.weapons.*;
+import net.gendevo.stardewarmory.items.tools.IridiumAxe;
+import net.gendevo.stardewarmory.items.tools.IridiumHoe;
+import net.gendevo.stardewarmory.items.tools.IridiumPick;
+import net.gendevo.stardewarmory.items.tools.IridiumShovel;
+import net.gendevo.stardewarmory.items.weapons.DwarfSword;
+import net.gendevo.stardewarmory.items.weapons.EnchantSword;
+import net.gendevo.stardewarmory.items.weapons.NeptuneSword;
+import net.gendevo.stardewarmory.items.weapons.UnobtainableSword;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraftforge.registries.RegistryObject;
+import org.jetbrains.annotations.Nullable;
 
 public class ModItems {
     // Materials
@@ -24,7 +32,12 @@ public class ModItems {
     public static final RegistryObject<Item> PREHISTORIC_SCAPULA = Registration.ITEMS.register("prehistoric_scapula", () ->
             new Item(new Item.Properties().tab(StardewArmory.TAB_STARDEW)));
     public static final RegistryObject<Item> CINDER_SHARD = Registration.ITEMS.register("cinder_shard", () ->
-            new Item(new Item.Properties().tab(StardewArmory.TAB_STARDEW)));
+            new Item(new Item.Properties().tab(StardewArmory.TAB_STARDEW)) {
+                @Override
+                public int getBurnTime(ItemStack itemStack, @Nullable RecipeType<?> recipeType) {
+                    return 3000;
+                }
+            });
     public static final RegistryObject<Item> RAW_IRIDIUM = Registration.ITEMS.register("raw_iridium", () ->
             new RawIridium(new Item.Properties().tab(StardewArmory.TAB_STARDEW)));
 
@@ -82,7 +95,7 @@ public class ModItems {
     public static final RegistryObject<SwordItem> OBSIDIAN_EDGE = Registration.ITEMS.register("obsidian_edge", () ->
             new EnchantSword(ModItemTier.OBSIDIAN_EDGE, 4, -2.8f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
     public static final RegistryObject<SwordItem> OSSIFIED_BLADE = Registration.ITEMS.register("ossified_blade", () ->
-            new EnchantSword(ModItemTier.OSSIFIED_BLADE, 4, -2.6f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
+            new EnchantSword(ModItemTier.OSSIFIED_BLADE, 6, -2.6f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
     public static final RegistryObject<SwordItem> TEMPERED_BROADSWORD = Registration.ITEMS.register("tempered_broadsword", () ->
             new EnchantSword(ModItemTier.TEMPERED_BROADSWORD, 10, -3.1f, (new Item.Properties()).tab(StardewArmory.TAB_STARDEW)));
     public static final RegistryObject<SwordItem> YETI_TOOTH = Registration.ITEMS.register("yeti_tooth", () ->

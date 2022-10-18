@@ -88,6 +88,7 @@
     "item.stardewarmory.savage_ring": "Дикое кольцо",
     "entity.stardewarmory.guild_master": "Мастер гильдии",
     "enchantment.stardewarmory.lucky_hit": "Удачный удар",
+    "enchantment.stardewarmory.lucky_hit.desc": "Has a chance to hit for 2x damage",
     "subtitle.stardewarmory.lucky_hit_sound": "Удачный удар!",
     "subtitle.stardewarmory.yoba_sound": "Украшено Йобой",
     "subtitle.stardewarmory.toggle_on_sound": "Эффект включен",

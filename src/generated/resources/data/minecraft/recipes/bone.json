@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "stardewarmory:bones/sa"
+    }
+  ],
+  "result": {
+    "item": "minecraft:bone"
+  }
+}

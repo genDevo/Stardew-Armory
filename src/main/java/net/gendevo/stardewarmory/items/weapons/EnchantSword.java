@@ -20,52 +20,30 @@ public class EnchantSword extends SwordItem {
         if (getItemCategory() == tab) {
             ItemStack stack = new ItemStack(this);
             switch (this.getItemEnchantability(stack)) {
-                case 9:
-                    stack.enchant(Enchantments.FIRE_ASPECT, 1);
-                    break;
-                case 10:
-                    stack.enchant(Enchantments.SMITE, 1);
-                    break;
-                case 11:
-                    stack.enchant(Enchantments.KNOCKBACK, 1);
-                    break;
-                case 13:
-                    stack.enchant(Enchantments.SHARPNESS, 1);
-                    break;
-                case 14:
-                    stack.enchant(ModEnchants.LUCKY_HIT.get(), 1);
-                    break;
-                case 20:
-                    stack.enchant(ModEnchants.LUCKY_HIT.get(), 3);
-                    break;
+                case 9 -> stack.enchant(Enchantments.FIRE_ASPECT, 1);
+                case 10 -> stack.enchant(Enchantments.SMITE, 1);
+                case 11 -> stack.enchant(Enchantments.KNOCKBACK, 1);
+                case 13 -> stack.enchant(Enchantments.SHARPNESS, 1);
+                case 14 -> stack.enchant(ModEnchants.LUCKY_HIT.get(), 1);
+                case 20 -> stack.enchant(ModEnchants.LUCKY_HIT.get(), 3);
             }
             list.add(stack);
         }
+        super.fillItemCategory(tab, list);
     }
 
     @Override
     public void onCraftedBy(ItemStack stack, net.minecraft.world.level.Level pLevel, Player pPlayer) {
         if (!stack.isEnchanted()) {
             switch (this.getItemEnchantability(stack)) {
-                case 9:
-                    stack.enchant(Enchantments.FIRE_ASPECT, 1);
-                    break;
-                case 10:
-                    stack.enchant(Enchantments.SMITE, 1);
-                    break;
-                case 11:
-                    stack.enchant(Enchantments.KNOCKBACK, 1);
-                    break;
-                case 13:
-                    stack.enchant(Enchantments.SHARPNESS, 1);
-                    break;
-                case 14:
-                    stack.enchant(ModEnchants.LUCKY_HIT.get(), 1);
-                    break;
-                case 20:
-                    stack.enchant(ModEnchants.LUCKY_HIT.get(), 3);
-                    break;
+                case 9 -> stack.enchant(Enchantments.FIRE_ASPECT, 1);
+                case 10 -> stack.enchant(Enchantments.SMITE, 1);
+                case 11 -> stack.enchant(Enchantments.KNOCKBACK, 1);
+                case 13 -> stack.enchant(Enchantments.SHARPNESS, 1);
+                case 14 -> stack.enchant(ModEnchants.LUCKY_HIT.get(), 1);
+                case 20 -> stack.enchant(ModEnchants.LUCKY_HIT.get(), 3);
             }
         }
+        super.onCraftedBy(stack, pLevel, pPlayer);
     }
 }

@@ -1,7 +1,7 @@
 package net.gendevo.stardewarmory.blocks;
 
-import net.gendevo.stardewarmory.setup.ModBlockEntities;
 import net.gendevo.stardewarmory.blocks.entities.GalaxyForgeBlockEntity;
+import net.gendevo.stardewarmory.setup.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;

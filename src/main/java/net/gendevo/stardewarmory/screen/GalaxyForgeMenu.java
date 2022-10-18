@@ -1,9 +1,9 @@
 package net.gendevo.stardewarmory.screen;
 
-import net.gendevo.stardewarmory.setup.ModBlocks;
-import net.gendevo.stardewarmory.setup.ModMenuTypes;
-import net.gendevo.stardewarmory.setup.ModItems;
 import net.gendevo.stardewarmory.blocks.entities.GalaxyForgeBlockEntity;
+import net.gendevo.stardewarmory.setup.ModBlocks;
+import net.gendevo.stardewarmory.setup.ModItems;
+import net.gendevo.stardewarmory.setup.ModMenuTypes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
