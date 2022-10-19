@@ -102,7 +102,7 @@ public class ModEntityLootTables extends EntityLoot {
                 ).withPool(new LootPool.Builder()
                         .setRolls(ConstantValue.exactly(1))
                         .add(EmptyLootItem.emptyItem()
-                                .setWeight((int)(((float)PRISMATIC_CHANCE)/200))
+                                .setWeight((int)(((float)PRISMATIC_CHANCE)/50)-1)
                         )
                         .add(LootItem.lootTableItem(ModItems.PRISMATIC_SHARD.get())
                                 .when(LootItemKilledByPlayerCondition.killedByPlayer())

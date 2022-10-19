@@ -100,7 +100,7 @@ public class GalaxyForgeBlockEntity extends BlockEntity implements MenuProvider 
             @Override
             public int getSlotLimit(int slot) {
                 if (slot == 2) {
-                    return 60;
+                    return 64;
                 }
                 return 1;
             }
@@ -146,7 +146,10 @@ public class GalaxyForgeBlockEntity extends BlockEntity implements MenuProvider 
         return match.isPresent();
     }
 
-    //TODO do the Toole suggestion of different weapons on craft, also make shards part of recipe
+    /*TODO
+        - convert to new JEI mechanics
+        - do the Toole suggestion of different weapons on craft, also make shards part of recipe
+     */
     public static void craft(GalaxyForgeBlockEntity entity) {
         Level level = entity.level;
         SimpleContainer inv = new SimpleContainer(entity.itemHandler.getSlots());
@@ -161,10 +164,10 @@ public class GalaxyForgeBlockEntity extends BlockEntity implements MenuProvider 
             ItemStack output = recipe.get().getResultItem();
 
             if (entity.itemHandler.getStackInSlot(2).getItem() == ModItems.CINDER_SHARD.get() &&
-                    entity.itemHandler.getStackInSlot(2).getCount() == 60) {
+                    entity.itemHandler.getStackInSlot(2).getCount() >= 64) {
                 entity.itemHandler.extractItem(0, 1, false);
                 entity.itemHandler.extractItem(1, 1, false);
-                entity.itemHandler.extractItem(2, 60, false);
+                entity.itemHandler.extractItem(2, 64, false);
                 entity.itemHandler.insertItem(0, output, false);
             }
             entity.resetProgress();

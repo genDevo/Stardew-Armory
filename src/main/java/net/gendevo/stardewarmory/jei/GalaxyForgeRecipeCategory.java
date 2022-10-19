@@ -5,6 +5,7 @@ import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.gendevo.stardewarmory.StardewArmory;
 import net.gendevo.stardewarmory.data.recipes.GalaxyForgeRecipe;
@@ -26,13 +27,8 @@ public class GalaxyForgeRecipeCategory implements IRecipeCategory<GalaxyForgeRec
     }
 
     @Override
-    public ResourceLocation getUid() {
-        return UID;
-    }
-
-    @Override
-    public Class<? extends GalaxyForgeRecipe> getRecipeClass() {
-        return GalaxyForgeRecipe.class;
+    public RecipeType<GalaxyForgeRecipe> getRecipeType() {
+        return new RecipeType<>(UID, GalaxyForgeRecipe.class);
     }
 
     @Override
@@ -51,6 +47,16 @@ public class GalaxyForgeRecipeCategory implements IRecipeCategory<GalaxyForgeRec
     }
 
     @Override
+    public ResourceLocation getUid() {
+        return UID;
+    }
+
+    @Override
+    public Class<? extends GalaxyForgeRecipe> getRecipeClass() {
+        return GalaxyForgeRecipe.class;
+    }
+
+    @Override
     public void setIngredients(GalaxyForgeRecipe recipe, IIngredients ingredients) {
         ingredients.setInputIngredients(recipe.getIngredients());
         ingredients.setOutput(VanillaTypes.ITEM, recipe.getResultItem());
@@ -58,8 +64,8 @@ public class GalaxyForgeRecipeCategory implements IRecipeCategory<GalaxyForgeRec
 
     @Override
     public void setRecipe(IRecipeLayout recipeLayout, GalaxyForgeRecipe recipe, IIngredients ingredients) {
-        recipeLayout.getItemStacks().init(0,true, 115,46);
-        recipeLayout.getItemStacks().init(1,true, 41,46);
+        recipeLayout.getItemStacks().init(1,true, 115,46);
+        recipeLayout.getItemStacks().init(0,true, 41,46);
 
         recipeLayout.getItemStacks().init(2,false, 13,46);
         recipeLayout.getItemStacks().set(ingredients);
